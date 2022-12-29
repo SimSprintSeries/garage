@@ -21,7 +21,7 @@ Backend application for SimSprintSeries website.
 3. Verify the server starts properly
    - MacOS
       1. ``` cd $GARAGE_BASE_DIR```
-      2. ``` mvn spring-boot:run```
+      2. ``` ./mvnw spring-boot:run```
    - Windows:
      1. ```TODO```
    - Linux:
