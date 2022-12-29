@@ -30,7 +30,7 @@ public class User {
 
     private boolean active;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
     public Long getId() {

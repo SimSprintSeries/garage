@@ -3,7 +3,6 @@ package com.sss.garage.configuration.security;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import com.sss.garage.controller.filter.JwtAuthorizationFilter;
-import com.sss.garage.service.auth.jwt.impl.SSSJwtTokenService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +33,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/auth/token").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().denyAll()
                         .and()
                         .addFilter(jwtAuthorizationFilter)
                 )
@@ -48,6 +47,7 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    //TODO: not used because of JwtAuthorizationFilter?
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);

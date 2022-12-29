@@ -1,8 +1,10 @@
 package com.sss.garage.dev.initial.data;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.sss.garage.model.role.Role;
+import com.sss.garage.model.role.RoleRepository;
 import com.sss.garage.model.user.User;
 import com.sss.garage.model.user.UserRepository;
 
@@ -17,24 +19,35 @@ public class DataLoader {
 
     @Autowired
     public DataLoader(final UserRepository userRepository,
+                      final RoleRepository roleRepository,
                       final PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-        loadInitialData(userRepository);
+        loadInitialData(userRepository, roleRepository);
     }
 
-    public void loadInitialData(final UserRepository userRepository){
+    public void loadInitialData(final UserRepository userRepository, final RoleRepository roleRepository){
+        final Role user = newRole("ROLE_USER", Set.of());
+        final Role admin = newRole("ROLE_ADMIN", Set.of(user));
+        List<Role> roles = List.of(admin, user);
+        roleRepository.saveAll(roles);
 
-        List<User> users = List.of(newUser("montrey"), newUser("admin"), newUser("user"));
-
+        List<User> users = List.of(newUser("montrey", Set.of()), newUser("user", Set.of(user)), newUser("admin", Set.of(admin)));
         userRepository.saveAll(users);
     }
 
-    private User newUser(final String uid) {
+    private Role newRole(final String code, final Set<Role> roles) {
+        final Role role = new Role();
+        role.setCode(code);
+        role.setRoles(roles);
+        return role;
+    }
+
+    private User newUser(final String uid, final Set<Role> roles) {
         final User user = new User();
         user.setUsername(uid);
         user.setPassword(passwordEncoder.encode("nimda"));
         user.setActive(true);
-        user.setRoles(new HashSet<>());
+        user.setRoles(roles);
         return user;
     }
 }

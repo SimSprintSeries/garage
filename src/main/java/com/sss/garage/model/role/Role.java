@@ -2,8 +2,9 @@ package com.sss.garage.model.role;
 
 import java.util.Set;
 
-import com.sss.garage.model.permission.Permission;
 import com.sss.garage.model.user.User;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,12 +12,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +24,25 @@ public class Role {
     @Column(unique = true)
     private String code;
 
-    @ManyToMany
-    private Set<Permission> permissions;
+    /**
+     * All roles that this role is a member of
+     */
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+    private Set<Role> members;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    /**
+     * All roles that are included in this role
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
+
+    @Override
+    public String getAuthority() {
+        return getCode();
+    }
 
     public Long getId() {
         return id;
@@ -51,19 +60,27 @@ public class Role {
         this.code = code;
     }
 
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(final Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(final Set<User> users) {
         this.users = users;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(final Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getMembers() {
+        return members;
+    }
+
+    public void setMembers(final Set<Role> members) {
+        this.members = members;
     }
 }
