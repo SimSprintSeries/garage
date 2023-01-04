@@ -17,8 +17,9 @@ Backend application for SimSprintSeries website.
       1. ```TODO```
     - Linux: 
       1. ```TODO```
-2. Copy ```src/main/resources/local_application.properties``` to your ```src/main/resources/application.properties``` and replace $PASSWORD with your db password set previously
-3. Verify the server starts properly
+2. Copy ```src/main/resources/secret-template.properties``` to your ```src/main/resources/secret.properties``` and fill in the values
+3. If you want to have some your-local-specific properties, do so in ```src/main/resources/local-changes.properties```
+4. Verify the server starts properly
    - MacOS
       1. ``` cd $GARAGE_BASE_DIR```
       2. ``` ./mvnw spring-boot:run```
