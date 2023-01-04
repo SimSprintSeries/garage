@@ -1,5 +1,7 @@
 package com.sss.garage.configuration.security;
 
+import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
+
 import com.sss.garage.controller.filter.JwtAuthenticationFilter;
 import com.sss.garage.controller.filter.OAuth2LoginAuthenticationContinueChainFilter;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
@@ -12,20 +14,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.context.SecurityContextHolderStrategy;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -40,23 +46,31 @@ public class SecurityConfiguration {
                                            final AuthenticationManager authenticationManager,
                                            OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService) throws Exception {
         http
+                .exceptionHandling()
+                    .defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher("/api/**")).and()
                 .oauth2Client(oauth2 -> oauth2
                         .clientRegistrationRepository(clientRegistrationRepository))
                 .oauth2Login(oauth2 -> oauth2
 //                        .authorizedClientService() TODO: Implement JPAAuthorizedClientService
-                        .loginProcessingUrl("/JEBAC_MONTREYA") // Disable original OAuth2LoginAuthenticationFilter
+                        .loginProcessingUrl(NON_ACCESSIBLE_PATH) // Disable original OAuth2LoginAuthenticationFilter
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(oAuth2UserService)))
-
-                .authorizeHttpRequests((authz) -> authz
+                .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to user
-//                        .requestMatchers("/**").hasRole("1059454168525447178")
-                        .anyRequest().authenticated().and()
-                .addFilterBefore(jwtAuthenticationFilter(), SecurityContextHolderAwareRequestFilter.class))
+//                        .requestMatchers("/**").hasRole("1059454168525447178") //example
+                        .anyRequest().permitAll())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(sssOAuth2LoginAuthenticationFilter(clientRegistrationRepository, authorizedClientService, authenticationManager), OAuth2LoginAuthenticationFilter.class)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .anonymous().disable()
                 .csrf().disable();
         return http.build();
+    }
+
+    private AuthenticationEntryPoint getRestAuthenticationEntryPoint() {
+        return new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED);
     }
 
     @Value("${discord.api.bot.token}")
