@@ -19,10 +19,11 @@ Backend application for SimSprintSeries website.
       1. ```TODO```
 2. Copy ```src/main/resources/secret-template.properties``` to your ```src/main/resources/secret.properties``` and fill in the values
 3. If you want to have some your-local-specific properties, do so in ```src/main/resources/local-changes.properties```
-4. Verify the server starts properly
+4. In your IDE set active profile: local
+5. Verify the server starts properly
    - MacOS
       1. ``` cd $GARAGE_BASE_DIR```
-      2. ``` ./mvnw spring-boot:run```
+      2. ``` ./mvnw spring-boot:run -Dspring-boot.run.profiles=local```
    - Windows:
      1. ```TODO```
    - Linux:
