@@ -2,9 +2,11 @@ package com.sss.garage.service.auth.jwt;
 
 import java.util.Optional;
 
-import com.sss.garage.model.user.User;
+import com.sss.garage.model.user.DiscordUser;
+
+import org.springframework.security.core.Authentication;
 
 public interface JwtTokenService {
-    String generateForUser(final User user);
-    Optional<User> extractUserFromToken(String token);
+    String generateForPrincipal(final Authentication principal);
+    Optional<Authentication> extractAuthenticationFromToken(String token);
 }

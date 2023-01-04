@@ -1,8 +1,8 @@
 package com.sss.garage.configuration.web;
 
 import com.sss.garage.controller.converter.jwt.JwtTokenConverter;
-import com.sss.garage.controller.converter.user.SSSUserDetailsConverter;
-import com.sss.garage.controller.converter.user.UserToAuthenticationTokenConverter;
+import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
+import com.sss.garage.service.discord.converter.DiscordRoleConverter;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfiguration implements WebMvcConfigurer {
 
     private JwtTokenConverter jwtTokenConverter;
-    private UserToAuthenticationTokenConverter userToAuthenticationTokenConverter;
-    private SSSUserDetailsConverter sssUserDetailsConverter;
+    private DiscordRoleConverter discordRoleConverter;
+    private DiscordOAuth2UserConverter discordOAuth2UserConverter;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(jwtTokenConverter);
-        registry.addConverter(userToAuthenticationTokenConverter);
-        registry.addConverter(sssUserDetailsConverter);
+        registry.addConverter(discordRoleConverter);
+        registry.addConverter(discordOAuth2UserConverter);
     }
 
     @Bean
@@ -36,12 +36,12 @@ public class WebConfiguration implements WebMvcConfigurer {
     }
 
     @Autowired
-    public void setUserToAuthenticationTokenConverter(final UserToAuthenticationTokenConverter userToAuthenticationTokenConverter) {
-        this.userToAuthenticationTokenConverter = userToAuthenticationTokenConverter;
+    public void setDiscordRoleConverter(final DiscordRoleConverter discordRoleConverter) {
+        this.discordRoleConverter = discordRoleConverter;
     }
 
     @Autowired
-    public void setSssUserDetailsConverter(final SSSUserDetailsConverter sssUserDetailsConverter) {
-        this.sssUserDetailsConverter = sssUserDetailsConverter;
+    public void setDiscordOAuth2UserConverter(final DiscordOAuth2UserConverter discordOAuth2UserConverter) {
+        this.discordOAuth2UserConverter = discordOAuth2UserConverter;
     }
 }

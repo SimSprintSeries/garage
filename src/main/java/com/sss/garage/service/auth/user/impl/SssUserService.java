@@ -2,21 +2,28 @@ package com.sss.garage.service.auth.user.impl;
 
 import java.util.Optional;
 
-import com.sss.garage.model.user.User;
+import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.UserRepository;
 import com.sss.garage.service.auth.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 @Service
-public class SSSUserService implements UserService {
+public class SssUserService implements UserService {
 
     private UserRepository userRepository;
 
     @Override
-    public Optional<User> findUserByUsername(final String username) {
-        return userRepository.findByUsername(username);
+    public Optional<DiscordUser> findUserById(final String id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public DiscordUser saveUser(final DiscordUser discordUser) {
+        return userRepository.save(discordUser);
     }
 
     @Autowired

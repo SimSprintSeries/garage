@@ -2,8 +2,9 @@ package com.sss.garage.service.auth.user;
 
 import java.util.Optional;
 
-import com.sss.garage.model.user.User;
+import com.sss.garage.model.user.DiscordUser;
 
 public interface UserService {
-    Optional<User> findUserByUsername(final String Username);
+    Optional<DiscordUser> findUserById(final String Username);
+    DiscordUser saveUser(final DiscordUser discordUser);
 }
