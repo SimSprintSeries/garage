@@ -8,6 +8,6 @@ import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;
 
 public interface RoleService {
-    Set<DiscordRole> getAllRolesFromUser(final DiscordUser user);
     Optional<DiscordRole> findById(final String id);
+    RoleMapperStrategy getRoleMapperStrategy();
 }

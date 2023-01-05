@@ -5,6 +5,8 @@ import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
 import com.sss.garage.controller.filter.JwtAuthenticationFilter;
 import com.sss.garage.controller.filter.OAuth2LoginAuthenticationContinueChainFilter;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
+import com.sss.garage.service.auth.role.RoleMapperStrategy;
+import com.sss.garage.service.auth.role.RoleService;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -37,6 +39,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
     private JwtTokenService jwtTokenService;
+    private RoleMapperStrategy roles;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Bean
@@ -57,7 +60,7 @@ public class SecurityConfiguration {
                                 .userService(oAuth2UserService)))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to user
-//                        .requestMatchers("/**").hasRole("1059454168525447178") //example
+//                        .requestMatchers("/**").hasRole(roles.user()) //example
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -101,5 +104,10 @@ public class SecurityConfiguration {
     @Autowired
     public void setJwtTokenService(final JwtTokenService jwtTokenService) {
         this.jwtTokenService = jwtTokenService;
+    }
+
+    @Autowired
+    public void setRoles(final RoleService roleService) {
+        this.roles = roleService.getRoleMapperStrategy();
     }
 }
