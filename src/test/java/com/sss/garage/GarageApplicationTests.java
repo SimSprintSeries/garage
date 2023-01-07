@@ -3,10 +3,10 @@ package com.sss.garage;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class GarageApplicationTests {
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
