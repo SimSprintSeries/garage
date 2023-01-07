@@ -3,6 +3,9 @@ package com.sss.garage.model.role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import com.sss.garage.model.event.Event;
+import com.sss.garage.model.game.Game;
+
 @Entity
 public class League {
 
@@ -10,7 +13,10 @@ public class League {
     private Long id;
     private String split;
     private String platform;
-    private String game;
+
+    private Game game;
+    private Set<Event> eventList;
+
 
 
     public Long getId() {
@@ -34,10 +40,17 @@ public class League {
         this.platform = platform;
     }
 
-    public String getGame() {
+    public Game getGame() {
         return game;
     }
-    public void setGame(final String game) {
+    public void setGame(final Game game) {
         this.game = game;
+    }
+
+    public Set<Event> getEventList() {
+        return eventList;
+    }
+    public void setEventList(final Set<Event> eventList) {
+        this.eventList = eventList;
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.game.Game;
 
 @Entity
 public class Elo {
@@ -19,6 +20,7 @@ public class Elo {
     private Integer eloF1;
 
     private Driver driver;
+    private Game game;
 
 
     public Long getId() {
@@ -82,5 +84,12 @@ public class Elo {
     }
     public void setDriver(final Driver driver) {
         this.driver = driver;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+    public void setGame(final Game game) {
+        this.game = game;
     }
 }
