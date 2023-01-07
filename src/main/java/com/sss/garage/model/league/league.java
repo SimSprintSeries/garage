@@ -7,32 +7,37 @@ import jakarta.persistence.Id;
 public class League {
 
     @Id
-    private String id;
-    private int finishPosition;
-    private boolean polePosition;
-    private boolean dnf;
-    private boolean fastestLap;
-    
+    private long id;
+    private String split;
+    private String platform;
+    private String game;
 
-    private String code;
 
-    @Override
-    public String getAuthority() { return getId(); }
-
-    public String getId() {
+    public long getId() {
         return id;
     }
-
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getSplit() {
+        return split;
+    }
+    public void setSplit(final String split) {
+        this.split = split;
     }
 
-    public void setCode(final String code) {
-        this.code = code;
+    public String getPlatform() {
+        return platform;
+    }
+    public void setPlatform(final String platform) {
+        this.platform = platform;
     }
 
+    public String getGame() {
+        return game;
+    }
+    public void setGame(final String game) {
+        this.game = game;
+    }
 }

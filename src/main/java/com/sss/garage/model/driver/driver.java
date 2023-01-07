@@ -7,32 +7,24 @@ import jakarta.persistence.Id;
 public class Driver {
 
     @Id
-    private String id;
-    private int finishPosition;
-    private boolean polePosition;
-    private boolean dnf;
-    private boolean fastestLap;
-    
+    private long id;
+    private String name;
 
-    private String code;
 
-    @Override
-    public String getAuthority() { return getId(); }
-
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(final String code) {
-        this.code = code;
+    public void setName(final String name) {
+        this.name = name;
     }
 
 }

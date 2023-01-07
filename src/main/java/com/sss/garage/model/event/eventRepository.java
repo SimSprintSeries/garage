@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EloRepository extends JpaRepository<raceResults, String> {
+public interface EventRepository extends JpaRepository<Event, long> {
 }
