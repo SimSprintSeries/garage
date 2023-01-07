@@ -7,16 +7,16 @@ import jakarta.persistence.Id;
 public class League {
 
     @Id
-    private long id;
+    private Long id;
     private String split;
     private String platform;
     private String game;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 

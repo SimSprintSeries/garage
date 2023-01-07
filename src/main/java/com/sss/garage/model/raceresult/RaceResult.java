@@ -13,49 +13,48 @@ public class RaceResult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private int finishPosition;
-    private boolean polePosition;
-    private boolean dnf;
-    private boolean fastestLap;
+    private Long id;
+    private Integer finishPosition;
+    private Boolean polePosition;
+    private Boolean dnf;
+    private Boolean fastestLap;
 
     private Driver driver;
     private Event event;
-    private League league;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
-    public int getFinishPosition() {
+    public Integer getFinishPosition() {
         return finishPosition;
     }
-    public void setFinishPosition(final int finishPosition) {
+    public void setFinishPosition(final Integer finishPosition) {
         this.finishPosition = finishPosition;
     }
 
-    public boolean getPolePosition() {
+    public Boolean getPolePosition() {
         return polePosition;
     }
-    public void setPolePosition(final boolean polePosition) {
+    public void setPolePosition(final Boolean polePosition) {
         this.polePosition = polePosition;
     }
 
-    public boolean getDnf() {
+    public Boolean getDnf() {
         return dnf;
     }
-    public void setDnf(final boolean dnf) {
+    public void setDnf(final Boolean dnf) {
         this.dnf = dnf;
     }
 
-    public boolean getFastestLap() {
+    public Boolean getFastestLap() {
         return fastestLap;
     }
-    public void setFastestLap(final boolean fastestLap) {
+    public void setFastestLap(final Boolean fastestLap) {
         this.fastestLap = fastestLap;
     }
 
@@ -71,12 +70,5 @@ public class RaceResult {
     }
     public void setEvent(final Event event) {
         this.event = event;
-    }
-
-    public League getLeague() {
-        return league;
-    }
-    public void setLeague(final League league) {
-        this.league = league;
     }
 }
