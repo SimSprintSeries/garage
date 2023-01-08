@@ -1,13 +1,23 @@
 package com.sss.garage.model.game;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import com.sss.garage.model.game.family.GameFamily;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.elo.Elo;
+
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Game {
 
     @Id
@@ -21,6 +31,8 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private Set<Elo> elos;
 
+    @ManyToOne
+    private GameFamily gameFamily;
 
     public Long getId() {
         return id;
@@ -48,5 +60,13 @@ public class Game {
     }
     public void setElos(Set<Elo> elos) {
         this.elos = elos;
+    }
+
+    public GameFamily getGameFamily() {
+        return gameFamily;
+    }
+
+    public void setGameFamily(final GameFamily gameFamily) {
+        this.gameFamily = gameFamily;
     }
 }
