@@ -29,10 +29,10 @@ public class Split {
         this.id = id;
     }
 
-    public String getName() {
+    public String getSplit() {
         return split;
     }
-    public void setName(final String split) {
+    public void setSplit(final String split) {
         this.split = split;
     }
 
