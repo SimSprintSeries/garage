@@ -1,13 +1,10 @@
 package com.sss.garage.model.league;
 
 import com.sss.garage.model.split.Split;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.game.Game;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 import java.util.Set;
 
@@ -15,6 +12,7 @@ import java.util.Set;
 public class League {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String platform;
 
@@ -22,10 +20,10 @@ public class League {
     private Game game;
 
     @OneToMany(mappedBy="league")
-    private Set<Event> eventList;
+    private Set<Event> events;
 
     @OneToMany(mappedBy="league")
-    private Set<Split> splitList;
+    private Set<Split> splits;
 
 
 
@@ -50,17 +48,17 @@ public class League {
         this.game = game;
     }
 
-    public Set<Event> getEventList() {
-        return eventList;
+    public Set<Event> getEvents() {
+        return events;
     }
-    public void setEventList(final Set<Event> eventList) {
-        this.eventList = eventList;
+    public void setEvents(final Set<Event> events) {
+        this.events = events;
     }
 
-    public Set<Split> getSplitList() {
-        return splitList;
+    public Set<Split> getSplits() {
+        return splits;
     }
-    public void setSplitList(final Set<Split> splitList) {
-        this.splitList = splitList;
+    public void setSplits(final Set<Split> splitList) {
+        this.splits = splits;
     }
 }

@@ -1,17 +1,15 @@
 package com.sss.garage.model.elo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.game.Game;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Elo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer eloValue;
 

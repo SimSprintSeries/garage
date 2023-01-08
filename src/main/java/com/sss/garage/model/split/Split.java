@@ -1,9 +1,7 @@
 package com.sss.garage.model.split;
 
-import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.raceresult.RaceResult;
-import com.sss.garage.model.user.DiscordUser;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -12,6 +10,7 @@ import java.util.Set;
 public class Split {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String split;
 
@@ -19,8 +18,8 @@ public class Split {
     @ManyToOne
     private League league;
 
-    @OneToMany(mappedBy = "driver")
-    private Set<RaceResult> raceResultList;
+    @OneToMany(mappedBy = "split")
+    private Set<RaceResult> raceResults;
 
 
     public Long getId() {
@@ -44,10 +43,10 @@ public class Split {
         this.league = league;
     }
 
-    public Set<RaceResult> getRaceResultList() {
-        return raceResultList;
+    public Set<RaceResult> getRaceResults() {
+        return raceResults;
     }
-    public void setRaceResultList(final Set<RaceResult> raceResultList) {
-        this.raceResultList = raceResultList;
+    public void setRaceResults(final Set<RaceResult> raceResults) {
+        this.raceResults = raceResults;
     }
 }

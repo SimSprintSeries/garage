@@ -1,15 +1,14 @@
 package com.sss.garage.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class DiscordUser {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String username;
@@ -41,6 +40,14 @@ public class DiscordUser {
 
     public void setEmail(final String email) {
         this.email = email;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(final Driver driver) {
+        this.driver = driver;
     }
 
 }

@@ -1,13 +1,10 @@
 package com.sss.garage.model.driver;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 import java.util.Set;
 
@@ -15,6 +12,7 @@ import java.util.Set;
 public class Driver {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
@@ -25,7 +23,7 @@ public class Driver {
     private Set<Elo> elo;
 
     @OneToMany(mappedBy = "driver")
-    private Set<RaceResult> raceResultList;
+    private Set<RaceResult> raceResults;
 
 
     public Long getId() {
@@ -56,10 +54,10 @@ public class Driver {
         this.elo = elo;
     }
 
-    public Set<RaceResult> getRaceResultList() {
-        return raceResultList;
+    public Set<RaceResult> getRaceResults() {
+        return raceResults;
     }
-    public void setRaceResultList(final Set<RaceResult> raceResultList) {
-        this.raceResultList = raceResultList;
+    public void setRaceResults(final Set<RaceResult> raceResults) {
+        this.raceResults = raceResults;
     }
 }

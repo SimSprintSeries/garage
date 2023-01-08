@@ -1,19 +1,18 @@
 package com.sss.garage.model.event;
 
 import com.sss.garage.model.raceresult.RaceResult;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.sss.garage.model.league.League;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Event {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private LocalDateTime startTime;
@@ -22,7 +21,7 @@ public class Event {
     private League league;
 
     @OneToMany(mappedBy = "event")
-    private Set<RaceResult> raceResultList;
+    private Set<RaceResult> raceResults;
 
     public Long getId() {
         return id;
@@ -52,10 +51,10 @@ public class Event {
         this.league = league;
     }
 
-    public Set<RaceResult> getRaceResultList() {
-        return raceResultList;
+    public Set<RaceResult> getRaceResults() {
+        return raceResults;
     }
-    public void setRaceResultList(final Set<RaceResult> raceResultList) {
-        this.raceResultList = raceResultList;
+    public void setRaceResults(final Set<RaceResult> raceResults) {
+        this.raceResults = raceResults;
     }
 }

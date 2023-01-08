@@ -1,11 +1,9 @@
 package com.sss.garage.model.game;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.elo.Elo;
-import jakarta.persistence.OneToMany;
 
 import java.util.Set;
 
@@ -13,14 +11,15 @@ import java.util.Set;
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     @OneToMany(mappedBy = "game")
-    private Set<League> leagueList;
+    private Set<League> leagues;
 
     @OneToMany(mappedBy = "game")
-    private Set<Elo> eloList;
+    private Set<Elo> elos;
 
 
     public Long getId() {
@@ -37,17 +36,17 @@ public class Game {
         this.name = name;
     }
 
-    public Set<League> getLeagueList() {
-        return leagueList;
+    public Set<League> getLeagues() {
+        return leagues;
     }
-    public void setLeagueList(Set<League> leagueList) {
-        this.leagueList = leagueList;
+    public void setLeagues(Set<League> leagues) {
+        this.leagues = leagues;
     }
 
-    public Set<Elo> getEloList() {
-        return eloList;
+    public Set<Elo> getElos() {
+        return elos;
     }
-    public void setEloList(Set<Elo> eloList) {
-        this.eloList = eloList;
+    public void setElos(Set<Elo> elos) {
+        this.elos = elos;
     }
 }
