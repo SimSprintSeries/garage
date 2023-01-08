@@ -8,7 +8,6 @@ import com.sss.garage.model.driver.Driver;
 public class DiscordUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String username;
