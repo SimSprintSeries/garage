@@ -21,8 +21,8 @@ public class Driver {
     @OneToOne(mappedBy = "driver")
     private DiscordUser discordUser;
 
-    @OneToOne(mappedBy = "driver")
-    private Elo elo;
+    @OneToMany(mappedBy = "driver")
+    private Set<Elo> elo;
 
     @OneToMany(mappedBy = "driver")
     private Set<RaceResult> raceResultList;
@@ -49,10 +49,10 @@ public class Driver {
         this.discordUser = discordUser;
     }
 
-    public Elo getElo() {
+    public Set<Elo> getElo() {
         return elo;
     }
-    public void setElo(Elo elo) {
+    public void setElo(Set<Elo> elo) {
         this.elo = elo;
     }
 

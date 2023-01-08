@@ -16,7 +16,7 @@ public class Elo {
     private Integer eloValue;
 
 
-    @OneToOne
+    @ManyToOne
     private Driver driver;
     @ManyToOne
     private Game game;

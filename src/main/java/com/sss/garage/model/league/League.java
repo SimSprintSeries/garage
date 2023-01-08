@@ -1,5 +1,6 @@
 package com.sss.garage.model.league;
 
+import com.sss.garage.model.split.Split;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -15,7 +16,6 @@ public class League {
 
     @Id
     private Long id;
-    private String split;
     private String platform;
 
     @ManyToOne
@@ -24,6 +24,9 @@ public class League {
     @OneToMany(mappedBy="league")
     private Set<Event> eventList;
 
+    @OneToMany(mappedBy="league")
+    private Set<Split> splitList;
+
 
 
     public Long getId() {
@@ -31,13 +34,6 @@ public class League {
     }
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    public String getSplit() {
-        return split;
-    }
-    public void setSplit(final String split) {
-        this.split = split;
     }
 
     public String getPlatform() {
@@ -59,5 +55,12 @@ public class League {
     }
     public void setEventList(final Set<Event> eventList) {
         this.eventList = eventList;
+    }
+
+    public Set<Split> getSplitList() {
+        return splitList;
+    }
+    public void setSplitList(final Set<Split> splitList) {
+        this.splitList = splitList;
     }
 }

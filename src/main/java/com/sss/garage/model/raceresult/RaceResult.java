@@ -1,5 +1,6 @@
 package com.sss.garage.model.raceresult;
 
+import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
@@ -22,6 +23,9 @@ public class RaceResult {
 
     @ManyToOne
     private Event event;
+
+    @ManyToOne
+    private Split split;
 
 
     public Long getId() {
@@ -71,5 +75,12 @@ public class RaceResult {
     }
     public void setEvent(final Event event) {
         this.event = event;
+    }
+
+    public Split getSplit() {
+        return split;
+    }
+    public void setSplit(final Split split) {
+        this.split = split;
     }
 }
