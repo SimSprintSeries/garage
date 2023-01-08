@@ -1,10 +1,14 @@
-package com.sss.garage.model.role;
+package com.sss.garage.model.league;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.game.Game;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+import java.util.Set;
 
 @Entity
 public class League {
@@ -14,7 +18,10 @@ public class League {
     private String split;
     private String platform;
 
+    @ManyToOne
     private Game game;
+
+    @OneToMany(mappedBy="league")
     private Set<Event> eventList;
 
 

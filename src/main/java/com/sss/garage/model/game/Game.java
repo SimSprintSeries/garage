@@ -1,9 +1,13 @@
-package com.sss.garage.model.role;
+package com.sss.garage.model.game;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import com.sss.garage.model.League;
+import com.sss.garage.model.league.League;
+import com.sss.garage.model.elo.Elo;
+import jakarta.persistence.OneToMany;
+
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -12,7 +16,11 @@ public class Game {
     private Long id;
     private String name;
 
+    @OneToMany(mappedBy = "game")
     private Set<League> leagueList;
+
+    @OneToMany(mappedBy = "game")
+    private Set<Elo> eloList;
 
 
     public Long getId() {
@@ -33,6 +41,13 @@ public class Game {
         return leagueList;
     }
     public void setLeagueList(Set<League> leagueList) {
-        this.discordUser = leagueList;
+        this.leagueList = leagueList;
+    }
+
+    public Set<Elo> getEloList() {
+        return eloList;
+    }
+    public void setEloList(Set<Elo> eloList) {
+        this.eloList = eloList;
     }
 }

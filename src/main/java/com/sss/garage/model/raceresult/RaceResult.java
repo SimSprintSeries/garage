@@ -1,11 +1,9 @@
-package com.sss.garage.model.role;
+package com.sss.garage.model.raceresult;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.Event;
-import com.sss.garage.model.league.League;
 
 
 @Entity
@@ -19,7 +17,10 @@ public class RaceResult {
     private Boolean dnf;
     private Boolean fastestLap;
 
+    @ManyToOne
     private Driver driver;
+
+    @ManyToOne
     private Event event;
 
 

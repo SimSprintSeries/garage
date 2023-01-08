@@ -1,4 +1,4 @@
-package com.sss.garage.model.role;
+package com.sss.garage.model.driver;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

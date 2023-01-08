@@ -3,6 +3,9 @@ package com.sss.garage.model.user;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import com.sss.garage.model.driver.Driver;
+import jakarta.persistence.OneToOne;
+
 @Entity
 public class DiscordUser {
 
@@ -12,6 +15,9 @@ public class DiscordUser {
     private String username;
 
     private String email;
+
+    @OneToOne
+    private Driver driver;
 
     public String getId() {
         return id;
