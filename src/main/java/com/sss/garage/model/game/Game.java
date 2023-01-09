@@ -13,6 +13,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -23,6 +24,8 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "game")
@@ -34,9 +37,11 @@ public class Game {
     @ManyToOne
     private GameFamily gameFamily;
 
+
     public Long getId() {
         return id;
     }
+
     public void setId(final Long id) {
         this.id = id;
     }
@@ -44,6 +49,7 @@ public class Game {
     public String getName() {
         return name;
     }
+
     public void setName(final String name) {
         this.name = name;
     }
@@ -51,6 +57,7 @@ public class Game {
     public Set<League> getLeagues() {
         return leagues;
     }
+
     public void setLeagues(Set<League> leagues) {
         this.leagues = leagues;
     }
@@ -58,6 +65,7 @@ public class Game {
     public Set<Elo> getElos() {
         return elos;
     }
+
     public void setElos(Set<Elo> elos) {
         this.elos = elos;
     }

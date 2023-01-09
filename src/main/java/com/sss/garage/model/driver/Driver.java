@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -14,6 +15,8 @@ public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String name;
 
     @OneToOne(mappedBy = "driver")
@@ -29,6 +32,7 @@ public class Driver {
     public Long getId() {
         return id;
     }
+
     public void setId(final Long id) {
         this.id = id;
     }
@@ -36,6 +40,7 @@ public class Driver {
     public String getName() {
         return name;
     }
+
     public void setName(final String name) {
         this.name = name;
     }
@@ -43,6 +48,7 @@ public class Driver {
     public DiscordUser getDiscordUser() {
         return discordUser;
     }
+
     public void setDiscordUser(DiscordUser discordUser) {
         this.discordUser = discordUser;
     }
@@ -50,6 +56,7 @@ public class Driver {
     public Set<Elo> getElo() {
         return elo;
     }
+
     public void setElo(Set<Elo> elo) {
         this.elo = elo;
     }
@@ -57,6 +64,7 @@ public class Driver {
     public Set<RaceResult> getRaceResults() {
         return raceResults;
     }
+
     public void setRaceResults(final Set<RaceResult> raceResults) {
         this.raceResults = raceResults;
     }

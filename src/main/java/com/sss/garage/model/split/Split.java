@@ -3,6 +3,7 @@ package com.sss.garage.model.split;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.raceresult.RaceResult;
 import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -12,12 +13,14 @@ public class Split {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String split;
 
-
+    @NotNull
     @ManyToOne
     private League league;
 
+    @NotNull
     @OneToMany(mappedBy = "split")
     private Set<RaceResult> raceResults;
 
