@@ -1,7 +1,7 @@
 package com.sss.garage.model.split;
 
 import com.sss.garage.model.league.League;
-import com.sss.garage.model.raceresult.RaceResult;
+import com.sss.garage.model.race.Race;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,17 +13,15 @@ public class Split {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     private String split;
 
-    @NotNull
     @ManyToOne
     private League league;
 
-    @NotNull
     @OneToMany(mappedBy = "split")
-    private Set<RaceResult> raceResults;
-
+    private Set<Race> races;
 
     public Long getId() {
         return id;
@@ -46,10 +44,11 @@ public class Split {
         this.league = league;
     }
 
-    public Set<RaceResult> getRaceResults() {
-        return raceResults;
+    public Set<Race> getRaces() {
+        return races;
     }
-    public void setRaceResults(final Set<RaceResult> raceResults) {
-        this.raceResults = raceResults;
+
+    public void setRaces(final Set<Race> races) {
+        this.races = races;
     }
 }

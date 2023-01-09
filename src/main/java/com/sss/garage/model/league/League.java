@@ -20,13 +20,15 @@ public class League {
     private String platform;
 
     @NotNull
+    private String name;
+
+    @NotNull
     @ManyToOne
     private Game game;
 
     @OneToMany(mappedBy="league")
     private Set<Event> events;
 
-    @NotNull
     @OneToMany(mappedBy="league")
     private Set<Split> splits;
 
@@ -69,5 +71,14 @@ public class League {
 
     public void setSplits(final Set<Split> splitList) {
         this.splits = splits;
+    }
+
+    @NotNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NotNull final String name) {
+        this.name = name;
     }
 }

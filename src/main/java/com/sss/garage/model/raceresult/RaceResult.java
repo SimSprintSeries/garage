@@ -1,5 +1,6 @@
 package com.sss.garage.model.raceresult;
 
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -10,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Entity
 public class RaceResult {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,20 +25,17 @@ public class RaceResult {
     private Boolean dnf;
 
     @NotNull
+    private Boolean dsq;
+
+    @NotNull
     private Boolean fastestLap;
 
     @NotNull
     @ManyToOne
     private Driver driver;
 
-    @NotNull
     @ManyToOne
-    private Event event;
-
-    @NotNull
-    @ManyToOne
-    private Split split;
-
+    private Race race;
 
     public Long getId() {
         return id;
@@ -88,19 +85,20 @@ public class RaceResult {
         this.driver = driver;
     }
 
-    public Event getEvent() {
-        return event;
+    public Race getRace() {
+        return race;
     }
 
-    public void setEvent(final Event event) {
-        this.event = event;
+    public void setRace(final Race race) {
+        this.race = race;
     }
 
-    public Split getSplit() {
-        return split;
+    @NotNull
+    public Boolean getDsq() {
+        return dsq;
     }
 
-    public void setSplit(final Split split) {
-        this.split = split;
+    public void setDsq(@NotNull final Boolean dsq) {
+        this.dsq = dsq;
     }
 }

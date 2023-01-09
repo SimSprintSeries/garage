@@ -1,5 +1,6 @@
 package com.sss.garage.configuration.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sss.garage.controller.converter.jwt.JwtTokenConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;
@@ -28,6 +29,11 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
     @Autowired

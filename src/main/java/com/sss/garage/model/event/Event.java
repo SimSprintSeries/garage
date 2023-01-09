@@ -1,15 +1,12 @@
 package com.sss.garage.model.event;
 
-import com.sss.garage.model.raceresult.RaceResult;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
-import java.util.Set;
 
 import com.sss.garage.model.league.League;
 import org.jetbrains.annotations.NotNull;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Event {
 
     @Id
@@ -20,15 +17,10 @@ public class Event {
     private String name;
 
     @NotNull
-    private LocalDateTime startTime;
-
-    @NotNull
     @ManyToOne
     private League league;
 
-    @OneToMany(mappedBy = "event")
-    private Set<RaceResult> raceResults;
-
+    private String sprite;
 
     public Long getId() {
         return id;
@@ -46,14 +38,6 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(final LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
     public League getLeague() {
         return league;
     }
@@ -62,11 +46,11 @@ public class Event {
         this.league = league;
     }
 
-    public Set<RaceResult> getRaceResults() {
-        return raceResults;
+    public String getSprite() {
+        return sprite;
     }
 
-    public void setRaceResults(final Set<RaceResult> raceResults) {
-        this.raceResults = raceResults;
+    public void setSprite(final String sprite) {
+        this.sprite = sprite;
     }
 }

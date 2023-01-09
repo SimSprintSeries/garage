@@ -3,18 +3,16 @@ package com.sss.garage.service.auth.user.impl;
 import java.util.Optional;
 
 import com.sss.garage.model.user.DiscordUser;
-import com.sss.garage.model.user.UserRepository;
+import com.sss.garage.model.user.DiscordUserRepository;
 import com.sss.garage.service.auth.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 @Service
 public class SssUserService implements UserService {
 
-    private UserRepository userRepository;
+    private DiscordUserRepository userRepository;
 
     @Override
     public Optional<DiscordUser> findUserById(final String id) {
@@ -27,7 +25,7 @@ public class SssUserService implements UserService {
     }
 
     @Autowired
-    public void setUserRepository(final UserRepository userRepository) {
+    public void setUserRepository(final DiscordUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 }
