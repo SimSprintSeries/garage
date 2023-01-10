@@ -1,14 +1,17 @@
 package com.sss.garage.model.event;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
+
 import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Event {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +24,9 @@ public class Event {
     private League league;
 
     private String sprite;
+
+    @OneToMany(mappedBy = "event")
+    private Set<Race> races;
 
     public Long getId() {
         return id;
@@ -52,5 +58,13 @@ public class Event {
 
     public void setSprite(final String sprite) {
         this.sprite = sprite;
+    }
+
+    public Set<Race> getRaces() {
+        return races;
+    }
+
+    public void setRaces(final Set<Race> races) {
+        this.races = races;
     }
 }
