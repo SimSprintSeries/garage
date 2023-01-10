@@ -10,6 +10,7 @@ import com.sss.garage.model.event.Event;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.game.family.GameFamily;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.user.DiscordUser;
@@ -25,20 +26,28 @@ public class DataLoader {
 
     private final LegacyDataImporter legacyDataImporter;
 
+    private final RaceRepository raceRepository;
+
     @Autowired
     public DataLoader(final DiscordApiService discordApiService,
-            final LegacyDataImporter legacyDataImporter) {
+            final LegacyDataImporter legacyDataImporter,
+                      final RaceRepository raceRepository) {
         this.discordApiService = discordApiService;
         this.legacyDataImporter = legacyDataImporter;
+        this.raceRepository = raceRepository;
         loadInitialData();
     }
 
     public void loadInitialData() {
+        // simple check to not import twice
+        if (raceRepository.count() != 0) {
+            return;
+        }
+
         discordApiService.persistAllRoles();
         try {
             legacyDataImporter.importLegacyData();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }

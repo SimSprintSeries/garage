@@ -1,8 +1,11 @@
 package com.sss.garage.dev.initial.data.legacy;
 
+import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +15,7 @@ import com.sss.garage.dev.initial.data.legacy.converter.LegacyDriverConverter;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyDriver;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyEvent;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyLeague;
+import com.sss.garage.dev.initial.data.legacy.model.LegacyRace;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyRaceResult;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
@@ -51,6 +55,9 @@ public class LegacyDataImporter {
 
     @Value("file:${legacy.data.dir}/raceresults.json")
     private Resource raceResultsResource;
+
+    @Value("file:${legacy.data.dir}/races.json")
+    private Resource racesResource;
 
     private DiscordUserRepository discordUserRepository;
 
@@ -139,17 +146,31 @@ public class LegacyDataImporter {
                 .collect(Collectors.toSet());
         eventRepository.saveAll(events);
 
-        Set<Race> races = events.stream()
-                .map(e -> {
+        List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getFile(), LegacyRace[].class));
+
+        Set<Race> races = legacyRaces.stream()
+                .map(r -> {
                     final Race race = new Race();
-                    race.setName(e.getName());
-                    race.setSprite(e.getSprite());
-                    race.setLeague(e.getLeague());
-                    race.setEvent(e);
-                    race.setSplit(findSplitByLeagueId(e.getLeague().getId(), splits, leagues, legacyLeagues));
+                    race.setName(r.racename);
+                    race.setEvent(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues));
+                    race.setSplit(findSplitByLeagueId(race.getEvent().getLeague().getId(), splits, leagues, legacyLeagues));
                     return race;
                 })
                 .collect(Collectors.toSet());
+
+        Map<Event, List<Race>> multipleRacesRaces = races.stream()
+                        .collect(Collectors.groupingBy(Race::getEvent));
+
+        multipleRacesRaces.entrySet().stream()
+                .filter(e -> e.getValue().size() > 1)
+                        .forEach(e -> {
+                            final Race parentRace = new Race();
+                            parentRace.setEvent(e.getKey());
+                            parentRace.setName(PARENT_RACE_NAME);
+                            parentRace.setSplit(e.getValue().stream().findFirst().get().getSplit());
+                            e.getValue().forEach(r -> r.setParentRaceEvent(parentRace));
+                            races.add(parentRace);
+                        });
         raceRepository.saveAll(races);
 
         List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getFile(), LegacyRaceResult[].class));
@@ -161,7 +182,7 @@ public class LegacyDataImporter {
                     raceResult.setPolePosition(r.pole);
                     raceResult.setDsq(r.dsq);
                     raceResult.setFinishPosition(Math.toIntExact(r.position));
-                    raceResult.setRace(findRaceByLegacyId(r.eventid, races, legacyEvents, leagues, legacyLeagues));
+                    raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
                     return raceResult;
                 })
@@ -201,14 +222,14 @@ public class LegacyDataImporter {
                 .findFirst().get();//always exists
     }
 
-    private static Race findRaceByLegacyId(final Long id, final Set<Race> races, final List<LegacyEvent> legacyEvents, final Set<League> leagues, final List<LegacyLeague> legacyLeagues) {
-        final LegacyEvent legacyEvent = legacyEvents.stream()
-                .filter(e -> e.id.equals(Math.toIntExact(id)))
+    private static Race findRaceByLegacyId(final Long raceId, final Long eventId, final Set<Race> races, final List<LegacyRace> legacyRaces, final Set<Event> events, final List<LegacyEvent> legacyEvents, final Set<League> leagues, final List<LegacyLeague> legacyLeagues) {
+        final LegacyRace legacyRace = legacyRaces.stream()
+                .filter(e -> e.raceid.equals(raceId))
                 .findFirst().get();
 
         return races.stream()
-                .filter(r -> r.getName().equals(legacyEvent.name) &&
-                        r.getLeague().equals(findLeagueByLegacyId(legacyEvent.league_id, leagues, legacyLeagues)))
+                .filter(r -> r.getName().equals(legacyRace.racename) &&
+                        r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues)))
                 .findFirst().get();
     }
 
@@ -219,6 +240,16 @@ public class LegacyDataImporter {
 
         return splits.stream()
                 .filter(s -> s.getLeague().getId().equals(id) && legacyLeague.getSplit().equals(s.getSplit()))
+                .findFirst().get();
+    }
+
+    private static Event findEventByLegacyId(final Long id, final Set<Event> events, final List<LegacyEvent> legacyEvents, final Set<League> leagues, final List<LegacyLeague> legacyLeagues) {
+        final LegacyEvent legacyEvent = legacyEvents.stream()
+                .filter(e -> e.getId().equals(id))
+                .findFirst().get();
+
+        return events.stream()
+                .filter(e -> e.getName().equals(legacyEvent.name) && e.getLeague().equals(findLeagueByLegacyId(legacyEvent.league_id, leagues, legacyLeagues)))
                 .findFirst().get();
     }
 

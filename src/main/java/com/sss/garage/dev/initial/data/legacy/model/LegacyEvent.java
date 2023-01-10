@@ -5,18 +5,18 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class LegacyEvent {
-    public Integer id;
+    public Long id;
     public String name;
     public String country;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date starts;
     public Long league_id;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
