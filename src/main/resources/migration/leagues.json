@@ -1,0 +1,410 @@
+[
+  {
+    "id": 1,
+    "name": "Formuła 1 - Seria A - Wiosna 2020",
+    "type": 1,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 2,
+    "name": "Formuła 1 - Seria B - Wiosna 2020",
+    "type": 1,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 3,
+    "name": "Formuła 2 - Wiosna 2020",
+    "type": 2,
+    "split": "A",
+    "platform": "PC",
+    "game": "F2 2019"
+  },
+  {
+    "id": 4,
+    "name": "Assetto Corsa - Wiosna 2020",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 5,
+    "name": "Formuła 1 - PlayStation 4 - Wiosna 2020",
+    "type": 1,
+    "split": "A",
+    "platform": "PS",
+    "game": "F1 2019"
+  },
+  {
+    "id": 6,
+    "name": "Formuła 1 - Seria C - Wiosna 2020",
+    "type": 1,
+    "split": "C",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 7,
+    "name": "Formuła 1 - #MRS100 - Wiosna 2020",
+    "type": 1,
+    "split": "other",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 8,
+    "name": "Assetto Corsa - DTM '90s",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 9,
+    "name": "Gran Turismo",
+    "type": 11,
+    "split": "other",
+    "platform": "PC",
+    "game": "other"
+  },
+  {
+    "id": 10,
+    "name": "Formuła 1 - XBOX - Lato",
+    "type": 5,
+    "split": "A",
+    "platform": "XBOX",
+    "game": "F1 2020"
+  },
+  {
+    "id": 11,
+    "name": "Assetto Corsa - WTCR",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 12,
+    "name": "Formuła 1 - European Tour",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 13,
+    "name": "Funrace",
+    "type": 10,
+    "split": "other",
+    "platform": "PC",
+    "game": "other"
+  },
+  {
+    "id": 14,
+    "name": "Formuła 1 - PlayStation 4",
+    "type": 5,
+    "split": "A",
+    "platform": "PS",
+    "game": "F1 2020"
+  },
+  {
+    "id": 15,
+    "name": "Assetto Corsa - Australian Touring Car Championship",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 16,
+    "name": "Formuła 1 - Liga A",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 17,
+    "name": "Formuła 1 - Liga B - Jesień 2020",
+    "type": 5,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 18,
+    "name": "Assetto Corsa - Formuła 3 - Zima 2020",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 19,
+    "name": "Formuła 1 - XBOX",
+    "type": 5,
+    "split": "A",
+    "platform": "XBOX",
+    "game": "F1 2020"
+  },
+  {
+    "id": 20,
+    "name": "Formuła 1 - Liga A - Wiosna 2021",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 21,
+    "name": "Formuła 1 - Liga B - Wiosna 2021",
+    "type": 5,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 22,
+    "name": "Assetto Corsa - IMSA",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 23,
+    "name": "Assetto Corsa - F1 2007",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 24,
+    "name": "Formuła 1 - #sss100",
+    "type": 5,
+    "split": "inny",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 26,
+    "name": "Assetto Corsa - Formula 3 - Wiosna 2021",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 27,
+    "name": "Formuła 2 - Mini sezon wakacyjny",
+    "type": 6,
+    "split": "A",
+    "platform": "PC",
+    "game": "F2 2020"
+  },
+  {
+    "id": 29,
+    "name": "Formuła 1 - Liga 2021",
+    "type": 7,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2021"
+  },
+  {
+    "id": 30,
+    "name": "Formuła 1 - Liga 2020",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 31,
+    "name": "Assetto Corsa - ELMS",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 32,
+    "name": "Assetto Corsa - DTM",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 33,
+    "name": "Formuła 2 - Liga 2020",
+    "type": 6,
+    "split": "A",
+    "platform": "PC",
+    "game": "F2 2020"
+  },
+  {
+    "id": 35,
+    "name": "Formuła 1 - Liga 2021 A",
+    "type": 7,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2021"
+  },
+  {
+    "id": 36,
+    "name": "Formuła 1 - Liga 2021 B",
+    "type": 7,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2021"
+  },
+  {
+    "id": 37,
+    "name": "Formuła 1 - Liga 2020 A",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 38,
+    "name": "Formuła 1 - Liga 2020 B",
+    "type": 5,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 39,
+    "name": "Formuła 1 - Jesień 2019",
+    "type": 1,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 40,
+    "name": "Formuła 1 - Liga A - Zima 2019",
+    "type": 1,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 41,
+    "name": "Formuła 1 - Liga B - Zima 2019",
+    "type": 1,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2019"
+  },
+  {
+    "id": 42,
+    "name": "Assetto Corsa - F4",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 43,
+    "name": "Formuła 1 - Liga 2020 - Wiosna 2022",
+    "type": 5,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2020"
+  },
+  {
+    "id": 44,
+    "name": "Formuła 1 - Liga 2021 A - Wiosna 2022",
+    "type": 7,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 2021"
+  },
+  {
+    "id": 45,
+    "name": "Formuła 1 - Liga 2021 B - Wiosna 2022",
+    "type": 7,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 2021"
+  },
+  {
+    "id": 46,
+    "name": "Assetto Corsa - Praga R1",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 47,
+    "name": "F1 22 - SSS555",
+    "type": 8,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 22"
+  },
+  {
+    "id": 48,
+    "name": "F1 22 - Liga A - Jesień 2022",
+    "type": 8,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 22"
+  },
+  {
+    "id": 49,
+    "name": "F1 22 - Liga B - Jesień 2022",
+    "type": 8,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 22"
+  },
+  {
+    "id": 50,
+    "name": "F1 22 - Liga C - Jesień 2022",
+    "type": 8,
+    "split": "C",
+    "platform": "PC",
+    "game": "F1 22"
+  },
+  {
+    "id": 51,
+    "name": "Assetto Corsa - GT2",
+    "type": 3,
+    "split": "A",
+    "platform": "PC",
+    "game": "AC"
+  },
+  {
+    "id": 52,
+    "name": "Assetto Corsa Competizione - GT3",
+    "type": 4,
+    "split": "A",
+    "platform": "PC",
+    "game": "ACC"
+  },
+  {
+    "id": 53,
+    "name": "F1 22 F2 - Liga A - Zima 2022",
+    "type": 9,
+    "split": "A",
+    "platform": "PC",
+    "game": "F2 22"
+  },
+  {
+    "id": 54,
+    "name": "F1 22 F2 - Liga B - Zima 2022",
+    "type": 9,
+    "split": "B",
+    "platform": "PC",
+    "game": "F2 22"
+  }
+]

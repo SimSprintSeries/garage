@@ -1,0 +1,46 @@
+[
+  {
+    "type": 1,
+    "league": "F1 2019"
+  },
+  {
+    "type": 2,
+    "league": "F2 2019"
+  },
+  {
+    "type": 3,
+    "league": "Assetto Corsa"
+  },
+  {
+    "type": 4,
+    "league": "Assetto Corsa Competizione"
+  },
+  {
+    "type": 5,
+    "league": "F1 2020"
+  },
+  {
+    "type": 6,
+    "league": "F2 2020"
+  },
+  {
+    "type": 7,
+    "league": "F1 2021"
+  },
+  {
+    "type": 8,
+    "league": "F1 22"
+  },
+  {
+    "type": 9,
+    "league": "F2 22"
+  },
+  {
+    "type": 10,
+    "league": "Funrace"
+  },
+  {
+    "type": 11,
+    "league": "Gran Turismo"
+  }
+]

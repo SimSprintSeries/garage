@@ -44,19 +44,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class LegacyDataImporter {
 
-    @Value("file:${legacy.data.dir}/leagues.json")
+    @Value("${legacy.data.dir}/leagues.json")
     private Resource leaguesResource;
 
-    @Value("file:${legacy.data.dir}/drivers.json")
+    @Value("${legacy.data.dir}/drivers.json")
     private Resource driversResource;
 
-    @Value("file:${legacy.data.dir}/events.json")
+    @Value("${legacy.data.dir}/events.json")
     private Resource eventsResource;
 
-    @Value("file:${legacy.data.dir}/raceresults.json")
+    @Value("${legacy.data.dir}/raceresults.json")
     private Resource raceResultsResource;
 
-    @Value("file:${legacy.data.dir}/races.json")
+    @Value("${legacy.data.dir}/races.json")
     private Resource racesResource;
 
     private DiscordUserRepository discordUserRepository;
@@ -168,7 +168,10 @@ public class LegacyDataImporter {
                             parentRace.setEvent(e.getKey());
                             parentRace.setName(PARENT_RACE_NAME);
                             parentRace.setSplit(e.getValue().stream().findFirst().get().getSplit());
-                            e.getValue().forEach(r -> r.setParentRaceEvent(parentRace));
+                            e.getValue().forEach(r -> {
+                                r.setParentRaceEvent(parentRace);
+                                r.setEvent(null);
+                            });
                             races.add(parentRace);
                         });
         raceRepository.saveAll(races);
@@ -229,7 +232,8 @@ public class LegacyDataImporter {
 
         return races.stream()
                 .filter(r -> r.getName().equals(legacyRace.racename) &&
-                        r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues)))
+                        (r.getEvent() != null ? r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues)) :
+                        r.getParentRaceEvent().getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues))))
                 .findFirst().get();
     }
 
