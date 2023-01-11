@@ -3,11 +3,7 @@ package com.sss.garage.dev.initial.data.legacy;
 import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -139,6 +135,7 @@ public class LegacyDataImporter {
                 .map(e -> {
                     final Event event = new Event();
                     event.setName(e.name);
+                    event.setStartDate(e.starts);
                     event.setSprite(e.country);
                     event.setLeague(findLeagueByLegacyId(e.league_id, leagues, legacyLeagues));
                     return event;
@@ -153,6 +150,7 @@ public class LegacyDataImporter {
                     final Race race = new Race();
                     race.setName(r.racename);
                     race.setEvent(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues));
+                    race.setStartDate(findLegacyEventById(r.eventid, legacyEvents).starts);
                     race.setSplit(findSplitByLeagueId(race.getEvent().getLeague().getId(), splits, leagues, legacyLeagues));
                     return race;
                 })
@@ -255,6 +253,12 @@ public class LegacyDataImporter {
         return events.stream()
                 .filter(e -> e.getName().equals(legacyEvent.name) && e.getLeague().equals(findLeagueByLegacyId(legacyEvent.league_id, leagues, legacyLeagues)))
                 .findFirst().get();
+    }
+
+    private static LegacyEvent findLegacyEventById(final Long id, final List<LegacyEvent> legacyEvents) {
+        return legacyEvents.stream()
+                .filter(g -> id.equals(g.getId()))
+                .findFirst().get();//always exists
     }
 
     private GameFamily newGameFamily(final String name) {

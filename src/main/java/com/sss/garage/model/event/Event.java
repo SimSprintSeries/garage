@@ -1,5 +1,7 @@
 package com.sss.garage.model.event;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -18,6 +20,9 @@ public class Event {
 
     @NotNull
     private String name;
+
+    @NotNull
+    private Date startDate;
 
     @NotNull
     @ManyToOne
@@ -42,6 +47,14 @@ public class Event {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(final Date startDate) {
+        this.startDate = startDate;
     }
 
     public League getLeague() {

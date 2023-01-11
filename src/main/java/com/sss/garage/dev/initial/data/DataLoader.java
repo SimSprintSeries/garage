@@ -1,7 +1,7 @@
 package com.sss.garage.dev.initial.data;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.sss.garage.dev.initial.data.legacy.LegacyDataImporter;
 import com.sss.garage.model.driver.Driver;
@@ -86,9 +86,10 @@ public class DataLoader {
         return elo;
     }
 
-    private Event newEvent(final String name, final LocalDateTime startDate, final League league) {
+    private Event newEvent(final String name, final Date startDate, final League league) {
         final Event event = new Event();
         event.setName(name);
+        event.setStartDate(startDate);
         event.setLeague(league);
         return event;
     }
