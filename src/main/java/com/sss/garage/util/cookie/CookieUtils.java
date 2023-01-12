@@ -1,5 +1,6 @@
 package com.sss.garage.util.cookie;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.SerializationUtils;
 import java.util.Base64;
 import java.util.Optional;
@@ -52,6 +53,10 @@ public class CookieUtils {
     }
 
     public static <T> T deserialize(Cookie cookie, Class<T> cls) {
+        if(Strings.isBlank(cookie.getValue())){
+            return null;
+        }
+
         return cls.cast(SerializationUtils.deserialize(
                 Base64.getUrlDecoder().decode(cookie.getValue())));
     }
