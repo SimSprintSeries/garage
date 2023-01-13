@@ -59,11 +59,12 @@ public class SssDiscordApiService implements DiscordApiService {
     }
 
     public Optional<Member> findUserByUserId(String uid) {
-        return Optional.ofNullable(sssGuild().getMember(UserSnowflake.fromId(uid)));
+        return sssGuild().loadMembers().get().stream()
+                .filter(m -> m.getId().equals(uid))
+                .findFirst();
     }
 
     public Set<DiscordRole> findAllRolesForUserId(String uid) {
-        sssGuild().loadMembers().get();
         return findUserByUserId(uid)
                 .map(m -> m.getRoles().stream()
                         .map(r -> conversionService.convert(r, DiscordRole.class))
