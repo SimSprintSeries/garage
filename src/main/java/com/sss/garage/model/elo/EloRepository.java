@@ -1,5 +1,6 @@
 package com.sss.garage.model.elo;
 
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.game.family.GameFamily;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface EloRepository extends JpaRepository<Elo, Long> {
-    Optional<Elo> findAllByGame(Game game);
-    Optional<Elo> findAllByGameFamily(GameFamily gameFamily);
+    Optional<Elo> findByGameAndDriver(Game game, Driver driver);
 }
