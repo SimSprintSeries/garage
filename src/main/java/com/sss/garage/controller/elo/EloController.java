@@ -16,8 +16,8 @@ public class EloController extends SssBaseController {
     private EloService eloService;
 
     @GetMapping
-    public void calculateElo(final EloService eloService) {
-        eloService.calculateElo();
+    public void calculateElo() {
+        this.eloService.calculateElo();
     }
 
     @Autowired

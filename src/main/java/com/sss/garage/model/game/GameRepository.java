@@ -1,11 +1,19 @@
 package com.sss.garage.model.game;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
+    @Query("SELECT g FROM Game g WHERE TYPE(g)=Game AND g.name=:name")
     Optional<Game> findByName(String name);
+
+    @NotNull
+    @Query("SELECT g FROM Game g WHERE TYPE(g)=Game")
+    List<Game> findAll();
 }

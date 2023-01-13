@@ -166,6 +166,9 @@ public class LegacyDataImporter {
                             parentRace.setEvent(e.getKey());
                             parentRace.setName(PARENT_RACE_NAME);
                             parentRace.setSplit(e.getValue().stream().findFirst().get().getSplit());
+                            e.getValue().stream().findAny().ifPresent(r -> {
+                                parentRace.setStartDate(r.getStartDate());
+                            });
                             e.getValue().forEach(r -> {
                                 r.setParentRaceEvent(parentRace);
                                 r.setEvent(null);
