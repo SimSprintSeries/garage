@@ -8,7 +8,9 @@ import java.time.Instant;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
+import com.sss.garage.service.session.SessionService;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,9 +22,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenService jwtTokenService;
+    private final SessionService sessionService;
 
-    public JwtAuthenticationFilter(final JwtTokenService jwtTokenService) {
+    public JwtAuthenticationFilter(final JwtTokenService jwtTokenService, final SessionService sessionService) {
         this.jwtTokenService = jwtTokenService;
+        this.sessionService = sessionService;
     }
 
     @Override
@@ -35,13 +39,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             chain.doFilter(req, res);
             return;
         }
-        SecurityContextHolder.getContextHolderStrategy().getContext().setAuthentication(getAuthentication(req));
+        sessionService.setCurrentAuthentication(getAuthentication(req));
 
         chain.doFilter(req, res);
     }
 
     private Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(AUTHORIZATION_HEADER_NAME).replace(AUTHORIZATION_HEADER_BEARER_PREFIX, "");
-        return jwtTokenService.extractAuthenticationFromToken(token).orElseThrow(() -> new TokenExpiredException("Token expired", Instant.now())); //TODO: expired at: lazy
+        return jwtTokenService.extractAuthenticationFromToken(token).orElseThrow(() -> new AccessDeniedException("Token invalid"));
     }
 }
