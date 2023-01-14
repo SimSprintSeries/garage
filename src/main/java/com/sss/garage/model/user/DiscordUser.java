@@ -1,5 +1,6 @@
 package com.sss.garage.model.user;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -14,6 +15,9 @@ public class DiscordUser {
     private String email;
 
     private String discriminator;
+
+    @Column(length = 2048)
+    private String currentJwtToken;
 
     public Long getId() {
         return id;
@@ -45,5 +49,18 @@ public class DiscordUser {
 
     public void setDiscriminator(final String discriminator) {
         this.discriminator = discriminator;
+    }
+
+    public String getCurrentJwtToken() {
+        return currentJwtToken;
+    }
+
+    public void setCurrentJwtToken(final String currentJwtToken) {
+        this.currentJwtToken = currentJwtToken;
+    }
+
+    @Override
+    public String toString() {
+        return username + "#" + discriminator;
     }
 }

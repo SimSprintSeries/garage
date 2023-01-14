@@ -1,7 +1,6 @@
 package com.sss.garage.service.auth.jwt.impl;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,18 +15,21 @@ import com.sss.garage.service.auth.jwt.StringJwtAuthenticationToken;
 import com.sss.garage.service.auth.role.RoleService;
 import com.sss.garage.service.auth.user.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class SssJwtTokenService implements JwtTokenService {
+    private static final Logger logger = LoggerFactory.getLogger(SssJwtTokenService.class);
+
     @Value("${sss.jwt.secret}")
     private String secret;
 
@@ -53,12 +55,17 @@ public class SssJwtTokenService implements JwtTokenService {
                 .build()
                 .verify(token);
 
-        if(new Date(System.currentTimeMillis()).after(jwt.getExpiresAt())){
-            // token expired
+        DiscordUser principal = userService.findUserById(jwt.getSubject()).orElseThrow(() -> new UsernameNotFoundException(jwt.getSubject()));
+        if(new Date(System.currentTimeMillis()).after(jwt.getExpiresAt())) {
+            // Not current token of user or expired
+            userService.revokeUserToken(principal);
+            return Optional.empty();
+        }
+        if(!principal.getCurrentJwtToken().equals(token)) {
+            logger.warn("Old token used for user: " + principal);
             return Optional.empty();
         }
 
-        DiscordUser principal = userService.findUserById(jwt.getSubject()).orElseThrow();
         Set<DiscordRole> roles = jwt.getClaim("roles").asList(String.class).stream()
                 .map(r -> roleService.findById(r).orElseThrow(() -> new EntityNotFoundException("TODO: In future in case the role does not exist on our database, fetch it again from discord server")))
                 .collect(Collectors.toSet());
