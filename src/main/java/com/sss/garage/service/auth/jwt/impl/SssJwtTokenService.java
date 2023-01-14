@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.sss.garage.data.auth.JwtTokenData;
 import com.sss.garage.model.role.DiscordRole;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
@@ -19,9 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -38,30 +41,38 @@ public class SssJwtTokenService implements JwtTokenService {
 
     private UserService userService;
     private RoleService roleService;
+    private ConversionService conversionService;
+    private PasswordEncoder passwordEncoder;
 
     @Override
-    public String generateForPrincipal(final Authentication principal) {
-        return JWT.create()
+    public JwtTokenData generateForPrincipal(final Authentication principal) {
+        final Date expiresAt = new Date(System.currentTimeMillis() + expirationTime);
+        final String token = JWT.create()
                 .withSubject(principal.getName())
-                .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
+                .withExpiresAt(expiresAt)
                 .withArrayClaim("roles", principal.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority).toArray(String[]::new))
                 .sign(Algorithm.HMAC512(secret.getBytes()));
+
+        final JwtTokenData jwtTokenData = conversionService.convert(token, JwtTokenData.class);
+        jwtTokenData.setExpiresAt(expiresAt);
+        return jwtTokenData;
     }
 
     @Override
-    public Optional<Authentication> extractAuthenticationFromToken(String token) {
-        DecodedJWT jwt = JWT.require(Algorithm.HMAC512(secret.getBytes()))
-                .build()
-                .verify(token);
+    public Optional<Authentication> extractAuthenticationFromToken(final String token) {
+        if(token.isBlank()){
+            return Optional.empty();
+        }
+        DecodedJWT jwt = decode(token);
 
         DiscordUser principal = userService.findUserById(jwt.getSubject()).orElseThrow(() -> new UsernameNotFoundException(jwt.getSubject()));
-        if(new Date(System.currentTimeMillis()).after(jwt.getExpiresAt())) {
+        if(isExpired(jwt)) {
             // Not current token of user or expired
             userService.revokeUserToken(principal);
             return Optional.empty();
         }
-        if(!principal.getCurrentJwtToken().equals(token)) {
+        if(!isTokenOfUser(token, principal)) {
             logger.warn("Old token used for user: " + principal);
             return Optional.empty();
         }
@@ -74,6 +85,26 @@ public class SssJwtTokenService implements JwtTokenService {
 //        return userService.findUserByUsername(username);
     }
 
+    @Override
+    public Boolean isExpired(final String token) {
+        return isExpired(decode(token));
+    }
+
+    @Override
+    public Boolean isTokenOfUser(final String token, final DiscordUser discordUser) {
+        return token != null && passwordEncoder.matches(token, discordUser.getCurrentJwtToken());
+    }
+
+    private Boolean isExpired(final DecodedJWT jwt) {
+        return new Date(System.currentTimeMillis()).after(jwt.getExpiresAt());
+    }
+
+    private DecodedJWT decode(final String token) {
+        return JWT.require(Algorithm.HMAC512(secret.getBytes()))
+                .build()
+                .verify(token);
+    }
+
     @Autowired
     public void setUserService(final UserService userService) {
         this.userService = userService;
@@ -82,5 +113,15 @@ public class SssJwtTokenService implements JwtTokenService {
     @Autowired
     public void setRoleService(final RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setConversionService(final ConversionService conversionService) {
+        this.conversionService = conversionService;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(final PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 }

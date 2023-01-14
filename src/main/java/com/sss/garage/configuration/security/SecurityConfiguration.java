@@ -8,6 +8,7 @@ import com.sss.garage.service.auth.HttpCookieOAuth2AuthorizationRequestRepositor
 import com.sss.garage.service.auth.jwt.JwtTokenService;
 import com.sss.garage.service.auth.role.RoleMapperStrategy;
 import com.sss.garage.service.auth.role.RoleService;
+import com.sss.garage.service.session.SessionService;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -41,6 +42,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
     private JwtTokenService jwtTokenService;
+    private SessionService sessionService;
     private RoleMapperStrategy roles;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -61,7 +63,6 @@ public class SecurityConfiguration {
                         .authorizationEndpoint()
                             .baseUri("/oauth2/authorize")
                             .authorizationRequestRepository(cookieAuthorizationRequestRepository()).and()
-//                        .authorizedClientService() TODO: Implement JPAAuthorizedClientService
                         .loginProcessingUrl(NON_ACCESSIBLE_PATH) // Disable original OAuth2LoginAuthenticationFilter
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(oAuth2UserService)))
@@ -115,7 +116,12 @@ public class SecurityConfiguration {
     }
 
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter(this.jwtTokenService);
+        return new JwtAuthenticationFilter(this.jwtTokenService, this.sessionService);
+    }
+
+    @Autowired
+    public void setSessionService(final SessionService sessionService) {
+        this.sessionService = sessionService;
     }
 
     @Autowired

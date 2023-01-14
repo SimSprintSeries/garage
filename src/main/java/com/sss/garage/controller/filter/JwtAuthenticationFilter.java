@@ -8,6 +8,7 @@ import java.time.Instant;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
+import com.sss.garage.service.session.SessionService;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
@@ -21,9 +22,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenService jwtTokenService;
+    private final SessionService sessionService;
 
-    public JwtAuthenticationFilter(final JwtTokenService jwtTokenService) {
+    public JwtAuthenticationFilter(final JwtTokenService jwtTokenService, final SessionService sessionService) {
         this.jwtTokenService = jwtTokenService;
+        this.sessionService = sessionService;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             chain.doFilter(req, res);
             return;
         }
-        SecurityContextHolder.getContextHolderStrategy().getContext().setAuthentication(getAuthentication(req));
+        sessionService.setCurrentAuthentication(getAuthentication(req));
 
         chain.doFilter(req, res);
     }

@@ -1,5 +1,7 @@
 package com.sss.garage.model.user;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,6 +20,8 @@ public class DiscordUser {
 
     @Column(length = 2048)
     private String currentJwtToken;
+
+    private Date tokenExpiryDate;
 
     public Long getId() {
         return id;
@@ -59,8 +63,16 @@ public class DiscordUser {
         this.currentJwtToken = currentJwtToken;
     }
 
+    public Date getTokenExpiryDate() {
+        return tokenExpiryDate;
+    }
+
+    public void setTokenExpiryDate(final Date tokenExpiryDate) {
+        this.tokenExpiryDate = tokenExpiryDate;
+    }
+
     @Override
     public String toString() {
-        return username + "#" + discriminator;
+        return id.toString();
     }
 }
