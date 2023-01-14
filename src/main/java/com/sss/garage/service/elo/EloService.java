@@ -5,6 +5,7 @@ import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.elo.EloRepository;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.game.GameRepository;
+import com.sss.garage.model.game.family.GameFamily;
 import com.sss.garage.model.game.family.GameFamilyRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.league.League;
@@ -47,27 +48,31 @@ public class EloService {
 
         String[] games = {"F1 22", "F1 2021", "F1 2020", "F1 2019", "AC", "ACC"};
 
-        List<List<Race>> raceNestedList = new ArrayList<>();
+        Map<Game, List<Race>> gameMap = new HashMap<>();
 
         for (final String gameName : games) {
-            List<Race> raceList = gameRepository.findByName(gameName).orElse(null).getLeagues().stream()
+            Game game = gameRepository.findByName(gameName).orElse(null);
+            assert game != null;
+            List<Race> raceList = game.getLeagues().stream()
                     .map(League::getEvents)
                     .flatMap(Collection::stream)
                     .map(Event::getRaces)
                     .flatMap(Collection::stream)
-                    .filter(r -> !r.getContainedRaces().isEmpty())
+                    .filter(r -> r.getContainedRaces().isEmpty())
                     .sorted(Comparator.comparing(Race::getStartDate))
                     .toList();
 
-            raceNestedList.add(raceList);
+            gameMap.put(game, raceList);
         }
 
         String[] gamesFamilies = {"F1", "AC"};
 
-        List<List<Race>> raceFamilyNestedList = new ArrayList<>();
+        Map<Game, List<Race>> gameFamilyMap = new HashMap<>();
 
         for (final String gameFamilyName : gamesFamilies) {
-            List<Race> raceFamilyList = gameFamilyRepository.findByName(gameFamilyName).orElse(null).getLeagues().stream()
+            Game gameFamily = gameFamilyRepository.findByName(gameFamilyName).orElse(null);
+            assert gameFamily != null;
+            List<Race> raceFamilyList = gameFamily.getLeagues().stream()
                     .map(League::getEvents)
                     .flatMap(Collection::stream)
                     .map(Event::getRaces)
@@ -76,12 +81,12 @@ public class EloService {
                     .sorted(Comparator.comparing(Race::getStartDate))
                     .toList();
 
-            raceFamilyNestedList.add(raceFamilyList);
+            gameFamilyMap.put(gameFamily, raceFamilyList);
         }
 
-        for(final List<Race> raceList : raceNestedList) {
+        for(final Game game : gameMap.keySet()) {
 
-            for (final Race race : raceList) {
+            for (final Race race : gameMap.get(game)) {
 
                 int count = race.getRaceResults().size();
 
@@ -103,23 +108,23 @@ public class EloService {
 
             Game game = race.getEvent().getLeague().getGame();
 
-            Elo eloDriver = new Elo();
+            Elo eloDriverA = new Elo();
 
-            eloDriver.setDriver(driverA);
+            eloDriverA.setDriver(driverA);
 
-            eloDriver.setGame(game);
+            eloDriverA.setGame(game);
 
-            eloDriver.setEloValue(1500);
+            eloDriverA.setEloValue(1500);
 
-            eloDriver.setId(driverA.getId());
+            eloDriverA.setId(driverA.getId());
 
             int eloA = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame(),
-                    driverA).orElse(eloDriver).getEloValue();
+                    driverA).orElse(eloDriverA).getEloValue();
 
             int eloDiff = 0;
 
             int eloAFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
-                            .getGameFamily(), driverA).orElse(eloDriver).getEloValue();
+                            .getGameFamily(), driverA).orElse(eloDriverA).getEloValue();
 
             int eloDiffFamily = 0;
 
@@ -127,31 +132,43 @@ public class EloService {
 
                 Driver driverB = raceResultB.getDriver();
 
-                int eloB = eloRepository.findByGameAndDriver(game,
-                        driverB).orElse(null).getEloValue();
+                if (driverA != driverB) {
 
-                int eloBFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
-                        .getGameFamily(), driverA).orElse(eloDriver).getEloValue();
+                    Elo eloDriverB = new Elo();
 
-                if (raceResultA.getFinishPosition() < raceResultB.getFinishPosition()) {
+                    eloDriverB.setDriver(driverB);
 
-                    int eloPart = calculate2PlayersRating(eloA, eloB, "+");
+                    eloDriverB.setGame(game);
 
-                    eloDiff += eloPart - eloA;
+                    eloDriverB.setEloValue(1500);
 
-                    int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "+");
+                    eloDriverB.setId(driverB.getId());
 
-                    eloDiffFamily += eloPartFamily - eloAFamily;
-                }
-                else if (raceResultA.getFinishPosition() > raceResultB.getFinishPosition()) {
+                    int eloB = eloRepository.findByGameAndDriver(game, driverB).orElse(eloDriverB).getEloValue();
 
-                    int eloPart = calculate2PlayersRating(eloA, eloB, "-");
+                    int eloBFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
+                            .getGameFamily(), driverB).orElse(eloDriverB).getEloValue();
 
-                    eloDiff += eloPart - eloA;
+                    if (raceResultA.getFinishPosition() < raceResultB.getFinishPosition()) {
 
-                    int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "-");
+                        int eloPart = calculate2PlayersRating(eloA, eloB, "+");
 
-                    eloDiffFamily += eloPartFamily - eloAFamily;
+                        eloDiff += eloPart - eloA;
+
+                        int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "+");
+
+                        eloDiffFamily += eloPartFamily - eloAFamily;
+                    }
+                    else if (raceResultA.getFinishPosition() > raceResultB.getFinishPosition()) {
+
+                        int eloPart = calculate2PlayersRating(eloA, eloB, "-");
+
+                        eloDiff += eloPart - eloA;
+
+                        int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "-");
+
+                        eloDiffFamily += eloPartFamily - eloAFamily;
+                    }
                 }
             }
 
