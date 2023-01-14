@@ -82,7 +82,7 @@ public class LegacyDataImporter {
         Set<Driver> drivers = legacyDrivers.stream()
                 .map(legacyDriverDriverConverter::convert)
                 .filter(Objects::nonNull)
-//                .peek(d -> Optional.ofNullable(d.getDiscordUser()).ifPresent(discordUserRepository::save))
+                .peek(d -> Optional.ofNullable(d.getDiscordUser()).ifPresent(discordUserRepository::save))
                 .collect(Collectors.toSet());
 
         driverRepository.saveAll(drivers);

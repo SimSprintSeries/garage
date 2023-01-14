@@ -15,14 +15,13 @@ public class LegacyDriverConverter implements Converter<LegacyDriver, Driver> {
     public Driver convert(final LegacyDriver source) {
         final Driver driver = new Driver();
 
-//        Optional.ofNullable(source.discordUserId)
-//                .filter(Predicate.not(String::isBlank))
-//                .ifPresent(id -> {
-//            final DiscordUser dcUser = new DiscordUser();
-//            dcUser.setId(source.discordUserId);
-//            driver.setDiscordUser(dcUser);
-//        });
-//        driver.setId(source.id);
+        Optional.ofNullable(source.discordUserId)
+                .filter(Predicate.not(String::isBlank))
+                .ifPresent(id -> {
+            final DiscordUser dcUser = new DiscordUser();
+            dcUser.setId(Long.valueOf(source.discordUserId));
+            driver.setDiscordUser(dcUser);
+        });
         driver.setName(source.name);
         return driver;
     }
