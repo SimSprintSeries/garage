@@ -1,11 +1,7 @@
 package com.sss.garage.service.auth;
 
-import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.auth.DiscordOAuth2User;
 import com.sss.garage.service.discord.api.DiscordApiService;
-import com.sss.garage.service.discord.api.impl.SssDiscordApiService;
-
-import net.dv8tion.jda.api.JDA;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;

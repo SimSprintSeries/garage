@@ -24,6 +24,12 @@ public class SssUserService implements UserService {
         return userRepository.save(discordUser);
     }
 
+    @Override
+    public void revokeUserToken(final DiscordUser discordUser) {
+        discordUser.setCurrentJwtToken(null);
+        userRepository.save(discordUser);
+    }
+
     @Autowired
     public void setUserRepository(final DiscordUserRepository userRepository) {
         this.userRepository = userRepository;

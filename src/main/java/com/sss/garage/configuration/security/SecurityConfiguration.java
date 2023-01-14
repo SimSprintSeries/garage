@@ -4,9 +4,11 @@ import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
 
 import com.sss.garage.controller.filter.JwtAuthenticationFilter;
 import com.sss.garage.controller.filter.OAuth2LoginAuthenticationContinueChainFilter;
+import com.sss.garage.service.auth.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
 import com.sss.garage.service.auth.role.RoleMapperStrategy;
 import com.sss.garage.service.auth.role.RoleService;
+import com.sss.garage.service.session.SessionService;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -27,6 +29,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -39,6 +42,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
     private JwtTokenService jwtTokenService;
+    private SessionService sessionService;
     private RoleMapperStrategy roles;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -52,9 +56,13 @@ public class SecurityConfiguration {
                 .exceptionHandling()
                     .defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher("/api/**")).and()
                 .oauth2Client(oauth2 -> oauth2
-                        .clientRegistrationRepository(clientRegistrationRepository))
+                        .clientRegistrationRepository(clientRegistrationRepository)
+                        .authorizationCodeGrant()
+                            .authorizationRequestRepository(cookieAuthorizationRequestRepository()))
                 .oauth2Login(oauth2 -> oauth2
-//                        .authorizedClientService() TODO: Implement JPAAuthorizedClientService
+                        .authorizationEndpoint()
+                            .baseUri("/oauth2/authorize")
+                            .authorizationRequestRepository(cookieAuthorizationRequestRepository()).and()
                         .loginProcessingUrl(NON_ACCESSIBLE_PATH) // Disable original OAuth2LoginAuthenticationFilter
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(oAuth2UserService)))
@@ -64,7 +72,7 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(sssOAuth2LoginAuthenticationFilter(clientRegistrationRepository, authorizedClientService, authenticationManager), OAuth2LoginAuthenticationFilter.class)
+                .addFilterBefore(sssOAuth2LoginAuthenticationFilter(clientRegistrationRepository, authorizedClientService, authenticationManager, cookieAuthorizationRequestRepository()), OAuth2LoginAuthenticationFilter.class)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .anonymous().disable()
@@ -86,6 +94,16 @@ public class SecurityConfiguration {
                 .build().awaitReady();// TODO: optimize and think how to make it usable
     }
 
+    /**
+     * By default, Spring OAuth2 uses HttpSessionOAuth2AuthorizationRequestRepository to save
+     * the authorization request. But, since our service is stateless, we can't save it in
+     * the session. We'll save the request in a Base64 encoded cookie instead.
+     */
+    @Bean
+    public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
+        return new HttpCookieOAuth2AuthorizationRequestRepository();
+    }
+
     // Dummy auth manager, real one is created in filterChain() and then replaced in OAuth2LoginAuthenticationContinueChainFilterBeanPostProcessor
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -93,12 +111,17 @@ public class SecurityConfiguration {
         return authenticationManagerBuilder.build();
     }
 
-    public OAuth2LoginAuthenticationFilter sssOAuth2LoginAuthenticationFilter(final ClientRegistrationRepository clientRegistrationRepository, final OAuth2AuthorizedClientService authorizedClientService, final AuthenticationManager authenticationManager) {
-        return new OAuth2LoginAuthenticationContinueChainFilter(clientRegistrationRepository, authorizedClientService, authenticationManager, "/login/oauth2/code/*");
+    public OAuth2LoginAuthenticationFilter sssOAuth2LoginAuthenticationFilter(final ClientRegistrationRepository clientRegistrationRepository, final OAuth2AuthorizedClientService authorizedClientService, final AuthenticationManager authenticationManager, final AuthorizationRequestRepository authorizationRequestRepository) {
+        return new OAuth2LoginAuthenticationContinueChainFilter(clientRegistrationRepository, authorizedClientService, authenticationManager, "/login/oauth2/code/*", authorizationRequestRepository);
     }
 
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter(this.jwtTokenService);
+        return new JwtAuthenticationFilter(this.jwtTokenService, this.sessionService);
+    }
+
+    @Autowired
+    public void setSessionService(final SessionService sessionService) {
+        this.sessionService = sessionService;
     }
 
     @Autowired

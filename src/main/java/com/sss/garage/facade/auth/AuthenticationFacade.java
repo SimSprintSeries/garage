@@ -5,5 +5,6 @@ import com.sss.garage.data.auth.JwtTokenData;
 import org.springframework.security.core.Authentication;
 
 public interface AuthenticationFacade {
-    JwtTokenData getJwtToken(final Authentication principal);
+    JwtTokenData getJwtTokenForCurrentUser();
+    void revokeToken(final String token);
 }

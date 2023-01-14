@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class DiscordOAuth2User implements OAuth2User {
 
-    private String id;
+    private Long id;
     private String username;
     private Set<DiscordRole> roles;
     private Map<String, Object> attributes;
@@ -28,14 +28,14 @@ public class DiscordOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
+        return id.toString();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(final String id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 

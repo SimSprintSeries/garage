@@ -15,6 +15,7 @@
     <description>Backend application for SSS website</description>
     <properties>
         <java.version>17</java.version>
+        <start-class>com.sss.garage.GarageApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -90,6 +91,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
         </plugins>
     </build>

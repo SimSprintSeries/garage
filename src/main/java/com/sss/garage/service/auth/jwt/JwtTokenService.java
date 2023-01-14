@@ -2,11 +2,14 @@ package com.sss.garage.service.auth.jwt;
 
 import java.util.Optional;
 
+import com.sss.garage.data.auth.JwtTokenData;
 import com.sss.garage.model.user.DiscordUser;
 
 import org.springframework.security.core.Authentication;
 
 public interface JwtTokenService {
-    String generateForPrincipal(final Authentication principal);
-    Optional<Authentication> extractAuthenticationFromToken(String token);
+    JwtTokenData generateForPrincipal(final Authentication principal);
+    Optional<Authentication> extractAuthenticationFromToken(final String token);
+    Boolean isExpired(final String token);
+    Boolean isTokenOfUser(final String token, final DiscordUser discordUser);
 }

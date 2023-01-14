@@ -54,7 +54,7 @@ public class DataLoader {
 
     private DiscordUser newUser(final String id) {
         final DiscordUser user = new DiscordUser();
-        user.setId(id);
+        user.setId(Long.valueOf(id));
         return user;
     }
 

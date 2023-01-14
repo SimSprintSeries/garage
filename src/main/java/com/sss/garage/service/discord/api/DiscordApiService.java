@@ -10,5 +10,5 @@ import net.dv8tion.jda.api.entities.Role;
 public interface DiscordApiService {
     List<Role> getAllSssRoles();
     void persistAllRoles();
-    Set<DiscordRole> findAllRolesForUserId(String uid);
+    Set<DiscordRole> findAllRolesForUserId(Long uid);
 }

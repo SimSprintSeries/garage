@@ -12,7 +12,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.context.SecurityContextRepository;
 
@@ -26,9 +28,11 @@ public class OAuth2LoginAuthenticationContinueChainFilter extends OAuth2LoginAut
     public OAuth2LoginAuthenticationContinueChainFilter(final ClientRegistrationRepository clientRegistrationRepository,
                                                         final OAuth2AuthorizedClientService authorizedClientService,
                                                         final AuthenticationManager authenticationManager,
-                                                        final String filterProcessesUrl) {
+                                                        final String filterProcessesUrl,
+                                                        final AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository) {
         super(clientRegistrationRepository, authorizedClientService, filterProcessesUrl);
         super.setAuthenticationManager(authenticationManager);
+        super.setAuthorizationRequestRepository(authorizationRequestRepository);
     }
 
     @Override
