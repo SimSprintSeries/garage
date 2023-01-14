@@ -7,6 +7,8 @@ import com.sss.garage.model.game.Game;
 import org.jetbrains.annotations.NotNull;
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"driver_id", "game_id"})})
 public class Elo {
 
     @Id

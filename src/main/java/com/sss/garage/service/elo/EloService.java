@@ -108,23 +108,31 @@ public class EloService {
 
             Game game = race.getEvent().getLeague().getGame();
 
-            Elo eloDriverA = new Elo();
+            Elo eloA = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame(),
+                    driverA).orElseGet(() -> {
+                Elo eloDriverA = new Elo();
 
-            eloDriverA.setDriver(driverA);
+                eloDriverA.setDriver(driverA);
 
-            eloDriverA.setGame(game);
+                eloDriverA.setGame(game);
 
-            eloDriverA.setEloValue(1500);
-
-            eloDriverA.setId(driverA.getId());
-
-            int eloA = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame(),
-                    driverA).orElse(eloDriverA).getEloValue();
+                eloDriverA.setEloValue(1500);
+                return eloDriverA;
+            });
 
             int eloDiff = 0;
 
-            int eloAFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
-                            .getGameFamily(), driverA).orElse(eloDriverA).getEloValue();
+            Elo eloAFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
+                            .getGameFamily(), driverA).orElseGet(() -> {
+                Elo eloDriverA = new Elo();
+
+                eloDriverA.setDriver(driverA);
+
+                eloDriverA.setGame(game.getGameFamily());
+
+                eloDriverA.setEloValue(1500);
+                return eloDriverA;
+            });
 
             int eloDiffFamily = 0;
 
@@ -134,40 +142,48 @@ public class EloService {
 
                 if (driverA != driverB) {
 
-                    Elo eloDriverB = new Elo();
+                    Elo eloB = eloRepository.findByGameAndDriver(game, driverB).orElseGet(() -> {
+                        Elo eloDriverA = new Elo();
 
-                    eloDriverB.setDriver(driverB);
+                        eloDriverA.setDriver(driverA);
 
-                    eloDriverB.setGame(game);
+                        eloDriverA.setGame(game);
 
-                    eloDriverB.setEloValue(1500);
+                        eloDriverA.setEloValue(1500);
+                        return eloDriverA;
+                    });
 
-                    eloDriverB.setId(driverB.getId());
+                    Elo eloBFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
+                            .getGameFamily(), driverB).orElseGet(() -> {
+                        Elo eloDriverA = new Elo();
 
-                    int eloB = eloRepository.findByGameAndDriver(game, driverB).orElse(eloDriverB).getEloValue();
+                        eloDriverA.setDriver(driverA);
 
-                    int eloBFamily = eloRepository.findByGameAndDriver(race.getEvent().getLeague().getGame()
-                            .getGameFamily(), driverB).orElse(eloDriverB).getEloValue();
+                        eloDriverA.setGame(game.getGameFamily());
+
+                        eloDriverA.setEloValue(1500);
+                        return eloDriverA;
+                    });
 
                     if (raceResultA.getFinishPosition() < raceResultB.getFinishPosition()) {
 
-                        int eloPart = calculate2PlayersRating(eloA, eloB, "+");
+                        int eloPart = calculate2PlayersRating(eloA.getEloValue(), eloB.getEloValue(), "+");
 
-                        eloDiff += eloPart - eloA;
+                        eloDiff += eloPart - eloA.getEloValue();
 
-                        int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "+");
+                        int eloPartFamily = calculate2PlayersRating(eloAFamily.getEloValue(), eloBFamily.getEloValue(), "+");
 
-                        eloDiffFamily += eloPartFamily - eloAFamily;
+                        eloDiffFamily += eloPartFamily - eloAFamily.getEloValue();
                     }
                     else if (raceResultA.getFinishPosition() > raceResultB.getFinishPosition()) {
 
-                        int eloPart = calculate2PlayersRating(eloA, eloB, "-");
+                        int eloPart = calculate2PlayersRating(eloA.getEloValue(), eloB.getEloValue(), "-");
 
-                        eloDiff += eloPart - eloA;
+                        eloDiff += eloPart - eloA.getEloValue();
 
-                        int eloPartFamily = calculate2PlayersRating(eloAFamily, eloBFamily, "-");
+                        int eloPartFamily = calculate2PlayersRating(eloAFamily.getEloValue(), eloBFamily.getEloValue(), "-");
 
-                        eloDiffFamily += eloPartFamily - eloAFamily;
+                        eloDiffFamily += eloPartFamily - eloAFamily.getEloValue();
                     }
                 }
             }
@@ -187,26 +203,17 @@ public class EloService {
                 eloDiffFamily += 3;
             }
 
-            int newElo = eloA + eloDiff;
+            int newElo = eloA.getEloValue() + eloDiff;
 
             double dateFraction = -0.001 * daysDiff + 1;
 
-            int newEloFamily = (int)(eloAFamily + (Math.round(eloDiffFamily * dateFraction)));
+            int newEloFamily = (int)(eloAFamily.getEloValue() + (Math.round(eloDiffFamily * dateFraction)));
 
-            Elo elo = new Elo();
-            Elo eloFamily = new Elo();
+            eloA.setEloValue(newElo);
+            eloAFamily.setEloValue(newEloFamily);
 
-            elo.setDriver(driverA);
-            eloFamily.setDriver(driverA);
-
-            elo.setGame(game);
-            eloFamily.setGame(game.getGameFamily());
-
-            elo.setEloValue(newElo);
-            eloFamily.setEloValue(newEloFamily);
-
-            eloRepository.save(elo);
-            eloRepository.save(eloFamily);
+            eloRepository.save(eloA);
+            eloRepository.save(eloAFamily);
         }
 
     }
