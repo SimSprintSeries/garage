@@ -58,18 +58,18 @@ public class SssDiscordApiService implements DiscordApiService {
                 .collect(Collectors.toSet()));
     }
 
-    public Optional<Member> findUserByUserId(String uid) {
+    public Optional<Member> findUserByUserId(Long uid) {
         return sssGuild().loadMembers().get().stream()
-                .filter(m -> m.getId().equals(uid))
+                .filter(m -> uid.equals(m.getIdLong()))
                 .findFirst();
     }
 
-    public Set<DiscordRole> findAllRolesForUserId(String uid) {
+    public Set<DiscordRole> findAllRolesForUserId(Long uid) {
         return findUserByUserId(uid)
                 .map(m -> m.getRoles().stream()
                         .map(r -> conversionService.convert(r, DiscordRole.class))
                         .collect(Collectors.toSet()))
-                .orElseThrow(() -> new UsernameNotFoundException(uid));
+                .orElseThrow(() -> new UsernameNotFoundException(uid.toString()));
     }
 
     @Autowired

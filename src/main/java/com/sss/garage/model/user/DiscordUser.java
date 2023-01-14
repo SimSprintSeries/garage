@@ -7,17 +7,19 @@ import jakarta.persistence.Id;
 public class DiscordUser {
 
     @Id
-    private String id;
+    private Long id;
 
     private String username;
 
     private String email;
 
-    public String getId() {
+    private String discriminator;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -37,4 +39,11 @@ public class DiscordUser {
         this.email = email;
     }
 
+    public String getDiscriminator() {
+        return discriminator;
+    }
+
+    public void setDiscriminator(final String discriminator) {
+        this.discriminator = discriminator;
+    }
 }

@@ -23,12 +23,11 @@ public class DataLoader {
 
     public void loadInitialData(final UserRepository userRepository, final RoleRepository roleRepository) {
         discordApiService.persistAllRoles();
-        userRepository.save(newUser("507654703568519168")); //Rychu Peja solo
     }
 
     private DiscordUser newUser(final String id) {
         final DiscordUser user = new DiscordUser();
-        user.setId(id);
+        user.setId(Long.valueOf(id));
         return user;
     }
 }

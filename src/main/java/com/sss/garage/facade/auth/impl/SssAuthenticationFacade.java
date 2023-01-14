@@ -25,18 +25,13 @@ public class SssAuthenticationFacade implements AuthenticationFacade {
         if(!principal.isAuthenticated()) {
             throw new AccessDeniedException("Principal not authenticated");
         }
-        ensurePrincipalPersisted(principal);
+        updateUserAttributes(principal);
 
         return conversionService.convert(jwtTokenService.generateForPrincipal(principal), JwtTokenData.class);
     }
 
-    private void ensurePrincipalPersisted(final Authentication principal) {
-        userService.findUserById(principal.getName())
-                .orElseGet(() -> {
-                    final DiscordUser user = new DiscordUser();
-                    user.setId(principal.getName());
-                    return userService.saveUser(user);
-                });
+    private void updateUserAttributes(final Authentication principal) {
+        userService.saveUser(conversionService.convert(principal.getPrincipal(), DiscordUser.class));
     }
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.sss.garage.configuration.web;
 
 import com.sss.garage.controller.converter.jwt.JwtTokenConverter;
+import com.sss.garage.service.discord.converter.DiscordOAuth2ToUserConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;
 
@@ -17,12 +18,14 @@ public class WebConfiguration implements WebMvcConfigurer {
     private JwtTokenConverter jwtTokenConverter;
     private DiscordRoleConverter discordRoleConverter;
     private DiscordOAuth2UserConverter discordOAuth2UserConverter;
+    private DiscordOAuth2ToUserConverter discordOAuth2ToUserConverter;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(jwtTokenConverter);
         registry.addConverter(discordRoleConverter);
         registry.addConverter(discordOAuth2UserConverter);
+        registry.addConverter(discordOAuth2ToUserConverter);
     }
 
     @Bean
@@ -43,5 +46,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Autowired
     public void setDiscordOAuth2UserConverter(final DiscordOAuth2UserConverter discordOAuth2UserConverter) {
         this.discordOAuth2UserConverter = discordOAuth2UserConverter;
+    }
+
+    @Autowired
+    public void setDiscordOAuth2ToUserConverter(final DiscordOAuth2ToUserConverter discordOAuth2ToUserConverter) {
+        this.discordOAuth2ToUserConverter = discordOAuth2ToUserConverter;
     }
 }
