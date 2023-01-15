@@ -83,7 +83,9 @@ public class SecurityConfiguration {
                             config.setAllowCredentials(true);
                         config.addAllowedOriginPattern("http://localhost*");
                         config.addAllowedOriginPattern("http://discord.com");
+                        config.addAllowedOriginPattern("http://discordapp.com");
                         config.addAllowedOriginPattern("https://discord.com");
+                        config.addAllowedOriginPattern("https://discordapp.com");
                         return config;
                     }).and()
                 .csrf().disable();
