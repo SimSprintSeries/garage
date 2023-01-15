@@ -78,7 +78,13 @@ public class SecurityConfiguration {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .anonymous().disable()
                 .cors()
-                    .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
+                    .configurationSource(request -> {
+                        final CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
+                            config.setAllowCredentials(true);
+                            config.addAllowedOrigin("http://localhost:5173");
+                            config.addAllowedOriginPattern("*");
+                        return config;
+                    }).and()
                 .csrf().disable();
         return http.build();
     }
