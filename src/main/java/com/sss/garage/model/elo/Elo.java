@@ -9,11 +9,18 @@ import org.jetbrains.annotations.NotNull;
 @Entity
 public class Elo {
 
+    public Elo(Long id, Integer value, Driver driver, Game game) {
+        this.id = id;
+        this.value = value;
+        this.driver = driver;
+        this.game = game;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer eloValue;
+    private Integer value;
 
     @NotNull
     @ManyToOne
@@ -22,6 +29,10 @@ public class Elo {
     @NotNull
     @ManyToOne
     private Game game;
+
+    public Elo() {
+
+    }
 
 
     public Long getId() {
@@ -32,12 +43,12 @@ public class Elo {
         this.id = id;
     }
 
-    public Integer getEloValue() {
-        return eloValue;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setEloValue(final Integer eloValue) {
-        this.eloValue = eloValue;
+    public void setValue(final Integer value) {
+        this.value = value;
     }
 
     public Driver getDriver() {
