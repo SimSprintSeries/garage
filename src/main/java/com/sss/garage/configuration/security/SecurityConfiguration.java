@@ -81,7 +81,9 @@ public class SecurityConfiguration {
                     .configurationSource(request -> {
                         final CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
                             config.setAllowCredentials(true);
-                            config.addAllowedOriginPattern("http://localhost*");
+                        config.addAllowedOriginPattern("http://localhost*");
+                        config.addAllowedOriginPattern("http://discord.com");
+                        config.addAllowedOriginPattern("https://discord.com");
                         return config;
                     }).and()
                 .csrf().disable();
