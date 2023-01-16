@@ -79,7 +79,7 @@ public class DataLoader {
     }
 
     private Elo newElo(final Integer value, final Driver driver, final Game game) {
-        final Elo elo = new Elo(driver.getId(), value, driver, game);
+        final Elo elo = new Elo(driver, game);
         elo.setValue(value);
         elo.setDriver(driver);
         elo.setGame(game);

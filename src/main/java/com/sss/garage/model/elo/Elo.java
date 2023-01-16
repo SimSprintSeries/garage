@@ -11,9 +11,10 @@ import org.jetbrains.annotations.NotNull;
         @UniqueConstraint(columnNames = {"driver_id", "game_id"})})
 public class Elo {
 
-    public Elo(Long id, Integer value, Driver driver, Game game) {
-        this.id = id;
-        this.value = value;
+    private static final Integer DEFAULT_ELO_VALUE = 1500;
+
+    public Elo(Driver driver, Game game) {
+        this.value = DEFAULT_ELO_VALUE;
         this.driver = driver;
         this.game = game;
     }
