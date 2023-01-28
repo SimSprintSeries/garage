@@ -45,12 +45,12 @@ public class SssJwtTokenService implements JwtTokenService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public JwtTokenData generateForPrincipal(final Authentication principal) {
+    public JwtTokenData generateForAuthentication(final Authentication authentication) {
         final Date expiresAt = new Date(System.currentTimeMillis() + expirationTime);
         final String token = JWT.create()
-                .withSubject(principal.getName())
+                .withSubject(authentication.getName())
                 .withExpiresAt(expiresAt)
-                .withArrayClaim("roles", principal.getAuthorities().stream()
+                .withArrayClaim("roles", authentication.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority).toArray(String[]::new))
                 .sign(Algorithm.HMAC512(secret.getBytes()));
 
@@ -82,7 +82,6 @@ public class SssJwtTokenService implements JwtTokenService {
                 .collect(Collectors.toSet());
 
         return Optional.of(new StringJwtAuthenticationToken(principal, roles));
-//        return userService.findUserByUsername(username);
     }
 
     @Override

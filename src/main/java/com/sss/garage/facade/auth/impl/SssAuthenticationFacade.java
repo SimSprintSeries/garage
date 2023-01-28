@@ -30,7 +30,7 @@ public class SssAuthenticationFacade implements AuthenticationFacade {
     @Override
     public JwtTokenData getJwtTokenForCurrentUser() {
         final Authentication principal = sessionService.getCurrentAuthentication();
-        JwtTokenData token = jwtTokenService.generateForPrincipal(principal);
+        JwtTokenData token = jwtTokenService.generateForAuthentication(principal);
         updateUserAttributes(principal, token);
         return token;
     }
@@ -51,6 +51,7 @@ public class SssAuthenticationFacade implements AuthenticationFacade {
         final DiscordUser user = conversionService.convert(principal.getPrincipal(), DiscordUser.class);
         user.setCurrentJwtToken(passwordEncoder.encode(jwtTokenData.getToken()));
         user.setTokenExpiryDate(jwtTokenData.getExpiresAt());
+        user.setRolesUpToDate(true);
         userService.saveUser(user);
     }
 

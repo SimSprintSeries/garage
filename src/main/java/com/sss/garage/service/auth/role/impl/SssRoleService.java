@@ -42,6 +42,14 @@ public class SssRoleService implements RoleService {
         return roleRepository.findById(id);
     }
 
+    @Override
+    public DiscordRole saveRole(final String id, final String code) {
+        final DiscordRole role = new DiscordRole();
+        role.setId(id);
+        role.setCode(code);
+        return roleRepository.save(role);
+    }
+
     @Autowired
     public void setRoleRepository(final RoleRepository roleRepository) {
         this.roleRepository = roleRepository;

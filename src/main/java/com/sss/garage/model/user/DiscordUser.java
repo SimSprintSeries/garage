@@ -18,10 +18,11 @@ public class DiscordUser {
 
     private String discriminator;
 
-    @Column(length = 2048)
     private String currentJwtToken;
 
     private Date tokenExpiryDate;
+
+    private boolean rolesUpToDate = false;
 
     public Long getId() {
         return id;
@@ -69,6 +70,14 @@ public class DiscordUser {
 
     public void setTokenExpiryDate(final Date tokenExpiryDate) {
         this.tokenExpiryDate = tokenExpiryDate;
+    }
+
+    public boolean isRolesUpToDate() {
+        return rolesUpToDate;
+    }
+
+    public void setRolesUpToDate(final boolean rolesUpToDate) {
+        this.rolesUpToDate = rolesUpToDate;
     }
 
     @Override

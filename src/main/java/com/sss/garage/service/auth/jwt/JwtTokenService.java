@@ -8,7 +8,7 @@ import com.sss.garage.model.user.DiscordUser;
 import org.springframework.security.core.Authentication;
 
 public interface JwtTokenService {
-    JwtTokenData generateForPrincipal(final Authentication principal);
+    JwtTokenData generateForAuthentication(final Authentication authentication);
     Optional<Authentication> extractAuthenticationFromToken(final String token);
     Boolean isExpired(final String token);
     Boolean isTokenOfUser(final String token, final DiscordUser discordUser);

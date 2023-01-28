@@ -51,6 +51,6 @@ public class StringJwtAuthenticationToken implements Authentication {
 
     @Override
     public String getName() {
-        return principal.getUsername();
+        return principal.getId().toString();
     }
 }

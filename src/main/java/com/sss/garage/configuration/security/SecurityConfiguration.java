@@ -2,20 +2,18 @@ package com.sss.garage.configuration.security;
 
 import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
 
+import com.sss.garage.controller.filter.GenerateNewJwtTokenFilter;
 import com.sss.garage.controller.filter.JwtAuthenticationFilter;
 import com.sss.garage.controller.filter.OAuth2LoginAuthenticationContinueChainFilter;
 import com.sss.garage.service.auth.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
 import com.sss.garage.service.auth.role.RoleMapperStrategy;
 import com.sss.garage.service.auth.role.RoleService;
+import com.sss.garage.service.auth.user.UserService;
+import com.sss.garage.service.discord.api.DiscordApiService;
 import com.sss.garage.service.session.SessionService;
 
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -25,6 +23,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -45,6 +44,9 @@ public class SecurityConfiguration {
     private JwtTokenService jwtTokenService;
     private SessionService sessionService;
     private RoleMapperStrategy roles;
+    private UserService userService;
+    private DiscordApiService discordApiService;
+    private PasswordEncoder passwordEncoder;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Bean
@@ -73,6 +75,7 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(generateNewJwtTokenFilter(), JwtAuthenticationFilter.class)
                 .addFilterBefore(sssOAuth2LoginAuthenticationFilter(clientRegistrationRepository, authorizedClientService, authenticationManager, cookieAuthorizationRequestRepository()), OAuth2LoginAuthenticationFilter.class)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
@@ -94,16 +97,6 @@ public class SecurityConfiguration {
 
     private AuthenticationEntryPoint getRestAuthenticationEntryPoint() {
         return new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED);
-    }
-
-    @Value("${discord.api.bot.token}")
-    private String DISCORD_API_TOKEN;
-
-    @Bean
-    public JDA jda() throws InterruptedException {
-        return JDABuilder.createDefault(DISCORD_API_TOKEN)
-                .enableIntents(GatewayIntent.GUILD_MEMBERS)
-                .build().awaitReady();// TODO: optimize and think how to make it usable
     }
 
     /**
@@ -131,6 +124,10 @@ public class SecurityConfiguration {
         return new JwtAuthenticationFilter(this.jwtTokenService, this.sessionService);
     }
 
+    public GenerateNewJwtTokenFilter generateNewJwtTokenFilter() {
+        return new GenerateNewJwtTokenFilter(this.sessionService, this.jwtTokenService, this.discordApiService, this.userService, this.passwordEncoder);
+    }
+
     @Autowired
     public void setSessionService(final SessionService sessionService) {
         this.sessionService = sessionService;
@@ -144,5 +141,20 @@ public class SecurityConfiguration {
     @Autowired
     public void setRoles(final RoleService roleService) {
         this.roles = roleService.getRoleMapperStrategy();
+    }
+
+    @Autowired
+    public void setUserService(final UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setDiscordApiService(final DiscordApiService discordApiService) {
+        this.discordApiService = discordApiService;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(final PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 }
