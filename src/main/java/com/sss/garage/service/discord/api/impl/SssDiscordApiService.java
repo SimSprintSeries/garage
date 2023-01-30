@@ -8,13 +8,16 @@ import java.util.stream.Collectors;
 import com.sss.garage.model.role.DiscordRole;
 import com.sss.garage.model.role.RoleRepository;
 import com.sss.garage.service.discord.api.DiscordApiService;
+import com.sss.garage.service.discord.listener.DiscordEventsListener;
 
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.UserSnowflake;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,17 +32,22 @@ public class SssDiscordApiService implements DiscordApiService {
     private JDA jda;
     private ConversionService conversionService;
     private RoleRepository roleRepository;
+    private DiscordEventsListener discordEventsListener;
+
+    @Value("${discord.api.bot.token}")
+    private String DISCORD_API_TOKEN;
 
     @Value("${discord.sss.guild.id}")
     private String SSS_GUILD_ID;
 
-    public SssDiscordApiService(final JDA jda) {
-        this.jda = jda;
-    }
-
     @PostConstruct
-    private void init() {
-        sssGuild().loadMembers().get();
+    private void init() throws InterruptedException {
+        jda = JDABuilder.createDefault(DISCORD_API_TOKEN)
+                .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                .setChunkingFilter(ChunkingFilter.ALL)
+                .addEventListeners(discordEventsListener)
+                .setMemberCachePolicy(MemberCachePolicy.ALL)
+                .build().awaitReady();// TODO: optimize and think how to make it usable
     }
 
     public Guild sssGuild() {
@@ -73,11 +81,6 @@ public class SssDiscordApiService implements DiscordApiService {
     }
 
     @Autowired
-    public void setJda(final JDA jda) {
-        this.jda = jda;
-    }
-
-    @Autowired
     public void setConversionService(final ConversionService conversionService) {
         this.conversionService = conversionService;
     }
@@ -85,5 +88,10 @@ public class SssDiscordApiService implements DiscordApiService {
     @Autowired
     public void setRoleRepository(final RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
+    }
+
+    @Autowired
+    public void setDiscordEventsListener(final DiscordEventsListener discordEventsListener) {
+        this.discordEventsListener = discordEventsListener;
     }
 }

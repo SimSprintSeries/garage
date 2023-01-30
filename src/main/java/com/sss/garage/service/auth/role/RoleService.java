@@ -10,4 +10,5 @@ import com.sss.garage.service.discord.converter.DiscordRoleConverter;
 public interface RoleService {
     Optional<DiscordRole> findById(final String id);
     RoleMapperStrategy getRoleMapperStrategy();
+    DiscordRole saveRole(final String id, final String code);
 }
