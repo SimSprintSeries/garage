@@ -12,11 +12,7 @@ import com.sss.garage.model.raceresult.RaceResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class EloService {
@@ -25,7 +21,6 @@ public class EloService {
     private static final Integer POLE_BOOSTER = 3;
     private static final Integer LAP_BOOSTER = 3;
     private static final Integer K_FACTOR = 6;
-    private static final Double ELO_OVER_TIME_CHANGE_FACTOR = -0.001;
 
     private GameRepository gameRepository;
 
@@ -59,85 +54,98 @@ public class EloService {
         }
 
         for(final Game game : gameMap.keySet()) {
-            for (final Race race : gameMap.get(game)) {
-                if (!race.getRaceResults().isEmpty()) {
-                    updateElo(race);
+            List<Race> races = gameMap.get(game);
+            if (!races.isEmpty()) {
+                updateElo(races);
+            }
+        }
+    }
+
+    public void recalculateElo() {
+        eloRepository.deleteAll();
+        calculateElo();
+    }
+
+    public void updateElo(List<Race> races) {
+        for (Race race : races) {
+            updateElo(race);
+        }
+    }
+
+    public void updateElo(Race race) {
+        for (RaceResult raceResultCurrentDriver : race.getRaceResults()) {
+            for (RaceResult raceResultOpponent : race.getRaceResults()) {
+                if (!raceResultCurrentDriver.equals(raceResultOpponent)) {
+                    updateElo(race, raceResultCurrentDriver, raceResultOpponent);
                 }
             }
         }
     }
-    public void updateElo(Race race) {
-        long daysDiff = DAYS.between(race.getEvent().getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+
+    public void updateElo(Race race, RaceResult raceResultCurrentDriver, RaceResult raceResultOpponent) {
+
         Game game = race.getEvent().getLeague().getGame();
 
-        for (RaceResult raceResultCurrentDriver : race.getRaceResults()) {
-            Driver currentDriver = raceResultCurrentDriver.getDriver();
-            Elo eloCurrentDriver = eloRepository.findByGameAndDriver(game, currentDriver)
-                    .orElseGet(() -> new Elo(currentDriver, game));
-            Elo eloCurrentDriverFamily = eloRepository.findByGameAndDriver(game.getGameFamily(), currentDriver)
-                    .orElseGet(() -> new Elo(currentDriver, game.getGameFamily()));
+        Driver currentDriver = raceResultCurrentDriver.getDriver();
+        Driver opponent = raceResultOpponent.getDriver();
 
-            int eloDiff = 0;
-            int eloDiffFamily = 0;
+        Elo eloCurrentDriver = eloRepository.findByGameAndDriver(game, currentDriver)
+                .orElseGet(() -> new Elo(currentDriver, game));
+        Elo eloCurrentDriverFamily = eloRepository.findByGameAndDriver(game.getGameFamily(), currentDriver)
+                .orElseGet(() -> new Elo(currentDriver, game.getGameFamily()));
 
-            for (RaceResult raceResultOpponent : race.getRaceResults()) {
-                Driver opponent = raceResultOpponent.getDriver();
+        Integer eloDiff = 0;
+        Integer eloDiffFamily = 0;
 
-                if (!currentDriver.equals(opponent)) {
-                    Elo eloOpponent = eloRepository.findByGameAndDriver(game, opponent)
-                            .orElseGet(() -> new Elo(opponent, game));
-                    Elo eloOpponentFamily = eloRepository.findByGameAndDriver(game.getGameFamily(), opponent)
-                            .orElseGet(() -> new Elo(opponent, game.getGameFamily()));
+        Elo eloOpponent = eloRepository.findByGameAndDriver(game, opponent)
+                .orElseGet(() -> new Elo(opponent, game));
+        Elo eloOpponentFamily = eloRepository.findByGameAndDriver(game.getGameFamily(), opponent)
+                .orElseGet(() -> new Elo(opponent, game.getGameFamily()));
 
-                    boolean currentDriverBetter = raceResultCurrentDriver.getFinishPosition() < raceResultOpponent.getFinishPosition();
+        Boolean outcome = raceResultCurrentDriver.getFinishPosition() < raceResultOpponent.getFinishPosition();
 
-                    int eloPart = calculate2PlayersRating(eloCurrentDriver.getValue(), eloOpponent.getValue(), currentDriverBetter);
-                    int eloPartFamily = calculate2PlayersRating(eloCurrentDriverFamily.getValue(), eloOpponentFamily.getValue(), currentDriverBetter);
+        Integer eloNew = calculate2PlayersRating(eloCurrentDriver.getValue(), eloOpponent.getValue(), outcome);
+        Integer eloNewFamily = calculate2PlayersRating(eloCurrentDriverFamily.getValue(), eloOpponentFamily.getValue(), outcome);
 
-                    eloDiff += eloPart - eloCurrentDriver.getValue();
-                    eloDiffFamily += eloPartFamily - eloCurrentDriverFamily.getValue();
-                }
-            }
+        eloDiff += eloNew - eloCurrentDriver.getValue();
+        eloDiffFamily += eloNewFamily - eloCurrentDriverFamily.getValue();
 
-            if (raceResultCurrentDriver.getDnf()) {
-                eloDiff = eloDiff / DNF_DIVIDER;
-                eloDiffFamily = eloDiffFamily / DNF_DIVIDER;
-            }
-
-            if (raceResultCurrentDriver.getPolePosition()) {
-                eloDiff += POLE_BOOSTER;
-                eloDiffFamily += POLE_BOOSTER;
-            }
-
-            if (raceResultCurrentDriver.getFastestLap()) {
-                eloDiff += LAP_BOOSTER;
-                eloDiffFamily += LAP_BOOSTER;
-            }
-
-            double dateFraction = ELO_OVER_TIME_CHANGE_FACTOR * daysDiff + 1;
-
-            eloCurrentDriver.setValue(eloCurrentDriver.getValue() + eloDiff);
-            eloCurrentDriver.setValue((int)(eloCurrentDriverFamily.getValue() + (Math.round(eloDiffFamily * dateFraction))));
-
-            eloRepository.save(eloCurrentDriver);
-            eloRepository.save(eloCurrentDriverFamily);
+        if (raceResultCurrentDriver.getDnf()) {
+            eloDiff = eloDiff / DNF_DIVIDER;
+            eloDiffFamily = eloDiffFamily / DNF_DIVIDER;
         }
 
+        if (raceResultCurrentDriver.getPolePosition()) {
+            eloDiff += POLE_BOOSTER;
+            eloDiffFamily += POLE_BOOSTER;
+        }
+
+        if (raceResultCurrentDriver.getFastestLap()) {
+            eloDiff += LAP_BOOSTER;
+            eloDiffFamily += LAP_BOOSTER;
+        }
+
+        eloCurrentDriver.setValue(eloCurrentDriver.getValue() + eloDiff);
+        eloCurrentDriver.setValue(eloCurrentDriverFamily.getValue() + eloDiffFamily);
+
+        eloRepository.save(eloCurrentDriver);
+        eloRepository.save(eloCurrentDriverFamily);
     }
-    private static int calculate2PlayersRating(int currentDriverRating, int opponentRating, boolean outcome) {
+
+    private static Integer calculate2PlayersRating(Integer currentDriverRating, Integer opponentRating, Boolean currentDriverBetter) {
 
         double actualScore;
 
-        if (outcome) {
+        if (currentDriverBetter) {
             actualScore = 1.0;
         }
         else {
             actualScore = 0;
         }
 
-        double exponent = (double) (opponentRating - currentDriverRating) / 400;
+        Double exponent = (double) (opponentRating - currentDriverRating) / 400;
 
-        double expectedOutcome = (1 / (1 + (Math.pow(10, exponent))));
+        Double expectedOutcome = (1 / (1 + (Math.pow(10, exponent))));
 
         return (int) Math.round(currentDriverRating + K_FACTOR * (actualScore - expectedOutcome));
     }
