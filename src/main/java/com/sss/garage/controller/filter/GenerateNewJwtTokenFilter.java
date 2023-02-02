@@ -53,6 +53,7 @@ public class GenerateNewJwtTokenFilter extends OncePerRequestFilter {
         final Authentication authentication = sessionService.getCurrentAuthentication();
         if(Objects.isNull(authentication)) {
             filterChain.doFilter(request, response);
+            return;
         }
 
         final Object principal = authentication.getPrincipal();
