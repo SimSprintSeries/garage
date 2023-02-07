@@ -29,7 +29,7 @@ public class Race extends Event {
     @ManyToOne
     private Race parentRaceEvent;
 
-    private Boolean isIncludedInElo;
+    private Boolean includedInElo;
 
     public Boolean isOnlyPartOfWholeEvent() {
         return !isTheOnlyScoredRacedInEvent();
@@ -79,11 +79,11 @@ public class Race extends Event {
         this.parentRaceEvent = parentRaceEvent;
     }
 
-    public Boolean getIsIncludedInElo() {
-        return isIncludedInElo;
+    public Boolean isIncludedInElo() {
+        return includedInElo;
     }
 
-    public void setIsIncludedInElo(Boolean isIncludedInElo) {
-        this.isIncludedInElo = isIncludedInElo;
+    public void setIncludedInElo(Boolean includedInElo) {
+        this.includedInElo = includedInElo;
     }
 }

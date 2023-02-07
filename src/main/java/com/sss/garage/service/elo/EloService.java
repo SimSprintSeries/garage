@@ -33,16 +33,20 @@ public class EloService {
 
     public void updateElo(List<Race> races) {
         for (Race race : races) {
-            if (race.isTheOnlyScoredRacedInEvent()) {
-                updateElo(race);
+            if (race.isIncludedInElo() == null) {
+                race.setIncludedInElo(false);
             }
-            else {
-                if (!raceService.isQuali(race)) {
-                    updateElo(race.getParentRaceEvent());
+            if (!race.isIncludedInElo()) {
+                if (race.isTheOnlyScoredRacedInEvent()) {
+                    updateElo(race);
+                }
+                else {
+                    if (!raceService.isQuali(race)) {
+                        updateElo(race.getParentRaceEvent());
+                    }
                 }
             }
         }
-        raceRepository.saveAll(races);
     }
 
     public void updateElo(Race race) {
@@ -89,7 +93,7 @@ public class EloService {
             }
         }
 
-        race.setIsIncludedInElo(true);
+        race.setIncludedInElo(true);
         raceRepository.save(race);
 
         // race calculation finished, update
