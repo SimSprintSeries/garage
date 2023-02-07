@@ -2,14 +2,12 @@ package com.sss.garage.service.elo;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
-import com.sss.garage.model.elo.EloRepository;
+import com.sss.garage.model.elo.CurrentEloRepository;
+import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.game.Game;
-import com.sss.garage.model.game.GameRepository;
 import com.sss.garage.model.race.Race;
-import com.sss.garage.model.league.League;
-import com.sss.garage.model.event.Event;
-import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.model.raceresult.RaceResult;
+import com.sss.garage.service.race.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,54 +15,27 @@ import java.util.*;
 
 @Service
 public class EloService {
-
     private static final Integer DNF_DIVIDER = 2;
     private static final Integer POLE_BOOSTER = 3;
     private static final Integer LAP_BOOSTER = 3;
     private static final Integer K_FACTOR = 6;
     private static final Integer SPLIT_REDUCER = 1;
 
-    private GameRepository gameRepository;
-
-    @Autowired
-    public void setGameRepository(final GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
-
-    private RaceRepository raceRepository;
-
-    @Autowired
-    public void setRaceRepository(final RaceRepository raceRepository) {
-        this.raceRepository = raceRepository;
-    }
-
-    private EloRepository eloRepository;
-
-    @Autowired
-    public void setEloRepository(final EloRepository eloRepository) {
-        this.eloRepository = eloRepository;
-    }
+    private RaceService raceService;
+    private CurrentEloRepository currentEloRepository;
 
     public void calculateElo() {
-        List<Race> races = raceRepository.findAll();
-
-        Collections.sort(races, Comparator.comparing(Event::getStartDate));
-
-        updateElo(races);
-    }
-
-    public void recalculateElo() {
-        eloRepository.deleteAll();
-        calculateElo();
+        currentEloRepository.deleteAll();
+        updateElo(raceService.getAllRacesSorted());
     }
 
     public void updateElo(List<Race> races) {
         for (Race race : races) {
-            if (race.getEvent() != null) {
+            if (race.isTheOnlyScoredRacedInEvent()) {
                 updateElo(race);
             }
             else {
-                if (!race.getName().equals("Kwalifikacje")) {
+                if (!raceService.isQuali(race)) {
                     updateElo(race.getParentRaceEvent());
                 }
             }
@@ -72,46 +43,65 @@ public class EloService {
     }
 
     public void updateElo(Race race) {
-        Set<Elo> toUpdate = new HashSet<>();
+        final Game currentGame = race.getEvent().getLeague().getGame();
+        final List<RaceResult> raceResults = new ArrayList<>(race.getRaceResults());
 
-        for (RaceResult raceResultCurrentDriver : race.getRaceResults()) {
-            for (RaceResult raceResultOpponent : race.getRaceResults()) {
-                if (!raceResultCurrentDriver.equals(raceResultOpponent)) {
-                    updateElo(race.getEvent().getLeague().getGame(), raceResultCurrentDriver, raceResultOpponent, toUpdate);
-                    updateElo(race.getEvent().getLeague().getGame().getGameFamily(), raceResultCurrentDriver, raceResultOpponent, toUpdate);
-                }
+        Set<Elo> toUpdate = new HashSet<>();
+        final Map<Driver, Integer> gameEloValuesSnapshot = new HashMap<>();
+        final Map<Driver, Integer> gameFamilyEloValuesSnapshot = new HashMap<>();
+
+        // data prep - maybe in a loop? Gets complicated but could impact performance
+        for(final RaceResult raceResult : raceResults) {
+            final Driver driver = raceResult.getDriver();
+            final Elo gameElo = getDriverCurrentElo(currentGame, raceResult.getDriver());
+            final Elo gameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), raceResult.getDriver());
+
+            toUpdate.add(gameElo);
+            toUpdate.add(gameFamilyElo);
+
+            gameEloValuesSnapshot.put(driver, gameElo.getValue());
+            gameFamilyEloValuesSnapshot.put(driver, gameFamilyElo.getValue());
+
+            currentEloRepository.save(new EloHistory(gameElo, race.getStartDate()));
+            currentEloRepository.save(new EloHistory(gameFamilyElo, race.getStartDate()));
+        }
+
+        for(int i = 0; i < raceResults.size(); i++) {
+            final RaceResult driverRaceResult = raceResults.get(i);
+            final Driver driver = driverRaceResult.getDriver();
+            final Elo currentDriverGameElo = getDriverCurrentElo(currentGame, driver);
+            final Elo currentDriverGameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), driver);
+
+            for(int j = i + 1; j < raceResults.size(); j++) {
+                final RaceResult opponentRaceResult = raceResults.get(j);
+                final Driver opponent = opponentRaceResult.getDriver();
+                final Elo opponentGameElo = getDriverCurrentElo(currentGame, opponent);
+                final Elo opponentGameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), opponent);
+
+                updateElo(driverRaceResult, opponentRaceResult, currentDriverGameElo, gameEloValuesSnapshot);
+                updateElo(driverRaceResult, opponentRaceResult, currentDriverGameFamilyElo, gameFamilyEloValuesSnapshot);
+
+                updateElo(opponentRaceResult, driverRaceResult, opponentGameElo, gameEloValuesSnapshot);
+                updateElo(opponentRaceResult, driverRaceResult, opponentGameFamilyElo, gameFamilyEloValuesSnapshot);
             }
         }
-        eloRepository.saveAll(toUpdate);
+
+        // race calculation finished, update
+        currentEloRepository.saveAll(toUpdate);
     }
 
-    private Optional<Elo> findByDriverAndGame(final Driver driver, final Game game, final Set<Elo> elos) {
-        return elos.stream()
-                .filter(e -> e.getDriver().equals(driver))
-                .filter(e -> e.getGame().equals(game))
-                .findFirst();
-    }
-
-    public Elo getDriverElo(Game game, Driver driver, Set<Elo> toUpdate) {
-        return eloRepository.findByGameAndDriver(game, driver)
-                .or(() -> findByDriverAndGame(driver, game, toUpdate))
+    public Elo getDriverCurrentElo(Game game, Driver driver) {
+        return currentEloRepository.findByGameAndDriver(game, driver)
                 .orElseGet(() -> new Elo(driver, game));
     }
 
-    public void updateElo(Game game, RaceResult raceResultCurrentDriver, RaceResult raceResultOpponent, Set<Elo> toUpdate) {
-        Driver currentDriver = raceResultCurrentDriver.getDriver();
-        Driver opponent = raceResultOpponent.getDriver();
+    public void updateElo(RaceResult raceResultCurrentDriver, RaceResult raceResultOpponent, final Elo currentDriverNewElo, final Map<Driver, Integer> eloValuesSnapshot) {
+        Integer eloValueOpponent = eloValuesSnapshot.get(raceResultOpponent.getDriver());
 
-        Integer eloDiff = 0;
+        Integer newValue = calculate2PlayersRating(currentDriverNewElo.getValue(), eloValueOpponent
+                , raceResultCurrentDriver.getFinishPosition() < raceResultOpponent.getFinishPosition());
 
-        Elo eloCurrentDriver = getDriverElo(game, currentDriver, toUpdate);
-        Elo eloOpponent = getDriverElo(game, opponent, toUpdate);
-
-        Boolean outcome = raceResultCurrentDriver.getFinishPosition() < raceResultOpponent.getFinishPosition();
-
-        Integer eloNew = calculate2PlayersRating(eloCurrentDriver.getValue(), eloOpponent.getValue(), outcome);
-
-        eloDiff += eloNew - eloCurrentDriver.getValue();
+        Integer eloDiff = newValue - currentDriverNewElo.getValue();
 
         if (raceResultCurrentDriver.getDnf()) {
             eloDiff = eloDiff / DNF_DIVIDER;
@@ -133,9 +123,7 @@ public class EloService {
             eloDiff -= SPLIT_REDUCER * 2;
         }
 
-        eloCurrentDriver.setValue(eloCurrentDriver.getValue() + eloDiff);
-
-        toUpdate.add(eloCurrentDriver);
+        currentDriverNewElo.setValue(currentDriverNewElo.getValue() + eloDiff);
     }
 
     private static Integer calculate2PlayersRating(Integer currentDriverRating, Integer opponentRating, Boolean currentDriverBetter) {
@@ -155,4 +143,15 @@ public class EloService {
 
         return (int) Math.round(currentDriverRating + K_FACTOR * (actualScore - expectedOutcome));
     }
+
+    @Autowired
+    public void setRaceService(final RaceService raceService) {
+        this.raceService = raceService;
+    }
+
+    @Autowired
+    public void setEloRepository(final CurrentEloRepository currentEloRepository) {
+        this.currentEloRepository = currentEloRepository;
+    }
+
 }

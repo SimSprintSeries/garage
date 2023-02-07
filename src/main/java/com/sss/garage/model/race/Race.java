@@ -1,6 +1,6 @@
 package com.sss.garage.model.race;
 
-import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 import com.sss.garage.model.event.Event;
@@ -28,6 +28,14 @@ public class Race extends Event {
 
     @ManyToOne
     private Race parentRaceEvent;
+
+    public Boolean isOnlyPartOfWholeEvent() {
+        return !isTheOnlyScoredRacedInEvent();
+    }
+
+    public Boolean isTheOnlyScoredRacedInEvent() {
+        return Objects.nonNull(this.event) && Objects.isNull(this.parentRaceEvent);
+    }
 
     public Split getSplit() {
         return split;

@@ -11,10 +11,20 @@ public class Elo {
 
     private static final Integer DEFAULT_ELO_VALUE = 1500;
 
+    public Elo() {
+
+    }
+
     public Elo(Driver driver, Game game) {
         this.value = DEFAULT_ELO_VALUE;
         this.driver = driver;
         this.game = game;
+    }
+
+    public Elo(final Elo elo) {
+        this.value = elo.getValue();
+        this.driver = elo.getDriver();
+        this.game = elo.getGame();
     }
 
     @Id
@@ -30,11 +40,6 @@ public class Elo {
     @NotNull
     @ManyToOne
     private Game game;
-
-    public Elo() {
-
-    }
-
 
     public Long getId() {
         return id;

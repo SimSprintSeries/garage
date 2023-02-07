@@ -2,6 +2,7 @@ package com.sss.garage.model.driver;
 
 import jakarta.persistence.*;
 
+import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
@@ -22,8 +23,11 @@ public class Driver {
     @OneToOne(mappedBy = "driver")
     private DiscordUser discordUser;
 
+    @OneToMany(mappedBy = "driver", targetEntity = Elo.class)
+    private Set<Elo> elos;
+
     @OneToMany(mappedBy = "driver")
-    private Set<Elo> elo;
+    private Set<EloHistory> eloHistories;
 
     @OneToMany(mappedBy = "driver")
     private Set<RaceResult> raceResults;
@@ -53,12 +57,20 @@ public class Driver {
         this.discordUser = discordUser;
     }
 
-    public Set<Elo> getElo() {
-        return elo;
+    protected Set<Elo> getElos() {
+        return elos;
     }
 
-    public void setElo(Set<Elo> elo) {
-        this.elo = elo;
+    protected void setElos(Set<Elo> elos) {
+        this.elos = elos;
+    }
+
+    public Set<EloHistory> getEloHistories() {
+        return eloHistories;
+    }
+
+    public void setEloHistories(final Set<EloHistory> eloHistories) {
+        this.eloHistories = eloHistories;
     }
 
     public Set<RaceResult> getRaceResults() {
