@@ -6,6 +6,7 @@ import com.sss.garage.model.elo.CurrentEloRepository;
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.service.race.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class EloService {
 
     private RaceService raceService;
     private CurrentEloRepository currentEloRepository;
+    private RaceRepository raceRepository;
 
     public void calculateElo() {
         currentEloRepository.deleteAll();
@@ -40,6 +42,7 @@ public class EloService {
                 }
             }
         }
+        raceRepository.saveAll(races);
     }
 
     public void updateElo(Race race) {
@@ -85,6 +88,9 @@ public class EloService {
                 updateElo(opponentRaceResult, driverRaceResult, opponentGameFamilyElo, gameFamilyEloValuesSnapshot);
             }
         }
+
+        race.setIsIncludedInElo(true);
+        raceRepository.save(race);
 
         // race calculation finished, update
         currentEloRepository.saveAll(toUpdate);
@@ -152,6 +158,11 @@ public class EloService {
     @Autowired
     public void setEloRepository(final CurrentEloRepository currentEloRepository) {
         this.currentEloRepository = currentEloRepository;
+    }
+
+    @Autowired
+    public void setRaceRepository(final RaceRepository raceRepository) {
+        this.raceRepository = raceRepository;
     }
 
 }
