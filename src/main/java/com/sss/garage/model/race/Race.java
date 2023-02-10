@@ -3,6 +3,7 @@ package com.sss.garage.model.race;
 import java.util.Objects;
 import java.util.Set;
 
+import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
@@ -29,7 +30,10 @@ public class Race extends Event {
     @ManyToOne
     private Race parentRaceEvent;
 
-    private Boolean includedInElo;
+    @OneToMany(mappedBy = "race")
+    private Set<EloHistory> eloHistories;
+
+    private Boolean includedInElo = false;
 
     public Boolean isOnlyPartOfWholeEvent() {
         return !isTheOnlyScoredRacedInEvent();

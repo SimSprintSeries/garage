@@ -4,15 +4,19 @@ import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.elo.CurrentEloRepository;
 import com.sss.garage.model.elo.history.EloHistory;
+import com.sss.garage.model.elo.history.EloHistoryRepository;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.service.race.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class EloService {
@@ -25,32 +29,54 @@ public class EloService {
     private RaceService raceService;
     private CurrentEloRepository currentEloRepository;
     private RaceRepository raceRepository;
+    private EloHistoryRepository eloHistoryRepository;
 
     public void calculateElo() {
         currentEloRepository.deleteAll();
         updateElo(raceService.getAllRacesSorted());
+        //updateEloSince(raceService.getAllRacesSorted().get(700));
     }
 
     public void updateElo(List<Race> races) {
-        for (Race race : races) {
-            if (race.isIncludedInElo() == null) {
-                race.setIncludedInElo(false);
-            }
-            if (!race.isIncludedInElo()) {
-                if (race.isTheOnlyScoredRacedInEvent()) {
-                    updateElo(race);
-                }
-                else {
-                    if (!raceService.isQuali(race)) {
-                        updateElo(race.getParentRaceEvent());
-                    }
-                }
-            }
-        }
+        races.stream()
+                .filter(Predicate.not(Race::isIncludedInElo))
+                .filter(r -> r.getContainedRaces().isEmpty())
+                .filter(r -> !raceService.isQuali(r))
+                .forEach(this::updateElo);
     }
 
-    public void updateElo(Race race) {
-        final Game currentGame = race.getEvent().getLeague().getGame();
+    public void updateEloSince(final Race race) {
+        List<Race> racesSince = raceRepository.findByStartDateGreaterThanEqual(race.getStartDate(), Sort.by(Sort.Direction.ASC, "startDate"));
+        for (Race raceSince : racesSince) {
+            for (RaceResult raceResult : raceSince.getRaceResults()) {
+                currentEloRepository.saveAll(eloHistoryRepository.findByStartDateAndDriver(race.getStartDate(), raceResult.getDriver()));
+            }
+        }
+        updateElo(racesSince);
+    }
+
+    public List<Elo> getElos(final Game game) {
+        return currentEloRepository.findByGame(game, Sort.by(Sort.Direction.DESC, "value"))
+                .stream().collect(Collectors.toList());
+    }
+
+    public List<Elo> getEloHistories(final Game game, final Driver driver) {
+        return currentEloRepository.findHistoryByGameAndDriver(game, driver, Sort.by(Sort.Direction.ASC, "startDate"))
+                .stream().toList();
+    }
+
+    private Elo getElo(Game game, Driver driver) {
+        return currentEloRepository.findByGameAndDriver(game, driver)
+                .orElseGet(() -> new Elo(driver, game));
+    }
+
+    private void updateElo(Race race) {
+        Game currentGame;
+        try {
+            currentGame = race.getEvent().getLeague().getGame();
+        } catch (NullPointerException e) {
+            currentGame = race.getParentRaceEvent().getEvent().getLeague().getGame();
+        }
         final List<RaceResult> raceResults = new ArrayList<>(race.getRaceResults());
 
         Set<Elo> toUpdate = new HashSet<>();
@@ -60,8 +86,17 @@ public class EloService {
         // data prep - maybe in a loop? Gets complicated but could impact performance
         for(final RaceResult raceResult : raceResults) {
             final Driver driver = raceResult.getDriver();
-            final Elo gameElo = getDriverCurrentElo(currentGame, raceResult.getDriver());
-            final Elo gameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), raceResult.getDriver());
+            final Elo gameElo = getElo(currentGame, raceResult.getDriver());
+            final Elo gameFamilyElo = getElo(currentGame.getGameFamily(), raceResult.getDriver());
+
+            List<EloHistory> eloHistories = new ArrayList<>(eloHistoryRepository.findHistoryByDriver
+                    (driver, Sort.by(Sort.Direction.ASC, "validUntil")));
+            EloHistory previousEloHistory = null;
+            EloHistory previousEloHistoryFamily = null;
+            if (eloHistories.size() != 0) {
+                previousEloHistory = eloHistories.get(eloHistories.size() - 2);
+                previousEloHistoryFamily = eloHistories.get(eloHistories.size() - 1);
+            }
 
             toUpdate.add(gameElo);
             toUpdate.add(gameFamilyElo);
@@ -69,21 +104,21 @@ public class EloService {
             gameEloValuesSnapshot.put(driver, gameElo.getValue());
             gameFamilyEloValuesSnapshot.put(driver, gameFamilyElo.getValue());
 
-            currentEloRepository.save(new EloHistory(gameElo, race.getStartDate()));
-            currentEloRepository.save(new EloHistory(gameFamilyElo, race.getStartDate()));
+            currentEloRepository.save(new EloHistory(gameElo, race.getStartDate(), race, previousEloHistory));
+            currentEloRepository.save(new EloHistory(gameFamilyElo, race.getStartDate(), race, previousEloHistoryFamily));
         }
 
         for(int i = 0; i < raceResults.size(); i++) {
             final RaceResult driverRaceResult = raceResults.get(i);
             final Driver driver = driverRaceResult.getDriver();
-            final Elo currentDriverGameElo = getDriverCurrentElo(currentGame, driver);
-            final Elo currentDriverGameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), driver);
+            final Elo currentDriverGameElo = getElo(currentGame, driver);
+            final Elo currentDriverGameFamilyElo = getElo(currentGame.getGameFamily(), driver);
 
             for(int j = i + 1; j < raceResults.size(); j++) {
                 final RaceResult opponentRaceResult = raceResults.get(j);
                 final Driver opponent = opponentRaceResult.getDriver();
-                final Elo opponentGameElo = getDriverCurrentElo(currentGame, opponent);
-                final Elo opponentGameFamilyElo = getDriverCurrentElo(currentGame.getGameFamily(), opponent);
+                final Elo opponentGameElo = getElo(currentGame, opponent);
+                final Elo opponentGameFamilyElo = getElo(currentGame.getGameFamily(), opponent);
 
                 updateElo(driverRaceResult, opponentRaceResult, currentDriverGameElo, gameEloValuesSnapshot);
                 updateElo(driverRaceResult, opponentRaceResult, currentDriverGameFamilyElo, gameFamilyEloValuesSnapshot);
@@ -100,12 +135,7 @@ public class EloService {
         currentEloRepository.saveAll(toUpdate);
     }
 
-    public Elo getDriverCurrentElo(Game game, Driver driver) {
-        return currentEloRepository.findByGameAndDriver(game, driver)
-                .orElseGet(() -> new Elo(driver, game));
-    }
-
-    public void updateElo(RaceResult raceResultCurrentDriver, RaceResult raceResultOpponent, final Elo currentDriverNewElo, final Map<Driver, Integer> eloValuesSnapshot) {
+    private void updateElo(RaceResult raceResultCurrentDriver, RaceResult raceResultOpponent, final Elo currentDriverNewElo, final Map<Driver, Integer> eloValuesSnapshot) {
         Integer eloValueOpponent = eloValuesSnapshot.get(raceResultOpponent.getDriver());
 
         Integer newValue = calculate2PlayersRating(currentDriverNewElo.getValue(), eloValueOpponent
@@ -167,6 +197,11 @@ public class EloService {
     @Autowired
     public void setRaceRepository(final RaceRepository raceRepository) {
         this.raceRepository = raceRepository;
+    }
+
+    @Autowired
+    public void setEloHistoryRepository(final EloHistoryRepository eloHistoryRepository) {
+        this.eloHistoryRepository = eloHistoryRepository;
     }
 
 }
