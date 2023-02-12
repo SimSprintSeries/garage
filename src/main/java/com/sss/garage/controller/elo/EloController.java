@@ -1,7 +1,8 @@
 package com.sss.garage.controller.elo;
 
 import com.sss.garage.controller.SssBaseController;
-import com.sss.garage.service.elo.EloService;
+import com.sss.garage.facade.elo.EloFacade;
+
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Sss Elo")
 public class EloController extends SssBaseController {
 
-    private EloService eloService;
+    private EloFacade eloFacade;
 
     @GetMapping
     public void calculateElo() {
-        this.eloService.calculateElo();
+        this.eloFacade.calculateElo();
     }
 
     @Autowired
-    public void setEloService(final EloService eloService) {
-        this.eloService = eloService;
+    public void setEloFacade(final EloFacade eloFacade) {
+        this.eloFacade = eloFacade;
     }
-
 }

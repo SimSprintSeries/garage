@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
-    List<Race> findByIncludedInElo(final Boolean includedInElo, Sort sort);
-    List<Race> findByStartDateGreaterThanEqual(Date date, Sort sort);
+    List<Race> findAllByIncludedInElo(final Boolean includedInElo, final Sort sort);
+    List<Race> findAllByStartDateGreaterThanEqual(final Date date, final Sort sort);
 }

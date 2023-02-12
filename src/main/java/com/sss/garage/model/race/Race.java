@@ -30,7 +30,10 @@ public class Race extends Event {
     @ManyToOne
     private Race parentRaceEvent;
 
-    @OneToMany(mappedBy = "race")
+    /**
+     * Elo history with value from BEFORE elo calculation for this race
+     */
+    @OneToMany(mappedBy = "race", orphanRemoval = true)
     private Set<EloHistory> eloHistories;
 
     private Boolean includedInElo = false;
@@ -83,11 +86,19 @@ public class Race extends Event {
         this.parentRaceEvent = parentRaceEvent;
     }
 
-    public Boolean isIncludedInElo() {
+    public Boolean getIncludedInElo() {
         return includedInElo;
     }
 
     public void setIncludedInElo(Boolean includedInElo) {
         this.includedInElo = includedInElo;
+    }
+
+    public Set<EloHistory> getEloHistories() {
+        return eloHistories;
+    }
+
+    public void setEloHistories(final Set<EloHistory> eloHistories) {
+        this.eloHistories = eloHistories;
     }
 }

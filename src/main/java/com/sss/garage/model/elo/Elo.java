@@ -7,6 +7,10 @@ import com.sss.garage.model.game.Game;
 import org.jetbrains.annotations.NotNull;
 
 @Entity
+@Table(indexes = {
+        @Index(columnList = "game_id, driver_id"),
+        @Index(columnList = "validUntil DESC")
+})
 public class Elo {
 
     private static final Integer DEFAULT_ELO_VALUE = 1500;

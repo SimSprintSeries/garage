@@ -26,7 +26,7 @@ public class Driver {
     @OneToMany(mappedBy = "driver", targetEntity = Elo.class)
     private Set<Elo> elos;
 
-    @OneToMany(mappedBy = "driver")
+    @OneToMany(mappedBy = "driver", orphanRemoval = true)
     private Set<EloHistory> eloHistories;
 
     @OneToMany(mappedBy = "driver")
