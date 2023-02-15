@@ -2,6 +2,7 @@ package com.sss.garage.service.race.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
@@ -19,6 +20,11 @@ public class SssRaceService implements RaceService {
     private GameService gameService;
 
     private final static Sort SORT_BY_START_DATE_ASC = Sort.by(Sort.Direction.ASC, "startDate");
+
+    @Override
+    public Optional<Race> findById(final Long id) {
+        return raceRepository.findById(id);
+    }
 
     @Override
     public List<Race> getAllRacesSorted() {

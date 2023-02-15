@@ -54,7 +54,10 @@ public class SssEloFacade implements EloFacade {
     }
 
     @Override
-    public void updateEloSince(final Race race) {
+    public void updateEloSince(final Long raceId) {
+        final Race race = raceService.findById(raceId)
+                .orElseThrow();
+
         // TODO: what if race is not yet calculated (and previous races!)
         final List<Race> racesSince = raceService.getGameSortedRacesSince(race);
         final Set<Driver> alreadyUpdated = new HashSet<>();

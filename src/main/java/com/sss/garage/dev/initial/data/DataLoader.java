@@ -39,12 +39,13 @@ public class DataLoader {
     }
 
     public void loadInitialData() {
+        discordApiService.persistAllRoles();
+
         // simple check to not import twice
         if (raceRepository.count() != 0) {
             return;
         }
 
-        discordApiService.persistAllRoles();
         try {
             legacyDataImporter.importLegacyData();
         } catch (IOException e) {

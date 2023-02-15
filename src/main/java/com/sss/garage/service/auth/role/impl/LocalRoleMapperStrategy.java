@@ -9,7 +9,7 @@ public class LocalRoleMapperStrategy implements RoleMapperStrategy {
 
     @Override
     public String admin() {
-        return null;
+        return "1075533713233948722";
     }
 
     @Override
