@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import com.sss.garage.data.elo.EloData;
 import com.sss.garage.facade.elo.EloFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
@@ -17,7 +18,11 @@ import com.sss.garage.service.elo.EloService;
 import com.sss.garage.service.game.GameService;
 import com.sss.garage.service.race.RaceService;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +33,7 @@ public class SssEloFacade implements EloFacade {
     private EloCalculationService eloCalculationService;
     private RaceService raceService;
     private GameService gameService;
+    private ConversionService conversionService;
 
     @Override
     public void calculateElo() {
@@ -97,6 +103,19 @@ public class SssEloFacade implements EloFacade {
                 });
     }
 
+    @Override
+    public Page<EloData> getElosPaginated(final String gameId, final Pageable pageable) {
+        Page<Elo> elos;
+        if(Strings.isNotEmpty(gameId)) {
+            final Game game = gameService.getGame(Long.valueOf(gameId)).orElseThrow();
+            elos = eloService.getElos(game, pageable);
+        }
+        else {
+            elos = eloService.getElos(pageable);
+        }
+        return elos.map(e -> conversionService.convert(e, EloData.class));
+    }
+
     @Autowired
     public void setEloService(final EloService eloService) {
         this.eloService = eloService;
@@ -120,5 +139,10 @@ public class SssEloFacade implements EloFacade {
     @Autowired
     public void setGameService(final GameService gameService) {
         this.gameService = gameService;
+    }
+
+    @Autowired
+    public void setConversionService(final ConversionService conversionService) {
+        this.conversionService = conversionService;
     }
 }

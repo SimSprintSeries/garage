@@ -1,7 +1,10 @@
 package com.sss.garage.constants;
 
 public class WebConstants {
+    public static final String ELO_ENDPOINT = "/elo";
     public static final String ELO_CALCULATION_ENDPOINT = "/elo/calculation";
+
+    public static final String GAME_ENDPOINT = "/game";
 
     public static final String NON_ACCESSIBLE_PATH="/JEBAC_MONTREYA";
     public static final String AUTHORIZATION_HEADER_BEARER_PREFIX="Bearer ";
@@ -12,4 +15,7 @@ public class WebConstants {
     public static final String REDIRECT_URI_PARAM_COOKIE_NAME = "redirect_uri";
 
     public static final String PARENT_RACE_NAME="Parent race";
+
+    public static final String DEFAULT_CURRENT_PAGE = "0";
+    public static final String DEFAULT_PAGE_SIZE = "10";
 }

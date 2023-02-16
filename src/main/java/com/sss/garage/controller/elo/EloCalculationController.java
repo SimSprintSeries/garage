@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(ELO_CALCULATION_ENDPOINT)
-@Api(tags = "Sss Elo")
+@Api(tags = "Sss Elo Calculation")
 public class EloCalculationController extends SssBaseController {
 
     private EloFacade eloFacade;

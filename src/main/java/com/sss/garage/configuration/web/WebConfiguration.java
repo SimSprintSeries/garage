@@ -1,6 +1,9 @@
 package com.sss.garage.configuration.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sss.garage.controller.converter.driver.DriverConverter;
+import com.sss.garage.controller.converter.elo.EloConverter;
+import com.sss.garage.controller.converter.game.GameConverter;
 import com.sss.garage.controller.converter.jwt.JwtTokenConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2ToUserConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
@@ -20,6 +23,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     private DiscordRoleConverter discordRoleConverter;
     private DiscordOAuth2UserConverter discordOAuth2UserConverter;
     private DiscordOAuth2ToUserConverter discordOAuth2ToUserConverter;
+    private EloConverter eloConverter;
+    private DriverConverter driverConverter;
+    private GameConverter gameConverter;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -27,6 +33,10 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addConverter(discordRoleConverter);
         registry.addConverter(discordOAuth2UserConverter);
         registry.addConverter(discordOAuth2ToUserConverter);
+
+        registry.addConverter(eloConverter);
+        registry.addConverter(driverConverter);
+        registry.addConverter(gameConverter);
     }
 
     @Bean
@@ -57,5 +67,20 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Autowired
     public void setDiscordOAuth2ToUserConverter(final DiscordOAuth2ToUserConverter discordOAuth2ToUserConverter) {
         this.discordOAuth2ToUserConverter = discordOAuth2ToUserConverter;
+    }
+
+    @Autowired
+    public void setEloConverter(final EloConverter eloConverter) {
+        this.eloConverter = eloConverter;
+    }
+
+    @Autowired
+    public void setDriverConverter(final DriverConverter driverConverter) {
+        this.driverConverter = driverConverter;
+    }
+
+    @Autowired
+    public void setGameConverter(final GameConverter gameConverter) {
+        this.gameConverter = gameConverter;
     }
 }

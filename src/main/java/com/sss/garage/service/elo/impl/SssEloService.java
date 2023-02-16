@@ -7,10 +7,9 @@ import com.sss.garage.model.game.Game;
 import com.sss.garage.service.elo.EloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class SssEloService implements EloService {
@@ -18,8 +17,13 @@ public class SssEloService implements EloService {
     private CurrentEloRepository currentEloRepository;
 
     @Override
-    public List<Elo> getElos(final Game game) {
-        return currentEloRepository.findByGame(game, Sort.by(Sort.Direction.DESC, "value"));
+    public Page<Elo> getElos(final Game game, final Pageable pageable) {
+        return currentEloRepository.findAllByGame(game, pageable);
+    }
+
+    @Override
+    public Page<Elo> getElos(final Pageable pageable) {
+        return currentEloRepository.findAll(pageable);
     }
 
     @Override
