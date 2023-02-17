@@ -2,6 +2,7 @@ package com.sss.garage.facade.elo.impl;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -12,6 +13,7 @@ import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResult;
+import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.elo.EloCalculationService;
 import com.sss.garage.service.elo.EloHistoryService;
 import com.sss.garage.service.elo.EloService;
@@ -34,6 +36,7 @@ public class SssEloFacade implements EloFacade {
     private RaceService raceService;
     private GameService gameService;
     private ConversionService conversionService;
+    private DriverService driverService;
 
     @Override
     public void calculateElo() {
@@ -96,7 +99,7 @@ public class SssEloFacade implements EloFacade {
                 .filter(r -> r.getGame().equals(game))
                 .findFirst()
                 .ifPresent(previousElo -> {
-                    final Elo elo = eloService.getElo(game, driver);
+                    final Elo elo = eloService.getEloWithDefault(game, driver);
                     elo.setValue(previousElo.getValue());
                     eloService.save(elo);
                     eloHistoryService.deleteAllHistoryAfterIncluding(previousElo);
@@ -114,6 +117,14 @@ public class SssEloFacade implements EloFacade {
             elos = eloService.getElos(pageable);
         }
         return elos.map(e -> conversionService.convert(e, EloData.class));
+    }
+
+    @Override
+    public Optional<EloData> getElo(final String driverId, final String gameId) {
+        final Driver driver = driverService.getDriver(Long.valueOf(driverId)).orElseThrow();
+        final Game game = gameService.getGame(Long.valueOf(gameId)).orElseThrow();
+        return eloService.getElo(game, driver)
+                .map(e -> conversionService.convert(e, EloData.class));
     }
 
     @Autowired
@@ -144,5 +155,10 @@ public class SssEloFacade implements EloFacade {
     @Autowired
     public void setConversionService(final ConversionService conversionService) {
         this.conversionService = conversionService;
+    }
+
+    @Autowired
+    public void setDriverService(final DriverService driverService) {
+        this.driverService = driverService;
     }
 }

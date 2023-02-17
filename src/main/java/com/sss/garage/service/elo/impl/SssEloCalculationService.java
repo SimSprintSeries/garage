@@ -50,8 +50,8 @@ public class SssEloCalculationService implements EloCalculationService {
         // data prep - maybe in a loop? Gets complicated but could impact performance
         for(final RaceResult raceResult : raceResults) {
             final Driver driver = raceResult.getDriver();
-            final Elo gameElo = eloService.getElo(currentGame, driver);
-            final Elo gameFamilyElo = eloService.getElo(currentGame.getGameFamily(), driver);
+            final Elo gameElo = eloService.getEloWithDefault(currentGame, driver);
+            final Elo gameFamilyElo = eloService.getEloWithDefault(currentGame.getGameFamily(), driver);
 
             toUpdate.add(gameElo);
             toUpdate.add(gameFamilyElo);
@@ -67,14 +67,14 @@ public class SssEloCalculationService implements EloCalculationService {
         for(int i = 0; i < raceResults.size(); i++) {
             final RaceResult driverRaceResult = raceResults.get(i);
             final Driver driver = driverRaceResult.getDriver();
-            final Elo currentDriverGameElo = eloService.getElo(currentGame, driver);
-            final Elo currentDriverGameFamilyElo = eloService.getElo(currentGame.getGameFamily(), driver);
+            final Elo currentDriverGameElo = eloService.getEloWithDefault(currentGame, driver);
+            final Elo currentDriverGameFamilyElo = eloService.getEloWithDefault(currentGame.getGameFamily(), driver);
 
             for(int j = i + 1; j < raceResults.size(); j++) {
                 final RaceResult opponentRaceResult = raceResults.get(j);
                 final Driver opponent = opponentRaceResult.getDriver();
-                final Elo opponentGameElo = eloService.getElo(currentGame, opponent);
-                final Elo opponentGameFamilyElo = eloService.getElo(currentGame.getGameFamily(), opponent);
+                final Elo opponentGameElo = eloService.getEloWithDefault(currentGame, opponent);
+                final Elo opponentGameFamilyElo = eloService.getEloWithDefault(currentGame.getGameFamily(), opponent);
 
                 calculateElo(driverRaceResult, opponentRaceResult, currentDriverGameElo, gameEloValuesSnapshot);
                 calculateElo(driverRaceResult, opponentRaceResult, currentDriverGameFamilyElo, gameFamilyEloValuesSnapshot);

@@ -2,7 +2,8 @@ package com.sss.garage.constants;
 
 public class WebConstants {
     public static final String ELO_ENDPOINT = "/elo";
-    public static final String ELO_CALCULATION_ENDPOINT = "/elo/calculation";
+    public static final String DRIVER_ELO_ENDPOINT = ELO_ENDPOINT + "/driver/{driver}";
+    public static final String ELO_CALCULATION_ENDPOINT = ELO_ENDPOINT + "/calculation";
 
     public static final String GAME_ENDPOINT = "/game";
 

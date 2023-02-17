@@ -1,5 +1,7 @@
 package com.sss.garage.service.elo.impl;
 
+import java.util.Optional;
+
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.elo.CurrentEloRepository;
@@ -27,9 +29,16 @@ public class SssEloService implements EloService {
     }
 
     @Override
-    public Elo getElo(Game game, Driver driver) {
-        return currentEloRepository.findByGameAndDriver(game, driver)
-                .orElseGet(() -> new Elo(driver, game));
+    public Elo getEloWithDefault(Game game, Driver driver) {
+        return getElo(game, driver).orElseGet(() -> {
+                    final Elo elo = new Elo(driver, game);
+                    currentEloRepository.save(elo);
+                    return elo;
+                });
+    }
+
+    public Optional<Elo> getElo(Game game, Driver driver) {
+        return currentEloRepository.findByGameAndDriver(game, driver);
     }
 
     @Override
