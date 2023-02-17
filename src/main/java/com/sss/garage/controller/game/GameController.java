@@ -27,9 +27,7 @@ public class GameController extends SssBaseController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<GameDTO> getGames() {
-        return this.gameFacade.getAllGames().stream()
-                .map(g -> mapper.map(g, GameDTO.class))
-                .toList();
+        return mapAsList(this.gameFacade.getAllGames(), GameDTO.class);
     }
 
     @Autowired
