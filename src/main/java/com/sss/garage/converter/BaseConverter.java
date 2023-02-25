@@ -1,4 +1,4 @@
-package com.sss.garage.controller.converter;
+package com.sss.garage.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

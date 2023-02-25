@@ -1,4 +1,4 @@
-package com.sss.garage.controller.filter;
+package com.sss.garage.filter;
 
 import static com.sss.garage.constants.WebConstants.AUTHENTICATION_TOKEN_CHANGED_HEADER_NAME;
 

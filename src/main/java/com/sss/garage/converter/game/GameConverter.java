@@ -1,8 +1,8 @@
-package com.sss.garage.controller.converter.game;
+package com.sss.garage.converter.game;
 
 import java.util.Optional;
 
-import com.sss.garage.controller.converter.BaseConverter;
+import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.game.GameData;
 import com.sss.garage.model.game.Game;
 

@@ -1,4 +1,4 @@
-package com.sss.garage.controller.converter.jwt;
+package com.sss.garage.converter.jwt;
 
 import com.sss.garage.data.auth.JwtTokenData;
 

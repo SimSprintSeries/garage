@@ -1,6 +1,6 @@
-package com.sss.garage.controller.converter.elo;
+package com.sss.garage.converter.elo;
 
-import com.sss.garage.controller.converter.BaseConverter;
+import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.game.GameData;

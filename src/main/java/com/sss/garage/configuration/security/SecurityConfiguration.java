@@ -3,9 +3,9 @@ package com.sss.garage.configuration.security;
 import static com.sss.garage.constants.WebConstants.ELO_CALCULATION_ENDPOINT;
 import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
 
-import com.sss.garage.controller.filter.GenerateNewJwtTokenFilter;
-import com.sss.garage.controller.filter.JwtAuthenticationFilter;
-import com.sss.garage.controller.filter.OAuth2LoginAuthenticationContinueChainFilter;
+import com.sss.garage.filter.GenerateNewJwtTokenFilter;
+import com.sss.garage.filter.JwtAuthenticationFilter;
+import com.sss.garage.filter.OAuth2LoginAuthenticationContinueChainFilter;
 import com.sss.garage.service.auth.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
 import com.sss.garage.service.auth.role.RoleMapperStrategy;

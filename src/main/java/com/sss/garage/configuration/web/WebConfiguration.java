@@ -1,10 +1,10 @@
 package com.sss.garage.configuration.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sss.garage.controller.converter.driver.DriverConverter;
-import com.sss.garage.controller.converter.elo.EloConverter;
-import com.sss.garage.controller.converter.game.GameConverter;
-import com.sss.garage.controller.converter.jwt.JwtTokenConverter;
+import com.sss.garage.converter.driver.DriverConverter;
+import com.sss.garage.converter.elo.EloConverter;
+import com.sss.garage.converter.game.GameConverter;
+import com.sss.garage.converter.jwt.JwtTokenConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2ToUserConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;

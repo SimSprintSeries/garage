@@ -1,6 +1,6 @@
-package com.sss.garage.controller.converter.driver;
+package com.sss.garage.converter.driver;
 
-import com.sss.garage.controller.converter.BaseConverter;
+import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.model.driver.Driver;
 

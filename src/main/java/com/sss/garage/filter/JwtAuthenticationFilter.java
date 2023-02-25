@@ -1,4 +1,4 @@
-package com.sss.garage.controller.filter;
+package com.sss.garage.filter;
 
 import static com.sss.garage.constants.WebConstants.AUTHORIZATION_HEADER_BEARER_PREFIX;
 import static org.apache.tomcat.websocket.Constants.AUTHORIZATION_HEADER_NAME;
