@@ -1,10 +1,15 @@
 package com.sss.garage.configuration.web;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sss.garage.converter.driver.DriverConverter;
 import com.sss.garage.converter.elo.EloConverter;
+import com.sss.garage.converter.event.EventConverter;
 import com.sss.garage.converter.game.GameConverter;
 import com.sss.garage.converter.jwt.JwtTokenConverter;
+import com.sss.garage.converter.league.LeagueConverter;
+import com.sss.garage.converter.race.RaceConverter;
+import com.sss.garage.converter.split.SplitConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2ToUserConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;
@@ -26,6 +31,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     private EloConverter eloConverter;
     private DriverConverter driverConverter;
     private GameConverter gameConverter;
+    private EventConverter eventConverter;
+    private LeagueConverter leagueConverter;
+    private RaceConverter raceConverter;
+    private SplitConverter splitConverter;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -37,6 +46,10 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addConverter(eloConverter);
         registry.addConverter(driverConverter);
         registry.addConverter(gameConverter);
+        registry.addConverter(eventConverter);
+        registry.addConverter(leagueConverter);
+        registry.addConverter(raceConverter);
+        registry.addConverter(splitConverter);
     }
 
     @Bean
@@ -46,7 +59,9 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Bean
     public ObjectMapper objectMapper() {
-        return new ObjectMapper();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        return objectMapper;
     }
 
     @Autowired
@@ -82,5 +97,25 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Autowired
     public void setGameConverter(final GameConverter gameConverter) {
         this.gameConverter = gameConverter;
+    }
+
+    @Autowired
+    public void setEventConverter(final EventConverter eventConverter) {
+        this.eventConverter = eventConverter;
+    }
+
+    @Autowired
+    public void setLeagueConverter(final LeagueConverter leagueConverter) {
+        this.leagueConverter = leagueConverter;
+    }
+
+    @Autowired
+    public void setRaceConverter(final RaceConverter raceConverter) {
+        this.raceConverter = raceConverter;
+    }
+
+    @Autowired
+    public void setSplitConverter(final SplitConverter splitConverter) {
+        this.splitConverter = splitConverter;
     }
 }

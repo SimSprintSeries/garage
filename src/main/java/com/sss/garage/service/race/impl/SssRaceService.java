@@ -1,6 +1,7 @@
 package com.sss.garage.service.race.impl;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import com.sss.garage.service.game.GameService;
 import com.sss.garage.service.race.RaceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +59,21 @@ public class SssRaceService implements RaceService {
     @Override
     public Boolean isQuali(final Race race) {
         return race.getName().equals("Kwalifikacje");
+    }
+
+    @Override
+    public Page<Race> getAllParentRaces(final Pageable pageable) {
+        return raceRepository.findAllByParentRaceEventIsNull(pageable);
+    }
+
+    @Override
+    public Page<Race> getCompletedParentRaces(final Pageable pageable) {
+        return raceRepository.findAllByParentRaceEventIsNullAndStartDateLessThanEqual(new Date(System.currentTimeMillis()), pageable);
+    }
+
+    @Override
+    public Page<Race> getUncompletedParentRaces(final Pageable pageable) {
+        return raceRepository.findAllByParentRaceEventIsNullAndStartDateGreaterThan(new Date(System.currentTimeMillis()), pageable);
     }
 
     @Autowired
