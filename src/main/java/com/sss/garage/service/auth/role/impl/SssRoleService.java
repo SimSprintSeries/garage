@@ -28,8 +28,8 @@ public class SssRoleService implements RoleService {
     public RoleMapperStrategy getRoleMapperStrategy() {
         switch (activeProfile){
             case "local":
-                return localMapperStrategy;
             case "dev":
+                return localMapperStrategy;
             case "prod":
                 return sssMapperStrategy;
             default:
