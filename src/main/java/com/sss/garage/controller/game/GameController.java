@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(GAME_ENDPOINT)
-@Api(tags = "Sss Game")
+@Tag(name = "Sss Game")
 public class GameController extends SssBaseController {
 
     private GameFacade gameFacade;
 
     @GetMapping
+    @Operation(operationId = "getGames", summary = "Get list of allgames")
     @ResponseStatus(HttpStatus.OK)
     public List<GameDTO> getGames() {
         return mapAsList(this.gameFacade.getAllGames(), GameDTO.class);

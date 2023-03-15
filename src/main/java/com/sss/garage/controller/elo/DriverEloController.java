@@ -16,21 +16,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(DRIVER_ELO_ENDPOINT)
-@Api(tags = "Sss Driver Elo")
+@Tag(name = "Sss Driver Elo")
 public class DriverEloController extends SssBaseController {
 
     private EloFacade eloFacade;
 
     @GetMapping("/game/{game}")
+    @Operation(summary = "Get driver's elo by game id")
+    @ApiResponse(responseCode = "204", description = "No elo found for driver")
     public EloDTO getElo(HttpServletResponse response,
-                         @ApiParam(value = "id of driver") @PathVariable final String driver,
-                         @ApiParam(value = "id of game") @PathVariable final String game) {
+                         @Parameter(description = "id of driver") @PathVariable final String driver,
+                         @Parameter(description = "id of game") @PathVariable final String game) {
         final Optional<EloData> maybeElo = this.eloFacade.getElo(driver, game);
         if(maybeElo.isEmpty()) {
             response.setStatus(HttpStatus.NO_CONTENT.value());

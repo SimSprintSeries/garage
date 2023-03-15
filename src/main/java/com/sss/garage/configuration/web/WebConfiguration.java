@@ -21,6 +21,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
@@ -62,6 +65,14 @@ public class WebConfiguration implements WebMvcConfigurer {
         final ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return objectMapper;
+    }
+
+    @Bean
+    public OpenAPI garageOpenAPI() {
+        return new OpenAPI()
+                .info(new Info().title("Garage API")
+                        .description("Garage API for race league management")
+                        .version("v0.0.1"));
     }
 
     @Autowired

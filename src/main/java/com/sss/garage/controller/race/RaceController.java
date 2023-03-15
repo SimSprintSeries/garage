@@ -20,23 +20,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(RACE_ENDPOINT)
-@Api(tags = "Sss Race")
+@Tag(name = "Sss Race")
 public class RaceController extends SssBaseController {
 
     private RaceFacade raceFacade;
 
     @GetMapping
+    @Operation(operationId = "getRaces", summary = "Get races sorted by race date", description = "Get all races with sorting option. Optionally you can filter by completed flag, which indicates whether race has already completed or not.")
     @ResponseStatus(HttpStatus.OK)
-    public Page<RaceDTO> getEvents(@ApiParam(value = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                   @ApiParam(value = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                   @ApiParam(value = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
-                                   @ApiParam(value = "Sorting direction", allowableValues = "ASC,DESC") @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
-                                   @ApiParam(value = "Optional completed flag to filter by. True to get only completed events, false to get upcoming, null to get all")
+    public Page<RaceDTO> getEvents(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                   @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                   @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
+                                   @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
+                                   @Parameter(description = "Optional completed flag to filter by. True to get only completed events, false to get upcoming, null to get all")
                                                 @RequestParam(value = "completed", required = false) final Boolean completed) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 

@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/login/oauth2/code/discord")
-@Api(tags = "Sss OAuth2 Jwt Token")
+@Tag(name = "Sss OAuth2 Jwt Token")
 public class OAuth2JwtTokenController extends SssBaseController {
 
     private AuthenticationFacade authenticationFacade;
 
     @GetMapping
+    @Operation(summary = "Get JWT token for user")
     public JwtTokenDTO token() {
         final JwtTokenData token = authenticationFacade.getJwtTokenForCurrentUser();
 
@@ -31,6 +33,7 @@ public class OAuth2JwtTokenController extends SssBaseController {
     }
 
     @PostMapping("/revoke")
+    @Operation(summary = "Revoke token for user")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void revokeToken(@RequestParam final String token) {
         authenticationFacade.revokeToken(token);
