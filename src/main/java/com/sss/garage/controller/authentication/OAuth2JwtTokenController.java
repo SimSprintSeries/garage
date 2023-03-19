@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -32,7 +34,7 @@ public class OAuth2JwtTokenController extends SssBaseController {
             description = "Second request required for successful OAuth2 authentication. " +
                     "It takes the 'oauth2_auth_request' cookie to confirm that you are the one who requested to login in the first place. " +
                     "It takes code and state parameters passed from discord, to gather necessary data about the user to provide him with JWT Token.",
-            responses = @ApiResponse(responseCode = "302", description = "Successful request always responds with 302 redirect and cookie."))
+            responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = JwtTokenDTO.class))))
     public JwtTokenDTO token(@Parameter(description = "code parameter passed by discord OAuth2 API", required = true) @RequestParam final String code,
                              @Parameter(description = "state parameter passed by discord OAuth2 API", required = true) @RequestParam final String state) {
         final JwtTokenData token = authenticationFacade.getJwtTokenForCurrentUser();

@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -35,6 +37,7 @@ public class RaceController extends SssBaseController {
     @GetMapping
     @Operation(operationId = "getRaces", summary = "Get races sorted by race date", description = "Get all races with sorting option. Optionally you can filter by completed flag, which indicates whether race has already completed or not.")
     @ResponseStatus(HttpStatus.OK)
+    @ApiResponse(responseCode = "200", description = "Page of RaceDTO", content = @Content(schema = @Schema(implementation = RaceDTO.class)))
     public Page<RaceDTO> getEvents(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                    @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                    @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
