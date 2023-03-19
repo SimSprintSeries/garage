@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(LEAGUE_ENDPOINT)
-@Tag(name = "Sss Race")
+@Tag(name = "Sss League")
 public class LeagueController extends SssBaseController {
 
     private LeagueFacade leagueFacade;
