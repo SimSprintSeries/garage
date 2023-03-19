@@ -5,6 +5,7 @@ import com.sss.garage.data.game.GameData;
 public class LeagueData {
     private Long id;
     private String name;
+    private String displayText;
     private String platform;
     private GameData game;
 
@@ -38,5 +39,13 @@ public class LeagueData {
 
     public void setPlatform(final String platform) {
         this.platform = platform;
+    }
+
+    public String getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(final String displayText) {
+        this.displayText = displayText;
     }
 }

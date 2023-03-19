@@ -1,6 +1,7 @@
 package com.sss.garage.facade.auth.impl;
 
 import com.sss.garage.data.auth.JwtTokenData;
+import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.auth.AuthenticationFacade;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.service.auth.jwt.JwtTokenService;
@@ -18,12 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service //TODO: Could create a similar, @Facade annotation
-public class SssAuthenticationFacade implements AuthenticationFacade {
+public class SssAuthenticationFacade extends SssBaseFacade implements AuthenticationFacade {
     Logger logger = LoggerFactory.getLogger(SssAuthenticationFacade.class);
 
     private JwtTokenService jwtTokenService;
     private UserService userService;
-    private ConversionService conversionService;
     private SessionService sessionService;
     private PasswordEncoder passwordEncoder;
 
@@ -68,11 +68,6 @@ public class SssAuthenticationFacade implements AuthenticationFacade {
     @Autowired
     public void setUserService(final UserService userService) {
         this.userService = userService;
-    }
-
-    @Autowired
-    public void setConversionService(final ConversionService conversionService) {
-        this.conversionService = conversionService;
     }
 
     @Autowired

@@ -7,6 +7,7 @@ import com.sss.garage.converter.elo.EloConverter;
 import com.sss.garage.converter.event.EventConverter;
 import com.sss.garage.converter.game.GameConverter;
 import com.sss.garage.converter.jwt.JwtTokenConverter;
+import com.sss.garage.converter.league.DetailedLeagueConverter;
 import com.sss.garage.converter.league.LeagueConverter;
 import com.sss.garage.converter.race.RaceConverter;
 import com.sss.garage.converter.split.SplitConverter;
@@ -36,6 +37,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     private GameConverter gameConverter;
     private EventConverter eventConverter;
     private LeagueConverter leagueConverter;
+    private DetailedLeagueConverter detailedLeagueConverter;
     private RaceConverter raceConverter;
     private SplitConverter splitConverter;
 
@@ -51,6 +53,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addConverter(gameConverter);
         registry.addConverter(eventConverter);
         registry.addConverter(leagueConverter);
+        registry.addConverter(detailedLeagueConverter);
         registry.addConverter(raceConverter);
         registry.addConverter(splitConverter);
     }
@@ -128,5 +131,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Autowired
     public void setSplitConverter(final SplitConverter splitConverter) {
         this.splitConverter = splitConverter;
+    }
+
+    @Autowired
+    public void setDetailedLeagueConverter(final DetailedLeagueConverter detailedLeagueConverter) {
+        this.detailedLeagueConverter = detailedLeagueConverter;
     }
 }
