@@ -34,7 +34,6 @@ import com.sss.garage.model.user.DiscordUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -176,12 +175,13 @@ public class LegacyDataImporter {
                             parentRace.setEvent(e.getKey());
                             parentRace.setName(PARENT_RACE_NAME);
                             parentRace.setSplit(e.getValue().stream().findFirst().get().getSplit());
+                            parentRace.setPointScoring(false);
                             e.getValue().stream().findAny().ifPresent(r -> {
                                 parentRace.setStartDate(r.getStartDate());
                             });
                             e.getValue().forEach(r -> {
                                 r.setParentRaceEvent(parentRace);
-                                r.setEvent(null);
+                                r.setDatePlaceholder(false);
                             });
                             races.add(parentRace);
                         });

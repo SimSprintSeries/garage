@@ -30,8 +30,8 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public List<Race> getAllRacesSorted() {
-        return raceRepository.findAll(SORT_BY_START_DATE_ASC);
+    public List<Race> getAllScoringRacesSorted() {
+        return raceRepository.findAllByPointScoring(true, SORT_BY_START_DATE_ASC);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public List<Race> getAllRacesNotIncludedInEloSorted() {
-        return raceRepository.findAllByIncludedInElo(false, SORT_BY_START_DATE_ASC);
+    public List<Race> getAllScoringRacesNotIncludedInEloSorted() {
+        return raceRepository.findAllByPointScoringAndIncludedInElo(true, false, SORT_BY_START_DATE_ASC);
     }
 
     @Override
@@ -62,18 +62,18 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public Page<Race> getAllParentRaces(final Pageable pageable) {
-        return raceRepository.findAllByParentRaceEventIsNull(pageable);
+    public Page<Race> getAllPlayableRaces(final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholder(true, pageable);
     }
 
     @Override
-    public Page<Race> getCompletedParentRaces(final Pageable pageable) {
-        return raceRepository.findAllByParentRaceEventIsNullAndStartDateLessThanEqual(new Date(System.currentTimeMillis()), pageable);
+    public Page<Race> getCompletedPlayableRaces(final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholderAndStartDateGreaterThan(true, new Date(System.currentTimeMillis()), pageable);
     }
 
     @Override
-    public Page<Race> getUncompletedParentRaces(final Pageable pageable) {
-        return raceRepository.findAllByParentRaceEventIsNullAndStartDateGreaterThan(new Date(System.currentTimeMillis()), pageable);
+    public Page<Race> getUncompletedPlayableRaces(final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholderAndStartDateLessThanEqual(true, new Date(System.currentTimeMillis()), pageable);
     }
 
     @Autowired

@@ -1,6 +1,5 @@
 package com.sss.garage.model.race;
 
-import java.util.Objects;
 import java.util.Set;
 
 import com.sss.garage.model.elo.history.EloHistory;
@@ -38,13 +37,16 @@ public class Race extends Event {
 
     private Boolean includedInElo = false;
 
-    public Boolean isOnlyPartOfWholeEvent() {
-        return !isTheOnlyScoredRacedInEvent();
-    }
+    /**
+     * Indicates if race is the placeholder for the race as in event for one split.
+     * False only when it is a sprint or feature race (part of whole 'weekend' but we play it in one evening)
+     */
+    private Boolean datePlaceholder = true;
 
-    public Boolean isTheOnlyScoredRacedInEvent() {
-        return Objects.nonNull(this.event) && Objects.isNull(this.parentRaceEvent);
-    }
+    /**
+     * Indicates if this race can score any points to the championship
+     */
+    private Boolean pointScoring = true;
 
     public Split getSplit() {
         return split;
@@ -100,5 +102,21 @@ public class Race extends Event {
 
     public void setEloHistories(final Set<EloHistory> eloHistories) {
         this.eloHistories = eloHistories;
+    }
+
+    public Boolean getDatePlaceholder() {
+        return datePlaceholder;
+    }
+
+    public void setDatePlaceholder(final Boolean datePlaceholder) {
+        this.datePlaceholder = datePlaceholder;
+    }
+
+    public Boolean getPointScoring() {
+        return pointScoring;
+    }
+
+    public void setPointScoring(final Boolean pointScoring) {
+        this.pointScoring = pointScoring;
     }
 }

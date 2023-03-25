@@ -23,7 +23,6 @@ import com.sss.garage.service.race.RaceService;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -41,16 +40,16 @@ public class SssEloFacade extends SssBaseFacade implements EloFacade {
     @Override
     public void calculateElo() {
         eloService.deleteAll();
-        raceService.saveAll(raceService.getAllRacesSorted().stream()
+        raceService.saveAll(raceService.getAllScoringRacesSorted().stream()
                 .peek(r -> r.setIncludedInElo(false))
                 .toList());
 
-        updateElo(raceService.getAllRacesSorted());
+        updateElo(raceService.getAllScoringRacesSorted());
     }
 
     @Override
     public void updateElo() {
-        updateElo(raceService.getAllRacesNotIncludedInEloSorted());
+        updateElo(raceService.getAllScoringRacesNotIncludedInEloSorted());
     }
 
     @Override

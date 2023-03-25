@@ -9,7 +9,6 @@ import com.sss.garage.model.race.Race;
 import com.sss.garage.service.race.RaceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,13 +22,13 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
     public Page<RaceData> getRacesPaginated(final Boolean completed, final Pageable pageable) {
         Page<Race> races;
         if(Objects.isNull(completed)) {
-            races = raceService.getAllParentRaces(pageable);
+            races = raceService.getAllPlayableRaces(pageable);
         }
         else if(completed) {
-            races = raceService.getCompletedParentRaces(pageable);
+            races = raceService.getCompletedPlayableRaces(pageable);
         }
         else {
-            races = raceService.getUncompletedParentRaces(pageable);
+            races = raceService.getUncompletedPlayableRaces(pageable);
         }
 
         return races.map(r -> conversionService.convert(r, RaceData.class));

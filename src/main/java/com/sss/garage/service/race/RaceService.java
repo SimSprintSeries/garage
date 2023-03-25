@@ -11,13 +11,13 @@ import org.springframework.data.domain.Pageable;
 
 public interface RaceService {
     Optional<Race> findById(final Long id);
-    List<Race> getAllRacesSorted();
+    List<Race> getAllScoringRacesSorted();
     List<Race> getGameSortedRacesSince(final Race race);
-    List<Race> getAllRacesNotIncludedInEloSorted();
+    List<Race> getAllScoringRacesNotIncludedInEloSorted();
     Boolean isQuali(final Race race);
     void save(final Race race);
     void saveAll(final Collection<Race> races);
-    Page<Race> getAllParentRaces(final Pageable pageable);
-    Page<Race> getCompletedParentRaces(final Pageable pageable);
-    Page<Race> getUncompletedParentRaces(final Pageable pageable);
+    Page<Race> getAllPlayableRaces(final Pageable pageable);
+    Page<Race> getCompletedPlayableRaces(final Pageable pageable);
+    Page<Race> getUncompletedPlayableRaces(final Pageable pageable);
 }
