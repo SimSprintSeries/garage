@@ -1,5 +1,7 @@
 package com.sss.garage.converter.event;
 
+import java.util.Optional;
+
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.league.LeagueData;
@@ -20,8 +22,8 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
 
     public void convert(final Event source, final EventData data) {
         data.setId(source.getId());
-        data.setName(source.getName());
+        data.setLeague(Optional.ofNullable(source.getLeague()).map(l -> getConversionService().convert(l, LeagueData.class)).orElse(null));
+        data.setDisplayText(data.getLeague() != null ? data.getLeague().getDisplayText() + " - " + source.getName() : source.getName());
         data.setStartDate(source.getStartDate());
-        data.setLeague(getConversionService().convert(source.getLeague(), LeagueData.class));
     }
 }

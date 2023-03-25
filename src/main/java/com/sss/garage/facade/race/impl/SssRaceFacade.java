@@ -3,6 +3,7 @@ package com.sss.garage.facade.race.impl;
 import java.util.Objects;
 
 import com.sss.garage.data.race.RaceData;
+import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.race.RaceFacade;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.service.race.RaceService;
@@ -14,9 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SssRaceFacade implements RaceFacade {
+public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
 
-    private ConversionService conversionService;
     private RaceService raceService;
 
     @Override
@@ -33,11 +33,6 @@ public class SssRaceFacade implements RaceFacade {
         }
 
         return races.map(r -> conversionService.convert(r, RaceData.class));
-    }
-
-    @Autowired
-    public void setConversionService(final ConversionService conversionService) {
-        this.conversionService = conversionService;
     }
 
     @Autowired

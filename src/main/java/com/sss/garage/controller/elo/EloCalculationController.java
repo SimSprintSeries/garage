@@ -27,21 +27,23 @@ public class EloCalculationController extends SssBaseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "calculateElo", summary = "Calculate every elo for every driver", description = "Deletes all current elos and calculates them anew")
+    @Operation(operationId = "calculateElo", summary = "Calculate every elo for every driver. Secured behind admin role.",
+            description = "Deletes all current elos and calculates them anew")
     public void calculateElo() {
         this.eloFacade.calculateElo();
     }
 
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "updateElo", summary = "Calculate elo for not calculated races")
+    @Operation(operationId = "updateElo", summary = "Calculate elo for not calculated races. Secured behind admin role.")
     public void updateElo() {
         this.eloFacade.updateElo();
     }
 
     @PostMapping("/race/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "recalculateElo", summary = "Recalculate elo since race provided", description = "WARNING: TODO: For now we're not checking if elo has or has not been calculated for that race already. Beware!")
+    @Operation(operationId = "recalculateElo", summary = "Recalculate elo since race provided. Secured behind admin role.",
+            description = "WARNING: TODO: For now we're not checking if elo has or has not been calculated for that race already. Beware!")
     public void recalculateElo(@Parameter(description = "id of race to recalculate from", required = true) @PathVariable final Long id) {
         this.eloFacade.updateEloSince(id);
     }

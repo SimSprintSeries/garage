@@ -17,6 +17,7 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
 
         data.setId(source.getId());
         data.setName(source.getName());
+        data.setDisplayText(source.getName());
         data.setPlatform(source.getPlatform());
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
 

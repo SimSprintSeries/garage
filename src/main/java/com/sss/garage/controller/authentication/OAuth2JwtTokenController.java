@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -25,15 +29,21 @@ public class OAuth2JwtTokenController extends SssBaseController {
     private AuthenticationFacade authenticationFacade;
 
     @GetMapping
-    @Operation(summary = "Get JWT token for driver")
-    public JwtTokenDTO token() {
+    @Operation(operationId = "token",
+            summary = "Provides JWT token for logged in user. Requires code and state parameters from discord OAuth2 API. It also requires cookie which is set in obtainAuthorizationToken request",
+            description = "Second request required for successful OAuth2 authentication. " +
+                    "It takes the 'oauth2_auth_request' cookie to confirm that you are the one who requested to login in the first place. " +
+                    "It takes code and state parameters passed from discord, to gather necessary data about the user to provide him with JWT Token.",
+            responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = JwtTokenDTO.class))))
+    public JwtTokenDTO token(@Parameter(description = "code parameter passed by discord OAuth2 API", required = true) @RequestParam final String code,
+                             @Parameter(description = "state parameter passed by discord OAuth2 API", required = true) @RequestParam final String state) {
         final JwtTokenData token = authenticationFacade.getJwtTokenForCurrentUser();
 
         return mapper.map(token, JwtTokenDTO.class);
     }
 
     @PostMapping("/revoke")
-    @Operation(summary = "Revoke token for driver")
+    @Operation(summary = "Revoke token for user. This token will no longer provide user with authentication. Kind of like log-out request.")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void revokeToken(@RequestParam final String token) {
         authenticationFacade.revokeToken(token);

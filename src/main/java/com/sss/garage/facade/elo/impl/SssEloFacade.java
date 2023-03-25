@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import com.sss.garage.data.elo.EloData;
+import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.elo.EloFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
@@ -28,14 +29,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SssEloFacade implements EloFacade {
+public class SssEloFacade extends SssBaseFacade implements EloFacade {
 
     private EloService eloService;
     private EloHistoryService eloHistoryService;
     private EloCalculationService eloCalculationService;
     private RaceService raceService;
     private GameService gameService;
-    private ConversionService conversionService;
     private DriverService driverService;
 
     @Override
@@ -150,11 +150,6 @@ public class SssEloFacade implements EloFacade {
     @Autowired
     public void setGameService(final GameService gameService) {
         this.gameService = gameService;
-    }
-
-    @Autowired
-    public void setConversionService(final ConversionService conversionService) {
-        this.conversionService = conversionService;
     }
 
     @Autowired

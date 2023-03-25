@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,7 +33,7 @@ public class DriverEloController extends SssBaseController {
 
     @GetMapping("/game/{game}")
     @Operation(summary = "Get driver's elo by game id")
-    @ApiResponse(responseCode = "204", description = "No elo found for driver")
+    @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = EloDTO.class)))
     public EloDTO getElo(HttpServletResponse response,
                          @Parameter(description = "id of driver") @PathVariable final String driver,
                          @Parameter(description = "id of game") @PathVariable final String game) {

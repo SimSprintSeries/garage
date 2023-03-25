@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -28,6 +31,7 @@ public class GameController extends SssBaseController {
     @GetMapping
     @Operation(operationId = "getGames", summary = "Get list of allgames")
     @ResponseStatus(HttpStatus.OK)
+    @ApiResponse(responseCode = "200", description = "List of GameDTO", content = @Content(schema = @Schema(implementation = GameDTO.class)))
     public List<GameDTO> getGames() {
         return mapAsList(this.gameFacade.getAllGames(), GameDTO.class);
     }

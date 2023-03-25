@@ -5,6 +5,7 @@ import com.sss.garage.data.league.LeagueData;
 public class SplitData {
     private Long id;
     private String name;
+    private String displayText;
     private LeagueData league;
 
     public Long getId() {
@@ -29,5 +30,13 @@ public class SplitData {
 
     public void setLeague(final LeagueData league) {
         this.league = league;
+    }
+
+    public String getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(final String displayText) {
+        this.displayText = displayText;
     }
 }

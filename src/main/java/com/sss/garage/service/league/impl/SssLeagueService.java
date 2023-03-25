@@ -14,7 +14,6 @@ public class SssLeagueService implements LeagueService {
 
     private LeagueRepository leagueRepository;
 
-    @Override
     public List<League> getAllLeagues() {
         return leagueRepository.findAll();
     }

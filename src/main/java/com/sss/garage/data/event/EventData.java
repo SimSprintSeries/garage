@@ -6,7 +6,7 @@ import com.sss.garage.data.league.LeagueData;
 
 public class EventData {
     private Long id;
-    private String name;
+    private String displayText;
     private Date startDate;
     private LeagueData league;
 
@@ -18,12 +18,12 @@ public class EventData {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayText() {
+        return displayText;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setDisplayText(final String displayText) {
+        this.displayText = displayText;
     }
 
     public Date getStartDate() {

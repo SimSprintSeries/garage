@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -36,6 +38,7 @@ public class EloController extends SssBaseController {
     @GetMapping
     @Operation(operationId = "getElos", summary = "Get elo values sorted by Elo value", description = "Get all elo values with sorting option. Optionally you can filter by game/gameFamily. If not, all elo is returned")
     @ResponseStatus(HttpStatus.OK)
+    @ApiResponse(responseCode = "200", description = "Page of EloDTO", content = @Content(schema = @Schema(implementation = EloDTO.class)))
     public Page<EloDTO> getElos(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                 @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                 @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "value") final String sort,
