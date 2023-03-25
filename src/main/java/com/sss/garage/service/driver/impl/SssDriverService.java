@@ -1,5 +1,6 @@
 package com.sss.garage.service.driver.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.driver.Driver;
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Service;
 public class SssDriverService implements DriverService {
 
     private DriverRepository driverRepository;
+
+    public List<Driver> getAllDrivers() {
+        return driverRepository.findAll();
+    }
 
     @Override
     public Optional<Driver> getDriver(final Long id) {

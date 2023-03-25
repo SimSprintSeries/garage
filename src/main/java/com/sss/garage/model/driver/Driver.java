@@ -20,7 +20,7 @@ public class Driver {
     @NotNull
     private String name;
 
-    @OneToOne(mappedBy = "driver")
+    @OneToOne
     private DiscordUser discordUser;
 
     @OneToMany(mappedBy = "driver", targetEntity = Elo.class)

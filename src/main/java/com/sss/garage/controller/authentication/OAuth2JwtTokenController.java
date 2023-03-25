@@ -25,7 +25,7 @@ public class OAuth2JwtTokenController extends SssBaseController {
     private AuthenticationFacade authenticationFacade;
 
     @GetMapping
-    @Operation(summary = "Get JWT token for user")
+    @Operation(summary = "Get JWT token for driver")
     public JwtTokenDTO token() {
         final JwtTokenData token = authenticationFacade.getJwtTokenForCurrentUser();
 
@@ -33,7 +33,7 @@ public class OAuth2JwtTokenController extends SssBaseController {
     }
 
     @PostMapping("/revoke")
-    @Operation(summary = "Revoke token for user")
+    @Operation(summary = "Revoke token for driver")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void revokeToken(@RequestParam final String token) {
         authenticationFacade.revokeToken(token);

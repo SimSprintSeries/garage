@@ -12,11 +12,11 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
 
     @Override
     public DriverData convert(final Driver source) {
-        final DriverData driver = new DriverData();
+        final DriverData data = new DriverData();
 
-        driver.setId(source.getId());
-        driver.setNickname(source.getName());
+        data.setId(source.getId());
+        data.setNickname(source.getName());
 
-        return driver;
+        return data;
     }
 }

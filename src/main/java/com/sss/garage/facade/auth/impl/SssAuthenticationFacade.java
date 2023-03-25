@@ -39,10 +39,10 @@ public class SssAuthenticationFacade implements AuthenticationFacade {
     public void revokeToken(final String token) {
         DiscordUser currentUser = sessionService.getCurrentUser();
         if(token == null || !jwtTokenService.isTokenOfUser(token, currentUser)) {
-            logger.error("Attempt to revoke token of another user! " +
+            logger.error("Attempt to revoke token of another driver! " +
                     "Revoked token: " + token +
-                    ", current user: " + currentUser);
-            throw new AccessDeniedException("You cannot revoke token of another user!");
+                    ", current driver: " + currentUser);
+            throw new AccessDeniedException("You cannot revoke token of another driver!");
         }
         userService.revokeUserToken(currentUser);
     }

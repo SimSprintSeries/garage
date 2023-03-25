@@ -44,7 +44,7 @@ public class SssUserService implements UserService {
                         u.setRolesUpToDate(false);
                         userRepository.save(u);
                 },
-                () -> logger.error("Attempt to deprecate non-existing user's roles: " + id));
+                () -> logger.error("Attempt to deprecate non-existing driver's roles: " + id));
     }
 
     @Autowired

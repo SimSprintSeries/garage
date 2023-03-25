@@ -71,7 +71,7 @@ public class SecurityConfiguration {
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(oAuth2UserService)))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to user
+                        .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to driver
                         .requestMatchers(ELO_CALCULATION_ENDPOINT + "/**").hasRole(roles.admin())
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -14,10 +14,12 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
     @Override
     public LeagueData convert(final League source) {
         final LeagueData data = new LeagueData();
+
         data.setId(source.getId());
         data.setName(source.getName());
         data.setPlatform(source.getPlatform());
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
+
         return data;
     }
 }

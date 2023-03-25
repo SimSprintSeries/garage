@@ -29,6 +29,7 @@ import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.split.SplitRepository;
+import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +77,22 @@ public class LegacyDataImporter {
     ObjectMapper objectMapper;
 
     public void importLegacyData() throws IOException {
-        Converter<LegacyDriver, Driver> legacyDriverDriverConverter = new LegacyDriverConverter();
+        LegacyDriverConverter legacyDriverDriverConverter = new LegacyDriverConverter();
         List<LegacyDriver> legacyDrivers = Arrays.asList(objectMapper.readValue(driversResource.getFile(), LegacyDriver[].class));
+        Set<DiscordUser> dcUsers = legacyDrivers.stream()
+                .filter(d -> Objects.nonNull(d.discordUserId))
+                .map(d -> {
+                    final DiscordUser user = new DiscordUser();
+                    user.setId(d.discordUserId);
+                    return user;
+                })
+                .collect(Collectors.toSet());
+
+        discordUserRepository.saveAll(dcUsers);
 
         Set<Driver> drivers = legacyDrivers.stream()
-                .map(legacyDriverDriverConverter::convert)
+                .map(d -> legacyDriverDriverConverter.convert(d, dcUsers))
                 .filter(Objects::nonNull)
-//                .peek(d -> Optional.ofNullable(d.getDiscordUser()).ifPresent(discordUserRepository::save))
                 .collect(Collectors.toSet());
 
         driverRepository.saveAll(drivers);

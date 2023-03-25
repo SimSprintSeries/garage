@@ -19,7 +19,7 @@ public class DiscordUser {
 
     private String email;
 
-    @OneToOne
+    @OneToOne(mappedBy = "discordUser")
     private Driver driver;
 
     private String discriminator;

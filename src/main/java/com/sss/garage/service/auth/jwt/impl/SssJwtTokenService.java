@@ -68,12 +68,12 @@ public class SssJwtTokenService implements JwtTokenService {
 
         DiscordUser principal = userService.findUserById(jwt.getSubject()).orElseThrow(() -> new UsernameNotFoundException(jwt.getSubject()));
         if(isExpired(jwt)) {
-            // Not current token of user or expired
+            // Not current token of driver or expired
             userService.revokeUserToken(principal);
             return Optional.empty();
         }
         if(!isTokenOfUser(token, principal)) {
-            logger.warn("Old token used for user: " + principal);
+            logger.warn("Old token used for driver: " + principal);
             return Optional.empty();
         }
 

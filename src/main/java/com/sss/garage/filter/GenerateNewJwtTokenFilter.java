@@ -26,7 +26,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Generates new JWT token for already authenticated user if his roles on discord have changed
+ * Generates new JWT token for already authenticated driver if his roles on discord have changed
  * It will also replace old authentication with new in the session
  */
 public class GenerateNewJwtTokenFilter extends OncePerRequestFilter {
