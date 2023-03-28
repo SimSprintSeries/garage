@@ -1,6 +1,7 @@
 package com.sss.garage.facade.driver.impl;
 
 import com.sss.garage.data.driver.DriverData;
+import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.service.driver.DriverService;
@@ -11,9 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SssDriverFacade implements DriverFacade {
+public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private DriverService driverService;
-    private ConversionService conversionService;
 
     @Override
     public List<DriverData> getAllDrivers() {
@@ -23,17 +23,12 @@ public class SssDriverFacade implements DriverFacade {
     }
 
     @Override
-    public Driver getDriver(final Long id) {
-        return driverService.getDriver(id).orElseThrow();
+    public DriverData getDriver(final Long id) {
+        return conversionService.convert(driverService.getDriver(id).orElseThrow(), DriverData.class);
     }
 
     @Autowired
     public void setDriverService(DriverService driverService) {
         this.driverService = driverService;
-    }
-
-    @Autowired
-    public void setConversionService(ConversionService conversionService) {
-        this.conversionService = conversionService;
     }
 }

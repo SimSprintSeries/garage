@@ -8,5 +8,5 @@ import java.util.List;
 public interface DriverFacade {
     List<DriverData> getAllDrivers();
 
-    Driver getDriver(final Long id);
+    DriverData getDriver(final Long id);
 }
