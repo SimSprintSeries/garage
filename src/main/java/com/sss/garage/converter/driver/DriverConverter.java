@@ -14,8 +14,16 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
     public DriverData convert(final Driver source) {
         final DriverData data = new DriverData();
 
+        String discordUsername = null;
+
+        if (source.getDiscordUser() != null) {
+            discordUsername = source.getDiscordUser().getUsername() + "#" + source.getDiscordUser().getDiscriminator();
+        }
+
         data.setId(source.getId());
         data.setNickname(source.getName());
+        data.setDiscordName(discordUsername);
+        data.setElos(source.getElos());
 
         return data;
     }

@@ -57,11 +57,11 @@ public class Driver {
         this.discordUser = discordUser;
     }
 
-    protected Set<Elo> getElos() {
+    public Set<Elo> getElos() {
         return elos;
     }
 
-    protected void setElos(Set<Elo> elos) {
+    public void setElos(Set<Elo> elos) {
         this.elos = elos;
     }
 

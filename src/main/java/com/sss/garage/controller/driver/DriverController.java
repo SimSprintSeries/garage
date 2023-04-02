@@ -2,6 +2,7 @@ package com.sss.garage.controller.driver;
 
 import com.sss.garage.controller.SssBaseController;
 import com.sss.garage.data.driver.DriverData;
+import com.sss.garage.dto.driver.DetailedDriverDTO;
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
@@ -24,17 +25,17 @@ public class DriverController extends SssBaseController {
     @GetMapping
     @Operation(operationId = "getAllDrivers", summary = "Get list of all drivers")
     @ResponseStatus(HttpStatus.OK)
-    public List<SimpleDriverDTO> getAllDrivers() {
-        return mapAsList(this.driverFacade.getAllDrivers(), SimpleDriverDTO.class);
+    public List<DetailedDriverDTO> getAllDrivers() {
+        return mapAsList(this.driverFacade.getAllDrivers(), DetailedDriverDTO.class);
     }
 
     @GetMapping("/{id}")
     @Operation(operationId = "getDriver", summary = "Get driver information")
     @ResponseStatus(HttpStatus.OK)
-    public SimpleDriverDTO getDriver(@PathVariable final Long id) {
+    public DetailedDriverDTO getDriver(@PathVariable final Long id) {
         DriverData driver = driverFacade.getDriver(id);
 
-        return mapper.map(driver, SimpleDriverDTO.class);
+        return mapper.map(driver, DetailedDriverDTO.class);
     }
 
     @Autowired
