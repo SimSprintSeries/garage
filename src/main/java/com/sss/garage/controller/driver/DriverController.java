@@ -5,7 +5,6 @@ import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.dto.driver.DetailedDriverDTO;
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.facade.driver.DriverFacade;
-import com.sss.garage.model.driver.Driver;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,8 @@ public class DriverController extends SssBaseController {
     @GetMapping
     @Operation(operationId = "getAllDrivers", summary = "Get list of all drivers")
     @ResponseStatus(HttpStatus.OK)
-    public List<DetailedDriverDTO> getAllDrivers() {
-        return mapAsList(this.driverFacade.getAllDrivers(), DetailedDriverDTO.class);
+    public List<SimpleDriverDTO> getAllDrivers() {
+        return mapAsList(this.driverFacade.getAllDrivers(), SimpleDriverDTO.class);
     }
 
     @GetMapping("/{id}")

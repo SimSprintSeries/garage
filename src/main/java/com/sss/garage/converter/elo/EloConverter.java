@@ -18,7 +18,7 @@ public class EloConverter extends BaseConverter implements Converter<Elo, EloDat
 
         eloData.setId(source.getId());
         eloData.setValue(source.getValue());
-        eloData.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
+        //eloData.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
         eloData.setGame(getConversionService().convert(source.getGame(), GameData.class));
 
         return eloData;

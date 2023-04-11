@@ -1,13 +1,14 @@
 package com.sss.garage.data.driver;
 
-import com.sss.garage.model.elo.Elo;
+import com.sss.garage.data.elo.EloData;
 
+import java.util.List;
 import java.util.Set;
 
 public class DriverData {
     private Long id;
     private String nickname;
-    private Set<Elo> elos;
+    private List<EloData> elos;
     private String discordName;
     private Set<Integer> stats;
 
@@ -27,11 +28,11 @@ public class DriverData {
         this.nickname = nickname;
     }
 
-    public Set<Elo> getElos() {
+    public List<EloData> getElos() {
         return elos;
     }
 
-    public void setElos(final Set<Elo> elos) {
+    public void setElos(final List<EloData> elos) {
         this.elos = elos;
     }
 
