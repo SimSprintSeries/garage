@@ -25,6 +25,9 @@ public interface CurrentEloRepository extends JpaRepository<Elo, Long> {
     @Query("SELECT e FROM Elo e WHERE TYPE(e)=Elo AND e.game=:game")
     List<Elo> findByGame(Game game, Sort sort);
 
+    @Query("SELECT e FROM Elo e WHERE TYPE(e)=Elo AND e.driver=:driver")
+    List<Elo> findByDriver(Driver driver);
+
     @NotNull
     @Override
     @Query("SELECT e FROM Elo e WHERE TYPE(e)=Elo")

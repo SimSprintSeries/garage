@@ -1,5 +1,6 @@
 package com.sss.garage.service.elo;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.driver.Driver;
@@ -14,6 +15,7 @@ public interface EloService {
     Page<Elo> getElos(final Pageable pageable);
     Elo getEloWithDefault(Game game, Driver driver);
     Optional<Elo> getElo(Game game, Driver driver);
+    List<Elo> getAllElos(Driver driver);
     void deleteAll();
     void save(final Elo elo);
 }

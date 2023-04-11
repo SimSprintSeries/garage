@@ -2,9 +2,9 @@ package com.sss.garage.controller.driver;
 
 import com.sss.garage.controller.SssBaseController;
 import com.sss.garage.data.driver.DriverData;
+import com.sss.garage.dto.driver.DetailedDriverDTO;
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.facade.driver.DriverFacade;
-import com.sss.garage.model.driver.Driver;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,10 @@ public class DriverController extends SssBaseController {
     @GetMapping("/{id}")
     @Operation(operationId = "getDriver", summary = "Get driver information")
     @ResponseStatus(HttpStatus.OK)
-    public SimpleDriverDTO getDriver(@PathVariable final Long id) {
+    public DetailedDriverDTO getDriver(@PathVariable final Long id) {
         DriverData driver = driverFacade.getDriver(id);
 
-        return mapper.map(driver, SimpleDriverDTO.class);
+        return mapper.map(driver, DetailedDriverDTO.class);
     }
 
     @Autowired

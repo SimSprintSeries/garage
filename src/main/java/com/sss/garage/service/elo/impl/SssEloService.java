@@ -1,5 +1,6 @@
 package com.sss.garage.service.elo.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.driver.Driver;
@@ -39,6 +40,10 @@ public class SssEloService implements EloService {
 
     public Optional<Elo> getElo(Game game, Driver driver) {
         return currentEloRepository.findByGameAndDriver(game, driver);
+    }
+
+    public List<Elo> getAllElos(Driver driver) {
+        return currentEloRepository.findByDriver(driver);
     }
 
     @Override
