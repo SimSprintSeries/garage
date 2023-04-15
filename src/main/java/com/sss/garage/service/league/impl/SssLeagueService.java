@@ -14,6 +14,7 @@ public class SssLeagueService implements LeagueService {
 
     private LeagueRepository leagueRepository;
 
+    @Override
     public List<League> getAllLeagues() {
         return leagueRepository.findAll();
     }
@@ -21,6 +22,11 @@ public class SssLeagueService implements LeagueService {
     @Override
     public Optional<League> getLeague(final Long id) {
         return leagueRepository.findById(id);
+    }
+
+    @Override
+    public void createLeague(final League league) {
+        leagueRepository.save(league);
     }
 
     @Autowired
