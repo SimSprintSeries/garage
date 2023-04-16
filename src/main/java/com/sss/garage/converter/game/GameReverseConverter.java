@@ -7,15 +7,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GameReversedConverter extends BaseConverter implements Converter<GameData, Game> {
+public class GameReverseConverter extends BaseConverter implements Converter<GameData, Game> {
 
     @Override
     public Game convert(final GameData source) {
-        final Game data = new Game();
+        final Game target = new Game();
 
-        data.setId(source.getId());
-        data.setName(source.getName());
+        target.setId(source.getId());
+        target.setName(source.getName());
 
-        return data;
+        return target;
     }
 }

@@ -46,7 +46,7 @@ public class LeagueController extends SssBaseController {
         return mapper.map(leagueFacade.getLeague(leagueId), DetailedLeagueDTO.class);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "createLeague", summary = "Create new league")
     public void createLeague(@RequestBody LeagueDTO leagueDTO) {
