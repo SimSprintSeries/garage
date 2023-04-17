@@ -6,6 +6,7 @@ import com.sss.garage.data.league.DetailedLeagueData;
 import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.league.LeagueFacade;
+import com.sss.garage.model.league.League;
 import com.sss.garage.service.league.LeagueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
     @Override
     public List<LeagueData> getAllLeagues() {
         return leagueService.getAllLeagues().stream().map(l -> conversionService.convert(l, LeagueData.class)).toList();
+    }
+
+    @Override
+    public void createLeague(final LeagueData leagueData) {
+        leagueService.createLeague(conversionService.convert(leagueData, League.class));
     }
 
     @Autowired

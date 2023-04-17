@@ -9,4 +9,6 @@ public interface LeagueService {
     Optional<League> getLeague(final Long id);
 
     List<League> getAllLeagues();
+
+    void createLeague(final League league);
 }
