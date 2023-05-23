@@ -1,5 +1,6 @@
 package com.sss.garage.model.split;
 
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import jakarta.persistence.*;
@@ -22,6 +23,9 @@ public class Split {
 
     @OneToMany(mappedBy = "split")
     private Set<Race> races;
+
+    @ManyToMany(mappedBy = "splits")
+    private Set<Driver> drivers;
 
     public Long getId() {
         return id;
@@ -50,5 +54,13 @@ public class Split {
 
     public void setRaces(final Set<Race> races) {
         this.races = races;
+    }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(final Set<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

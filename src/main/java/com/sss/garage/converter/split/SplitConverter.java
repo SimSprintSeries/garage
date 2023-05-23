@@ -18,6 +18,7 @@ public class SplitConverter extends BaseConverter implements Converter<Split, Sp
         data.setName(source.getSplit());
         data.setLeague(getConversionService().convert(source.getLeague(), LeagueData.class));
         data.setDisplayText(data.getLeague().getDisplayText() + " - Split " + source.getSplit());
+        data.setDrivers(data.getDrivers());
         return data;
     }
 }

@@ -1,12 +1,14 @@
 package com.sss.garage.dto.event;
 
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.dto.track.TrackDTO;
 
 public class EventDTO {
     private Long id;
     private String displayText;
     private String startDate;
     private LeagueDTO league;
+    private TrackDTO track;
 
     public Long getId() {
         return id;
@@ -38,5 +40,13 @@ public class EventDTO {
 
     public void setLeague(final LeagueDTO league) {
         this.league = league;
+    }
+
+    public TrackDTO getTrack() {
+        return track;
+    }
+
+    public void setTrack(final TrackDTO track) {
+        this.track = track;
     }
 }

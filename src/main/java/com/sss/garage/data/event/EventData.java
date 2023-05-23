@@ -3,12 +3,14 @@ package com.sss.garage.data.event;
 import java.util.Date;
 
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.track.TrackData;
 
 public class EventData {
     private Long id;
     private String displayText;
     private Date startDate;
     private LeagueData league;
+    private TrackData track;
 
     public Long getId() {
         return id;
@@ -40,5 +42,13 @@ public class EventData {
 
     public void setLeague(final LeagueData league) {
         this.league = league;
+    }
+
+    public TrackData getTrack() {
+        return track;
+    }
+
+    public void setTrack(final TrackData track) {
+        this.track = track;
     }
 }
