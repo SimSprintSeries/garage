@@ -1,12 +1,15 @@
 package com.sss.garage.converter.split;
 
 import com.sss.garage.converter.BaseConverter;
+import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.data.split.SplitData;
 import com.sss.garage.model.split.Split;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 @Component
 public class SplitConverter extends BaseConverter implements Converter<Split, SplitData> {
@@ -18,7 +21,8 @@ public class SplitConverter extends BaseConverter implements Converter<Split, Sp
         data.setName(source.getSplit());
         data.setLeague(getConversionService().convert(source.getLeague(), LeagueData.class));
         data.setDisplayText(data.getLeague().getDisplayText() + " - Split " + source.getSplit());
-        data.setDrivers(data.getDrivers());
+        data.setDrivers(source.getDrivers().stream().map(d -> getConversionService().convert(d, DriverData.class))
+                .collect(Collectors.toSet()));
         return data;
     }
 }
