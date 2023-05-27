@@ -17,8 +17,6 @@ public class TrackConverter extends BaseConverter implements Converter<Track, Tr
         final TrackData data = new TrackData();
         data.setName(source.getName());
         data.setCountry(source.getCountry());
-        data.setEvents(source.getEvents().stream().map(e -> getConversionService()
-                .convert(e, EventData.class)).collect(Collectors.toSet()));
         return data;
     }
 }
