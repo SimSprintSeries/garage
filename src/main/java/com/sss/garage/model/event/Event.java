@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
+import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.league.League;
@@ -32,6 +33,9 @@ public class Event {
 
     @OneToMany(mappedBy = "event")
     private Set<Race> races;
+
+    @ManyToOne
+    private Track track;
 
     public Long getId() {
         return id;
@@ -79,5 +83,13 @@ public class Event {
 
     public void setRaces(final Set<Race> races) {
         this.races = races;
+    }
+
+    public Track getTrack() {
+        return track;
+    }
+
+    public void setTrack(final Track track) {
+        this.track = track;
     }
 }

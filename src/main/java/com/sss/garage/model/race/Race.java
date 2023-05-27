@@ -7,6 +7,7 @@ import com.sss.garage.model.event.Event;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 
+import com.sss.garage.model.track.Track;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;

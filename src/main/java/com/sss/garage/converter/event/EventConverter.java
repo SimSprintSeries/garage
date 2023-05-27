@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.track.TrackData;
 import com.sss.garage.model.event.Event;
 
 import org.springframework.core.convert.converter.Converter;
@@ -25,5 +26,6 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setLeague(Optional.ofNullable(source.getLeague()).map(l -> getConversionService().convert(l, LeagueData.class)).orElse(null));
         data.setDisplayText(data.getLeague() != null ? data.getLeague().getDisplayText() + " - " + source.getName() : source.getName());
         data.setStartDate(source.getStartDate());
+        data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
     }
 }

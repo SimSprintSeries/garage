@@ -1,5 +1,6 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.elo.history.EloHistory;
@@ -31,6 +32,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private Set<RaceResult> raceResults;
+
+    @ManyToMany
+    private Set<Split> splits;
 
 
     public Long getId() {
@@ -79,5 +83,13 @@ public class Driver {
 
     public void setRaceResults(final Set<RaceResult> raceResults) {
         this.raceResults = raceResults;
+    }
+
+    public Set<Split> getSplits() {
+        return splits;
+    }
+
+    public void setSplits(final Set<Split> splits) {
+        this.splits = splits;
     }
 }

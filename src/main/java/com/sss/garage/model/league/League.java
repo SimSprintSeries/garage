@@ -32,6 +32,10 @@ public class League {
     @OneToMany(mappedBy="league")
     private Set<Split> splits;
 
+    private Boolean active = false;
+
+    private String discordGroupId;
+
 
     public Long getId() {
         return id;
@@ -80,5 +84,21 @@ public class League {
 
     public void setName(@NotNull final String name) {
         this.name = name;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(final Boolean active) {
+        this.active = active;
+    }
+
+    public String getDiscordGroupId() {
+        return discordGroupId;
+    }
+
+    public void setDiscordGroupId(final String discordGroupId) {
+        this.discordGroupId = discordGroupId;
     }
 }
