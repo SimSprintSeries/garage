@@ -28,7 +28,7 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
 
         data.setId(source.getId());
         data.setNickname(source.getName());
-        data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).toList());
+        data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).collect(Collectors.toSet()));
         data.setSplits(source.getSplits().stream().map(s -> getConversionService().convert(s, SplitData.class)).collect(Collectors.toSet()));
 
         return data;

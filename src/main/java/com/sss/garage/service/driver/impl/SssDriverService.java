@@ -24,6 +24,16 @@ public class SssDriverService implements DriverService {
         return driverRepository.findById(id);
     }
 
+    @Override
+    public void createDriver(final Driver driver) {
+        driverRepository.save(driver);
+    }
+
+    @Override
+    public void deleteDriver(final Long id) {
+        driverRepository.deleteById(id);
+    }
+
     @Autowired
     public void setDriverRepository(final DriverRepository driverRepository) {
         this.driverRepository = driverRepository;

@@ -37,6 +37,20 @@ public class DriverController extends SssBaseController {
         return mapper.map(driver, DetailedDriverDTO.class);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "createDriver", summary = "Create new driver")
+    public void createDriver(@RequestBody DetailedDriverDTO detailedDriverDTO) {
+        driverFacade.createDriver(mapper.map(detailedDriverDTO, DriverData.class));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "deleteDriver", summary = "Delete driver by ID")
+    public void deleteDriver(@PathVariable final Long id) {
+        driverFacade.deleteDriver(id);
+    }
+
     @Autowired
     public void setDriverFacade(DriverFacade driverFacade) {
         this.driverFacade = driverFacade;
