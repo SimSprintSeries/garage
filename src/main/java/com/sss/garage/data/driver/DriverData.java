@@ -9,7 +9,7 @@ import java.util.Set;
 public class DriverData {
     private Long id;
     private String nickname;
-    private List<EloData> elos;
+    private Set<EloData> elos;
     private String discordName;
     private Set<Integer> stats;
     private Set<SplitData> splits;
@@ -30,11 +30,11 @@ public class DriverData {
         this.nickname = nickname;
     }
 
-    public List<EloData> getElos() {
+    public Set<EloData> getElos() {
         return elos;
     }
 
-    public void setElos(final List<EloData> elos) {
+    public void setElos(final Set<EloData> elos) {
         this.elos = elos;
     }
 
