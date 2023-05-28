@@ -5,6 +5,7 @@ import static com.sss.garage.constants.WebConstants.DEFAULT_PAGE_SIZE;
 import static com.sss.garage.constants.WebConstants.RACE_ENDPOINT;
 
 import com.sss.garage.controller.SssBaseController;
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.dto.race.RaceDTO;
 import com.sss.garage.facade.race.RaceFacade;
 
@@ -14,11 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -26,6 +23,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(RACE_ENDPOINT)
@@ -47,6 +46,36 @@ public class RaceController extends SssBaseController {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
         return raceFacade.getRacesPaginated(completed, pageable).map(r -> mapper.map(r, RaceDTO.class));
+    }
+
+    @GetMapping("allRaces")
+    @Operation(operationId = "getAllRaces", summary = "Get list of races")
+    @ResponseStatus(HttpStatus.OK)
+    public List<RaceDTO> getAllRaces() {
+        return mapAsList(this.raceFacade.getAllRaces(), RaceDTO.class);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(operationId = "getRace", summary = "Get race information")
+    @ResponseStatus(HttpStatus.OK)
+    public RaceDTO getRace(@PathVariable final Long id) {
+        RaceData raceData = raceFacade.getRace(id);
+
+        return mapper.map(raceData, RaceDTO.class);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "createRace", summary = "Create new race")
+    public void createRace(@RequestBody RaceDTO raceDTO) {
+        raceFacade.createRace(mapper.map(raceDTO, RaceData.class));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "deleteRace", summary = "Delete race by ID")
+    public void deleteRace(@PathVariable final Long id) {
+        raceFacade.deleteRace(id);
     }
 
     @Autowired

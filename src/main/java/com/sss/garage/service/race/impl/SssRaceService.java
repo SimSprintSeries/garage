@@ -76,6 +76,16 @@ public class SssRaceService implements RaceService {
         return raceRepository.findAllByDatePlaceholderAndStartDateLessThanEqual(true, new Date(System.currentTimeMillis()), pageable);
     }
 
+    @Override
+    public List<Race> getAllRaces() {
+        return raceRepository.findAll();
+    }
+
+    @Override
+    public void deleteRace(final Long id) {
+        raceRepository.deleteById(id);
+    }
+
     @Autowired
     public void setRaceRepository(final RaceRepository raceRepository) {
         this.raceRepository = raceRepository;
