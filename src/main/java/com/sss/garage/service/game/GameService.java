@@ -10,4 +10,6 @@ public interface GameService {
     Game getGame(final Race race);
     Optional<Game> getGame(final Long id);
     List<Game> getAllGames();
+    void createGame(final Game game);
+    void deleteGame(final Long id);
 }

@@ -5,15 +5,13 @@ import static com.sss.garage.constants.WebConstants.GAME_ENDPOINT;
 import java.util.List;
 
 import com.sss.garage.controller.SssBaseController;
+import com.sss.garage.data.game.GameData;
 import com.sss.garage.dto.game.GameDTO;
 import com.sss.garage.facade.game.GameFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,6 +32,29 @@ public class GameController extends SssBaseController {
     @ApiResponse(responseCode = "200", description = "List of GameDTO", content = @Content(schema = @Schema(implementation = GameDTO.class)))
     public List<GameDTO> getGames() {
         return mapAsList(this.gameFacade.getAllGames(), GameDTO.class);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(operationId = "getGame", summary = "Get game information")
+    @ResponseStatus(HttpStatus.OK)
+    public GameDTO getGame(@PathVariable final Long id) {
+        GameData gameData = gameFacade.getGame(id);
+
+        return mapper.map(gameData, GameDTO.class);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "createGame", summary = "Create new game")
+    public void createGame(@RequestBody GameDTO gameDTO) {
+        gameFacade.createGame(mapper.map(gameDTO, GameData.class));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "deleteGame", summary = "Delete game by ID")
+    public void deleteGame(@PathVariable final Long id) {
+        gameFacade.deleteGame(id);
     }
 
     @Autowired
