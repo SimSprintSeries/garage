@@ -16,12 +16,14 @@ public class EventReverseConverter extends BaseConverter implements Converter<Ev
     @Override
     public Event convert(final EventData source) {
         final Event target = new Event();
+        convert(source, target);
+        return target;
+    }
 
+    public void convert(final EventData source, final Event target) {
         target.setId(source.getId());
         target.setLeague(Optional.ofNullable(source.getLeague()).map(e -> getConversionService().convert(e, League.class)).orElse(null));
         target.setStartDate(source.getStartDate());
         target.setTrack(getConversionService().convert(source.getTrack(), Track.class));
-
-        return target;
     }
 }
