@@ -33,6 +33,16 @@ public class SssGameService implements GameService {
         return gameRepository.findAll();
     }
 
+    @Override
+    public void createGame(final Game game) {
+        gameRepository.save(game);
+    }
+
+    @Override
+    public void deleteGame(final Long id) {
+        gameRepository.deleteById(id);
+    }
+
     @Autowired
     public void setEventService(final EventService eventService) {
         this.eventService = eventService;
