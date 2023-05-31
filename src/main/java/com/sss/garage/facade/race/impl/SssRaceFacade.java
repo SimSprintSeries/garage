@@ -1,5 +1,6 @@
 package com.sss.garage.facade.race.impl;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.sss.garage.data.race.RaceData;
@@ -32,6 +33,26 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
         }
 
         return races.map(r -> conversionService.convert(r, RaceData.class));
+    }
+
+    @Override
+    public List<RaceData> getAllRaces() {
+        return raceService.getAllRaces().stream().map(r -> conversionService.convert(r, RaceData.class)).toList();
+    }
+
+    @Override
+    public RaceData getRace(final Long id) {
+         return conversionService.convert(raceService.findById(id).orElseThrow(), RaceData.class) ;
+    }
+
+    @Override
+    public void createRace(final RaceData raceData) {
+        raceService.save(conversionService.convert(raceData, Race.class));
+    }
+
+    @Override
+    public void deleteRace(final Long id) {
+        raceService.deleteRace(id);
     }
 
     @Autowired
