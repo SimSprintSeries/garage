@@ -39,7 +39,7 @@ public class Race extends Event {
     private Boolean includedInElo = false;
 
     /**
-     * Indicates if race is the placeholder for the race as in event for one split.
+     * Indicates if race is the placeholder for the race as in event for one SplitController.
      * False only when it is a sprint or feature race (part of whole 'weekend' but we play it in one evening)
      */
     private Boolean datePlaceholder = true;
