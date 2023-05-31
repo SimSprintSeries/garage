@@ -15,8 +15,11 @@ public class TrackConverter extends BaseConverter implements Converter<Track, Tr
     @Override
     public TrackData convert(final Track source) {
         final TrackData data = new TrackData();
+
+        data.setId(source.getId());
         data.setName(source.getName());
         data.setCountry(source.getCountry());
+
         return data;
     }
 }

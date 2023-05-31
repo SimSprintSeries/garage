@@ -7,12 +7,22 @@ import java.util.Set;
 
 public class TrackDTO {
 
+    private Long id;
+
     private String name;
 
     private String country;
 
     private Set<EventDTO> events;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

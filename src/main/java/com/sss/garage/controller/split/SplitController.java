@@ -52,7 +52,7 @@ public class SplitController extends SssBaseController {
     }
 
     @Autowired
-    public void setSplitFacade(SplitFacade splitFacade) {
+    public void setSplitFacade(final SplitFacade splitFacade) {
         this.splitFacade = splitFacade;
     }
 }
