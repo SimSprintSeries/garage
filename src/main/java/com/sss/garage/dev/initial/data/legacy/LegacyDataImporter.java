@@ -4,15 +4,19 @@ import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sss.garage.dev.initial.data.legacy.converter.LegacyDriverConverter;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyDriver;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyEvent;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyLeague;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyRace;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyRaceResult;
+import com.sss.garage.dev.initial.data.legacy.model.*;
+import com.sss.garage.model.acclap.AccLap;
+import com.sss.garage.model.acclap.AccLapRepository;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.event.Event;
@@ -32,6 +36,8 @@ import com.sss.garage.model.split.SplitRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -55,6 +61,9 @@ public class LegacyDataImporter {
     @Value("${legacy.data.dir}/races.json")
     private Resource racesResource;
 
+    @Value("${legacy.data.dir}/testsession.json")
+    private Resource accSessionResource;
+
     private DiscordUserRepository discordUserRepository;
 
     private DriverRepository driverRepository;
@@ -72,6 +81,8 @@ public class LegacyDataImporter {
     private RaceRepository raceRepository;
 
     private RaceResultRepository raceResultRepository;
+
+    private AccLapRepository accLapRepository;
 
     ObjectMapper objectMapper;
 
@@ -202,6 +213,89 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
         raceResultRepository.saveAll(raceResults);
+
+        String lapsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("laps").toString());
+
+        String resultsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("sessionResult").toString());
+
+        String leaderBoardLinesJsonObject = convertJsonString(objectMapper.readValue(resultsJsonObject, JSONObject.class).get("leaderBoardLines").toString());
+
+        JSONObject[] driverJsonArrayOriginal = objectMapper.readValue(leaderBoardLinesJsonObject, JSONObject[].class);
+
+        List<JSONObject> driverJsonArrayList = new ArrayList<>(Arrays.asList(driverJsonArrayOriginal));
+
+        for (JSONObject jsonObject : driverJsonArrayOriginal) {
+            JSONObject carObject = objectMapper.readValue(convertJsonString(jsonObject.get("car").toString()), JSONObject.class);
+            JSONObject[] driverArray = objectMapper.readValue(convertJsonString(carObject.get("drivers").toString()), JSONObject[].class);
+            jsonObject.keySet().removeIf(k -> !k.equals("a"));
+            for (int i=0;i<driverArray.length;i++) {
+                JSONObject newJsonObject = new JSONObject();
+                newJsonObject.put("carId", carObject.get("carId"));
+                newJsonObject.put("raceNumber", carObject.get("raceNumber"));
+                newJsonObject.put("carModel", carObject.get("carModel"));
+                newJsonObject.put("driverIndex", i);
+                newJsonObject.put("firstName", driverArray[i].get("firstName"));
+                newJsonObject.put("lastName", driverArray[i].get("lastName"));
+                newJsonObject.put("shortName", driverArray[i].get("shortName"));
+                driverJsonArrayList.add(newJsonObject);
+            }
+        }
+
+        JSONObject[] driverJsonArray = new JSONObject[driverJsonArrayList.size()];
+        driverJsonArray = driverJsonArrayList.toArray(driverJsonArray);
+
+        JsonNode root = objectMapper.readTree(lapsJsonObject);
+
+        root.forEach(
+                card -> {
+                    ObjectNode cardObject = (ObjectNode) card;
+                    ArrayNode splitsNode = (ArrayNode) cardObject.remove("splits");
+                    for(int i=0; i < splitsNode.size(); i++) {
+                        cardObject.put("sector"+(i+1), splitsNode.get(i));
+                    }
+                }
+        );
+
+        String lapsJsonString = objectMapper.writeValueAsString(root);
+
+        JSONObject[] lapsJsonArray = objectMapper.readValue(lapsJsonString, JSONObject[].class);
+
+        for (int i=0;i<lapsJsonArray.length;i++) {
+            for (int j=0;j<driverJsonArray.length;j++) {
+                if (lapsJsonArray[i].get("carId").equals(driverJsonArray[j].get("carId")) && lapsJsonArray[i].get("driverIndex").equals(driverJsonArray[j].get("driverIndex"))) {
+                    lapsJsonArray[i].put("firstName", driverJsonArray[j].get("firstName"));
+                    lapsJsonArray[i].put("lastName", driverJsonArray[j].get("lastName"));
+                    lapsJsonArray[i].put("shortName", driverJsonArray[j].get("shortName"));
+                    lapsJsonArray[i].put("raceNumber", driverJsonArray[j].get("raceNumber"));
+                    lapsJsonArray[i].put("carModel", driverJsonArray[j].get("carModel"));
+                    lapsJsonArray[i].put("trackName", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("trackName"));
+                    lapsJsonArray[i].put("sessionType", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("sessionType"));
+                }
+            }
+        }
+
+        List<LegacyAccLap> legacyAccLaps = Arrays.asList(objectMapper.readValue(Arrays.toString(lapsJsonArray), LegacyAccLap[].class));
+        Set<AccLap> accLaps = legacyAccLaps.stream()
+                .map(l -> {
+                    final AccLap accLap = new AccLap();
+                    accLap.setCarId(l.carId);
+                    accLap.setDriverIndex(l.driverIndex);
+                    accLap.setLaptime(((float)l.laptime)/1000);
+                    accLap.setIsValidForBest(l.isValidForBest);
+                    accLap.setSector1(((float)l.sector1/1000));
+                    accLap.setSector2(((float)l.sector2/1000));
+                    accLap.setSector3(((float)l.sector3/1000));
+                    accLap.setFirstName(l.firstName);
+                    accLap.setLastName(l.lastName);
+                    accLap.setShortName(l.shortName);
+                    accLap.setCarModel(l.carModel);
+                    accLap.setRaceNumber(l.raceNumber);
+                    accLap.setTrackName(l.trackName);
+                    accLap.setSessionType(l.sessionType);
+                    return accLap;
+                })
+                .collect(Collectors.toSet());
+        accLapRepository.saveAll(accLaps);
     }
 
     private static Driver findDriverByLegacyId(final Long id, final Set<Driver> drivers, final List<LegacyDriver> legacyDrivers) {
@@ -289,6 +383,32 @@ public class LegacyDataImporter {
         return other;
     }
 
+    // Konwersja JSONa - dodanie cudzysłowów do wartości tekstowych w stringu, zmiana z "=" na ":", usunięcie problematycznych i niepotrzebnych pól
+    private String convertJsonString(final String oldValue) {
+        String updated = oldValue.replaceAll("teamName=, ", "").replaceAll(", playerId=S.................", "")
+                .replace("{", " { ").replace("}", " } ").replace("[", " [ ")
+                .replace("]", " ] ").replace(",", " , ").replace("=", " = ");
+
+        String[] listed = updated.split(" ");
+
+        StringBuilder sb = new StringBuilder();
+
+        Pattern p = Pattern.compile("[A-Za-z].*[A-Za-z]");
+
+        for(Integer i=0; i<listed.length; i++) {
+            Matcher m = p.matcher(listed[i]);
+            while (m.find())
+            {
+                listed[i] = "\"" + listed[i] + "\"";
+            }
+            m.appendTail(sb);
+        }
+
+        return String.join("", listed).replace("=", ":");
+    }
+
+
+
     @Autowired
     public void setObjectMapper(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -337,5 +457,10 @@ public class LegacyDataImporter {
     @Autowired
     public void setGameFamilyRepository(final GameFamilyRepository gameFamilyRepository) {
         this.gameFamilyRepository = gameFamilyRepository;
+    }
+
+    @Autowired
+    public void setAccLapRepository(final AccLapRepository accLapRepository) {
+        this.accLapRepository = accLapRepository;
     }
 }

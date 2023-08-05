@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.sss.garage.dev.initial.data.legacy.LegacyDataImporter;
+import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.event.Event;
@@ -119,4 +120,26 @@ public class DataLoader {
         split.setLeague(league);
         return split;
     }
+
+    private AccLap newAccLap(final Integer carId, final Integer driverIndex, final Boolean isValidForBest, final Float laptime
+            , final Float sector1, final Float sector2, final Float sector3, final String firstName, final String lastName
+            , final String shortName, final Integer carModel, final Integer raceNumber) {
+        final AccLap accLap = new AccLap();
+
+        accLap.setCarId(carId);
+        accLap.setDriverIndex(driverIndex);
+        accLap.setIsValidForBest(isValidForBest);
+        accLap.setLaptime(laptime);
+        accLap.setSector1(sector1);
+        accLap.setSector2(sector2);
+        accLap.setSector3(sector3);
+        accLap.setFirstName(firstName);
+        accLap.setLastName(lastName);
+        accLap.setShortName(shortName);
+        accLap.setCarModel(carModel);
+        accLap.setRaceNumber(raceNumber);
+
+        return accLap;
+    }
+
 }
