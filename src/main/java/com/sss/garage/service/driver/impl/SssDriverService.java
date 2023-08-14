@@ -8,6 +8,8 @@ import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.service.driver.DriverService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,6 +34,11 @@ public class SssDriverService implements DriverService {
     @Override
     public void deleteDriver(final Long id) {
         driverRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Driver> getDriversPaginated(final Pageable pageable) {
+        return driverRepository.findAll(pageable);
     }
 
     @Autowired

@@ -1,6 +1,8 @@
 package com.sss.garage.service.acclap;
 
 import com.sss.garage.model.acclap.AccLap;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +15,6 @@ public interface AccLapService {
     void createLap(final AccLap lap);
 
     void deleteLap(final Long id);
+
+    Page<AccLap> getLapsPaginated(final Pageable pageable);
 }

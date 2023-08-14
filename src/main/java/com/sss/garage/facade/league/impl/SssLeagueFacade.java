@@ -10,6 +10,8 @@ import com.sss.garage.model.league.League;
 import com.sss.garage.service.league.LeagueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,12 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
         return leagueService.getLeague(id)
                 .map(l -> conversionService.convert(l, DetailedLeagueData.class))
                 .orElseThrow();
+    }
+
+    @Override
+    public Page<LeagueData> getLeaguesPaginated(Pageable pageable) {
+        Page<League> league = leagueService.getLeaguesPaginated(pageable);
+        return league.map(l -> conversionService.convert(l, LeagueData.class));
     }
 
     @Override

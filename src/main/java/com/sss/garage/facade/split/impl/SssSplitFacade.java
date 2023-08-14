@@ -6,6 +6,8 @@ import com.sss.garage.facade.split.SplitFacade;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.service.split.SplitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +35,12 @@ public class SssSplitFacade extends SssBaseFacade implements SplitFacade {
     @Override
     public void deleteSplit(final Long id) {
         splitService.deleteSplit(id);
+    }
+
+    @Override
+    public Page<SplitData> getSplitsPaginated(final Pageable pageable) {
+        Page<Split> split = splitService.getSplitsPaginated(pageable);
+        return split.map(s -> conversionService.convert(s, SplitData.class));
     }
 
     @Autowired

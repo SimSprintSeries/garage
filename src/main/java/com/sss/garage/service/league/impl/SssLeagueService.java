@@ -4,6 +4,8 @@ import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.service.league.LeagueService;
 import com.sss.garage.model.league.League;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,11 @@ public class SssLeagueService implements LeagueService {
     @Override
     public void createLeague(final League league) {
         leagueRepository.save(league);
+    }
+
+    @Override
+    public Page<League> getLeaguesPaginated(final Pageable pageable) {
+        return leagueRepository.findAll(pageable);
     }
 
     @Autowired

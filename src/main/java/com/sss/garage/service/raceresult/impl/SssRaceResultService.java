@@ -4,6 +4,8 @@ import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.raceresult.RaceResultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +34,11 @@ public class SssRaceResultService implements RaceResultService {
     @Override
     public void deleteRaceResult(final Long id) {
         raceResultRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<RaceResult> getRaceResultsPaginated(final Pageable pageable) {
+        return raceResultRepository.findAll(pageable);
     }
 
     @Autowired

@@ -6,6 +6,8 @@ import com.sss.garage.facade.track.TrackFacade;
 import com.sss.garage.model.track.Track;
 import com.sss.garage.service.track.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +35,12 @@ public class SssTrackFacade extends SssBaseFacade implements TrackFacade {
     @Override
     public void deleteTrack(Long id) {
         trackService.deleteTrack(id);
+    }
+
+    @Override
+    public Page<TrackData> getTracksPaginated(final Pageable pageable) {
+        Page<Track> track = trackService.getTracksPaginated(pageable);
+        return track.map(t -> conversionService.convert(t, TrackData.class));
     }
 
     @Autowired

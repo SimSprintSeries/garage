@@ -1,7 +1,5 @@
 package com.sss.garage.controller.game;
 
-import static com.sss.garage.constants.WebConstants.GAME_ENDPOINT;
-
 import java.util.List;
 
 import com.sss.garage.controller.SssBaseController;
@@ -9,7 +7,12 @@ import com.sss.garage.data.game.GameData;
 import com.sss.garage.dto.game.GameDTO;
 import com.sss.garage.facade.game.GameFacade;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import static com.sss.garage.constants.WebConstants.*;
 
 @RestController
 @RequestMapping(GAME_ENDPOINT)
@@ -55,6 +60,17 @@ public class GameController extends SssBaseController {
     @Operation(operationId = "deleteGame", summary = "Delete game by ID")
     public void deleteGame(@PathVariable final Long id) {
         gameFacade.deleteGame(id);
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getGamesPaginated", summary = "Get all games paginated")
+    public Page<GameDTO> getGamesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+        return this.gameFacade.getGamesPaginated(pageable).map(g -> mapper.map(g, GameDTO.class));
     }
 
     @Autowired

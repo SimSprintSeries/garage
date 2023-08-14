@@ -1,5 +1,6 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.penalty.Penalty;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -9,6 +10,7 @@ import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +37,9 @@ public class Driver {
 
     @ManyToMany
     private Set<Split> splits;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Penalty> penalties;
 
 
     public Long getId() {
@@ -91,5 +96,13 @@ public class Driver {
 
     public void setSplits(final Set<Split> splits) {
         this.splits = splits;
+    }
+
+    public List<Penalty> getPenalties() {
+        return penalties;
+    }
+
+    public void setPenalties(List<Penalty> penalties) {
+        this.penalties = penalties;
     }
 }

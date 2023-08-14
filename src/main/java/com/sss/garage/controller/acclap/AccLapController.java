@@ -5,14 +5,20 @@ import com.sss.garage.data.acclap.AccLapData;
 import com.sss.garage.dto.acclap.AccLapDTO;
 import com.sss.garage.facade.acclap.AccLapFacade;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.sss.garage.constants.WebConstants.ACC_LAP_ENDPOINT;
+import static com.sss.garage.constants.WebConstants.*;
 
 @RestController
 @RequestMapping(ACC_LAP_ENDPOINT)
@@ -50,6 +56,17 @@ public class AccLapController extends SssBaseController {
     @Operation(operationId = "deleteSession", summary = "Delete lap by ID")
     public void deleteLap(@PathVariable final Long id) {
         lapFacade.deleteLap(id);
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getLapsPaginated", summary = "Get all laps paginated")
+    public Page<AccLapDTO> getLapsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+        return this.lapFacade.getLapsPaginated(pageable).map(l -> mapper.map(l, AccLapDTO.class));
     }
 
     @Autowired

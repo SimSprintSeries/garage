@@ -4,6 +4,8 @@ import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
 import com.sss.garage.service.acclap.AccLapService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,11 @@ public class SssAccLapService implements AccLapService {
     @Override
     public void deleteLap(final Long id) {
         lapRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<AccLap> getLapsPaginated(final Pageable pageable) {
+        return lapRepository.findAll(pageable);
     }
 
     @Autowired

@@ -7,11 +7,13 @@ import com.sss.garage.facade.league.LeagueFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
-
-import static com.sss.garage.constants.WebConstants.LEAGUE_ENDPOINT;
 
 import com.sss.garage.dto.league.DetailedLeagueDTO;
 
@@ -21,6 +23,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
+import static com.sss.garage.constants.WebConstants.*;
 
 @RestController
 @RequestMapping(LEAGUE_ENDPOINT)
@@ -51,6 +55,17 @@ public class LeagueController extends SssBaseController {
     @Operation(operationId = "createLeague", summary = "Create new league")
     public void createLeague(@RequestBody LeagueDTO leagueDTO) {
         leagueFacade.createLeague(mapper.map(leagueDTO, LeagueData.class));
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getLeaguesPaginated", summary = "Get all leagues paginated")
+    public Page<LeagueDTO> getLeaguesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+        return this.leagueFacade.getLeaguesPaginated(pageable).map(l -> mapper.map(l, LeagueDTO.class));
     }
 
     @Autowired

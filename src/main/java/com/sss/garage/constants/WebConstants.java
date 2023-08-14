@@ -19,7 +19,7 @@ public class WebConstants {
 
     public static final String TRACK_ENDPOINT = "/track";
 
-    public static final String ACC_SESSION_ENDPOINT = "/accsession";
+    public static final String PENALTY_ENDPOINT = "/penalty";
 
     public static final String ACC_LAP_ENDPOINT = "/acclap";
 

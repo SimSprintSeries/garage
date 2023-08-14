@@ -22,5 +22,4 @@ public interface RaceService {
     Page<Race> getUncompletedPlayableRaces(final Pageable pageable);
     List<Race> getAllRaces();
     void deleteRace(final Long id);
-
 }

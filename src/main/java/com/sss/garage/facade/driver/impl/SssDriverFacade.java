@@ -6,6 +6,8 @@ import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.service.driver.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +36,12 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     @Override
     public void deleteDriver(final Long id) {
         driverService.deleteDriver(id);
+    }
+
+    @Override
+    public Page<DriverData> getDriversPaginated(final Pageable pageable) {
+        Page<Driver> driver = driverService.getDriversPaginated(pageable);
+        return driver.map(d -> conversionService.convert(d, DriverData.class));
     }
 
     @Autowired

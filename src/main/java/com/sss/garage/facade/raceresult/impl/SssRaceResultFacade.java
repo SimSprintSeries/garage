@@ -6,6 +6,8 @@ import com.sss.garage.facade.raceresult.RaceResultFacade;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.service.raceresult.RaceResultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +35,12 @@ public class SssRaceResultFacade extends SssBaseFacade implements RaceResultFaca
     @Override
     public void deleteRaceResult(final Long id) {
         raceResultService.deleteRaceResult(id);
+    }
+
+    @Override
+    public Page<RaceResultData> getRaceResultsPaginated(final Pageable pageable) {
+        Page<RaceResult> raceResult = raceResultService.getRaceResultsPaginated(pageable);
+        return raceResult.map(r -> conversionService.convert(r, RaceResultData.class));
     }
 
     @Autowired

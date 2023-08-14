@@ -1,8 +1,8 @@
-package com.sss.garage.model.league;
+package com.sss.garage.model.penalty;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LeagueRepository extends JpaRepository<League, Long> {
+public interface PenaltyRepository extends JpaRepository<Penalty, Long> {
 }

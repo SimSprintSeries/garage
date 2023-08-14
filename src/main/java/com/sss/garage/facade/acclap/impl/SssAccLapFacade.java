@@ -6,6 +6,8 @@ import com.sss.garage.facade.acclap.AccLapFacade;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.service.acclap.AccLapService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +38,12 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
     @Override
     public void deleteLap(final Long id) {
         lapService.deleteLap(id);
+    }
+
+    @Override
+    public Page<AccLapData> getLapsPaginated(final Pageable pageable) {
+        Page<AccLap> lap = lapService.getLapsPaginated(pageable);
+        return lap.map(l -> conversionService.convert(l, AccLapData.class));
     }
 
     @Autowired
