@@ -27,6 +27,7 @@ public class AccLapConverter extends BaseConverter implements Converter<AccLap, 
         data.setCarModel(source.getCarModel());
         data.setTrackName(source.getTrackName());
         data.setSessionType(source.getSessionType());
+        data.setServerName(source.getServerName());
 
         return data;
     }

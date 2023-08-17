@@ -123,7 +123,7 @@ public class DataLoader {
 
     private AccLap newAccLap(final Integer carId, final Integer driverIndex, final Boolean isValidForBest, final Float laptime
             , final Float sector1, final Float sector2, final Float sector3, final String firstName, final String lastName
-            , final String shortName, final Integer carModel, final Integer raceNumber) {
+            , final String shortName, final Integer carModel, final Integer raceNumber, final String serverName) {
         final AccLap accLap = new AccLap();
 
         accLap.setCarId(carId);
@@ -138,6 +138,7 @@ public class DataLoader {
         accLap.setShortName(shortName);
         accLap.setCarModel(carModel);
         accLap.setRaceNumber(raceNumber);
+        accLap.setServerName(serverName);
 
         return accLap;
     }

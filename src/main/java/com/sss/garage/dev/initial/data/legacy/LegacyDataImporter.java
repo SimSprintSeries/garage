@@ -270,6 +270,7 @@ public class LegacyDataImporter {
                     lapsJsonArray[i].put("carModel", driverJsonArray[j].get("carModel"));
                     lapsJsonArray[i].put("trackName", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("trackName"));
                     lapsJsonArray[i].put("sessionType", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("sessionType"));
+                    lapsJsonArray[i].put("serverName", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("serverName").toString().split("-")[1].strip());
                 }
             }
         }
@@ -292,6 +293,7 @@ public class LegacyDataImporter {
                     accLap.setRaceNumber(l.raceNumber);
                     accLap.setTrackName(l.trackName);
                     accLap.setSessionType(l.sessionType);
+                    accLap.setServerName(l.serverName);
                     return accLap;
                 })
                 .collect(Collectors.toSet());

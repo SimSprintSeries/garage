@@ -31,6 +31,8 @@ public class LegacyAccLap {
 
     public String sessionType;
 
+    public String serverName;
+
     public Long getId() {
             return id;
         }
@@ -149,5 +151,13 @@ public class LegacyAccLap {
 
     public void setSessionType(String sessionType) {
         this.sessionType = sessionType;
+    }
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
     }
 }

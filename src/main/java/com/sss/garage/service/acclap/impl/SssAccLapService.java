@@ -36,6 +36,11 @@ public class SssAccLapService implements AccLapService {
     }
 
     @Override
+    public Page<AccLap> getLapsPaginated(final Pageable pageable) {
+        return lapRepository.findAll(pageable);
+    }
+
+    @Override
     public Page<AccLap> getLapsPaginated(final String trackName, final Pageable pageable) {
         return lapRepository.findAllByTrackName(trackName, pageable);
     }

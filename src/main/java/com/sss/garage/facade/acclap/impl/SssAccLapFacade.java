@@ -5,6 +5,7 @@ import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.acclap.AccLapFacade;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.service.acclap.AccLapService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,7 +43,13 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
 
     @Override
     public Page<AccLapData> getLapsPaginated(final String trackName, final Pageable pageable) {
-        Page<AccLap> lap = lapService.getLapsPaginated(trackName, pageable);
+        Page<AccLap> lap;
+        if(Strings.isNotEmpty(trackName)) {
+            lap = lapService.getLapsPaginated(trackName, pageable);
+        }
+        else {
+            lap = lapService.getLapsPaginated(pageable);
+        }
         return lap.map(l -> conversionService.convert(l, AccLapData.class));
     }
 
