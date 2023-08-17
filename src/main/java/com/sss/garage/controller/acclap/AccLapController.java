@@ -64,9 +64,10 @@ public class AccLapController extends SssBaseController {
     public Page<AccLapDTO> getLapsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                             @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                             @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
-                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                            @Parameter(description = "Optional track name to filter by") @RequestParam(value = "trackName", required = false) final String trackName) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
-        return this.lapFacade.getLapsPaginated(pageable).map(l -> mapper.map(l, AccLapDTO.class));
+        return this.lapFacade.getLapsPaginated(trackName, pageable).map(l -> mapper.map(l, AccLapDTO.class));
     }
 
     @Autowired

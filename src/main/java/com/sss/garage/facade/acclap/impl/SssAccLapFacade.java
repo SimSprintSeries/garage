@@ -41,8 +41,8 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
     }
 
     @Override
-    public Page<AccLapData> getLapsPaginated(final Pageable pageable) {
-        Page<AccLap> lap = lapService.getLapsPaginated(pageable);
+    public Page<AccLapData> getLapsPaginated(final String trackName, final Pageable pageable) {
+        Page<AccLap> lap = lapService.getLapsPaginated(trackName, pageable);
         return lap.map(l -> conversionService.convert(l, AccLapData.class));
     }
 
