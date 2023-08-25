@@ -16,5 +16,5 @@ public interface TrackService {
 
     void deleteTrack(final Long id);
 
-    Page<Track> getTracksPaginated(final Pageable pageable);
+    Page<Track> getTracksPaginated(final String name, final String country, final Pageable pageable);
 }

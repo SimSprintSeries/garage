@@ -15,5 +15,5 @@ public interface PenaltyFacade {
 
     void deletePenalty(final Long id);
 
-    Page<PenaltyData> getPenaltiesPaginated(final Pageable pageable);
+    Page<PenaltyData> getPenaltiesPaginated(final Boolean checked, final Pageable pageable);
 }

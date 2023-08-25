@@ -14,6 +14,7 @@ public class PenaltyConverter extends BaseConverter implements Converter<Penalty
     public PenaltyData convert(final Penalty source) {
         final PenaltyData data = new PenaltyData();
 
+        data.setId(source.getId());
         data.setPenaltyPoints(source.getPenaltyPoints());
         data.setPenaltySeconds(source.getPenaltySeconds());
         data.setIncidentLink(source.getIncidentLink());
@@ -22,6 +23,7 @@ public class PenaltyConverter extends BaseConverter implements Converter<Penalty
         data.setReportDate(source.getReportDate());
         data.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
         data.setRace(getConversionService().convert(source.getRace(), RaceData.class));
+        data.setChecked(source.getChecked());
 
         return data;
     }

@@ -24,6 +24,8 @@ public class PenaltyDTO {
 
     private RaceDTO race;
 
+    private Boolean checked;
+
     public Long getId() {
         return id;
     }
@@ -94,5 +96,13 @@ public class PenaltyDTO {
 
     public void setRace(RaceDTO race) {
         this.race = race;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

@@ -38,8 +38,8 @@ public class SssTrackFacade extends SssBaseFacade implements TrackFacade {
     }
 
     @Override
-    public Page<TrackData> getTracksPaginated(final Pageable pageable) {
-        Page<Track> track = trackService.getTracksPaginated(pageable);
+    public Page<TrackData> getTracksPaginated(final String name, final String country, final Pageable pageable) {
+        Page<Track> track = trackService.getTracksPaginated(name, country, pageable);
         return track.map(t -> conversionService.convert(t, TrackData.class));
     }
 

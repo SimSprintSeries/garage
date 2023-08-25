@@ -61,11 +61,15 @@ public class LeagueController extends SssBaseController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "getLeaguesPaginated", summary = "Get all leagues paginated")
     public Page<LeagueDTO> getLeaguesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
-                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+                                               @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                               @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                               @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                               @Parameter(description = "Optional track name to filter by") @RequestParam(value = "platform", required = false) final String platform,
+                                               @Parameter(description = "Optional track name to filter by") @RequestParam(value = "name", required = false) final String name,
+                                               @Parameter(description = "Optional active flag to filter by - true returns active leagues, false returns non-active, null returns all")
+                                                   @RequestParam(value = "active", required = false) final Boolean active) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
-        return this.leagueFacade.getLeaguesPaginated(pageable).map(l -> mapper.map(l, LeagueDTO.class));
+        return this.leagueFacade.getLeaguesPaginated(platform, name, active, pageable).map(l -> mapper.map(l, LeagueDTO.class));
     }
 
     @Autowired

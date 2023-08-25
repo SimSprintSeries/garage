@@ -63,12 +63,14 @@ public class PenaltyController extends SssBaseController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "getPenaltiesPaginated", summary = "Get all penalties paginated")
     public Page<PenaltyDTO> getPenaltiesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                           @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                           @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
-                                           @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+                                                  @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                                  @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                                  @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                                  @Parameter(description = "Optional checked flag to filter by - true returns checked reports, false returns unchecked, null returns all")
+                                                      @RequestParam(value = "checked", required = false) final Boolean checked) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
-        return this.penaltyFacade.getPenaltiesPaginated(pageable).map(p -> mapper.map(p, PenaltyDTO.class));
+        return this.penaltyFacade.getPenaltiesPaginated(checked, pageable).map(p -> mapper.map(p, PenaltyDTO.class));
     }
 
     @Autowired

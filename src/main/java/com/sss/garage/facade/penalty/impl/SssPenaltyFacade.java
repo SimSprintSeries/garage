@@ -5,6 +5,7 @@ import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.penalty.PenaltyFacade;
 import com.sss.garage.model.penalty.Penalty;
 import com.sss.garage.service.penalty.PenaltyService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,8 +41,14 @@ public class SssPenaltyFacade extends SssBaseFacade implements PenaltyFacade {
     }
 
     @Override
-    public Page<PenaltyData> getPenaltiesPaginated(final Pageable pageable) {
-        Page<Penalty> penalty = penaltyService.getPenaltiesPaginated(pageable);
+    public Page<PenaltyData> getPenaltiesPaginated(final Boolean checked, final Pageable pageable) {
+        Page<Penalty> penalty;
+        if(checked != null) {
+            penalty = penaltyService.getPenaltiesPaginated(checked, pageable);
+        }
+        else {
+            penalty = penaltyService.getPenaltiesPaginated(pageable);
+        }
         return penalty.map(p -> conversionService.convert(p, PenaltyData.class));
     }
 

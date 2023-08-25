@@ -31,6 +31,8 @@ public class Penalty {
     @ManyToOne
     private Race race;
 
+    private Boolean checked;
+
     public Long getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class Penalty {
 
     public void setRace(Race race) {
         this.race = race;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

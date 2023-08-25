@@ -40,6 +40,11 @@ public class SssPenaltyService implements PenaltyService {
         return penaltyRepository.findAll(pageable);
     }
 
+    @Override
+    public Page<Penalty> getPenaltiesPaginated(final Boolean checked, final Pageable pageable) {
+        return penaltyRepository.findAllByChecked(checked, pageable);
+    }
+
     @Autowired
     public void setPenaltyRepository(final PenaltyRepository penaltyRepository) {
         this.penaltyRepository = penaltyRepository;

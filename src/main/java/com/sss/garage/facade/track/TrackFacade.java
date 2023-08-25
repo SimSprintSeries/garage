@@ -15,5 +15,5 @@ public interface TrackFacade {
 
     void deleteTrack(final Long id);
 
-    Page<TrackData> getTracksPaginated(final Pageable pageable);
+    Page<TrackData> getTracksPaginated(final String name, final String country, final Pageable pageable);
 }

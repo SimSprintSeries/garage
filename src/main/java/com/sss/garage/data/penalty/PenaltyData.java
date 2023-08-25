@@ -24,6 +24,8 @@ public class PenaltyData {
 
     private RaceData race;
 
+    private Boolean checked;
+
     public Long getId() {
         return id;
     }
@@ -94,5 +96,13 @@ public class PenaltyData {
 
     public void setRace(RaceData race) {
         this.race = race;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

@@ -37,8 +37,8 @@ public class SssTrackService implements TrackService {
     }
 
     @Override
-    public Page<Track> getTracksPaginated(final Pageable pageable) {
-        return trackRepository.findAll(pageable);
+    public Page<Track> getTracksPaginated(final String name, final String country, final Pageable pageable) {
+        return trackRepository.findAllByParams(name, country, pageable);
     }
 
     @Autowired

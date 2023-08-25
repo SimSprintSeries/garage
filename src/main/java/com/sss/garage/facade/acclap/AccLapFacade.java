@@ -15,5 +15,5 @@ public interface AccLapFacade {
 
     void deleteLap(final Long id);
 
-    Page<AccLapData> getLapsPaginated(final String trackName, final Pageable pageable);
+    Page<AccLapData> getLapsPaginated(final String sessionType, final String trackName, final String serverName, final Pageable pageable);
 }

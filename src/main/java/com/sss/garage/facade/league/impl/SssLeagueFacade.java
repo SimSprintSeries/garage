@@ -27,8 +27,8 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
     }
 
     @Override
-    public Page<LeagueData> getLeaguesPaginated(Pageable pageable) {
-        Page<League> league = leagueService.getLeaguesPaginated(pageable);
+    public Page<LeagueData> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable) {
+        Page<League> league = leagueService.getLeaguesPaginated(platform, name, active, pageable);
         return league.map(l -> conversionService.convert(l, LeagueData.class));
     }
 

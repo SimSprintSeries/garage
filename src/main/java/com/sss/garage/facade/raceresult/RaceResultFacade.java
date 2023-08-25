@@ -1,6 +1,8 @@
 package com.sss.garage.facade.raceresult;
 
 import com.sss.garage.data.raceresult.RaceResultData;
+import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.race.Race;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,5 +17,6 @@ public interface RaceResultFacade {
 
     void deleteRaceResult(final Long id);
 
-    Page<RaceResultData> getRaceResultsPaginated(final Pageable pageable);
+    Page<RaceResultData> getRaceResultsPaginated(final String finishPosition, final Boolean polePosition, final Boolean dnf, final Boolean dsq
+            , final Boolean fastestLap, final String driverId, final String raceId, final Pageable pageable);
 }

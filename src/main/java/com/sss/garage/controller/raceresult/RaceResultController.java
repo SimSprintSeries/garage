@@ -61,11 +61,22 @@ public class RaceResultController extends SssBaseController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "getRaceResultsPaginated", summary = "Get all race results paginated")
     public Page<RaceResultDTO> getRaceResultsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
-                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection) {
+                                                       @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                                       @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                                       @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                                       @Parameter(description = "Optional track name to filter by") @RequestParam(value = "finishPosition", required = false) final String finishPosition,
+                                                       @Parameter(description = "Optional pole position flag to filter by - true returns pole position holders for every race, false returns opposite, null returns all")
+                                                           @RequestParam(value = "polePosition", required = false) final Boolean polePosition,
+                                                       @Parameter(description = "Optional DNF flag to filter by - true returns drivers who didn't finish the race, false returns opposite, null returns all")
+                                                           @RequestParam(value = "dnf", required = false) final Boolean dnf,
+                                                       @Parameter(description = "Optional DSQ flag to filter by - true returns disqualified drivers, false returns opposite, null returns all")
+                                                           @RequestParam(value = "dsq", required = false) final Boolean dsq,
+                                                       @Parameter(description = "Optional fastest lap flag to filter by - true returns fastest lap holders for every race, false returns opposite, null returns all")
+                                                           @RequestParam(value = "fastestLap", required = false) final Boolean fastestLap,
+                                                       @Parameter(description = "Optional driver ID to filter by") @RequestParam(value = "driverId", required = false) final String driverId,
+                                                       @Parameter(description = "Optional race ID to filter by") @RequestParam(value = "raceId", required = false) final String raceId) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
-        return this.raceResultFacade.getRaceResultsPaginated(pageable).map(r -> mapper.map(r, RaceResultDTO.class));
+        return this.raceResultFacade.getRaceResultsPaginated(finishPosition, polePosition, dnf, dsq, fastestLap, driverId, raceId, pageable).map(r -> mapper.map(r, RaceResultDTO.class));
     }
 
     @Autowired

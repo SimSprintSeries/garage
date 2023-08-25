@@ -1,5 +1,7 @@
 package com.sss.garage.service.raceresult.impl;
 
+import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.raceresult.RaceResultService;
@@ -37,8 +39,9 @@ public class SssRaceResultService implements RaceResultService {
     }
 
     @Override
-    public Page<RaceResult> getRaceResultsPaginated(final Pageable pageable) {
-        return raceResultRepository.findAll(pageable);
+    public Page<RaceResult> getRaceResultsPaginated(final String finishPosition, final Boolean polePosition, final Boolean dnf, final Boolean dsq
+            , final Boolean fastestLap, final Driver driver, final Race race, final Pageable pageable) {
+        return raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
     }
 
     @Autowired

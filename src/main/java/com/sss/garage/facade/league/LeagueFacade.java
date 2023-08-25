@@ -12,5 +12,5 @@ public interface LeagueFacade {
 
     void createLeague(final LeagueData leagueData);
 
-    Page<LeagueData> getLeaguesPaginated(final Pageable pageable);
+    Page<LeagueData> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable);
 }

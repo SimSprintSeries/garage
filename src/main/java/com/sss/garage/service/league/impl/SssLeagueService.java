@@ -32,8 +32,8 @@ public class SssLeagueService implements LeagueService {
     }
 
     @Override
-    public Page<League> getLeaguesPaginated(final Pageable pageable) {
-        return leagueRepository.findAll(pageable);
+    public Page<League> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable) {
+        return leagueRepository.findAllByParams(platform, name, active, pageable);
     }
 
     @Autowired

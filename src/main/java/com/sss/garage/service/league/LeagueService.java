@@ -14,5 +14,5 @@ public interface LeagueService {
 
     void createLeague(final League league);
 
-    Page<League> getLeaguesPaginated(final Pageable pageable);
+    Page<League> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable);
 }
