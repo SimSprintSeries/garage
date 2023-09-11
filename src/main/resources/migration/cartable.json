@@ -1,0 +1,190 @@
+[
+  {
+    "id": 0,
+    "carModel": "Porsche 991 GT3 R 2018"
+  },
+  {
+    "id": 1,
+    "carModel": "Mercedes-AMG GT3 2015"
+  },
+  {
+    "id": 2,
+    "carModel": "Ferrari 488 GT3 2018"
+  },
+  {
+    "id": 3,
+    "carModel": "Audi R8 LMS 2015"
+  },
+  {
+    "id": 4,
+    "carModel": "Lamborghini Huracán GT3 2015"
+  },
+  {
+    "id": 5,
+    "carModel": "McLaren 650S GT3 2015"
+  },
+  {
+    "id": 6,
+    "carModel": "Nissan GT-R Nismo GT3 2018"
+  },
+  {
+    "id": 7,
+    "carModel": "BMW M6 GT3 2017"
+  },
+  {
+    "id": 8,
+    "carModel": "Bentley Continental GT3 2018"
+  },
+  {
+    "id": 9,
+    "carModel": "Porsche 991 II GT3 Cup 2017"
+  },
+  {
+    "id": 10,
+    "carModel": "Nissan GT-R Nismo GT3 2015"
+  },
+  {
+    "id": 11,
+    "carModel": "Bentley Continental GT3 2015"
+  },
+  {
+    "id": 12,
+    "carModel": "AMR V12 Vantage GT3 2013"
+  },
+  {
+    "id": 13,
+    "carModel": "Reiter Engineering R-EX GT3 2017"
+  },
+  {
+    "id": 14,
+    "carModel": "Emil Frey Jaguar G3 2012"
+  },
+  {
+    "id": 15,
+    "carModel": "Lexus RC F GT3 2016"
+  },
+  {
+    "id": 16,
+    "carModel": "Lamborghini Huracan GT3 Evo 2019"
+  },
+  {
+    "id": 17,
+    "carModel": "Honda NSX GT3 2017"
+  },
+  {
+    "id": 18,
+    "carModel": "Lamborghini Huracan SuperTrofeo 2015"
+  },
+  {
+    "id": 19,
+    "carModel": "Audi R8 LMS Evo 2019"
+  },
+  {
+    "id": 20,
+    "carModel": "AMR V8 Vantage 2019"
+  },
+  {
+    "id": 21,
+    "carModel": "Honda NSX GT3 Evo 2019"
+  },
+  {
+    "id": 22,
+    "carModel": "McLaren 720S GT3 2019"
+  },
+  {
+    "id": 23,
+    "carModel": "Porsche 991 II GT3 R 2019"
+  },
+  {
+    "id": 24,
+    "carModel": "Ferrari 488 GT3 Evo 2020"
+  },
+  {
+    "id": 25,
+    "carModel": "Mercedes-AMG GT3 2020"
+  },
+  {
+    "id": 26,
+    "carModel": "BMW M4 GT3 2022"
+  },
+  {
+    "id": 27,
+    "carModel": "BMW M2 Club Sport Racing 2020"
+  },
+  {
+    "id": 28,
+    "carModel": "Porsche 992 GT3 Cup 2021"
+  },
+  {
+    "id": 29,
+    "carModel": "Lamborghini Huracán SuperTrofeo EVO2 2021"
+  },
+  {
+    "id": 30,
+    "carModel": "Ferrari 488 Challenge Evo 2020"
+  },
+  {
+    "id": 31,
+    "carModel": "Audi R8 LMS GT3 Evo 2 2022"
+  },
+  {
+    "id": 32,
+    "carModel": "Ferrari 296 GT3 2023"
+  },
+  {
+    "id": 33,
+    "carModel": "Lamborghini Huracan GT3 Evo 2 2023"
+  },
+  {
+    "id": 34,
+    "carModel": "Porsche 992 GT3 R 2023"
+  },
+  {
+    "id": 35,
+    "carModel": "McLaren 720S GT3 Evo 2023"
+  },
+  {
+    "id": 50,
+    "carModel": "Alpine A110 GT4 2018"
+  },
+  {
+    "id": 51,
+    "carModel": "Aston Martin Vantage GT4 2018"
+  },
+  {
+    "id": 52,
+    "carModel": "Audi R8 LMS GT4 2018"
+  },
+  {
+    "id": 53,
+    "carModel": "BMW M4 GT4 2018"
+  },
+  {
+    "id": 55,
+    "carModel": "Chevrolet Camaro GT4 2017"
+  },
+  {
+    "id": 56,
+    "carModel": "Ginetta G55 GT4 2012"
+  },
+  {
+    "id": 57,
+    "carModel": "KTM X-Bow GT4 2016"
+  },
+  {
+    "id": 58,
+    "carModel": "Maserati MC GT4 2016"
+  },
+  {
+    "id": 59,
+    "carModel": "McLaren 570S GT4 2016"
+  },
+  {
+    "id": 60,
+    "carModel": "Mercedes AMG GT4 2016"
+  },
+  {
+    "id": 61,
+    "carModel": "Porsche 718 Cayman GT4 Clubsport 2019"
+  }
+]

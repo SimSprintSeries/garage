@@ -72,6 +72,20 @@ public class AccLapController extends SssBaseController {
         return this.lapFacade.getLapsPaginated(sessionType, trackName, serverName, pageable).map(l -> mapper.map(l, AccLapDTO.class));
     }
 
+    @GetMapping("/fastest")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getFastestLapsForEveryDriver", summary = "Get fastest lap for every driver")
+    public Page<AccLapDTO> getFastestLapsForEveryDriver(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                                        @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                                        @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "laptime") final String sort,
+                                                        @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                                        @Parameter(description = "Optional track name to filter by") @RequestParam(value = "trackName", required = false) final String trackName,
+                                                        @Parameter(description = "Optional session type to filter by") @RequestParam(value = "sessionType", required = false) final String sessionType,
+                                                        @Parameter(description = "Optional server/championship name to filter by") @RequestParam(value = "serverName", required = false) final String serverName) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+        return this.lapFacade.getFastestLapsForEveryDriver(sessionType, trackName, serverName, pageable).map(l -> mapper.map(l, AccLapDTO.class));
+    }
+
     @Autowired
     public void setLapFacade(final AccLapFacade lapFacade) {
         this.lapFacade = lapFacade;

@@ -47,6 +47,12 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
         return lap.map(l -> conversionService.convert(l, AccLapData.class));
     }
 
+    @Override
+    public Page<AccLapData> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
+        Page<AccLap> lap = lapService.getFastestLapsForEveryDriver(sessionType, trackName, serverName, pageable);
+        return lap.map(l -> conversionService.convert(l, AccLapData.class));
+    }
+
     @Autowired
     public void setLapService(AccLapService lapService) {
         this.lapService = lapService;

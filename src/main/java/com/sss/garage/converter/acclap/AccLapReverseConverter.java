@@ -25,9 +25,13 @@ public class AccLapReverseConverter extends BaseConverter implements Converter<A
         target.setShortName(source.getShortName());
         target.setRaceNumber(source.getRaceNumber());
         target.setCarModel(source.getCarModel());
+        target.setCarName(source.getCarName());
         target.setTrackName(source.getTrackName());
         target.setSessionType(source.getSessionType());
         target.setServerName(source.getServerName());
+        target.setStartDate(source.getStartDate());
+        target.setLapCount(source.getLapCount());
+        target.setTheoreticalBest(source.getTheoreticalBest());
 
         return target;
     }

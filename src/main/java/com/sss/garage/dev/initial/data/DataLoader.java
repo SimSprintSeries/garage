@@ -129,10 +129,10 @@ public class DataLoader {
         accLap.setCarId(carId);
         accLap.setDriverIndex(driverIndex);
         accLap.setIsValidForBest(isValidForBest);
-        accLap.setLaptime(laptime);
-        accLap.setSector1(sector1);
-        accLap.setSector2(sector2);
-        accLap.setSector3(sector3);
+        accLap.setLaptime(String.valueOf(laptime));
+        accLap.setSector1(String.valueOf(sector1));
+        accLap.setSector2(String.valueOf(sector2));
+        accLap.setSector3(String.valueOf(sector3));
         accLap.setFirstName(firstName);
         accLap.setLastName(lastName);
         accLap.setShortName(shortName);

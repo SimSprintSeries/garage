@@ -64,7 +64,7 @@ public class RaceResultController extends SssBaseController {
                                                        @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                        @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
                                                        @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
-                                                       @Parameter(description = "Optional track name to filter by") @RequestParam(value = "finishPosition", required = false) final String finishPosition,
+                                                       @Parameter(description = "Optional finish position to filter by") @RequestParam(value = "finishPosition", required = false) final String finishPosition,
                                                        @Parameter(description = "Optional pole position flag to filter by - true returns pole position holders for every race, false returns opposite, null returns all")
                                                            @RequestParam(value = "polePosition", required = false) final Boolean polePosition,
                                                        @Parameter(description = "Optional DNF flag to filter by - true returns drivers who didn't finish the race, false returns opposite, null returns all")

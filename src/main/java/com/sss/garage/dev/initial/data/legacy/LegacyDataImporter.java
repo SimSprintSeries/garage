@@ -17,6 +17,8 @@ import com.sss.garage.dev.initial.data.legacy.converter.LegacyDriverConverter;
 import com.sss.garage.dev.initial.data.legacy.model.*;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
+import com.sss.garage.model.cartable.CarTable;
+import com.sss.garage.model.cartable.CarTableRepository;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.event.Event;
@@ -64,6 +66,9 @@ public class LegacyDataImporter {
     @Value("${legacy.data.dir}/testsession.json")
     private Resource accSessionResource;
 
+    @Value("${legacy.data.dir}/cartable.json")
+    private Resource carsResource;
+
     private DiscordUserRepository discordUserRepository;
 
     private DriverRepository driverRepository;
@@ -83,6 +88,8 @@ public class LegacyDataImporter {
     private RaceResultRepository raceResultRepository;
 
     private AccLapRepository accLapRepository;
+
+    private CarTableRepository carTableRepository;
 
     ObjectMapper objectMapper;
 
@@ -281,11 +288,11 @@ public class LegacyDataImporter {
                     final AccLap accLap = new AccLap();
                     accLap.setCarId(l.carId);
                     accLap.setDriverIndex(l.driverIndex);
-                    accLap.setLaptime(((float)l.laptime)/1000);
+                    accLap.setLaptime(String.valueOf(((float)l.laptime)/1000));
                     accLap.setIsValidForBest(l.isValidForBest);
-                    accLap.setSector1(((float)l.sector1/1000));
-                    accLap.setSector2(((float)l.sector2/1000));
-                    accLap.setSector3(((float)l.sector3/1000));
+                    accLap.setSector1(String.valueOf(((float)l.sector1/1000)));
+                    accLap.setSector2(String.valueOf(((float)l.sector2/1000)));
+                    accLap.setSector3(String.valueOf(((float)l.sector3/1000)));
                     accLap.setFirstName(l.firstName);
                     accLap.setLastName(l.lastName);
                     accLap.setShortName(l.shortName);
@@ -298,6 +305,18 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
         accLapRepository.saveAll(accLaps);
+
+        List<LegacyCarTable> legacyCars = Arrays.asList(objectMapper.readValue(carsResource.getFile(), LegacyCarTable[].class));
+
+        Set<CarTable> cars = legacyCars.stream()
+                .map(c -> {
+                    final CarTable carTable = new CarTable();
+                    carTable.setId(c.id);
+                    carTable.setCarModel(c.carModel);
+                    return carTable;
+                })
+                .collect(Collectors.toSet());
+        carTableRepository.saveAll(cars);
     }
 
     private static Driver findDriverByLegacyId(final Long id, final Set<Driver> drivers, final List<LegacyDriver> legacyDrivers) {
@@ -464,5 +483,10 @@ public class LegacyDataImporter {
     @Autowired
     public void setAccLapRepository(final AccLapRepository accLapRepository) {
         this.accLapRepository = accLapRepository;
+    }
+
+    @Autowired
+    public void setCarTableRepository(final CarTableRepository carTableRepository) {
+        this.carTableRepository = carTableRepository;
     }
 }

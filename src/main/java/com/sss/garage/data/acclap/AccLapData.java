@@ -1,5 +1,7 @@
 package com.sss.garage.data.acclap;
 
+import java.util.Date;
+
 public class AccLapData {
     private Long id;
 
@@ -9,13 +11,13 @@ public class AccLapData {
 
     private Boolean isValidForBest;
 
-    private Float laptime;
+    private String laptime;
 
-    private Float sector1;
+    private String sector1;
 
-    private Float sector2;
+    private String sector2;
 
-    private Float sector3;
+    private String sector3;
 
     private String firstName;
 
@@ -25,6 +27,8 @@ public class AccLapData {
 
     private Integer carModel;
 
+    private String carName;
+
     private Integer raceNumber;
 
     private String trackName;
@@ -32,6 +36,12 @@ public class AccLapData {
     private String sessionType;
 
     private String serverName;
+
+    private Date startDate;
+
+    private Integer lapCount;
+
+    private String theoreticalBest;
 
     public Long getId() {
         return id;
@@ -65,35 +75,35 @@ public class AccLapData {
         this.isValidForBest = isValidForBest;
     }
 
-    public Float getLaptime() {
+    public String getLaptime() {
         return laptime;
     }
 
-    public void setLaptime(Float laptime) {
+    public void setLaptime(String laptime) {
         this.laptime = laptime;
     }
 
-    public Float getSector1() {
+    public String getSector1() {
         return sector1;
     }
 
-    public void setSector1(Float sector1) {
+    public void setSector1(String sector1) {
         this.sector1 = sector1;
     }
 
-    public Float getSector2() {
+    public String getSector2() {
         return sector2;
     }
 
-    public void setSector2(Float sector2) {
+    public void setSector2(String sector2) {
         this.sector2 = sector2;
     }
 
-    public Float getSector3() {
+    public String getSector3() {
         return sector3;
     }
 
-    public void setSector3(Float sector3) {
+    public void setSector3(String sector3) {
         this.sector3 = sector3;
     }
 
@@ -129,6 +139,14 @@ public class AccLapData {
         this.carModel = carModel;
     }
 
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
     public Integer getRaceNumber() {
         return raceNumber;
     }
@@ -159,5 +177,29 @@ public class AccLapData {
 
     public void setServerName(String serverName) {
         this.serverName = serverName;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Integer getLapCount() {
+        return lapCount;
+    }
+
+    public void setLapCount(Integer lapCount) {
+        this.lapCount = lapCount;
+    }
+
+    public String getTheoreticalBest() {
+        return theoreticalBest;
+    }
+
+    public void setTheoreticalBest(String theoreticalBest) {
+        this.theoreticalBest = theoreticalBest;
     }
 }
