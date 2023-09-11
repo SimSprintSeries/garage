@@ -9,7 +9,7 @@ public class LeagueDTO {
     private String name;
     private String platform;
     private GameDTO game;
-    public Date startDate;
+    public String startDate;
     public Integer raceCount;
 
     public Long getId() {
@@ -44,11 +44,11 @@ public class LeagueDTO {
         this.game = game;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 

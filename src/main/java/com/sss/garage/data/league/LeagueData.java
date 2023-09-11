@@ -10,7 +10,7 @@ public class LeagueData {
     private String displayText;
     private String platform;
     private GameData game;
-    private Date startDate;
+    private String startDate;
     private Integer raceCount;
 
     public Long getId() {
@@ -53,11 +53,11 @@ public class LeagueData {
         this.displayText = displayText;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 

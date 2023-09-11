@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-    Long countByLeague(League league);
+    Integer countByLeague(League league);
 
     Event findFirstByLeagueOrderByStartDateAsc(League league);
 }

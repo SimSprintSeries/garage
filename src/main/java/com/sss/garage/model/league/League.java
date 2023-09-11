@@ -7,7 +7,6 @@ import com.sss.garage.model.event.Event;
 import com.sss.garage.model.game.Game;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -37,7 +36,7 @@ public class League {
 
     private String discordGroupId;
 
-    public Date startDate;
+    public String startDate;
 
     public Integer raceCount;
 
@@ -107,11 +106,11 @@ public class League {
         this.discordGroupId = discordGroupId;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
