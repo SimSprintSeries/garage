@@ -23,6 +23,8 @@ public class WebConstants {
 
     public static final String ACC_LAP_ENDPOINT = "/acclap";
 
+    public static final String STATS_ENDPOINT = "/stats";
+
     public static final String NON_ACCESSIBLE_PATH="/JEBAC_MONTREYA";
     public static final String AUTHORIZATION_HEADER_BEARER_PREFIX="Bearer ";
     public static final String AUTHENTICATION_TOKEN_CHANGED_HEADER_NAME="sss-auth-token-replacement";

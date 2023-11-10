@@ -59,7 +59,7 @@ public class SplitController extends SssBaseController {
 
     @GetMapping("/paginated")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getSplitsPaginated", summary = "Get all splitss paginated")
+    @Operation(operationId = "getSplitsPaginated", summary = "Get all splits paginated")
     public Page<SplitDTO> getSplitsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                             @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                             @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

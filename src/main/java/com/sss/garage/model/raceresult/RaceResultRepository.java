@@ -1,7 +1,10 @@
 package com.sss.garage.model.raceresult;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.game.Game;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.stats.Stats;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +23,23 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     Page<RaceResult> findAllByParams(String finishPosition, Boolean polePosition, Boolean dnf, Boolean dsq
             , Boolean fastestLap, Driver driver, Race race, Pageable pageable);
 
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e WHERE (rr.driver=:driver)" +
+            "AND (e.league=:league OR :league IS NULL)" +
+            "AND rr.finishPosition BETWEEN :pos1 AND :pos2")
+    Integer countFinishPositionByParams(Driver driver, League league, Integer pos1, Integer pos2);
+
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e WHERE (rr.driver=:driver)" +
+            "AND (e.league=:league OR :league IS NULL)" +
+            "AND rr.dnf=true")
+    Integer countDnfByParams(Driver driver, League league);
+
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e WHERE (rr.driver=:driver)" +
+            "AND (e.league=:league OR :league IS NULL)" +
+            "AND rr.dsq=true")
+    Integer countDsqByParams(Driver driver, League league);
+
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e WHERE (rr.driver=:driver)" +
+            "AND (e.league=:league OR :league IS NULL)" +
+            "AND rr.fastestLap=true")
+    Integer countFlByParams(Driver driver, League league);
 }
