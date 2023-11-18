@@ -3,5 +3,5 @@ package com.sss.garage.facade.stats;
 import com.sss.garage.data.stats.StatsData;
 
 public interface StatsFacade {
-    StatsData getStats(final String driverId, final String gameId);
+    StatsData getStats(final String driverId, final String leagueId, final String gameId, final String split);
 }

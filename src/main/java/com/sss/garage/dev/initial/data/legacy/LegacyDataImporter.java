@@ -4,7 +4,6 @@ import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -38,7 +37,6 @@ import com.sss.garage.model.split.SplitRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -141,6 +139,8 @@ public class LegacyDataImporter {
                     league.setName(l.name);
                     league.setPlatform(l.platform);
                     league.setGame(findGameByName(l.game, games));
+                    league.setBanner(l.banner);
+                    league.setLogo(l.logo);
                     return league;
                 })
                 .collect(Collectors.toSet());

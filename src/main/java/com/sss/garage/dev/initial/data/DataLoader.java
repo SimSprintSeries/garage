@@ -96,10 +96,12 @@ public class DataLoader {
         return event;
     }
 
-    private League newLeague(final String platform, final Game game) {
+    private League newLeague(final String platform, final Game game, final String banner, final String logo) {
         final League league = new League();
         league.setPlatform(platform);
         league.setGame(game);
+        league.setBanner(banner);
+        league.setLogo(logo);
         return league;
     }
 

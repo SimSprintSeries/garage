@@ -36,9 +36,13 @@ public class League {
 
     private String discordGroupId;
 
-    public String startDate;
+    private String startDate;
 
-    public Integer raceCount;
+    private Integer raceCount;
+
+    private String banner;
+
+    private String logo;
 
 
     public Long getId() {
@@ -120,5 +124,21 @@ public class League {
 
     public void setRaceCount(Integer raceCount) {
         this.raceCount = raceCount;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

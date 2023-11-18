@@ -7,6 +7,8 @@ public class LegacyLeague {
     public String platform;
     public String game;
     public String type;
+    public String banner;
+    public String logo;
 
     public Long getId() {
         return id;
@@ -54,5 +56,21 @@ public class LegacyLeague {
 
     public void setType(final String type) {
         this.type = type;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }
