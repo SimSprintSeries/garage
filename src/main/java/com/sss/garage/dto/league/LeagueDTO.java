@@ -2,15 +2,13 @@ package com.sss.garage.dto.league;
 
 import com.sss.garage.dto.game.GameDTO;
 
-import java.util.Date;
-
 public class LeagueDTO {
     private Long id;
     private String name;
     private String platform;
     private GameDTO game;
     public String startDate;
-    public Integer raceCount;
+    public Integer eventCount;
 
     public Long getId() {
         return id;
@@ -52,11 +50,11 @@ public class LeagueDTO {
         this.startDate = startDate;
     }
 
-    public Integer getRaceCount() {
-        return raceCount;
+    public Integer getEventCount() {
+        return eventCount;
     }
 
-    public void setRaceCount(Integer raceCount) {
-        this.raceCount = raceCount;
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
     }
 }

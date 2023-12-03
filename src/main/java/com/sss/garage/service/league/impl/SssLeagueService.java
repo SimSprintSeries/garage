@@ -24,23 +24,11 @@ public class SssLeagueService implements LeagueService {
 
     @Override
     public List<League> getAllLeagues() {
-        for (League league : leagueRepository.findAll()) {
-            try {
-                setStartDateAndEventCount(league);
-            } catch (NullPointerException e) {
-                league.setRaceCount(0);
-            }
-        }
         return leagueRepository.findAll();
     }
 
     @Override
     public Optional<League> getLeague(final Long id) {
-        try {
-            setStartDateAndEventCount(leagueRepository.findById(id).orElseThrow());
-        } catch (NullPointerException e) {
-            leagueRepository.findById(id).orElseThrow().setRaceCount(0);
-        }
         return leagueRepository.findById(id);
     }
 
@@ -52,13 +40,6 @@ public class SssLeagueService implements LeagueService {
 
     @Override
     public Page<League> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable) {
-        for (League league : leagueRepository.findAll()) {
-            try {
-                setStartDateAndEventCount(league);
-            } catch (NullPointerException e) {
-                System.out.println("błąd - id " + league.getId());
-            }
-        }
         return leagueRepository.findAllByParams(platform, name, active, pageable);
     }
 
@@ -66,7 +47,7 @@ public class SssLeagueService implements LeagueService {
         LocalDate date = eventRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         league.setStartDate(date.format(formatter));
-        league.setRaceCount(eventRepository.countByLeague(league));
+        league.setEventCount(eventRepository.countByLeague(league));
     }
 
     @Autowired

@@ -2,8 +2,6 @@ package com.sss.garage.data.league;
 
 import com.sss.garage.data.game.GameData;
 
-import java.util.Date;
-
 public class LeagueData {
     private Long id;
     private String name;
@@ -11,7 +9,7 @@ public class LeagueData {
     private String platform;
     private GameData game;
     private String startDate;
-    private Integer raceCount;
+    private Integer eventCount;
 
     public Long getId() {
         return id;
@@ -61,11 +59,11 @@ public class LeagueData {
         this.startDate = startDate;
     }
 
-    public Integer getRaceCount() {
-        return raceCount;
+    public Integer getEventCount() {
+        return eventCount;
     }
 
-    public void setRaceCount(Integer raceCount) {
-        this.raceCount = raceCount;
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
     }
 }

@@ -38,7 +38,7 @@ public class League {
 
     private String startDate;
 
-    private Integer raceCount;
+    private Integer eventCount;
 
     private String banner;
 
@@ -118,12 +118,12 @@ public class League {
         this.startDate = startDate;
     }
 
-    public Integer getRaceCount() {
-        return raceCount;
+    public Integer getEventCount() {
+        return eventCount;
     }
 
-    public void setRaceCount(Integer raceCount) {
-        this.raceCount = raceCount;
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
     }
 
     public String getBanner() {

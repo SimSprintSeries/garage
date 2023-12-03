@@ -3,6 +3,9 @@ package com.sss.garage.dev.initial.data.legacy;
 import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -169,6 +172,15 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
         eventRepository.saveAll(events);
+
+        for (League league : leagueRepository.findAll()) {
+            try {
+                setStartDateAndEventCount(league);
+            } catch (NullPointerException e) {
+                league.setEventCount(0);
+            }
+            leagueRepository.save(league);
+        }
 
         List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getFile(), LegacyRace[].class));
 
@@ -387,6 +399,13 @@ public class LegacyDataImporter {
         return legacyEvents.stream()
                 .filter(g -> id.equals(g.getId()))
                 .findFirst().get();//always exists
+    }
+
+    private void setStartDateAndEventCount(final League league) {
+        LocalDate date = eventRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        league.setStartDate(date.format(formatter));
+        league.setEventCount(eventRepository.countByLeague(league));
     }
 
     private GameFamily newGameFamily(final String name) {
