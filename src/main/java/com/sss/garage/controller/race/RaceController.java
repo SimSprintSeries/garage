@@ -41,11 +41,12 @@ public class RaceController extends SssBaseController {
                                    @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                    @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
                                    @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
+                                   @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId,
                                    @Parameter(description = "Optional completed flag to filter by. True to get only completed events, false to get upcoming, null to get all")
                                                 @RequestParam(value = "completed", required = false) final Boolean completed) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
-        return raceFacade.getRacesPaginated(completed, pageable).map(r -> mapper.map(r, RaceDTO.class));
+        return raceFacade.getRacesPaginated(leagueId, completed, pageable).map(r -> mapper.map(r, RaceDTO.class));
     }
 
     @GetMapping("allRaces")
@@ -62,6 +63,19 @@ public class RaceController extends SssBaseController {
         RaceData raceData = raceFacade.getRace(id);
 
         return mapper.map(raceData, RaceDTO.class);
+    }
+
+    @GetMapping("/event/{id}")
+    @Operation(operationId = "getAllRacesByEvent", summary = "Get all races by event ID")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<RaceDTO> getAllRacesByEvent(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                            @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                            @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
+                                            @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
+                                            @PathVariable final String id) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+
+        return raceFacade.getAllRacesByEvent(id, pageable).map(r -> mapper.map(r, RaceDTO.class));
     }
 
     @PostMapping

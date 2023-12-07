@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.sss.garage.model.event.Event;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.service.game.GameService;
@@ -62,18 +64,18 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public Page<Race> getAllPlayableRaces(final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholder(true, pageable);
+    public Page<Race> getAllPlayableRaces(final League league, final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholderAndLeague(true, league, pageable);
     }
 
     @Override
-    public Page<Race> getCompletedPlayableRaces(final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholderAndStartDateGreaterThan(true, new Date(System.currentTimeMillis()), pageable);
+    public Page<Race> getCompletedPlayableRaces(final League league, final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
     }
 
     @Override
-    public Page<Race> getUncompletedPlayableRaces(final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholderAndStartDateLessThanEqual(true, new Date(System.currentTimeMillis()), pageable);
+    public Page<Race> getUncompletedPlayableRaces(final League league, final Pageable pageable) {
+        return raceRepository.findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
     }
 
     @Override
@@ -84,6 +86,11 @@ public class SssRaceService implements RaceService {
     @Override
     public void deleteRace(final Long id) {
         raceRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Race> getAllRacesByEvent(final Event event, final Pageable pageable) {
+        return raceRepository.findAllByEvent(event, pageable);
     }
 
     @Autowired
