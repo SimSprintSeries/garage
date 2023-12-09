@@ -37,6 +37,8 @@ import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.split.SplitRepository;
+import com.sss.garage.model.track.Track;
+import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
@@ -70,6 +72,9 @@ public class LegacyDataImporter {
     @Value("${legacy.data.dir}/cartable.json")
     private Resource carsResource;
 
+    @Value("${legacy.data.dir}/tracks.json")
+    private Resource tracksResource;
+
     private DiscordUserRepository discordUserRepository;
 
     private DriverRepository driverRepository;
@@ -91,6 +96,8 @@ public class LegacyDataImporter {
     private AccLapRepository accLapRepository;
 
     private CarTableRepository carTableRepository;
+
+    private TrackRepository trackRepository;
 
     ObjectMapper objectMapper;
 
@@ -159,6 +166,20 @@ public class LegacyDataImporter {
                 .collect(Collectors.toSet());
         splitRepository.saveAll(splits);
 
+        List<LegacyTrack> legacyTracks = Arrays.asList(objectMapper.readValue(tracksResource.getFile(), LegacyTrack[].class));
+
+        Set<Track> tracks = legacyTracks.stream()
+                .map(t -> {
+                    final Track track = new Track();
+                    track.setId(t.id);
+                    track.setName(t.name);
+                    track.setCountry(t.country);
+                    track.setCity(t.city);
+                    trackRepository.save(track);
+                    return track;
+                })
+                .collect(Collectors.toSet());
+
         List<LegacyEvent> legacyEvents = Arrays.asList(objectMapper.readValue(eventsResource.getFile(), LegacyEvent[].class));
 
         Set<Event> events = legacyEvents.stream()
@@ -168,6 +189,7 @@ public class LegacyDataImporter {
                     event.setStartDate(e.starts);
                     event.setSprite(e.country);
                     event.setLeague(findLeagueByLegacyId(e.league_id, leagues, legacyLeagues));
+                    event.setTrack(findTrackByLegacyId(e.track_id, tracks, legacyTracks));
                     return event;
                 })
                 .collect(Collectors.toSet());
@@ -408,6 +430,16 @@ public class LegacyDataImporter {
         league.setEventCount(eventRepository.countByLeague(league));
     }
 
+    private static Track findTrackByLegacyId(final Long id, final Set<Track> tracks, final List<LegacyTrack> legacyTracks) {
+        LegacyTrack legacyTrack = legacyTracks.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().get();
+
+        return tracks.stream()
+                .filter(l -> l.getName().equals(legacyTrack.name))
+                .findFirst().get();
+    }
+
     private GameFamily newGameFamily(final String name) {
         final GameFamily gameFamily = new GameFamily();
         gameFamily.setName(name);
@@ -507,5 +539,10 @@ public class LegacyDataImporter {
     @Autowired
     public void setCarTableRepository(final CarTableRepository carTableRepository) {
         this.carTableRepository = carTableRepository;
+    }
+
+    @Autowired
+    public void setTrackRepository(final TrackRepository trackRepository) {
+        this.trackRepository = trackRepository;
     }
 }

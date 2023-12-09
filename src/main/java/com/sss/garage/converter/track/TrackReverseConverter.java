@@ -16,6 +16,7 @@ public class TrackReverseConverter extends BaseConverter implements Converter<Tr
         target.setId(source.getId());
         target.setName(source.getName());
         target.setCountry(source.getCountry());
+        target.setCity(source.getCity());
 
         return target;
     }

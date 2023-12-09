@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "name": "Ahvenisto Race Circuit",
+    "country": "FI",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": 2,
+    "name": "Autodromo Nazionale di Monza",
+    "country": "IT",
+    "city": "Monza"
+  },
+  {
+    "id": 3,
+    "name": "Bahrain International Circuit",
+    "country": "BH",
+    "city": "Sakhir"
+  },
+  {
+    "id": 4,
+    "name": "Barbagallo Raceway",
+    "country": "AU",
+    "city": "Neerabup"
+  },
+  {
+    "id": 5,
+    "name": "Brands Hatch",
+    "country": "GB",
+    "city": "West Kingsdown"
+  },
+  {
+    "id": 6,
+    "name": "Cadwell Park",
+    "country": "GB",
+    "city": "Lincolnshire"
+  },
+  {
+    "id": 7,
+    "name": "Circuit de Barcelona-Catalunya",
+    "country": "ES",
+    "city": "Montmeló"
+  },
+  {
+    "id": 8,
+    "name": "Circuit de la Sarthe",
+    "country": "FR",
+    "city": "Le Mans"
+  },
+  {
+    "id": 9,
+    "name": "Circuit de Spa-Francorchamps",
+    "country": "BE",
+    "city": "Stavelot"
+  },
+  {
+    "id": 10,
+    "name": "Circuit Paul Ricard",
+    "country": "FR",
+    "city": "Le Castellet"
+  },
+  {
+    "id": 11,
+    "name": "Circuit Zandvoort",
+    "country": "NL",
+    "city": "Zandvoort"
+  },
+  {
+    "id": 12,
+    "name": "Daytona International Speedway",
+    "country": "US",
+    "city": "Daytona Beach "
+  },
+  {
+    "id": 13,
+    "name": "Donington Park",
+    "country": "GB",
+    "city": "Castle Donington"
+  },
+  {
+    "id": 14,
+    "name": "Sydney Motorsport Park",
+    "country": "AU",
+    "city": "Eastern Creek"
+  },
+  {
+    "id": 15,
+    "name": "Fuji International Speedway",
+    "country": "JP",
+    "city": "Oyama"
+  },
+  {
+    "id": 16,
+    "name": "Yas Marina Circuit",
+    "country": "AE",
+    "city": "Abu Zabi"
+  },
+  {
+    "id": 17,
+    "name": "Jeddah Corniche Circuit",
+    "country": "SA",
+    "city": "Dżudda"
+  },
+  {
+    "id": 18,
+    "name": "Albert Park Circuit",
+    "country": "AU",
+    "city": "Melbourne"
+  },
+  {
+    "id": 19,
+    "name": "Red Bull Ring",
+    "country": "AT",
+    "city": "Spielberg"
+  },
+  {
+    "id": 20,
+    "name": "Baku City Circuit",
+    "country": "AZ",
+    "city": "Baku"
+  },
+  {
+    "id": 21,
+    "name": "Autódromo José Carlos Pace",
+    "country": "BR",
+    "city": "Sao Paulo"
+  },
+  {
+    "id": 22,
+    "name": "Shanghai International Circuit",
+    "country": "CN",
+    "city": "Szanghaj"
+  },
+  {
+    "id": 23,
+    "name": "Nürburgring",
+    "country": "DE",
+    "city": "Nürburg"
+  },
+  {
+    "id": 24,
+    "name": "Autodromo Enzo e Dino Ferrari",
+    "country": "IT",
+    "city": "Imola"
+  },
+  {
+    "id": 25,
+    "name": "Suzuka International Racing Course",
+    "country": "JP",
+    "city": "Suzuka"
+  },
+  {
+    "id": 26,
+    "name": "Circuit Gilles Villeneuve",
+    "country": "CA",
+    "city": "Montreal"
+  },
+  {
+    "id": 27,
+    "name": "Losail International Circuit",
+    "country": "QA",
+    "city": "Lusajl"
+  },
+  {
+    "id": 28,
+    "name": "Las Vegas Strip Circuit",
+    "country": "US",
+    "city": "Las Vegas"
+  },
+  {
+    "id": 29,
+    "name": "Autodromo Hermanos Rodriguez",
+    "country": "MX",
+    "city": "Meksyk"
+  },
+  {
+    "id": 30,
+    "name": "Miami International Autodrome",
+    "country": "US",
+    "city": "Miami"
+  },
+  {
+    "id": 31,
+    "name": "Circuit de Monaco",
+    "country": "MC",
+    "city": "Monte Carlo"
+  },
+  {
+    "id": 32,
+    "name": "Hockenheimring",
+    "country": "DE",
+    "city": "Hockenheim"
+  },
+  {
+    "id": 33,
+    "name": "Tor Poznań",
+    "country": "PL",
+    "city": "Poznań"
+  },
+  {
+    "id": 34,
+    "name": "Autódromo Internacional do Algarve",
+    "country": "PT",
+    "city": "Portimao"
+  },
+  {
+    "id": 35,
+    "name": "Sochi Autodrom",
+    "country": "RU",
+    "city": "Soczi"
+  },
+  {
+    "id": 36,
+    "name": "Marina Bay Street Circuit",
+    "country": "SG",
+    "city": "Singapur"
+  },
+  {
+    "id": 37,
+    "name": "Mugello Circuit",
+    "country": "IT",
+    "city": "Mugello"
+  },
+  {
+    "id": 38,
+    "name": "Circuit of the Americas",
+    "country": "US",
+    "city": "Austin"
+  },
+  {
+    "id": 39,
+    "name": "Hungaroring",
+    "country": "HU",
+    "city": "Mogyoród"
+  },
+  {
+    "id": 40,
+    "name": "Silverstone Circuit",
+    "country": "GB",
+    "city": "Silverstone"
+  },
+  {
+    "id": 41,
+    "name": "Hanoi Street Circuit",
+    "country": "VN",
+    "city": "Hanoi"
+  },
+  {
+    "id": 42,
+    "name": "Automotodrom Grobnik",
+    "country": "HR",
+    "city": "Čavle"
+  },
+  {
+    "id": 43,
+    "name": "Kyalami",
+    "country": "ZA",
+    "city": "Johannesburg"
+  },
+  {
+    "id": 44,
+    "name": "Laguna Seca Raceway",
+    "country": "US",
+    "city": "Monterey"
+  },
+  {
+    "id": 45,
+    "name": "Lausitzring",
+    "country": "DE",
+    "city": "Klettwitz"
+  },
+  {
+    "id": 46,
+    "name": "Guia Circuit",
+    "country": "HK",
+    "city": "Makau"
+  },
+  {
+    "id": 47,
+    "name": "Misano World Circuit",
+    "country": "IT",
+    "city": "Misano Adriatico"
+  },
+  {
+    "id": 48,
+    "name": "New Jersey Motorsports Park",
+    "country": "US",
+    "city": "Millville"
+  },
+  {
+    "id": 49,
+    "name": "Nürburgring Nordschleife",
+    "country": "DE",
+    "city": "Nürburg"
+  },
+  {
+    "id": 50,
+    "name": "Motorsport Arena Oschersleben",
+    "country": "DE",
+    "city": "Oschersleben"
+  },
+  {
+    "id": 51,
+    "name": "Okayama International Circuit",
+    "country": "JP",
+    "city": "Takimiya"
+  },
+  {
+    "id": 52,
+    "name": "Oulton Park",
+    "country": "GB",
+    "city": "Little Budworth"
+  },
+  {
+    "id": 53,
+    "name": "Queensland Raceway",
+    "country": "AU",
+    "city": "Willowbank"
+  },
+  {
+    "id": 54,
+    "name": "Riverside International Raceway",
+    "country": "US",
+    "city": "Moreno Valley"
+  },
+  {
+    "id": 55,
+    "name": "Road Atlanta",
+    "country": "US",
+    "city": "Braselton"
+  },
+  {
+    "id": 56,
+    "name": "Sepang International Circuit",
+    "country": "MY",
+    "city": "Sepang"
+  },
+  {
+    "id": 57,
+    "name": "Slovakia Ring",
+    "country": "SK",
+    "city": "Orechová Potôň"
+  },
+  {
+    "id": 58,
+    "name": "Snetterton Circuit",
+    "country": "GB",
+    "city": "Snetterton"
+  },
+  {
+    "id": 59,
+    "name": "Watkins Glen International",
+    "country": "US",
+    "city": "Watkins Glen"
+  },
+  {
+    "id": 60,
+    "name": "Circuit Zolder",
+    "country": "BE",
+    "city": "Heusden-Zolder"
+  }
+]
