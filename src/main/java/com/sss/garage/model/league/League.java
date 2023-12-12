@@ -1,5 +1,6 @@
 package com.sss.garage.model.league;
 
+import com.sss.garage.model.pointcategory.PointCategory;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -43,6 +44,9 @@ public class League {
     private String banner;
 
     private String logo;
+
+    @ManyToOne
+    private PointCategory category;
 
 
     public Long getId() {
@@ -140,5 +144,13 @@ public class League {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public PointCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(PointCategory category) {
+        this.category = category;
     }
 }

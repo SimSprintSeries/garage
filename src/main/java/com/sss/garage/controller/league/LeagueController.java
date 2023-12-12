@@ -64,8 +64,8 @@ public class LeagueController extends SssBaseController {
                                                @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
                                                @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
-                                               @Parameter(description = "Optional track name to filter by") @RequestParam(value = "platform", required = false) final String platform,
-                                               @Parameter(description = "Optional track name to filter by") @RequestParam(value = "name", required = false) final String name,
+                                               @Parameter(description = "Optional platform name to filter by") @RequestParam(value = "platform", required = false) final String platform,
+                                               @Parameter(description = "Optional league name to filter by") @RequestParam(value = "name", required = false) final String name,
                                                @Parameter(description = "Optional active flag to filter by - true returns active leagues, false returns non-active, null returns all")
                                                    @RequestParam(value = "active", required = false) final Boolean active) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
