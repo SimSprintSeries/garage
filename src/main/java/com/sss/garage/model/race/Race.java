@@ -6,11 +6,12 @@ import java.util.Set;
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.penalty.Penalty;
+import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 
-import com.sss.garage.model.track.Track;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -53,6 +54,9 @@ public class Race extends Event {
 
     @OneToMany(mappedBy = "race")
     private List<Penalty> penalties;
+
+    @Enumerated
+    private RacePointType pointType;
 
     public Split getSplit() {
         return split;
@@ -132,5 +136,13 @@ public class Race extends Event {
 
     public void setPenalties(List<Penalty> penalties) {
         this.penalties = penalties;
+    }
+
+    public RacePointType getPointType() {
+        return pointType;
+    }
+
+    public void setPointType(final RacePointType racePointType) {
+        this.pointType = racePointType;
     }
 }
