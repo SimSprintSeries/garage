@@ -31,6 +31,10 @@ public class WebConstants {
 
     public static final String POINT_POSITION_ENDPOINT = "/position";
 
+    public static final String ENTRY_ENDPOINT = "/entry";
+
+    public static final String TEAM_ENDPOINT = "/team";
+
     public static final String NON_ACCESSIBLE_PATH="/JEBAC_MONTREYA";
     public static final String AUTHORIZATION_HEADER_BEARER_PREFIX="Bearer ";
     public static final String AUTHENTICATION_TOKEN_CHANGED_HEADER_NAME="sss-auth-token-replacement";

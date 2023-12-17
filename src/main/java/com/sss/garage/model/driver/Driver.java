@@ -1,5 +1,6 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.penalty.Penalty;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
@@ -40,6 +41,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private List<Penalty> penalties;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Entry> entries;
 
 
     public Long getId() {
@@ -104,5 +108,13 @@ public class Driver {
 
     public void setPenalties(List<Penalty> penalties) {
         this.penalties = penalties;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
     }
 }
