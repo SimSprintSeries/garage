@@ -22,8 +22,8 @@ public class RaceResultReverseConverter extends BaseConverter implements Convert
         target.setFastestLap(source.getFastestLap());
         target.setFinishPosition(source.getFinishPosition());
         target.setPolePosition(source.getPolePosition());
-        target.setDriver(getConversionService().convert(source.getDriverData(), Driver.class));
-        target.setRace(getConversionService().convert(source.getRaceData(), Race.class));
+        target.setDriver(getConversionService().convert(source.getDriver(), Driver.class));
+        target.setRace(getConversionService().convert(source.getRace(), Race.class));
 
         return target;
     }

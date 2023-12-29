@@ -68,19 +68,19 @@ public class RaceResultData {
         this.fastestLap = fastestLap;
     }
 
-    public DriverData getDriverData() {
+    public DriverData getDriver() {
         return driverData;
     }
 
-    public void setDriverData(DriverData driverData) {
+    public void setDriver(DriverData driverData) {
         this.driverData = driverData;
     }
 
-    public RaceData getRaceData() {
+    public RaceData getRace() {
         return raceData;
     }
 
-    public void setRaceData(RaceData raceData) {
+    public void setRace(RaceData raceData) {
         this.raceData = raceData;
     }
 }

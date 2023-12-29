@@ -25,19 +25,19 @@ public class EntryDTO {
         this.id = id;
     }
 
-    public SimpleDriverDTO getDriverDTO() {
+    public SimpleDriverDTO getDriver() {
         return driverDTO;
     }
 
-    public void setDriverDTO(SimpleDriverDTO driverDTO) {
+    public void setDriver(SimpleDriverDTO driverDTO) {
         this.driverDTO = driverDTO;
     }
 
-    public Set<TeamDTO> getTeamDTOS() {
+    public Set<TeamDTO> getTeam() {
         return teamDTOS;
     }
 
-    public void setTeamDTOS(Set<TeamDTO> teamDTOS) {
+    public void setTeam(Set<TeamDTO> teamDTOS) {
         this.teamDTOS = teamDTOS;
     }
 
@@ -49,11 +49,11 @@ public class EntryDTO {
         this.preferredPartner = preferredPartner;
     }
 
-    public GameDTO getGameDTO() {
+    public GameDTO getGame() {
         return gameDTO;
     }
 
-    public void setGameDTO(GameDTO gameDTO) {
+    public void setGame(GameDTO gameDTO) {
         this.gameDTO = gameDTO;
     }
 }

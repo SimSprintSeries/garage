@@ -18,11 +18,11 @@ public class EntryConverter extends BaseConverter implements Converter<Entry, En
         EntryData data = new EntryData();
 
         data.setId(source.getId());
-        data.setDriverData(getConversionService().convert(source.getDriver(), DriverData.class));
-        data.setTeamData(source.getTeams().stream().map(t -> getConversionService().convert(t, TeamData.class))
+        data.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
+        data.setTeam(source.getTeams().stream().map(t -> getConversionService().convert(t, TeamData.class))
                 .collect(Collectors.toSet()));
         data.setPreferredPartner(source.getPreferredPartner());
-        data.setGameData(getConversionService().convert(source.getGame(), GameData.class));
+        data.setGame(getConversionService().convert(source.getGame(), GameData.class));
 
         return data;
     }

@@ -62,7 +62,7 @@ public class RaceResultController extends SssBaseController {
     @Operation(operationId = "getRaceResultsPaginated", summary = "Get all race results paginated")
     public Page<RaceResultDTO> getRaceResultsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                        @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                                       @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                                       @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "finishPosition") final String sort,
                                                        @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
                                                        @Parameter(description = "Optional finish position to filter by") @RequestParam(value = "finishPosition", required = false) final String finishPosition,
                                                        @Parameter(description = "Optional pole position flag to filter by - true returns pole position holders for every race, false returns opposite, null returns all")

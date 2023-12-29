@@ -68,19 +68,19 @@ public class RaceResultDTO {
         this.fastestLap = fastestLap;
     }
 
-    public SimpleDriverDTO getDriverDTO() {
+    public SimpleDriverDTO getDriver() {
         return driverDTO;
     }
 
-    public void setDriverDTO(SimpleDriverDTO driverDTO) {
+    public void setDriver(SimpleDriverDTO driverDTO) {
         this.driverDTO = driverDTO;
     }
 
-    public RaceDTO getRaceDTO() {
+    public RaceDTO getRace() {
         return raceDTO;
     }
 
-    public void setRaceDTO(RaceDTO raceDTO) {
+    public void setRace(RaceDTO raceDTO) {
         this.raceDTO = raceDTO;
     }
 }

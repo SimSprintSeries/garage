@@ -32,19 +32,19 @@ public class TeamData {
         this.name = name;
     }
 
-    public GameData getGameData() {
+    public GameData getGame() {
         return gameData;
     }
 
-    public void setGameData(GameData gameData) {
+    public void setGame(GameData gameData) {
         this.gameData = gameData;
     }
 
-    public Set<EntryData> getEntryData() {
+    public Set<EntryData> getEntry() {
         return entryData;
     }
 
-    public void setEntryData(Set<EntryData> entryData) {
+    public void setEntry(Set<EntryData> entryData) {
         this.entryData = entryData;
     }
 

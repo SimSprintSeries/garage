@@ -25,19 +25,19 @@ public class EntryData {
         this.id = id;
     }
 
-    public DriverData getDriverData() {
+    public DriverData getDriver() {
         return driverData;
     }
 
-    public void setDriverData(DriverData driverData) {
+    public void setDriver(DriverData driverData) {
         this.driverData = driverData;
     }
 
-    public Set<TeamData> getTeamData() {
+    public Set<TeamData> getTeam() {
         return teamData;
     }
 
-    public void setTeamData(Set<TeamData> teamData) {
+    public void setTeam(Set<TeamData> teamData) {
         this.teamData = teamData;
     }
 
@@ -49,11 +49,11 @@ public class EntryData {
         this.preferredPartner = preferredPartner;
     }
 
-    public GameData getGameData() {
+    public GameData getGame() {
         return gameData;
     }
 
-    public void setGameData(GameData gameData) {
+    public void setGame(GameData gameData) {
         this.gameData = gameData;
     }
 }

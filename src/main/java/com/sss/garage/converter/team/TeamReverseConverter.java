@@ -18,8 +18,8 @@ public class TeamReverseConverter extends BaseConverter implements Converter<Tea
 
         target.setId(source.getId());
         target.setName(source.getName());
-        target.setGame(getConversionService().convert(source.getGameData(), Game.class));
-        target.setEntries(source.getEntryData().stream().map(e -> getConversionService().convert(e, Entry.class))
+        target.setGame(getConversionService().convert(source.getGame(), Game.class));
+        target.setEntries(source.getEntry().stream().map(e -> getConversionService().convert(e, Entry.class))
                 .collect(Collectors.toSet()));
         target.setColour(source.getColour());
 

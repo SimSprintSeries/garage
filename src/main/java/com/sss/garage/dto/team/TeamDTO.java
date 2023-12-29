@@ -32,19 +32,19 @@ public class TeamDTO {
         this.name = name;
     }
 
-    public GameDTO getGameDTO() {
+    public GameDTO getGame() {
         return gameDTO;
     }
 
-    public void setGameDTO(GameDTO gameDTO) {
+    public void setGame(GameDTO gameDTO) {
         this.gameDTO = gameDTO;
     }
 
-    public Set<EntryDTO> getEntryDTOS() {
+    public Set<EntryDTO> getEntry() {
         return entryDTOS;
     }
 
-    public void setEntryDTOS(Set<EntryDTO> entryDTOS) {
+    public void setEntry(Set<EntryDTO> entryDTOS) {
         this.entryDTOS = entryDTOS;
     }
 
