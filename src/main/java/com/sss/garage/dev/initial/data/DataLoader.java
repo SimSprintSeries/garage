@@ -53,7 +53,16 @@ public class DataLoader {
     }
 
     private void setupPointsDictionaries() {
-        setupF1GPPoints();
+        setupF1GPPoints(); // also other AC races
+        setupF2Feature2019Points(); // also AC F3
+        setupF2Feature2022Points();
+        setupF2Sprint2019Points(); // also AC F3
+        setupF2Sprint2022Points();
+        setupACCPoints(); // also AC GT2
+        setupACIMSAPoints();
+        setupACWTCRRacePoints();
+        setupACWTCRQualiPoints();
+        setupAC2020QualiPoints();
     }
 
     private void setupF1GPPoints() {
@@ -67,8 +76,88 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
-        final RacePointDictionary f1GPPoints = new RacePointDictionary(RacePointType.F1_GP, points, true, 1);
+        final RacePointDictionary f1GPPoints = new RacePointDictionary(RacePointType.F1_GP, points, true, 1, false, 0);
         racePointDictionaryRepository.save(f1GPPoints);
     }
 
+    private void setupF2Feature2019Points() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.F2_FEATURE_2019)) {
+            return;
+        }
+        List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
+        final RacePointDictionary f2Feature2019Points = new RacePointDictionary(RacePointType.F2_FEATURE_2019, points, true, 2, true, 4);
+        racePointDictionaryRepository.save(f2Feature2019Points);
+    }
+
+    private void setupF2Feature2022Points() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.F2_FEATURE_2022)) {
+            return;
+        }
+        List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
+        final RacePointDictionary f2Feature2022Points = new RacePointDictionary(RacePointType.F2_FEATURE_2022, points, true, 1, true, 2);
+        racePointDictionaryRepository.save(f2Feature2022Points);
+    }
+
+    private void setupF2Sprint2019Points() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.F2_SPRINT_2019)) {
+            return;
+        }
+        List<Integer> points = List.of(15, 12, 10, 8, 6, 4, 2, 1);
+        final RacePointDictionary f2Sprint2019Points = new RacePointDictionary(RacePointType.F2_SPRINT_2019, points, true, 2, false, 0);
+        racePointDictionaryRepository.save(f2Sprint2019Points);
+    }
+
+    private void setupF2Sprint2022Points() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.F2_SPRINT_2022)) {
+            return;
+        }
+        List<Integer> points = List.of(10, 8, 6, 5, 4, 3, 2, 1);
+        final RacePointDictionary f2Sprint2022Points = new RacePointDictionary(RacePointType.F2_SPRINT_2022, points, true, 1, false, 0);
+        racePointDictionaryRepository.save(f2Sprint2022Points);
+    }
+
+    private void setupACCPoints() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.ACC)) {
+            return;
+        }
+        List<Integer> points = List.of(32, 27, 23, 20, 18, 16, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+        final RacePointDictionary ACCPoints = new RacePointDictionary(RacePointType.ACC, points, true, 3, true, 3);
+        racePointDictionaryRepository.save(ACCPoints);
+    }
+
+    private void setupACIMSAPoints() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.AC_IMSA)) {
+            return;
+        }
+        List<Integer> points = List.of(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+        final RacePointDictionary ACIMSAPoints = new RacePointDictionary(RacePointType.AC_IMSA, points, false, 0, false, 0);
+        racePointDictionaryRepository.save(ACIMSAPoints);
+    }
+
+    private void setupACWTCRRacePoints() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.AC_WTCR_RACE)) {
+            return;
+        }
+        List<Integer> points = List.of(25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+        final RacePointDictionary ACWTCRRacePoints = new RacePointDictionary(RacePointType.AC_WTCR_RACE, points, false, 0, false, 0);
+        racePointDictionaryRepository.save(ACWTCRRacePoints);
+    }
+
+    private void setupACWTCRQualiPoints() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.AC_WTCR_QUALI)) {
+            return;
+        }
+        List<Integer> points = List.of(5, 4, 3, 2, 1);
+        final RacePointDictionary ACWTCRQualiPoints = new RacePointDictionary(RacePointType.AC_WTCR_QUALI, points, false, 0, false, 0);
+        racePointDictionaryRepository.save(ACWTCRQualiPoints);
+    }
+
+    private void setupAC2020QualiPoints() {
+        if(racePointDictionaryRepository.existsByRacePointType(RacePointType.AC_2020_QUALI)) {
+            return;
+        }
+        List<Integer> points = List.of(3, 2, 1);
+        final RacePointDictionary AC2020QualiPoints = new RacePointDictionary(RacePointType.AC_2020_QUALI, points, false, 0, false, 0);
+        racePointDictionaryRepository.save(AC2020QualiPoints);
+    }
 }

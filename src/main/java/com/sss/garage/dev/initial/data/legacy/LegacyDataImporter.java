@@ -33,6 +33,8 @@ import com.sss.garage.model.league.League;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
+import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
+import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.model.split.Split;
@@ -42,6 +44,7 @@ import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
+import org.hibernate.Hibernate;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -98,6 +101,8 @@ public class LegacyDataImporter {
     private CarTableRepository carTableRepository;
 
     private TrackRepository trackRepository;
+
+    private RacePointDictionaryRepository racePointDictionaryRepository;
 
     ObjectMapper objectMapper;
 
@@ -213,6 +218,7 @@ public class LegacyDataImporter {
                     race.setEvent(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues));
                     race.setStartDate(findLegacyEventById(r.eventid, legacyEvents).starts);
                     race.setSplit(findSplitByLeagueId(race.getEvent().getLeague().getId(), splits, leagues, legacyLeagues));
+                    race.setPointType(findRacePointType(race));
                     return race;
                 })
                 .collect(Collectors.toSet());
@@ -250,6 +256,7 @@ public class LegacyDataImporter {
                     raceResult.setFinishPosition(Math.toIntExact(r.position));
                     raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
+                    //raceResult.setPointsForPosition(findPointsForPosition(raceResult));
                     return raceResult;
                 })
                 .collect(Collectors.toSet());
@@ -455,6 +462,55 @@ public class LegacyDataImporter {
         return other;
     }
 
+    private RacePointType findRacePointType(final Race race) {
+        RacePointType racePointType = RacePointType.F1_GP;
+
+        League league = race.getEvent().getLeague();
+        Game game = league.getGame();
+
+        if(game.getName().equals("F2 2019") || game.getName().equals("F2 2020")
+                || (game.getName().equals("AC") && league.getName().contains("F3"))) {
+            if(race.getName().equals("Sprint")) {
+                racePointType = RacePointType.F2_SPRINT_2019;
+            } else {
+                racePointType = RacePointType.F2_FEATURE_2019;
+            }
+        } else if (game.getName().equals("F2 22") || game.getName().equals("F2 23")) {
+            if(race.getName().equals("Sprint")) {
+                racePointType = RacePointType.F2_SPRINT_2022;
+            } else {
+                racePointType = RacePointType.F2_FEATURE_2022;
+            }
+        } else if (game.getName().equals("ACC") || league.getName().contains("GT2")) {
+            racePointType = RacePointType.ACC;
+        } else if (game.getName().equals("AC")) {
+            if(league.getName().contains("IMSA") && race.getName().contains("Wyścig")) {
+                racePointType = RacePointType.AC_IMSA;
+            } else if (league.getName().equals("Assetto Corsa - Wiosna 2020")) {
+                if(race.getName().equals("Kwalifikacje")) {
+                    racePointType = RacePointType.AC_2020_QUALI;
+                }
+            } else if (league.getName().contains("WTCR")) {
+                if(race.getName().equals("Kwalifikacje")) {
+                    racePointType = RacePointType.AC_WTCR_QUALI;
+                } else {
+                    racePointType = RacePointType.AC_WTCR_RACE;
+                }
+            }
+        }
+        return racePointType;
+    }
+
+    /*
+    private Integer findPointsForPosition(final RaceResult raceResult) {
+
+        System.out.println(raceResult.getDriver().getName() + raceResult.getRace().getName() + raceResult.getFinishPosition());
+        System.out.println(racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType()).orElseThrow().pointsForPosition(1));
+        return racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
+                .orElseThrow().pointsForPosition(raceResult.getFinishPosition());
+    }
+    */
+
     // Konwersja JSONa - dodanie cudzysłowów do wartości tekstowych w stringu, zmiana z "=" na ":", usunięcie problematycznych i niepotrzebnych pól
     private String convertJsonString(final String oldValue) {
         String updated = oldValue.replaceAll("teamName=, ", "").replaceAll(", playerId=S.................", "")
@@ -544,5 +600,10 @@ public class LegacyDataImporter {
     @Autowired
     public void setTrackRepository(final TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
+    }
+
+    @Autowired
+    public void setRacePointDictionaryRepository(RacePointDictionaryRepository racePointDictionaryRepository) {
+        this.racePointDictionaryRepository = racePointDictionaryRepository;
     }
 }

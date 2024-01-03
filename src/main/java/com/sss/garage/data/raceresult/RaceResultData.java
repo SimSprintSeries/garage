@@ -20,6 +20,8 @@ public class RaceResultData {
 
     private RaceData raceData;
 
+    private Integer pointsForPosition;
+
     public Long getId() {
         return id;
     }
@@ -82,5 +84,13 @@ public class RaceResultData {
 
     public void setRace(RaceData raceData) {
         this.raceData = raceData;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
     }
 }

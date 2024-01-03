@@ -20,6 +20,8 @@ public class RaceResultDTO {
 
     private RaceDTO raceDTO;
 
+    private Integer pointsForPosition;
+
     public Long getId() {
         return id;
     }
@@ -82,5 +84,13 @@ public class RaceResultDTO {
 
     public void setRace(RaceDTO raceDTO) {
         this.raceDTO = raceDTO;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
     }
 }

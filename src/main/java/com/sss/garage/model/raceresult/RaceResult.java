@@ -37,6 +37,8 @@ public class RaceResult {
     @ManyToOne
     private Race race;
 
+    private Integer pointsForPosition;
+
     public Long getId() {
         return id;
     }
@@ -100,5 +102,13 @@ public class RaceResult {
 
     public void setDsq(@NotNull final Boolean dsq) {
         this.dsq = dsq;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
     }
 }
