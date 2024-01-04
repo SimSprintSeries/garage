@@ -2,6 +2,7 @@ package com.sss.garage.dto.raceresult;
 
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.race.RaceDTO;
+import com.sss.garage.dto.team.TeamDTO;
 
 public class RaceResultDTO {
     private Long id;
@@ -19,6 +20,8 @@ public class RaceResultDTO {
     private SimpleDriverDTO driverDTO;
 
     private RaceDTO raceDTO;
+
+    private TeamDTO teamDTO;
 
     private Integer pointsForPosition;
 
@@ -84,6 +87,14 @@ public class RaceResultDTO {
 
     public void setRace(RaceDTO raceDTO) {
         this.raceDTO = raceDTO;
+    }
+
+    public TeamDTO getTeam() {
+        return teamDTO;
+    }
+
+    public void setTeam(TeamDTO teamDTO) {
+        this.teamDTO = teamDTO;
     }
 
     public Integer getPointsForPosition() {

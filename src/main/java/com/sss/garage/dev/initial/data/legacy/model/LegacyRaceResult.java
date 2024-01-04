@@ -12,6 +12,7 @@ public class LegacyRaceResult {
     public Long raceid;
     public Long relatedleague;
     public String racename;
+    public Long teamid;
 
     public Long getId() {
         return position;
@@ -99,5 +100,13 @@ public class LegacyRaceResult {
 
     public void setRacename(final String racename) {
         this.racename = racename;
+    }
+
+    public Long getTeamid() {
+        return teamid;
+    }
+
+    public void setRaceid(Long raceid) {
+        this.raceid = raceid;
     }
 }

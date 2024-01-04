@@ -2,6 +2,7 @@ package com.sss.garage.model.team;
 
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.game.Game;
+import com.sss.garage.model.raceresult.RaceResult;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -19,6 +20,9 @@ public class Team {
 
     @ManyToMany
     private Set<Entry> entries;
+
+    @OneToMany(mappedBy = "team")
+    private Set<RaceResult> raceResults;
 
     private String colour;
 
@@ -60,5 +64,13 @@ public class Team {
 
     public void setColour(String colour) {
         this.colour = colour;
+    }
+
+    public Set<RaceResult> getRaceResults() {
+        return raceResults;
+    }
+
+    public void setRaceResults(Set<RaceResult> raceResults) {
+        this.raceResults = raceResults;
     }
 }

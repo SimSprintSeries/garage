@@ -39,6 +39,8 @@ import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.split.SplitRepository;
+import com.sss.garage.model.team.Team;
+import com.sss.garage.model.team.TeamRepository;
 import com.sss.garage.model.track.Track;
 import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
@@ -78,6 +80,9 @@ public class LegacyDataImporter {
     @Value("${legacy.data.dir}/tracks.json")
     private Resource tracksResource;
 
+    @Value("${legacy.data.dir}/teams.json")
+    private Resource teamsResource;
+
     private DiscordUserRepository discordUserRepository;
 
     private DriverRepository driverRepository;
@@ -101,6 +106,8 @@ public class LegacyDataImporter {
     private CarTableRepository carTableRepository;
 
     private TrackRepository trackRepository;
+
+    private TeamRepository teamRepository;
 
     private RacePointDictionaryRepository racePointDictionaryRepository;
 
@@ -245,6 +252,19 @@ public class LegacyDataImporter {
                         });
         raceRepository.saveAll(races);
 
+        List<LegacyTeam> legacyTeams = Arrays.asList(objectMapper.readValue(teamsResource.getFile(), LegacyTeam[].class));
+        Set<Team> teams = legacyTeams.stream()
+                .map(t -> {
+                    final Team team = new Team();
+                    team.setId(t.id);
+                    team.setName(t.name);
+                    team.setColour(t.colour);
+                    teamRepository.save(team);
+                    return team;
+                })
+                .collect(Collectors.toSet());
+        //teamRepository.saveAll(teams);
+
         List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getFile(), LegacyRaceResult[].class));
         Set<RaceResult> raceResults = legacyRaceResults.stream()
                 .map(r -> {
@@ -255,12 +275,15 @@ public class LegacyDataImporter {
                     raceResult.setDsq(r.dsq);
                     raceResult.setFinishPosition(Math.toIntExact(r.position));
                     raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
+                    raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
+
                     //raceResult.setPointsForPosition(findPointsForPosition(raceResult));
+                    raceResultRepository.save(raceResult);
                     return raceResult;
                 })
                 .collect(Collectors.toSet());
-        raceResultRepository.saveAll(raceResults);
+        //raceResultRepository.saveAll(raceResults);
 
         String lapsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("laps").toString());
 
@@ -401,6 +424,16 @@ public class LegacyDataImporter {
                 .filter(r -> r.getName().equals(legacyRace.racename) &&
                         (r.getEvent() != null ? r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues)) :
                         r.getParentRaceEvent().getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues))))
+                .findFirst().get();
+    }
+
+    private static Team findTeamByLegacyId(final Long id, final Set<Team> teams, final List<LegacyTeam> legacyTeams) {
+        LegacyTeam legacyTeam = legacyTeams.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().get();
+
+        return teams.stream()
+                .filter(t -> t.getName().equals(legacyTeam.name))
                 .findFirst().get();
     }
 
@@ -600,6 +633,11 @@ public class LegacyDataImporter {
     @Autowired
     public void setTrackRepository(final TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
+    }
+
+    @Autowired
+    public void setTeamRepository(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
     }
 
     @Autowired

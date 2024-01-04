@@ -5,6 +5,7 @@ import com.sss.garage.data.raceresult.RaceResultData;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResult;
+import com.sss.garage.model.team.Team;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ public class RaceResultReverseConverter extends BaseConverter implements Convert
         target.setPolePosition(source.getPolePosition());
         target.setDriver(getConversionService().convert(source.getDriver(), Driver.class));
         target.setRace(getConversionService().convert(source.getRace(), Race.class));
+        target.setTeam(getConversionService().convert(source.getTeam(), Team.class));
 
         return target;
     }

@@ -2,6 +2,7 @@ package com.sss.garage.data.team;
 
 import com.sss.garage.data.entry.EntryData;
 import com.sss.garage.data.game.GameData;
+import com.sss.garage.data.raceresult.RaceResultData;
 
 import java.util.Set;
 
@@ -13,6 +14,8 @@ public class TeamData {
     private GameData gameData;
 
     private Set<EntryData> entryData;
+
+    private Set<RaceResultData> raceResultData;
 
     private String colour;
 
@@ -46,6 +49,14 @@ public class TeamData {
 
     public void setEntry(Set<EntryData> entryData) {
         this.entryData = entryData;
+    }
+
+    public Set<RaceResultData> getRaceResult() {
+        return raceResultData;
+    }
+
+    public void setRaceResult(Set<RaceResultData> raceResultData) {
+        this.raceResultData = raceResultData;
     }
 
     public String getColour() {

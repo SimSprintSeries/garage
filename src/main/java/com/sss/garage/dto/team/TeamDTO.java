@@ -2,6 +2,7 @@ package com.sss.garage.dto.team;
 
 import com.sss.garage.dto.entry.EntryDTO;
 import com.sss.garage.dto.game.GameDTO;
+import com.sss.garage.dto.raceresult.RaceResultDTO;
 
 import java.util.Set;
 
@@ -13,6 +14,8 @@ public class TeamDTO {
     private GameDTO gameDTO;
 
     private Set<EntryDTO> entryDTOS;
+
+    private Set<RaceResultDTO> raceResults;
 
     private String colour;
 
@@ -46,6 +49,14 @@ public class TeamDTO {
 
     public void setEntry(Set<EntryDTO> entryDTOS) {
         this.entryDTOS = entryDTOS;
+    }
+
+    public Set<RaceResultDTO> getRaceResults() {
+        return raceResults;
+    }
+
+    public void setRaceResults(Set<RaceResultDTO> raceResults) {
+        this.raceResults = raceResults;
     }
 
     public String getColour() {

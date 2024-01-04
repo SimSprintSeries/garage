@@ -1,11 +1,10 @@
 package com.sss.garage.model.raceresult;
 
 import com.sss.garage.model.race.Race;
-import com.sss.garage.model.split.Split;
+import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.model.event.Event;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -36,6 +35,9 @@ public class RaceResult {
 
     @ManyToOne
     private Race race;
+
+    @ManyToOne
+    private Team team;
 
     private Integer pointsForPosition;
 
@@ -110,5 +112,13 @@ public class RaceResult {
 
     public void setPointsForPosition(Integer pointsForPosition) {
         this.pointsForPosition = pointsForPosition;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
