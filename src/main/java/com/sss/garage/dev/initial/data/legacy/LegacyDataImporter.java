@@ -263,7 +263,6 @@ public class LegacyDataImporter {
                     return team;
                 })
                 .collect(Collectors.toSet());
-        //teamRepository.saveAll(teams);
 
         List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getFile(), LegacyRaceResult[].class));
         Set<RaceResult> raceResults = legacyRaceResults.stream()
@@ -275,15 +274,12 @@ public class LegacyDataImporter {
                     raceResult.setDsq(r.dsq);
                     raceResult.setFinishPosition(Math.toIntExact(r.position));
                     raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
-                    raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
-
-                    //raceResult.setPointsForPosition(findPointsForPosition(raceResult));
+                    raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
                     raceResultRepository.save(raceResult);
                     return raceResult;
                 })
                 .collect(Collectors.toSet());
-        //raceResultRepository.saveAll(raceResults);
 
         String lapsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("laps").toString());
 
@@ -534,15 +530,10 @@ public class LegacyDataImporter {
         return racePointType;
     }
 
-    /*
     private Integer findPointsForPosition(final RaceResult raceResult) {
-
-        System.out.println(raceResult.getDriver().getName() + raceResult.getRace().getName() + raceResult.getFinishPosition());
-        System.out.println(racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType()).orElseThrow().pointsForPosition(1));
         return racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
                 .orElseThrow().pointsForPosition(raceResult.getFinishPosition());
     }
-    */
 
     // Konwersja JSONa - dodanie cudzysłowów do wartości tekstowych w stringu, zmiana z "=" na ":", usunięcie problematycznych i niepotrzebnych pól
     private String convertJsonString(final String oldValue) {
