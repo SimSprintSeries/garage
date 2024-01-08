@@ -23,12 +23,13 @@ public class RacePointDictionary {
     }
 
     public RacePointDictionary(final RacePointType racePointType, final List<Integer> points,
-                               final Boolean fastestLapScored, final Integer fastestLapPoints,
+                               final Boolean fastestLapScored, final Integer fastestLapPoints, final Boolean fastestLapForTop10,
                                final Boolean polePositionScored, final Integer polePositionPoints) {
         this.racePointType = racePointType;
         this.points = points;
         this.fastestLapScored = fastestLapScored;
         this.fastestLapPoints = fastestLapPoints;
+        this.fastestLapForTop10 = fastestLapForTop10;
         this.polePositionScored = polePositionScored;
         this.polePositionPoints = polePositionPoints;
     }
@@ -47,6 +48,8 @@ public class RacePointDictionary {
     private Boolean fastestLapScored;
 
     private Integer fastestLapPoints;
+
+    private Boolean fastestLapForTop10;
 
     private Boolean polePositionScored;
 
@@ -87,6 +90,14 @@ public class RacePointDictionary {
 
     public void setFastestLapPoints(final Integer fastestLapPoints) {
         this.fastestLapPoints = fastestLapPoints;
+    }
+
+    public Boolean getFastestLapForTop10() {
+        return fastestLapForTop10;
+    }
+
+    public void setFastestLapForTop10(Boolean fastestLapForTop10) {
+        this.fastestLapForTop10 = fastestLapForTop10;
     }
 
     public Boolean getPolePositionScored() {

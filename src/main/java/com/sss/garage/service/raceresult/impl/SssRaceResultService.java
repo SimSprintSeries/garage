@@ -2,7 +2,9 @@ package com.sss.garage.service.raceresult.impl;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.racepointdictionary.RacePointDictionary;
 import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
+import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.raceresult.RaceResultService;
@@ -58,8 +60,19 @@ public class SssRaceResultService implements RaceResultService {
     private void setPointsForPosition() {
         List<RaceResult> raceResults = new ArrayList<>();
         for(RaceResult raceResult : raceResultRepository.findAll()) {
+            RacePointDictionary racePointDictionary = racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
+                    .orElseThrow();
             if(raceResult.getPointsForPosition() == null) {
-                raceResult.setPointsForPosition(findPointsForPosition(raceResult));
+                Integer points = findPointsForPosition(raceResult);
+                if(racePointDictionary.getPolePositionScored() && raceResult.getPolePosition()) {
+                    points = points + racePointDictionary.getPolePositionPoints();
+                }
+                if(racePointDictionary.getFastestLapScored()) {
+                    if(!racePointDictionary.getFastestLapForTop10() || raceResult.getFinishPosition() < 11 && raceResult.getFastestLap()) {
+                        points = points + racePointDictionary.getFastestLapPoints();
+                    }
+                }
+                raceResult.setPointsForPosition(points);
                 raceResults.add(raceResult);
             }
         }

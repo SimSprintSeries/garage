@@ -27,9 +27,7 @@ public class WebConstants {
 
     public static final String EVENT_ENDPOINT = "/event";
 
-    public static final String POINT_CATEGORY_ENDPOINT = "/category";
-
-    public static final String POINT_POSITION_ENDPOINT = "/position";
+    public static final String CLASSIFICATION_ENDPOINT = "/classification";
 
     public static final String ENTRY_ENDPOINT = "/entry";
 

@@ -1,5 +1,6 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.penalty.Penalty;
 import com.sss.garage.model.split.Split;
@@ -44,6 +45,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private List<Entry> entries;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Classification> classifications;
 
 
     public Long getId() {
@@ -116,5 +120,13 @@ public class Driver {
 
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
+    }
+
+    public List<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(List<Classification> classifications) {
+        this.classifications = classifications;
     }
 }

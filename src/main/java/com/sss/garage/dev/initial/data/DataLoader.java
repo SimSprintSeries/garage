@@ -76,7 +76,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
-        final RacePointDictionary f1GPPoints = new RacePointDictionary(RacePointType.F1_GP, points, true, 1, false, 0);
+        final RacePointDictionary f1GPPoints = new RacePointDictionary(RacePointType.F1_GP, points, true, 1, true, false, 0);
         racePointDictionaryRepository.save(f1GPPoints);
     }
 
@@ -85,7 +85,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
-        final RacePointDictionary f2Feature2019Points = new RacePointDictionary(RacePointType.F2_FEATURE_2019, points, true, 2, true, 4);
+        final RacePointDictionary f2Feature2019Points = new RacePointDictionary(RacePointType.F2_FEATURE_2019, points, true, 2, true, true, 4);
         racePointDictionaryRepository.save(f2Feature2019Points);
     }
 
@@ -94,7 +94,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(25, 18, 15, 12, 10, 8, 6, 4, 2, 1);
-        final RacePointDictionary f2Feature2022Points = new RacePointDictionary(RacePointType.F2_FEATURE_2022, points, true, 1, true, 2);
+        final RacePointDictionary f2Feature2022Points = new RacePointDictionary(RacePointType.F2_FEATURE_2022, points, true, 1, true, true, 2);
         racePointDictionaryRepository.save(f2Feature2022Points);
     }
 
@@ -103,7 +103,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(15, 12, 10, 8, 6, 4, 2, 1);
-        final RacePointDictionary f2Sprint2019Points = new RacePointDictionary(RacePointType.F2_SPRINT_2019, points, true, 2, false, 0);
+        final RacePointDictionary f2Sprint2019Points = new RacePointDictionary(RacePointType.F2_SPRINT_2019, points, true, 2, true, false, 0);
         racePointDictionaryRepository.save(f2Sprint2019Points);
     }
 
@@ -112,7 +112,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(10, 8, 6, 5, 4, 3, 2, 1);
-        final RacePointDictionary f2Sprint2022Points = new RacePointDictionary(RacePointType.F2_SPRINT_2022, points, true, 1, false, 0);
+        final RacePointDictionary f2Sprint2022Points = new RacePointDictionary(RacePointType.F2_SPRINT_2022, points, true, 1, true, false, 0);
         racePointDictionaryRepository.save(f2Sprint2022Points);
     }
 
@@ -121,7 +121,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(32, 27, 23, 20, 18, 16, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
-        final RacePointDictionary ACCPoints = new RacePointDictionary(RacePointType.ACC, points, true, 3, true, 3);
+        final RacePointDictionary ACCPoints = new RacePointDictionary(RacePointType.ACC, points, true, 3, false, true, 3);
         racePointDictionaryRepository.save(ACCPoints);
     }
 
@@ -130,7 +130,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
-        final RacePointDictionary ACIMSAPoints = new RacePointDictionary(RacePointType.AC_IMSA, points, false, 0, false, 0);
+        final RacePointDictionary ACIMSAPoints = new RacePointDictionary(RacePointType.AC_IMSA, points, false, 0, false, false, 0);
         racePointDictionaryRepository.save(ACIMSAPoints);
     }
 
@@ -139,7 +139,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
-        final RacePointDictionary ACWTCRRacePoints = new RacePointDictionary(RacePointType.AC_WTCR_RACE, points, false, 0, false, 0);
+        final RacePointDictionary ACWTCRRacePoints = new RacePointDictionary(RacePointType.AC_WTCR_RACE, points, false, 0, false, false, 0);
         racePointDictionaryRepository.save(ACWTCRRacePoints);
     }
 
@@ -148,7 +148,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(5, 4, 3, 2, 1);
-        final RacePointDictionary ACWTCRQualiPoints = new RacePointDictionary(RacePointType.AC_WTCR_QUALI, points, false, 0, false, 0);
+        final RacePointDictionary ACWTCRQualiPoints = new RacePointDictionary(RacePointType.AC_WTCR_QUALI, points, false, 0, false, false, 0);
         racePointDictionaryRepository.save(ACWTCRQualiPoints);
     }
 
@@ -157,7 +157,7 @@ public class DataLoader {
             return;
         }
         List<Integer> points = List.of(3, 2, 1);
-        final RacePointDictionary AC2020QualiPoints = new RacePointDictionary(RacePointType.AC_2020_QUALI, points, false, 0, false, 0);
+        final RacePointDictionary AC2020QualiPoints = new RacePointDictionary(RacePointType.AC_2020_QUALI, points, false, 0, false, false, 0);
         racePointDictionaryRepository.save(AC2020QualiPoints);
     }
 }

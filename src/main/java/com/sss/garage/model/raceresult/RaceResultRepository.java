@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     @Query("SELECT r FROM RaceResult r WHERE (r.finishPosition=:finishPosition OR :finishPosition IS NULL) " +
@@ -57,4 +59,14 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND (s.split=:split OR :split IS NULL)" +
             "AND rr.fastestLap=true")
     Integer countFlByParams(Driver driver, League league, Game game, String split);
+
+    @Query("SELECT rr.driver FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
+            "WHERE (e.league=:league)")
+    List<Driver> findDriversByLeague(League league);
+
+    @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
+            "WHERE (rr.driver=:driver) " +
+            "AND (e.league=:league) " +
+            "GROUP BY rr.driver, e.league")
+    Integer findPointsByDriverAndLeague(Driver driver, League league);
 }

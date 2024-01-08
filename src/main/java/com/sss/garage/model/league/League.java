@@ -1,5 +1,6 @@
 package com.sss.garage.model.league;
 
+import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -43,6 +44,9 @@ public class League {
     private String banner;
 
     private String logo;
+
+    @OneToMany(mappedBy = "league")
+    private Set<Classification> classifications;
 
 
     public Long getId() {
@@ -140,5 +144,13 @@ public class League {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public Set<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(Set<Classification> classifications) {
+        this.classifications = classifications;
     }
 }
