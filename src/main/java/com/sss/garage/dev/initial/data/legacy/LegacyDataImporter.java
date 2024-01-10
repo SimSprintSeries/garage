@@ -497,8 +497,7 @@ public class LegacyDataImporter {
         League league = race.getEvent().getLeague();
         Game game = league.getGame();
 
-        if(game.getName().equals("F2 2019") || game.getName().equals("F2 2020")
-                || (game.getName().equals("AC") && league.getName().contains("F3"))) {
+        if(game.getName().equals("F2 2019") || game.getName().equals("F2 2020")) {
             if(race.getName().equals("Sprint")) {
                 racePointType = RacePointType.F2_SPRINT_2019;
             } else {
@@ -513,7 +512,9 @@ public class LegacyDataImporter {
         } else if (game.getName().equals("ACC") || league.getName().contains("GT2")) {
             racePointType = RacePointType.ACC;
         } else if (game.getName().equals("AC")) {
-            if(league.getName().contains("IMSA") && race.getName().contains("Wyścig")) {
+            if(league.getName().contains("DTM '90") && race.getName().contains("Wyścig")) {
+                racePointType = RacePointType.AC_DTM;
+            } else if(league.getName().contains("IMSA") && race.getName().contains("Wyścig")) {
                 racePointType = RacePointType.AC_IMSA;
             } else if (league.getName().equals("Assetto Corsa - Wiosna 2020")) {
                 if(race.getName().equals("Kwalifikacje")) {
@@ -525,14 +526,31 @@ public class LegacyDataImporter {
                 } else {
                     racePointType = RacePointType.AC_WTCR_RACE;
                 }
+            } else if (league.getName().contains("Praga")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.ACC;
+                } else {
+                    racePointType = RacePointType.AC_PRAGA_R1_RACE_2;
+                }
+            } else if (league.getName().contains("F4")) {
+                if(race.getName().equals("Wyścig 2")) {
+                    racePointType = RacePointType.AC_F4_RACE_2;
+                }
+            } else if(league.getName().contains("Australian")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.AC_ATCC_RACE_1;
+                } else {
+                    racePointType = RacePointType.AC_ATCC_RACE_2;
+                }
+            } else if (league.getName().contains("Formula 3")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.F2_FEATURE_2019;
+                } else {
+                    racePointType = RacePointType.F2_SPRINT_2019;
+                }
             }
         }
         return racePointType;
-    }
-
-    private Integer findPointsForPosition(final RaceResult raceResult) {
-        return racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
-                .orElseThrow().pointsForPosition(raceResult.getFinishPosition());
     }
 
     // Konwersja JSONa - dodanie cudzysłowów do wartości tekstowych w stringu, zmiana z "=" na ":", usunięcie problematycznych i niepotrzebnych pól

@@ -34,6 +34,9 @@ public class SssClassificationService implements ClassificationService {
             classification.setPoints(raceResultRepository.findPointsByDriverAndLeague(driver, league));
             classifications.add(classification);
         }
+        for(Classification c : classifications) {
+            System.out.println(c.getDriver().getName() + c.getPoints());
+        }
         classifications.sort(Comparator.comparing(Classification::getPoints).reversed());
         return new PageImpl<>(classifications, pageable, classifications.size());
     }

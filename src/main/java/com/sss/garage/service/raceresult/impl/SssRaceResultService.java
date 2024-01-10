@@ -1,6 +1,7 @@
 package com.sss.garage.service.raceresult.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.racepointdictionary.RacePointDictionary;
 import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
@@ -68,10 +69,23 @@ public class SssRaceResultService implements RaceResultService {
                     points = points + racePointDictionary.getPolePositionPoints();
                 }
                 if(racePointDictionary.getFastestLapScored()) {
-                    if(!racePointDictionary.getFastestLapForTop10() || raceResult.getFinishPosition() < 11 && raceResult.getFastestLap()) {
+                    if((!racePointDictionary.getFastestLapForTop10() || raceResult.getFinishPosition() < 11) && raceResult.getFastestLap()) {
                         points = points + racePointDictionary.getFastestLapPoints();
                     }
                 }
+                League league = null;
+                try {
+                    league = raceResult.getRace().getEvent().getLeague();
+                } catch (NullPointerException e) {
+                    league = raceResult.getRace().getParentRaceEvent().getEvent().getLeague();
+                }
+                System.out.println("pp scored: " + racePointDictionary.getPolePositionScored() +
+                        ", fl scored: " + racePointDictionary.getFastestLapScored() +
+                        ", has pp: " + raceResult.getPolePosition() +
+                        ", has fl: " + raceResult.getFastestLap() +
+                        ", position: " + raceResult.getFinishPosition() +
+                        ", points: " + points +
+                        ", league: " + league.getName());
                 raceResult.setPointsForPosition(points);
                 raceResults.add(raceResult);
             }
