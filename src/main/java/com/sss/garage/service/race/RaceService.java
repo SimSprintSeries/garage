@@ -22,7 +22,6 @@ public interface RaceService {
     Page<Race> getAllPlayableRaces(final League league, final Pageable pageable);
     Page<Race> getCompletedPlayableRaces(final League league, final Pageable pageable);
     Page<Race> getUncompletedPlayableRaces(final League league, final Pageable pageable);
-    List<Race> getAllRaces();
     void deleteRace(final Long id);
     Page<Race> getAllRacesByEvent(final Event event, final Pageable pageable);
 }

@@ -79,11 +79,6 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public List<Race> getAllRaces() {
-        return raceRepository.findAll();
-    }
-
-    @Override
     public void deleteRace(final Long id) {
         raceRepository.deleteById(id);
     }

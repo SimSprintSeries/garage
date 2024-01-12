@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 public interface DriverService {
     Optional<Driver> getDriver(final Long id);
 
-    List<Driver> getAllDrivers();
-
     void createDriver(final Driver driver);
 
     void deleteDriver(final Long id);

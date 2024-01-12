@@ -17,11 +17,6 @@ public class SssSplitService implements SplitService {
     private SplitRepository splitRepository;
 
     @Override
-    public List<Split> getAllSplits() {
-        return splitRepository.findAll();
-    }
-
-    @Override
     public Optional<Split> getSplit(final Long id) {
         return splitRepository.findById(id);
     }

@@ -17,13 +17,6 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private DriverService driverService;
 
     @Override
-    public List<DriverData> getAllDrivers() {
-        return driverService.getAllDrivers().stream()
-                .map(d -> conversionService.convert(d, DriverData.class))
-                .toList();
-    }
-
-    @Override
     public DriverData getDriver(final Long id) {
         return conversionService.convert(driverService.getDriver(id).orElseThrow(), DriverData.class);
     }

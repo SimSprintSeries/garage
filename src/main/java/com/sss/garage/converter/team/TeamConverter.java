@@ -19,8 +19,8 @@ public class TeamConverter extends BaseConverter implements Converter<Team, Team
         data.setId(source.getId());
         data.setName(source.getName());
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
-        data.setEntry(source.getEntries().stream().map(e -> getConversionService().convert(e, EntryData.class))
-                .collect(Collectors.toSet()));
+        //data.setEntry(source.getEntries().stream().map(e -> getConversionService().convert(e, EntryData.class))
+        //        .collect(Collectors.toSet()));
         data.setColour(source.getColour());
 
         return data;

@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RaceResultService {
-    List<RaceResult> getAllRaceResults();
-
     Optional<RaceResult> getRaceResult(final Long id);
 
     void createRaceResult(final RaceResult raceResult);

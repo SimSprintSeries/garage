@@ -32,11 +32,6 @@ public class SssRaceResultFacade extends SssBaseFacade implements RaceResultFaca
     }
 
     @Override
-    public List<RaceResultData> getAllRaceResults() {
-        return raceResultService.getAllRaceResults().stream().map(r -> conversionService.convert(r, RaceResultData.class)).toList();
-    }
-
-    @Override
     public void createRaceResult(final RaceResultData raceResultData) {
         raceResultService.createRaceResult(conversionService.convert(raceResultData, RaceResult.class));
     }

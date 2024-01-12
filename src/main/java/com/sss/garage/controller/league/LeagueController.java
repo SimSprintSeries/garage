@@ -33,15 +33,6 @@ public class LeagueController extends SssBaseController {
 
     private LeagueFacade leagueFacade;
 
-    @GetMapping
-    @Operation(operationId = "getLeagues", summary = "Get leagues", description =
-            "Get all leagues... for now")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiResponse(responseCode = "200", description = "List of LeagueDTO", content = @Content(schema = @Schema(implementation = LeagueDTO.class)))
-    public List<LeagueDTO> getLeagues() {
-        return leagueFacade.getAllLeagues().stream().map(l -> mapper.map(l, LeagueDTO.class)).toList();
-    }
-
     @GetMapping(path = "/{leagueId}")
     @Operation(operationId = "getLeague", summary = "Get info about a specific league")
     @ResponseStatus(HttpStatus.OK)
@@ -57,9 +48,9 @@ public class LeagueController extends SssBaseController {
         leagueFacade.createLeague(mapper.map(leagueDTO, LeagueData.class));
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getLeaguesPaginated", summary = "Get all leagues paginated")
+    @Operation(operationId = "getLeaguesPaginated", summary = "Get list of all leagues")
     public Page<LeagueDTO> getLeaguesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,

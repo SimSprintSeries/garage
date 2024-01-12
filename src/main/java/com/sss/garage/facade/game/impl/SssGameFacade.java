@@ -20,13 +20,6 @@ public class SssGameFacade extends SssBaseFacade implements GameFacade {
     private GameService gameService;
 
     @Override
-    public List<GameData> getAllGames() {
-        return gameService.getAllGames().stream()
-                .map(g -> conversionService.convert(g, GameData.class))
-                .toList();
-    }
-
-    @Override
     public GameData getGame(final Long id) {
         return gameService.getGame(id)
                 .map(g -> conversionService.convert(g, GameData.class))

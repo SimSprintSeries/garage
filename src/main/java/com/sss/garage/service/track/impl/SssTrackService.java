@@ -17,11 +17,6 @@ public class SssTrackService implements TrackService {
     private TrackRepository trackRepository;
 
     @Override
-    public List<Track> getAllTracks() {
-        return trackRepository.findAll();
-    }
-
-    @Override
     public Optional<Track> getTrack(Long id) {
         return trackRepository.findById(id);
     }

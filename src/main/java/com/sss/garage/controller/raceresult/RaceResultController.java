@@ -27,13 +27,6 @@ public class RaceResultController extends SssBaseController {
 
     private RaceResultFacade raceResultFacade;
 
-    @GetMapping
-    @Operation(operationId = "getAllRaceResults", summary = "Get list of all race results")
-    @ResponseStatus(HttpStatus.OK)
-    public List<RaceResultDTO> getAllRaceResults() {
-        return mapAsList(raceResultFacade.getAllRaceResults(), RaceResultDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getRaceResult", summary = "Get race result")
     @ResponseStatus(HttpStatus.OK)
@@ -57,9 +50,9 @@ public class RaceResultController extends SssBaseController {
         raceResultFacade.deleteRaceResult(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getRaceResultsPaginated", summary = "Get all race results paginated")
+    @Operation(operationId = "getRaceResultsPaginated", summary = "Get list of all race results")
     public Page<RaceResultDTO> getRaceResultsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                        @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                        @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "finishPosition") final String sort,

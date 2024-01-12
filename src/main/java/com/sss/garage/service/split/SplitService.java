@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SplitService {
-    List<Split> getAllSplits();
-
     Optional<Split> getSplit(final Long id);
 
     void createSplit(final Split split);

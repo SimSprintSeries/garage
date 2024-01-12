@@ -18,11 +18,6 @@ public class SssSplitFacade extends SssBaseFacade implements SplitFacade {
     private SplitService splitService;
 
     @Override
-    public List<SplitData> getAllSplits() {
-        return splitService.getAllSplits().stream().map(s -> conversionService.convert(s, SplitData.class)).toList();
-    }
-
-    @Override
     public SplitData getSplit(final Long id) {
         return splitService.getSplit(id).map(s -> conversionService.convert(s, SplitData.class)).orElseThrow();
     }

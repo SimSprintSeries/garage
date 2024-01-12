@@ -26,14 +26,6 @@ import static com.sss.garage.constants.WebConstants.*;
 public class AccLapController extends SssBaseController {
     private AccLapFacade lapFacade;
 
-    @GetMapping
-    @Operation(operationId = "getAllLaps", summary = "Get list of all laps")
-    @ResponseStatus(HttpStatus.OK)
-    public List<AccLapDTO> getAllLaps() {
-        mapper.getConfiguration().setAmbiguityIgnored(true);
-        return mapAsList(lapFacade.getAllLaps(), AccLapDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getLap", summary = "Get lap information")
     @ResponseStatus(HttpStatus.OK)
@@ -58,9 +50,9 @@ public class AccLapController extends SssBaseController {
         lapFacade.deleteLap(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getLapsPaginated", summary = "Get all laps paginated")
+    @Operation(operationId = "getLapsPaginated", summary = "Get list of all laps")
     public Page<AccLapDTO> getLapsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                             @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                             @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

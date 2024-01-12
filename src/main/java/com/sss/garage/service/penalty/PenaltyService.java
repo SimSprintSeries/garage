@@ -10,8 +10,6 @@ import java.util.Optional;
 public interface PenaltyService {
     Optional<Penalty> getPenalty(final Long id);
 
-    List<Penalty> getAllPenalties();
-
     void createPenalty(final Penalty penalty);
 
     void deletePenalty(final Long id);

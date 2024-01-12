@@ -57,9 +57,8 @@ public class GenerateNewJwtTokenFilter extends OncePerRequestFilter {
         }
 
         final Object principal = authentication.getPrincipal();
-        if (principal instanceof DiscordUser && !((DiscordUser) principal).isRolesUpToDate()){
+        if (principal instanceof DiscordUser user && !((DiscordUser) principal).isRolesUpToDate()){
             // Roles have been updated! New token must be generated
-            final DiscordUser user = (DiscordUser) principal;
 
             final StringJwtAuthenticationToken newAuthentication = new StringJwtAuthenticationToken(user,
                     discordApiService.findAllRolesForUserId(user.getId()));

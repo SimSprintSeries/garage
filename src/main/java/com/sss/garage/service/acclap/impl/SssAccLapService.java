@@ -27,11 +27,6 @@ public class SssAccLapService implements AccLapService {
     }
 
     @Override
-    public List<AccLap> getAllLaps() {
-        return lapRepository.findAll();
-    }
-
-    @Override
     public void createLap(final AccLap lap) {
         lapRepository.save(lap);
     }

@@ -1,11 +1,9 @@
 package com.sss.garage.service.raceresult.impl;
 
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.racepointdictionary.RacePointDictionary;
 import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
-import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.raceresult.RaceResultService;
@@ -26,11 +24,6 @@ public class SssRaceResultService implements RaceResultService {
     private RacePointDictionaryRepository racePointDictionaryRepository;
 
     @Override
-    public List<RaceResult> getAllRaceResults() {
-        return raceResultRepository.findAll();
-    }
-
-    @Override
     public Optional<RaceResult> getRaceResult(final Long id) {
         setPointsForPosition();
         return raceResultRepository.findById(id);
@@ -49,8 +42,11 @@ public class SssRaceResultService implements RaceResultService {
     @Override
     public Page<RaceResult> getRaceResultsPaginated(final String finishPosition, final Boolean polePosition, final Boolean dnf, final Boolean dsq
             , final Boolean fastestLap, final Driver driver, final Race race, final Pageable pageable) {
-        setPointsForPosition();
-        return raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
+        Page<RaceResult> raceResults = raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
+        if(raceResults.stream().findFirst().orElseThrow().getPointsForPosition() == null) {
+            setPointsForPosition();
+        }
+        return raceResults;
     }
 
     private Integer findPointsForPosition(final RaceResult raceResult) {
@@ -73,19 +69,6 @@ public class SssRaceResultService implements RaceResultService {
                         points = points + racePointDictionary.getFastestLapPoints();
                     }
                 }
-                League league = null;
-                try {
-                    league = raceResult.getRace().getEvent().getLeague();
-                } catch (NullPointerException e) {
-                    league = raceResult.getRace().getParentRaceEvent().getEvent().getLeague();
-                }
-                System.out.println("pp scored: " + racePointDictionary.getPolePositionScored() +
-                        ", fl scored: " + racePointDictionary.getFastestLapScored() +
-                        ", has pp: " + raceResult.getPolePosition() +
-                        ", has fl: " + raceResult.getFastestLap() +
-                        ", position: " + raceResult.getFinishPosition() +
-                        ", points: " + points +
-                        ", league: " + league.getName());
                 raceResult.setPointsForPosition(points);
                 raceResults.add(raceResult);
             }

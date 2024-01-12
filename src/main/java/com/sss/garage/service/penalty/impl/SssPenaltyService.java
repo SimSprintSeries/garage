@@ -21,11 +21,6 @@ public class SssPenaltyService implements PenaltyService {
     }
 
     @Override
-    public List<Penalty> getAllPenalties() {
-        return penaltyRepository.findAll();
-    }
-
-    @Override
     public void createPenalty(final Penalty penalty) {
         penaltyRepository.save(penalty);
     }

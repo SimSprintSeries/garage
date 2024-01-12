@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface GameFacade {
-    List<GameData> getAllGames();
     GameData getGame(final Long id);
     void createGame(final GameData gameData);
     void deleteGame(final Long id);

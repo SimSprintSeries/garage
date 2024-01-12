@@ -20,8 +20,7 @@ import org.springframework.stereotype.Component;
 public class OAuth2LoginAuthenticationContinueChainFilterBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
-        if(bean instanceof SecurityFilterChain) {
-            SecurityFilterChain chain = (SecurityFilterChain)bean;
+        if(bean instanceof SecurityFilterChain chain) {
             OAuth2LoginAuthenticationFilter replacedFilter = chain.getFilters().stream()
                     .filter(OAuth2LoginAuthenticationFilter.class::isInstance)
                     .filter(Predicate.not(OAuth2LoginAuthenticationContinueChainFilter.class::isInstance))

@@ -9,8 +9,6 @@ import java.util.List;
 public interface PenaltyFacade {
     PenaltyData getPenalty(final Long id);
 
-    List<PenaltyData> getAllPenalties();
-
     void createPenalty(final PenaltyData penalty);
 
     void deletePenalty(final Long id);

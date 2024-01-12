@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface LeagueFacade {
     LeagueData getLeague(final Long id);
-    List<LeagueData> getAllLeagues();
 
     void createLeague(final LeagueData leagueData);
 

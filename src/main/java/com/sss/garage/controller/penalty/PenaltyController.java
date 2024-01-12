@@ -28,14 +28,6 @@ import static com.sss.garage.constants.WebConstants.*;
 public class PenaltyController extends SssBaseController {
     private PenaltyFacade penaltyFacade;
 
-    @GetMapping
-    @Operation(operationId = "getPenalties", summary = "Get list of all penalties")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiResponse(responseCode = "200", description = "List of PenaltyDTO", content = @Content(schema = @Schema(implementation = PenaltyDTO.class)))
-    public List<PenaltyDTO> getPenalties() {
-        return mapAsList(this.penaltyFacade.getAllPenalties(), PenaltyDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getPenalty", summary = "Get penalty information")
     @ResponseStatus(HttpStatus.OK)
@@ -59,9 +51,9 @@ public class PenaltyController extends SssBaseController {
         penaltyFacade.deletePenalty(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getPenaltiesPaginated", summary = "Get all penalties paginated")
+    @Operation(operationId = "getPenaltiesPaginated", summary = "Get list of all penalties")
     public Page<PenaltyDTO> getPenaltiesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                   @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                   @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

@@ -49,11 +49,6 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
     }
 
     @Override
-    public List<RaceData> getAllRaces() {
-        return raceService.getAllRaces().stream().map(r -> conversionService.convert(r, RaceData.class)).toList();
-    }
-
-    @Override
     public RaceData getRace(final Long id) {
          return conversionService.convert(raceService.findById(id).orElseThrow(), RaceData.class);
     }

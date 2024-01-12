@@ -18,11 +18,6 @@ public class SssTrackFacade extends SssBaseFacade implements TrackFacade {
     private TrackService trackService;
 
     @Override
-    public List<TrackData> getAllTracks() {
-        return trackService.getAllTracks().stream().map(t -> conversionService.convert(t, TrackData.class)).toList();
-    }
-
-    @Override
     public TrackData getTrack(final Long id) {
         return trackService.getTrack(id).map(t -> conversionService.convert(t, TrackData.class)).orElseThrow();
     }

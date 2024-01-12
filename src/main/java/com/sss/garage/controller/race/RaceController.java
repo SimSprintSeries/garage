@@ -49,13 +49,6 @@ public class RaceController extends SssBaseController {
         return raceFacade.getRacesPaginated(leagueId, completed, pageable).map(r -> mapper.map(r, RaceDTO.class));
     }
 
-    @GetMapping("allRaces")
-    @Operation(operationId = "getAllRaces", summary = "Get list of races")
-    @ResponseStatus(HttpStatus.OK)
-    public List<RaceDTO> getAllRaces() {
-        return mapAsList(this.raceFacade.getAllRaces(), RaceDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getRace", summary = "Get race information")
     @ResponseStatus(HttpStatus.OK)

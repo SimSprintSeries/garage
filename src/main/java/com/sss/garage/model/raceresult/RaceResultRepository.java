@@ -77,4 +77,17 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND e.league=:league " +
             "GROUP BY rr.driver, e.league)")
     Integer findPointsByDriverAndLeague(Driver driver, League league);
+
+    @Query("SELECT COUNT(*) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
+            "LEFT JOIN Race pr ON r.parentRaceEvent = pr LEFT JOIN Event e ON pr.event = e " +
+            "WHERE rr.driver=:driver " +
+            "AND e.league=:league " +
+            "AND rr.finishPosition = :finishPosition " +
+            "GROUP BY rr.driver, e.league) " +
+            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
+            "WHERE rr.driver=:driver " +
+            "AND e.league=:league " +
+            "AND rr.finishPosition = :finishPosition " +
+            "GROUP BY rr.driver, e.league)")
+    Integer countFinishPositionByDriverAndLeague(Driver driver, League league, Integer finishPosition);
 }

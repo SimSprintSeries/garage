@@ -31,14 +31,6 @@ public class GameController extends SssBaseController {
 
     private GameFacade gameFacade;
 
-    @GetMapping
-    @Operation(operationId = "getGames", summary = "Get list of allgames")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiResponse(responseCode = "200", description = "List of GameDTO", content = @Content(schema = @Schema(implementation = GameDTO.class)))
-    public List<GameDTO> getGames() {
-        return mapAsList(this.gameFacade.getAllGames(), GameDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getGame", summary = "Get game information")
     @ResponseStatus(HttpStatus.OK)
@@ -62,9 +54,9 @@ public class GameController extends SssBaseController {
         gameFacade.deleteGame(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getGamesPaginated", summary = "Get all games paginated")
+    @Operation(operationId = "getGamesPaginated", summary = "Get list of all games")
     public Page<GameDTO> getGamesPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                             @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                             @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

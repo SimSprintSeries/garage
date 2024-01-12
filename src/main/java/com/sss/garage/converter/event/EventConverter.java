@@ -24,7 +24,8 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
     public void convert(final Event source, final EventData data) {
         data.setId(source.getId());
         data.setLeague(Optional.ofNullable(source.getLeague()).map(l -> getConversionService().convert(l, LeagueData.class)).orElse(null));
-        data.setDisplayText(data.getLeague() != null ? data.getLeague().getDisplayText() + " - " + source.getName() : source.getName());
+        //data.setDisplayText(data.getLeague() != null ? data.getLeague().getDisplayText() + " - " + source.getName() : source.getName());
+        data.setDisplayText(source.getName());
         data.setStartDate(source.getStartDate());
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
     }

@@ -27,13 +27,6 @@ public class SplitController extends SssBaseController {
 
     private SplitFacade splitFacade;
 
-    @GetMapping
-    @Operation(operationId = "getAllSplits", summary = "Get list of all splits")
-    @ResponseStatus(HttpStatus.OK)
-    public List<SplitDTO> getAllSplits() {
-        return mapAsList(splitFacade.getAllSplits(), SplitDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getSplit", summary = "Get SplitController")
     @ResponseStatus(HttpStatus.OK)
@@ -57,9 +50,9 @@ public class SplitController extends SssBaseController {
         splitFacade.deleteSplit(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getSplitsPaginated", summary = "Get all splits paginated")
+    @Operation(operationId = "getSplitsPaginated", summary = "Get list of all splits")
     public Page<SplitDTO> getSplitsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                             @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                             @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

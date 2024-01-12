@@ -17,10 +17,6 @@ public class SssDriverService implements DriverService {
 
     private DriverRepository driverRepository;
 
-    public List<Driver> getAllDrivers() {
-        return driverRepository.findAll();
-    }
-
     @Override
     public Optional<Driver> getDriver(final Long id) {
         return driverRepository.findById(id);

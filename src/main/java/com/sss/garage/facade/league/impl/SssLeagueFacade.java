@@ -33,11 +33,6 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
     }
 
     @Override
-    public List<LeagueData> getAllLeagues() {
-        return leagueService.getAllLeagues().stream().map(l -> conversionService.convert(l, LeagueData.class)).toList();
-    }
-
-    @Override
     public void createLeague(final LeagueData leagueData) {
         leagueService.createLeague(conversionService.convert(leagueData, League.class));
     }

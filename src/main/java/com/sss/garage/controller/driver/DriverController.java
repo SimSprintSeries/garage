@@ -27,13 +27,6 @@ import static com.sss.garage.constants.WebConstants.*;
 public class DriverController extends SssBaseController {
     private DriverFacade driverFacade;
 
-    @GetMapping
-    @Operation(operationId = "getAllDrivers", summary = "Get list of all drivers")
-    @ResponseStatus(HttpStatus.OK)
-    public List<SimpleDriverDTO> getAllDrivers() {
-        return mapAsList(this.driverFacade.getAllDrivers(), SimpleDriverDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getDriver", summary = "Get driver information")
     @ResponseStatus(HttpStatus.OK)
@@ -57,9 +50,9 @@ public class DriverController extends SssBaseController {
         driverFacade.deleteDriver(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getDriversPaginated", summary = "Get all drivers paginated")
+    @Operation(operationId = "getDriversPaginated", summary = "Get list of all drivers")
     public Page<SimpleDriverDTO> getDriversPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                      @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                      @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

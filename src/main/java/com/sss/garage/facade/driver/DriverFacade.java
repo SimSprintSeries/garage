@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface DriverFacade {
-    List<DriverData> getAllDrivers();
-
     DriverData getDriver(final Long id);
 
     void createDriver(final DriverData driverData);

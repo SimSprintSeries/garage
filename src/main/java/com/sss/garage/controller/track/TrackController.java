@@ -27,13 +27,6 @@ public class TrackController extends SssBaseController {
 
     private TrackFacade trackFacade;
 
-    @GetMapping
-    @Operation(operationId = "getAllTracks", summary = "Get list of all tracks")
-    @ResponseStatus(HttpStatus.OK)
-    public List<TrackDTO> getAllTracks() {
-        return mapAsList(trackFacade.getAllTracks(), TrackDTO.class);
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getTrack", summary = "Get track by ID")
     @ResponseStatus(HttpStatus.OK)
@@ -57,9 +50,9 @@ public class TrackController extends SssBaseController {
         trackFacade.deleteTrack(id);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "getTracksPaginated", summary = "Get all tracks paginated")
+    @Operation(operationId = "getTracksPaginated", summary = "Get list of all tracks")
     public Page<TrackDTO> getTracksPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                              @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                              @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,

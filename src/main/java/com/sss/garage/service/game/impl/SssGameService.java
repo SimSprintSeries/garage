@@ -31,11 +31,6 @@ public class SssGameService implements GameService {
     }
 
     @Override
-    public List<Game> getAllGames() {
-        return gameRepository.findAll();
-    }
-
-    @Override
     public void createGame(final Game game) {
         gameRepository.save(game);
     }

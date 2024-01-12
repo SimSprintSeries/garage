@@ -25,13 +25,6 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
     }
 
     @Override
-    public List<AccLapData> getAllLaps() {
-        return lapService.getAllLaps().stream()
-                .map(l -> conversionService.convert(l, AccLapData.class))
-                .toList();
-    }
-
-    @Override
     public void createLap(final AccLapData lapData) {
         lapService.createLap(conversionService.convert(lapData, AccLap.class));
     }

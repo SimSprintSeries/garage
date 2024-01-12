@@ -11,7 +11,6 @@ import java.util.List;
 public interface RaceFacade {
     Page<RaceData> getRacesPaginated(final String leagueId, final Boolean completed, final Pageable pageable);
     RaceData getRace(final Long id);
-    List<RaceData> getAllRaces();
     void createRace(final RaceData raceData);
     void deleteRace(final Long id);
     Page<RaceData> getAllRacesByEvent(final String eventId, final Pageable pageable);

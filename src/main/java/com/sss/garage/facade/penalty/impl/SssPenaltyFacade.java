@@ -25,12 +25,6 @@ public class SssPenaltyFacade extends SssBaseFacade implements PenaltyFacade {
     }
 
     @Override
-    public List<PenaltyData> getAllPenalties() {
-        return penaltyService.getAllPenalties().stream()
-                .map(p -> conversionService.convert(p, PenaltyData.class)).toList();
-    }
-
-    @Override
     public void createPenalty(final PenaltyData penalty) {
         penaltyService.createPenalty(conversionService.convert(penalty, Penalty.class));
     }
