@@ -2,6 +2,7 @@ package com.sss.garage.dto.classification;
 
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.dto.team.TeamDTO;
 
 public class ClassificationDTO {
     private Long id;
@@ -9,6 +10,8 @@ public class ClassificationDTO {
     private SimpleDriverDTO driver;
 
     private LeagueDTO league;
+
+    private TeamDTO team;
 
     private Integer points;
 
@@ -34,6 +37,14 @@ public class ClassificationDTO {
 
     public void setLeague(LeagueDTO league) {
         this.league = league;
+    }
+
+    public TeamDTO getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamDTO team) {
+        this.team = team;
     }
 
     public Integer getPoints() {

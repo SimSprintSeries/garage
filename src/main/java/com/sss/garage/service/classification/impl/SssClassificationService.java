@@ -3,6 +3,7 @@ package com.sss.garage.service.classification.impl;
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.classification.ClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,15 @@ public class SssClassificationService implements ClassificationService {
 
     private Page<Classification> setClassification(final League league, final Pageable pageable) {
         List<Classification> classifications = new ArrayList<>();
+        Race race = league.getEvents().stream().findFirst().orElseThrow().getRaces().stream().findFirst().orElseThrow(); // random race for checking if league has double-raced events
         for (Driver driver : raceResultRepository.findDriversByLeague(league)) {
             Classification classification = new Classification();
             classification.setDriver(driver);
+            if (race.getName().equals("Parent race")) {
+                classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));
+            } else {
+                classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
+            }
             classification.setPoints(raceResultRepository.findPointsByDriverAndLeague(driver, league));
             classification.setP1Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 1));
             classification.setP2Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 2));

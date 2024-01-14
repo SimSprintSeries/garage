@@ -4,6 +4,7 @@ import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.team.Team;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -90,4 +91,21 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND rr.finishPosition = :finishPosition " +
             "GROUP BY rr.driver, e.league)")
     Integer countFinishPositionByDriverAndLeague(Driver driver, League league, Integer finishPosition);
+
+    @Query("SELECT rr.team FROM RaceResult rr " +
+            "LEFT JOIN Race r ON rr.race = r " +
+            "LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
+            "LEFT JOIN Event e ON pr.event = e " +
+            "WHERE rr.driver=:driver " +
+            "AND e.league=:league " +
+            "ORDER BY e.startDate DESC LIMIT 1")
+    Team findLastTeamByDriverAndLeagueForParentRaces(Driver driver, League league);
+
+    @Query("SELECT rr.team FROM RaceResult rr " +
+            "LEFT JOIN Race r ON rr.race = r " +
+            "LEFT JOIN Event e ON r.event = e " +
+            "WHERE rr.driver=:driver " +
+            "AND e.league=:league " +
+            "ORDER BY e.startDate DESC LIMIT 1")
+    Team findLastTeamByDriverAndLeague(Driver driver, League league);
 }

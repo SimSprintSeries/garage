@@ -2,6 +2,7 @@ package com.sss.garage.data.classification;
 
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.team.TeamData;
 
 public class ClassificationData {
     private Long id;
@@ -9,6 +10,8 @@ public class ClassificationData {
     private DriverData driver;
 
     private LeagueData league;
+
+    private TeamData team;
 
     private Integer points;
 
@@ -34,6 +37,14 @@ public class ClassificationData {
 
     public void setLeague(LeagueData league) {
         this.league = league;
+    }
+
+    public TeamData getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamData team) {
+        this.team = team;
     }
 
     public Integer getPoints() {

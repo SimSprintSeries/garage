@@ -1,5 +1,6 @@
 package com.sss.garage.model.team;
 
+import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.raceresult.RaceResult;
@@ -25,6 +26,9 @@ public class Team {
     private Set<RaceResult> raceResults;
 
     private String colour;
+
+    @OneToMany(mappedBy = "team")
+    private Set<Classification> classifications;
 
     public Long getId() {
         return id;
@@ -72,5 +76,13 @@ public class Team {
 
     public void setRaceResults(Set<RaceResult> raceResults) {
         this.raceResults = raceResults;
+    }
+
+    public Set<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(Set<Classification> classifications) {
+        this.classifications = classifications;
     }
 }

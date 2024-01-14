@@ -2,6 +2,7 @@ package com.sss.garage.model.classification;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +16,9 @@ public class Classification {
 
     @ManyToOne
     private League league;
+
+    @ManyToOne
+    private Team team;
 
     private Integer points;
 
@@ -60,6 +64,14 @@ public class Classification {
 
     public void setLeague(League league) {
         this.league = league;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Integer getPoints() {
