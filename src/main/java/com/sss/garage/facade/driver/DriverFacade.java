@@ -4,8 +4,6 @@ import com.sss.garage.data.driver.DriverData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface DriverFacade {
     DriverData getDriver(final Long id);
 
@@ -14,4 +12,6 @@ public interface DriverFacade {
     void deleteDriver(final Long id);
 
     Page<DriverData> getDriversPaginated(final Pageable pageable);
+
+    Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable);
 }

@@ -28,5 +28,6 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setDisplayText(source.getName());
         data.setStartDate(source.getStartDate());
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
+        data.setActiveForPresence(source.getActiveForPresence());
     }
 }

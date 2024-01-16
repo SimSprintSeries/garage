@@ -4,7 +4,10 @@ import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.service.driver.DriverService;
+import com.sss.garage.service.league.LeagueService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +18,8 @@ import java.util.List;
 @Service
 public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private DriverService driverService;
+
+    private LeagueService leagueService;
 
     @Override
     public DriverData getDriver(final Long id) {
@@ -37,8 +42,23 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
         return driver.map(d -> conversionService.convert(d, DriverData.class));
     }
 
+    @Override
+    public Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable) {
+        League league = null;
+        if(Strings.isNotEmpty(leagueId)) {
+            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        }
+        Page<Driver> drivers = driverService.getDriversByLeague(league, pageable);
+        return drivers.map(d -> conversionService.convert(d, DriverData.class));
+    }
+
     @Autowired
     public void setDriverService(DriverService driverService) {
         this.driverService = driverService;
+    }
+
+    @Autowired
+    public void setLeagueService(LeagueService leagueService) {
+        this.leagueService = leagueService;
     }
 }

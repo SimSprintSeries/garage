@@ -4,6 +4,7 @@ import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.penalty.Penalty;
 import com.sss.garage.model.split.Split;
+import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.elo.history.EloHistory;
@@ -48,6 +49,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private List<Classification> classifications;
+
+    @ManyToOne
+    private Team team;
 
 
     public Long getId() {
@@ -128,5 +132,13 @@ public class Driver {
 
     public void setClassifications(List<Classification> classifications) {
         this.classifications = classifications;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

@@ -9,6 +9,7 @@ public class EventDTO {
     private String startDate;
     private LeagueDTO league;
     private TrackDTO track;
+    private Boolean activeForPresence;
 
     public Long getId() {
         return id;
@@ -48,5 +49,13 @@ public class EventDTO {
 
     public void setTrack(final TrackDTO track) {
         this.track = track;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
     }
 }

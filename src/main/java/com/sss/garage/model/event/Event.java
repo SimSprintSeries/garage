@@ -37,6 +37,8 @@ public class Event {
     @ManyToOne
     private Track track;
 
+    private Boolean activeForPresence = false;
+
     public Long getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class Event {
 
     public void setTrack(final Track track) {
         this.track = track;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
     }
 }

@@ -32,6 +32,15 @@ public class SssClassificationFacade extends SssBaseFacade implements Classifica
         return classification.map(c -> conversionService.convert(c, ClassificationData.class));
     }
 
+    public Page<ClassificationData> getClassificationForTeams(final String leagueId, final Pageable pageable) {
+        League league = null;
+        if(Strings.isNotEmpty(leagueId)) {
+            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        }
+        Page<Classification> classification = classificationService.getClassificationForTeams(league, pageable);
+        return classification.map(c -> conversionService.convert(c, ClassificationData.class));
+    }
+
     @Autowired
     public void setClassificationService(ClassificationService classificationService) {
         this.classificationService = classificationService;

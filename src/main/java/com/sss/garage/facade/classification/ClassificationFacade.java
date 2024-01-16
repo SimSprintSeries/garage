@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface ClassificationFacade {
     Page<ClassificationData> getClassification(final String leagueId, final Pageable pageable);
+
+    Page<ClassificationData> getClassificationForTeams(final String leagueId, final Pageable pageable);
 }

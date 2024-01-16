@@ -1,6 +1,7 @@
 package com.sss.garage.model.team;
 
 import com.sss.garage.model.classification.Classification;
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.raceresult.RaceResult;
@@ -29,6 +30,9 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     private Set<Classification> classifications;
+
+    @OneToMany(mappedBy = "team")
+    private Set<Driver> drivers;
 
     public Long getId() {
         return id;
@@ -84,5 +88,13 @@ public class Team {
 
     public void setClassifications(Set<Classification> classifications) {
         this.classifications = classifications;
+    }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(Set<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

@@ -4,6 +4,7 @@ import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.team.TeamData;
 import com.sss.garage.model.driver.Driver;
 
 import com.sss.garage.service.elo.EloService;
@@ -30,6 +31,7 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
         data.setNickname(source.getName());
         data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).collect(Collectors.toSet()));
         data.setSplits(source.getSplits().stream().map(s -> getConversionService().convert(s, SplitData.class)).collect(Collectors.toSet()));
+        data.setTeam(getConversionService().convert(source.getTeam(), TeamData.class));
 
         return data;
     }
