@@ -20,10 +20,10 @@ public class RulesController {
         return "f1rules";
     }
 
-    @GetMapping("/acc")
-    @Operation(operationId = "getACCRules", summary = "Get rules for ACC events")
+    @GetMapping("/ac")
+    @Operation(operationId = "getACRules", summary = "Get rules for AC and ACC events")
     @ResponseStatus(HttpStatus.OK)
-    public String getACCRules() {
+    public String getACRules() {
         return "accrules";
     }
 }
