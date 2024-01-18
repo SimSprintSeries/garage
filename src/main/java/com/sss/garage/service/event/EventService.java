@@ -15,4 +15,5 @@ public interface EventService {
     Optional<Event> getEvent(final Long id);
     void createEvent(final Event event);
     void deleteEvent(final Long id);
+    Event getNextEvent(final League league);
 }

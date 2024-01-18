@@ -9,4 +9,5 @@ public interface EventFacade {
     EventData getEvent(final Long id);
     void createEvent(final EventData eventData);
     void deleteEvent(final Long id);
+    EventData getNextEvent(final String leagueId);
 }

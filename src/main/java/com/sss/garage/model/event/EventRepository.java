@@ -17,4 +17,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e WHERE (e.league = :league OR :league IS NULL ) " +
             "AND (e.track=:track OR :track IS NULL)")
     Page<Event> findAllByParams(final League league, final Track track, final Pageable pageable);
+
+    @Query("SELECT e FROM Event e WHERE e.league = :league " +
+            "AND e.startDate > NOW() " +
+            "ORDER BY e.startDate ASC LIMIT 1")
+    Event findNextEventByLeague(League league);
 }

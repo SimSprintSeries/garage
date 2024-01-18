@@ -1,6 +1,7 @@
 package com.sss.garage.facade.event.impl;
 
 import com.sss.garage.data.event.EventData;
+import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.event.EventFacade;
 import com.sss.garage.model.event.Event;
@@ -52,6 +53,15 @@ public class SssEventFacade extends SssBaseFacade implements EventFacade {
     @Override
     public void deleteEvent(Long id) {
         eventService.deleteEvent(id);
+    }
+
+    @Override
+    public EventData getNextEvent(final String leagueId) {
+        League league = null;
+        if(Strings.isNotEmpty(leagueId)) {
+            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        }
+        return conversionService.convert(eventService.getNextEvent(league), EventData.class);
     }
 
     @Autowired

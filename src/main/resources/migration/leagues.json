@@ -608,5 +608,15 @@
     "game": "F1 23",
     "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_327_banner_900.png",
     "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_332_logo_0.png"
+  },
+  {
+    "id": 65,
+    "name": "#SSS100 - Zima 2024",
+    "type": 12,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 23",
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_335_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_334_logo_0.png"
   }
 ]

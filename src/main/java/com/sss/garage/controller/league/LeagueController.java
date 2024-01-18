@@ -1,8 +1,11 @@
 package com.sss.garage.controller.league;
 
 import com.sss.garage.controller.SssBaseController;
+import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.dto.event.EventDTO;
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.facade.event.EventFacade;
 import com.sss.garage.facade.league.LeagueFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,6 +35,8 @@ import static com.sss.garage.constants.WebConstants.*;
 public class LeagueController extends SssBaseController {
 
     private LeagueFacade leagueFacade;
+
+    private EventFacade eventFacade;
 
     @GetMapping(path = "/{leagueId}")
     @Operation(operationId = "getLeague", summary = "Get info about a specific league")
@@ -63,8 +68,26 @@ public class LeagueController extends SssBaseController {
         return this.leagueFacade.getLeaguesPaginated(platform, name, active, pageable).map(l -> mapper.map(l, LeagueDTO.class));
     }
 
+    @GetMapping("/nextEvent")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getNextEvent", summary = "Get next event for league")
+    public EventDTO getNextEvent(@Parameter(description = "League ID to filter by") @RequestParam(value = "leagueId") final String leagueId) {
+        EventData eventData = eventFacade.getNextEvent(leagueId);
+        if(eventData == null) {
+            return null;
+        } else {
+            return mapper.map(eventFacade.getNextEvent(leagueId), EventDTO.class);
+        }
+
+    }
+
     @Autowired
     public void setLeagueFacade(final LeagueFacade leagueFacade) {
         this.leagueFacade = leagueFacade;
+    }
+
+    @Autowired
+    public void setEventFacade(EventFacade eventFacade) {
+        this.eventFacade = eventFacade;
     }
 }

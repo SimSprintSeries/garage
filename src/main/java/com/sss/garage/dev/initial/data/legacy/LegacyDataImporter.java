@@ -275,6 +275,7 @@ public class LegacyDataImporter {
                     raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
                     raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
+                    raceResult.setComment(r.comment);
                     raceResultRepository.save(raceResult);
                     return raceResult;
                 })

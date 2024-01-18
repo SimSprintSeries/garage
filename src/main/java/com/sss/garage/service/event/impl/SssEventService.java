@@ -44,6 +44,11 @@ public class SssEventService implements EventService {
         eventRepository.deleteById(id);
     }
 
+    @Override
+    public Event getNextEvent(final League league) {
+        return eventRepository.findNextEventByLeague(league);
+    }
+
     @Autowired
     public void setEventRepository(EventRepository eventRepository) {
         this.eventRepository = eventRepository;

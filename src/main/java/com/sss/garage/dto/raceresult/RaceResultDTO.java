@@ -19,6 +19,8 @@ public class RaceResultDTO {
 
     private SimpleDriverDTO driverDTO;
 
+    private String comment;
+
     private RaceDTO raceDTO;
 
     private TeamDTO teamDTO;
@@ -79,6 +81,14 @@ public class RaceResultDTO {
 
     public void setDriver(SimpleDriverDTO driverDTO) {
         this.driverDTO = driverDTO;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public RaceDTO getRace() {

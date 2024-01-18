@@ -19,6 +19,8 @@ public class RaceResultData {
 
     private DriverData driverData;
 
+    private String comment;
+
     private RaceData raceData;
 
     private TeamData teamData;
@@ -79,6 +81,14 @@ public class RaceResultData {
 
     public void setDriver(DriverData driverData) {
         this.driverData = driverData;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public RaceData getRace() {
