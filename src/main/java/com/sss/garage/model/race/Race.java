@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
-import com.sss.garage.model.penalty.Penalty;
+import com.sss.garage.model.report.Report;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
@@ -53,7 +53,7 @@ public class Race extends Event {
     private Boolean pointScoring = true;
 
     @OneToMany(mappedBy = "race")
-    private List<Penalty> penalties;
+    private List<Report> penalties;
 
     @Enumerated
     private RacePointType pointType;
@@ -130,11 +130,11 @@ public class Race extends Event {
         this.pointScoring = pointScoring;
     }
 
-    public List<Penalty> getPenalties() {
+    public List<Report> getPenalties() {
         return penalties;
     }
 
-    public void setPenalties(List<Penalty> penalties) {
+    public void setPenalties(List<Report> penalties) {
         this.penalties = penalties;
     }
 

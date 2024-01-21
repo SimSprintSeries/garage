@@ -21,6 +21,7 @@ public class SssStatsService implements StatsService {
 
     private Stats setStats(final Driver driver, final League league, final Game game, final String split) {
         Stats stats = new Stats();
+        stats.setStarts(raceResultRepository.countFinishPositionByParams(driver, league, game, split, 1, 50));
         stats.setWins(raceResultRepository.countFinishPositionByParams(driver, league, game, split, 1, 1));
         stats.setPodiums(raceResultRepository.countFinishPositionByParams(driver, league, game, split, 1, 3));
         stats.setTop10(raceResultRepository.countFinishPositionByParams(driver, league, game, split, 1, 10));

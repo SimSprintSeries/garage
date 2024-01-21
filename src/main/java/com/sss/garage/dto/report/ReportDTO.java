@@ -1,11 +1,11 @@
-package com.sss.garage.dto.penalty;
+package com.sss.garage.dto.report;
 
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.race.RaceDTO;
 
 import java.util.Date;
 
-public class PenaltyDTO {
+public class ReportDTO {
     private Long id;
 
     private Integer penaltySeconds;
@@ -20,7 +20,9 @@ public class PenaltyDTO {
 
     private Date reportDate;
 
-    private SimpleDriverDTO driver;
+    private SimpleDriverDTO reportingDriver;
+
+    private SimpleDriverDTO reportedDriver;
 
     private RaceDTO race;
 
@@ -82,12 +84,20 @@ public class PenaltyDTO {
         this.reportDate = reportDate;
     }
 
-    public SimpleDriverDTO getDriver() {
-        return driver;
+    public SimpleDriverDTO getReportingDriver() {
+        return reportingDriver;
     }
 
-    public void setDriver(SimpleDriverDTO driver) {
-        this.driver = driver;
+    public void setReportingDriver(SimpleDriverDTO reportingDriver) {
+        this.reportingDriver = reportingDriver;
+    }
+
+    public SimpleDriverDTO getReportedDriver() {
+        return reportedDriver;
+    }
+
+    public void setReportedDriver(SimpleDriverDTO reportedDriver) {
+        this.reportedDriver = reportedDriver;
     }
 
     public RaceDTO getRace() {

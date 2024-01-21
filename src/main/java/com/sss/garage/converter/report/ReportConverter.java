@@ -1,18 +1,18 @@
-package com.sss.garage.converter.penalty;
+package com.sss.garage.converter.report;
 
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
-import com.sss.garage.data.penalty.PenaltyData;
+import com.sss.garage.data.report.ReportData;
 import com.sss.garage.data.race.RaceData;
-import com.sss.garage.model.penalty.Penalty;
+import com.sss.garage.model.report.Report;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PenaltyConverter extends BaseConverter implements Converter<Penalty, PenaltyData> {
+public class ReportConverter extends BaseConverter implements Converter<Report, ReportData> {
     @Override
-    public PenaltyData convert(final Penalty source) {
-        final PenaltyData data = new PenaltyData();
+    public ReportData convert(final Report source) {
+        final ReportData data = new ReportData();
 
         data.setId(source.getId());
         data.setPenaltyPoints(source.getPenaltyPoints());
@@ -21,7 +21,8 @@ public class PenaltyConverter extends BaseConverter implements Converter<Penalty
         data.setIncidentDescription(source.getIncidentDescription());
         data.setDecisionDescription(source.getDecisionDescription());
         data.setReportDate(source.getReportDate());
-        data.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
+        data.setReportingDriver(getConversionService().convert(source.getReportingDriver(), DriverData.class));
+        data.setReportedDriver(getConversionService().convert(source.getReportedDriver(), DriverData.class));
         data.setRace(getConversionService().convert(source.getRace(), RaceData.class));
         data.setChecked(source.getChecked());
 

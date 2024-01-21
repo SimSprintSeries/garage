@@ -3,6 +3,8 @@ package com.sss.garage.dto.stats;
 public class StatsDTO {
     private Long id;
 
+    private Integer starts;
+
     private Integer wins;
 
     private Integer podiums;

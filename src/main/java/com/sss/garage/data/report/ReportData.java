@@ -1,11 +1,11 @@
-package com.sss.garage.data.penalty;
+package com.sss.garage.data.report;
 
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.race.RaceData;
 
 import java.util.Date;
 
-public class PenaltyData {
+public class ReportData {
     private Long id;
 
     private Integer penaltySeconds;
@@ -20,7 +20,9 @@ public class PenaltyData {
 
     private Date reportDate;
 
-    private DriverData driver;
+    private DriverData reportingDriver;
+
+    private DriverData reportedDriver;
 
     private RaceData race;
 
@@ -82,12 +84,20 @@ public class PenaltyData {
         this.reportDate = reportDate;
     }
 
-    public DriverData getDriver() {
-        return driver;
+    public DriverData getReportingDriver() {
+        return reportingDriver;
     }
 
-    public void setDriver(DriverData driver) {
-        this.driver = driver;
+    public void setReportingDriver(DriverData reportingDriver) {
+        this.reportingDriver = reportingDriver;
+    }
+
+    public DriverData getReportedDriver() {
+        return reportedDriver;
+    }
+
+    public void setReportedDriver(DriverData reportedDriver) {
+        this.reportedDriver = reportedDriver;
     }
 
     public RaceData getRace() {

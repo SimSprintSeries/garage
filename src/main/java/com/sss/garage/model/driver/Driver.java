@@ -2,7 +2,7 @@ package com.sss.garage.model.driver;
 
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
-import com.sss.garage.model.penalty.Penalty;
+import com.sss.garage.model.report.Report;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
@@ -41,8 +41,11 @@ public class Driver {
     @ManyToMany
     private Set<Split> splits;
 
-    @OneToMany(mappedBy = "driver")
-    private List<Penalty> penalties;
+    @OneToMany(mappedBy = "reportingDriver")
+    private List<Report> reporting;
+
+    @OneToMany(mappedBy = "reportedDriver")
+    private List<Report> reported;
 
     @OneToMany(mappedBy = "driver")
     private List<Entry> entries;
@@ -110,12 +113,20 @@ public class Driver {
         this.splits = splits;
     }
 
-    public List<Penalty> getPenalties() {
-        return penalties;
+    public List<Report> getReporting() {
+        return reporting;
     }
 
-    public void setPenalties(List<Penalty> penalties) {
-        this.penalties = penalties;
+    public void setReporting(List<Report> reporting) {
+        this.reporting = reporting;
+    }
+
+    public List<Report> getReported() {
+        return reported;
+    }
+
+    public void setReported(List<Report> reported) {
+        this.reported = reported;
     }
 
     public List<Entry> getEntries() {

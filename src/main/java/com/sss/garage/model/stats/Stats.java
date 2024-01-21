@@ -11,6 +11,8 @@ public class Stats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer starts;
+
     private Integer wins;
 
     private Integer podiums;
@@ -29,6 +31,14 @@ public class Stats {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getStarts() {
+        return starts;
+    }
+
+    public void setStarts(Integer starts) {
+        this.starts = starts;
     }
 
     public Integer getWins() {

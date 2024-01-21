@@ -3,6 +3,8 @@ package com.sss.garage.data.stats;
 public class StatsData {
     private Long id;
 
+    private Integer starts;
+
     private Integer wins;
 
     private Integer podiums;
@@ -21,6 +23,14 @@ public class StatsData {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getStarts() {
+        return starts;
+    }
+
+    public void setStarts(Integer starts) {
+        this.starts = starts;
     }
 
     public Integer getWins() {

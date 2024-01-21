@@ -1,4 +1,4 @@
-package com.sss.garage.model.penalty;
+package com.sss.garage.model.report;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.race.Race;
@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Penalty {
+public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,10 @@ public class Penalty {
     private Date reportDate;
 
     @ManyToOne
-    private Driver driver;
+    private Driver reportingDriver;
+
+    @ManyToOne
+    private Driver reportedDriver;
 
     @ManyToOne
     private Race race;
@@ -89,12 +92,20 @@ public class Penalty {
         this.reportDate = reportDate;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public Driver getReportingDriver() {
+        return reportingDriver;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setReportingDriver(Driver reportingDriver) {
+        this.reportingDriver = reportingDriver;
+    }
+
+    public Driver getReportedDriver() {
+        return reportedDriver;
+    }
+
+    public void setReportedDriver(Driver reportedDriver) {
+        this.reportedDriver = reportedDriver;
     }
 
     public Race getRace() {

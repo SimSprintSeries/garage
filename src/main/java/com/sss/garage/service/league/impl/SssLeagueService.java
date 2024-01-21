@@ -1,5 +1,6 @@
 package com.sss.garage.service.league.impl;
 
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.EventRepository;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.service.league.LeagueService;
@@ -23,11 +24,6 @@ public class SssLeagueService implements LeagueService {
     private EventRepository eventRepository;
 
     @Override
-    public List<League> getAllLeagues() {
-        return leagueRepository.findAll();
-    }
-
-    @Override
     public Optional<League> getLeague(final Long id) {
         return leagueRepository.findById(id);
     }
@@ -39,8 +35,18 @@ public class SssLeagueService implements LeagueService {
     }
 
     @Override
+    public void deleteLeague(final Long id) {
+        leagueRepository.deleteById(id);
+    }
+
+    @Override
     public Page<League> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable) {
         return leagueRepository.findAllByParams(platform, name, active, pageable);
+    }
+
+    @Override
+    public Page<League> getLeaguesForDriver(final Driver driver, final Pageable pageable) {
+        return leagueRepository.findLeaguesForDriver(driver, pageable);
     }
 
     private void setStartDateAndEventCount(final League league) {

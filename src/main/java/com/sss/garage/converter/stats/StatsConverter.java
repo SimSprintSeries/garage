@@ -13,6 +13,7 @@ public class StatsConverter extends BaseConverter implements Converter<Stats, St
         final StatsData data = new StatsData();
 
         data.setId(source.getId());
+        data.setStarts(source.getStarts());
         data.setWins(source.getWins());
         data.setPodiums(source.getPodiums());
         data.setTop10(source.getTop10());
