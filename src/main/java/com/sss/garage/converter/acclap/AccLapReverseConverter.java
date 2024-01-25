@@ -13,11 +13,9 @@ public class AccLapReverseConverter extends BaseConverter implements Converter<A
         final AccLap target = new AccLap();
 
         target.setId(source.getId());
-        target.setCarId(source.getCarId());
         target.setSector1(source.getSector1());
         target.setSector2(source.getSector2());
         target.setSector3(source.getSector3());
-        target.setDriverIndex(source.getDriverIndex());
         target.setLaptime(source.getLaptime());
         target.setIsValidForBest(source.getIsValidForBest());
         target.setFirstName(source.getFirstName());

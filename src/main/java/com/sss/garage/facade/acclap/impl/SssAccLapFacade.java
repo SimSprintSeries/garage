@@ -35,12 +35,6 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
     }
 
     @Override
-    public Page<AccLapData> getLapsPaginated(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
-        Page<AccLap> lap = lapService.getLapsPaginated(sessionType, trackName, serverName, pageable);
-        return lap.map(l -> conversionService.convert(l, AccLapData.class));
-    }
-
-    @Override
     public Page<AccLapData> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
         Page<AccLap> lap = lapService.getFastestLapsForEveryDriver(sessionType, trackName, serverName, pageable);
         return lap.map(l -> conversionService.convert(l, AccLapData.class));

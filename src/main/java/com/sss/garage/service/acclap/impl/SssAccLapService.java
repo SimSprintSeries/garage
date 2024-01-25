@@ -2,8 +2,6 @@ package com.sss.garage.service.acclap.impl;
 
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
-import com.sss.garage.model.cartable.CarTable;
-import com.sss.garage.model.cartable.CarTableRepository;
 import com.sss.garage.service.acclap.AccLapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,15 +9,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
 public class SssAccLapService implements AccLapService {
     private AccLapRepository lapRepository;
-
-    private CarTableRepository carTableRepository;
 
     @Override
     public Optional<AccLap> getLap(final Long id) {
@@ -37,19 +32,14 @@ public class SssAccLapService implements AccLapService {
     }
 
     @Override
-    public Page<AccLap> getLapsPaginated(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
-        return lapRepository.findAllByParams(sessionType, trackName, serverName, pageable);
-    }
-
-    @Override
     public Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
         List<AccLap> laps = lapRepository.findAllByParams(sessionType, trackName, serverName);
-        Set<String> shortDriverNames = new HashSet<>();
+        Set<String> steamIds = new HashSet<>();
         List<AccLap> bestLaps = new ArrayList<>();
         for (AccLap lap : laps) {
-            shortDriverNames.add(lap.getShortName());
+            steamIds.add(lap.getSteamId());
         }
-        for (String shortName : shortDriverNames) {
+        for (String steamId : steamIds) {
             AccLap bestLap = new AccLap();
             Float bestLaptime = (float)100000;
             Float bestSector1 = (float)100000;
@@ -57,7 +47,7 @@ public class SssAccLapService implements AccLapService {
             Float bestSector3 = (float)100000;
             Integer lapCount = 0;
             for (AccLap lap : laps) {
-                if (lap.getShortName().equals(shortName)) {
+                if (lap.getSteamId().equals(steamId)) {
                     lapCount++;
                     if (Float.parseFloat(lap.getLaptime()) < bestLaptime) {
                         bestLaptime = Float.valueOf(lap.getLaptime());
@@ -73,8 +63,7 @@ public class SssAccLapService implements AccLapService {
                     }
                     bestLap.setFirstName(lap.getFirstName());
                     bestLap.setLastName(lap.getLastName());
-                    bestLap.setShortName(shortName);
-                    bestLap.setCarName(carTableRepository.findById(lap.getCarModel()).orElseThrow().getCarModel());
+                    bestLap.setShortName(lap.getShortName());
                     bestLap.setLaptime(convertSecondsToMinutes(bestLaptime));
                     bestLap.setSector1(convertSecondsToMinutes(bestSector1));
                     bestLap.setSector2(convertSecondsToMinutes(bestSector2));
@@ -93,7 +82,11 @@ public class SssAccLapService implements AccLapService {
 
     private String convertSecondsToMinutes(final Float seconds) {
         DecimalFormat df = new DecimalFormat("#.000");
-        return (int)(seconds/60) + ":" + df.format(seconds % 60);
+        if((int)(seconds/60) == 0) {
+            return df.format(seconds % 60);
+        } else {
+            return (int)(seconds/60) + ":" + df.format(seconds % 60);
+        }
     }
 
     private Float convertMinutesToSeconds(final String minutes) {
@@ -104,10 +97,5 @@ public class SssAccLapService implements AccLapService {
     @Autowired
     public void setLapRepository(AccLapRepository lapRepository) {
         this.lapRepository = lapRepository;
-    }
-
-    @Autowired
-    public void setCarTableRepository(CarTableRepository carTableRepository) {
-        this.carTableRepository = carTableRepository;
     }
 }

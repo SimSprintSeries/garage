@@ -14,11 +14,5 @@ public interface AccLapRepository extends JpaRepository<AccLap, Long> {
                                     "AND (l.trackName=:trackName OR :trackName IS NULL)" +
                                     "AND (l.sessionType=:sessionType OR :sessionType IS NULL)" +
                                     "AND (l.isValidForBest = true)")
-    Page<AccLap> findAllByParams(String sessionType, String trackName, String serverName, Pageable pageable);
-
-    @Query("SELECT l FROM AccLap l WHERE (l.serverName=:serverName OR :serverName IS NULL) " +
-                                    "AND (l.trackName=:trackName OR :trackName IS NULL)" +
-                                    "AND (l.sessionType=:sessionType OR :sessionType IS NULL)" +
-                                    "AND (l.isValidForBest = true)")
     List<AccLap> findAllByParams(String sessionType, String trackName, String serverName);
 }

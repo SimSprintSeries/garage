@@ -2,25 +2,18 @@ package com.sss.garage.dev.initial.data.legacy;
 
 import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sss.garage.dev.initial.data.legacy.converter.LegacyDriverConverter;
 import com.sss.garage.dev.initial.data.legacy.model.*;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
-import com.sss.garage.model.cartable.CarTable;
-import com.sss.garage.model.cartable.CarTableRepository;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.event.Event;
@@ -46,11 +39,12 @@ import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+
+import javax.json.*;
 
 @Component
 public class LegacyDataImporter {
@@ -69,9 +63,6 @@ public class LegacyDataImporter {
 
     @Value("${legacy.data.dir}/races.json")
     private Resource racesResource;
-
-    @Value("${legacy.data.dir}/testsession.json")
-    private Resource accSessionResource;
 
     @Value("${legacy.data.dir}/cartable.json")
     private Resource carsResource;
@@ -101,8 +92,6 @@ public class LegacyDataImporter {
     private RaceResultRepository raceResultRepository;
 
     private AccLapRepository accLapRepository;
-
-    private CarTableRepository carTableRepository;
 
     private TrackRepository trackRepository;
 
@@ -281,102 +270,96 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        String lapsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("laps").toString());
-
-        String resultsJsonObject = convertJsonString(objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("sessionResult").toString());
-
-        String leaderBoardLinesJsonObject = convertJsonString(objectMapper.readValue(resultsJsonObject, JSONObject.class).get("leaderBoardLines").toString());
-
-        JSONObject[] driverJsonArrayOriginal = objectMapper.readValue(leaderBoardLinesJsonObject, JSONObject[].class);
-
-        List<JSONObject> driverJsonArrayList = new ArrayList<>(Arrays.asList(driverJsonArrayOriginal));
-
-        for (JSONObject jsonObject : driverJsonArrayOriginal) {
-            JSONObject carObject = objectMapper.readValue(convertJsonString(jsonObject.get("car").toString()), JSONObject.class);
-            JSONObject[] driverArray = objectMapper.readValue(convertJsonString(carObject.get("drivers").toString()), JSONObject[].class);
-            jsonObject.keySet().removeIf(k -> !k.equals("a"));
-            for (int i=0;i<driverArray.length;i++) {
-                JSONObject newJsonObject = new JSONObject();
-                newJsonObject.put("carId", carObject.get("carId"));
-                newJsonObject.put("raceNumber", carObject.get("raceNumber"));
-                newJsonObject.put("carModel", carObject.get("carModel"));
-                newJsonObject.put("driverIndex", i);
-                newJsonObject.put("firstName", driverArray[i].get("firstName"));
-                newJsonObject.put("lastName", driverArray[i].get("lastName"));
-                newJsonObject.put("shortName", driverArray[i].get("shortName"));
-                driverJsonArrayList.add(newJsonObject);
+        for(File file : new File(System.getProperty("user.home") + "\\Desktop\\stare resultsy ACC").listFiles()) {
+            if(file.getAbsolutePath().contains("entrylist") || file.isDirectory()) {
+                continue;
             }
-        }
 
-        JSONObject[] driverJsonArray = new JSONObject[driverJsonArrayList.size()];
-        driverJsonArray = driverJsonArrayList.toArray(driverJsonArray);
+            InputStream fis = new FileInputStream(file.getAbsolutePath());
 
-        JsonNode root = objectMapper.readTree(lapsJsonObject);
+            JsonObject sessionObject = readObject(fis);
 
-        root.forEach(
-                card -> {
-                    ObjectNode cardObject = (ObjectNode) card;
-                    ArrayNode splitsNode = (ArrayNode) cardObject.remove("splits");
-                    for(int i=0; i < splitsNode.size(); i++) {
-                        cardObject.put("sector"+(i+1), splitsNode.get(i));
+            JsonArray leaderBoardLinesArray = sessionObject.getJsonObject("sessionResult").getJsonArray("leaderBoardLines");
+
+            JsonArrayBuilder driverArrayBuilder = Json.createArrayBuilder();
+
+            for(JsonValue leaderBoardLinesValue : leaderBoardLinesArray) {
+                JsonObject carObject = readObject(new StringReader(leaderBoardLinesValue.toString())).getJsonObject("car");
+                JsonObjectBuilder driverObjectBuilder = Json.createObjectBuilder();
+                int i = 0;
+                for(JsonValue driverValue : carObject.getJsonArray("drivers")) {
+                    JsonObject driverObject = readObject(new StringReader(driverValue.toString()));
+                    driverObjectBuilder.add("carId", carObject.getInt("carId"));
+                    driverObjectBuilder.add("raceNumber", carObject.getInt("raceNumber"));
+                    driverObjectBuilder.add("carModel", carObject.getInt("carModel"));
+                    driverObjectBuilder.add("driverIndex", i);
+                    driverObjectBuilder.add("firstName", driverObject.getString("firstName"));
+                    driverObjectBuilder.add("lastName", driverObject.getString("lastName"));
+                    driverObjectBuilder.add("shortName", driverObject.getString("shortName"));
+                    driverObjectBuilder.add("steamId", driverObject.getString("playerId"));
+                    driverArrayBuilder.add(driverObjectBuilder);
+                    i++;
+                }
+            }
+
+            JsonArray driverJsonArray = driverArrayBuilder.build();
+
+            JsonArray lapJsonArray = sessionObject.getJsonArray("laps");
+
+            JsonArrayBuilder lapArrayBuilder = Json.createArrayBuilder();
+
+            for(JsonValue lapValue : lapJsonArray) {
+                JsonObject lapObject = readObject(new StringReader(lapValue.toString()));
+                JsonObjectBuilder lapObjectBuilder = Json.createObjectBuilder();
+                for(JsonValue driverValue : driverJsonArray) {
+                    JsonObject driverObject = readObject(new StringReader(driverValue.toString()));
+                    if(lapObject.getInt("carId") == driverObject.getInt("carId") && lapObject.getInt("driverIndex") == driverObject.getInt("driverIndex")) {
+                        lapObjectBuilder.add("firstName", driverObject.getString("firstName"));
+                        lapObjectBuilder.add("lastName", driverObject.getString("lastName"));
+                        lapObjectBuilder.add("shortName", driverObject.getString("shortName"));
+                        lapObjectBuilder.add("steamId", driverObject.getString("steamId"));
+                        lapObjectBuilder.add("laptime", lapObject.getInt("laptime"));
+                        lapObjectBuilder.add("isValidForBest", lapObject.getBoolean("isValidForBest"));
+                        lapObjectBuilder.add("raceNumber", driverObject.getInt("raceNumber"));
+                        lapObjectBuilder.add("carModel", driverObject.getInt("carModel"));
+                        lapObjectBuilder.add("trackName", sessionObject.getString("trackName"));
+                        lapObjectBuilder.add("sessionType", sessionObject.getString("sessionType"));
+                        lapObjectBuilder.add("serverName", sessionObject.getString("serverName").split("-")[1].strip());
+                        for(int i=0;i<lapObject.getJsonArray("splits").size();i++) {
+                            lapObjectBuilder.add("sector" + (i+1), lapObject.getJsonArray("splits").getInt(i));
+                        }
+                        lapArrayBuilder.add(lapObjectBuilder);
                     }
                 }
-        );
-
-        String lapsJsonString = objectMapper.writeValueAsString(root);
-
-        JSONObject[] lapsJsonArray = objectMapper.readValue(lapsJsonString, JSONObject[].class);
-
-        for (int i=0;i<lapsJsonArray.length;i++) {
-            for (int j=0;j<driverJsonArray.length;j++) {
-                if (lapsJsonArray[i].get("carId").equals(driverJsonArray[j].get("carId")) && lapsJsonArray[i].get("driverIndex").equals(driverJsonArray[j].get("driverIndex"))) {
-                    lapsJsonArray[i].put("firstName", driverJsonArray[j].get("firstName"));
-                    lapsJsonArray[i].put("lastName", driverJsonArray[j].get("lastName"));
-                    lapsJsonArray[i].put("shortName", driverJsonArray[j].get("shortName"));
-                    lapsJsonArray[i].put("raceNumber", driverJsonArray[j].get("raceNumber"));
-                    lapsJsonArray[i].put("carModel", driverJsonArray[j].get("carModel"));
-                    lapsJsonArray[i].put("trackName", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("trackName"));
-                    lapsJsonArray[i].put("sessionType", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("sessionType"));
-                    lapsJsonArray[i].put("serverName", objectMapper.readValue(accSessionResource.getFile(), JSONObject.class).get("serverName").toString().split("-")[1].strip());
-                }
             }
+
+            JsonArray legacyLapJsonArray = lapArrayBuilder.build();
+
+            List<LegacyAccLap> legacyAccLaps = Arrays.asList(objectMapper.readValue(legacyLapJsonArray.toString(), LegacyAccLap[].class));
+            List<LegacyCarTable> legacyCarTables = Arrays.asList(objectMapper.readValue(carsResource.getFile(), LegacyCarTable[].class));
+            Set<AccLap> accLaps = legacyAccLaps.stream()
+                    .map(l -> {
+                        final AccLap accLap = new AccLap();
+                        accLap.setIsValidForBest(l.isValidForBest);
+                        accLap.setSector1(String.valueOf(((float)l.sector1/1000)));
+                        accLap.setSector2(String.valueOf(((float)l.sector2/1000)));
+                        accLap.setSector3(String.valueOf(((float)l.sector3/1000)));
+                        accLap.setLaptime(String.valueOf(((float)l.laptime)/1000));
+                        accLap.setFirstName(l.firstName);
+                        accLap.setLastName(l.lastName);
+                        accLap.setShortName(l.shortName);
+                        accLap.setSteamId(l.steamId);
+                        accLap.setCarModel(l.carModel);
+                        accLap.setCarName(findCarNameByCarModel(l.carModel, legacyCarTables));
+                        accLap.setRaceNumber(l.raceNumber);
+                        accLap.setTrackName(l.trackName);
+                        accLap.setSessionType(l.sessionType);
+                        accLap.setServerName(l.serverName);
+                        return accLap;
+                    })
+                    .collect(Collectors.toSet());
+            accLapRepository.saveAll(accLaps);
         }
-
-        List<LegacyAccLap> legacyAccLaps = Arrays.asList(objectMapper.readValue(Arrays.toString(lapsJsonArray), LegacyAccLap[].class));
-        Set<AccLap> accLaps = legacyAccLaps.stream()
-                .map(l -> {
-                    final AccLap accLap = new AccLap();
-                    accLap.setCarId(l.carId);
-                    accLap.setDriverIndex(l.driverIndex);
-                    accLap.setLaptime(String.valueOf(((float)l.laptime)/1000));
-                    accLap.setIsValidForBest(l.isValidForBest);
-                    accLap.setSector1(String.valueOf(((float)l.sector1/1000)));
-                    accLap.setSector2(String.valueOf(((float)l.sector2/1000)));
-                    accLap.setSector3(String.valueOf(((float)l.sector3/1000)));
-                    accLap.setFirstName(l.firstName);
-                    accLap.setLastName(l.lastName);
-                    accLap.setShortName(l.shortName);
-                    accLap.setCarModel(l.carModel);
-                    accLap.setRaceNumber(l.raceNumber);
-                    accLap.setTrackName(l.trackName);
-                    accLap.setSessionType(l.sessionType);
-                    accLap.setServerName(l.serverName);
-                    return accLap;
-                })
-                .collect(Collectors.toSet());
-        accLapRepository.saveAll(accLaps);
-
-        List<LegacyCarTable> legacyCars = Arrays.asList(objectMapper.readValue(carsResource.getFile(), LegacyCarTable[].class));
-
-        Set<CarTable> cars = legacyCars.stream()
-                .map(c -> {
-                    final CarTable carTable = new CarTable();
-                    carTable.setId(c.id);
-                    carTable.setCarModel(c.carModel);
-                    return carTable;
-                })
-                .collect(Collectors.toSet());
-        carTableRepository.saveAll(cars);
     }
 
     private static Driver findDriverByLegacyId(final Long id, final Set<Driver> drivers, final List<LegacyDriver> legacyDrivers) {
@@ -491,6 +474,28 @@ public class LegacyDataImporter {
         return other;
     }
 
+    private JsonObject readObject(final InputStream inputStream) {
+        JsonReader reader = Json.createReader(inputStream);
+        JsonObject object = reader.readObject();
+        reader.close();
+        return object;
+    }
+
+    private JsonObject readObject(final StringReader stringReader) {
+        JsonReader reader = Json.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        reader.close();
+        return object;
+    }
+
+    private static String findCarNameByCarModel(final Integer id, final List<LegacyCarTable> legacyCarTables) {
+        LegacyCarTable legacyCarTable = legacyCarTables.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst().get();
+
+        return legacyCarTable.getCarModel();
+    }
+
     private RacePointType findRacePointType(final Race race) {
         RacePointType racePointType = RacePointType.F1_GP;
 
@@ -553,31 +558,6 @@ public class LegacyDataImporter {
         return racePointType;
     }
 
-    // Konwersja JSONa - dodanie cudzysłowów do wartości tekstowych w stringu, zmiana z "=" na ":", usunięcie problematycznych i niepotrzebnych pól
-    private String convertJsonString(final String oldValue) {
-        String updated = oldValue.replaceAll("teamName=, ", "").replaceAll(", playerId=S.................", "")
-                .replace("{", " { ").replace("}", " } ").replace("[", " [ ")
-                .replace("]", " ] ").replace(",", " , ").replace("=", " = ");
-
-        String[] listed = updated.split(" ");
-
-        StringBuilder sb = new StringBuilder();
-
-        Pattern p = Pattern.compile("[A-Za-z].*[A-Za-z]");
-
-        for(Integer i=0; i<listed.length; i++) {
-            Matcher m = p.matcher(listed[i]);
-            while (m.find())
-            {
-                listed[i] = "\"" + listed[i] + "\"";
-            }
-            m.appendTail(sb);
-        }
-
-        return String.join("", listed).replace("=", ":");
-    }
-
-
 
     @Autowired
     public void setObjectMapper(final ObjectMapper objectMapper) {
@@ -632,11 +612,6 @@ public class LegacyDataImporter {
     @Autowired
     public void setAccLapRepository(final AccLapRepository accLapRepository) {
         this.accLapRepository = accLapRepository;
-    }
-
-    @Autowired
-    public void setCarTableRepository(final CarTableRepository carTableRepository) {
-        this.carTableRepository = carTableRepository;
     }
 
     @Autowired

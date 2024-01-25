@@ -23,6 +23,8 @@ public class LegacyAccLap {
 
     public String shortName;
 
+    public String steamId;
+
     public Integer raceNumber;
 
     public Integer carModel;

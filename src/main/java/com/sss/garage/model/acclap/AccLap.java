@@ -10,10 +10,6 @@ public class AccLap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer carId;
-
-    private Integer driverIndex;
-
     private Boolean isValidForBest;
 
     private String laptime;
@@ -29,6 +25,8 @@ public class AccLap {
     private String lastName;
 
     private String shortName;
+
+    private String steamId;
 
     private Integer carModel;
 
@@ -54,22 +52,6 @@ public class AccLap {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Integer carId) {
-        this.carId = carId;
-    }
-
-    public Integer getDriverIndex() {
-        return driverIndex;
-    }
-
-    public void setDriverIndex(Integer driverIndex) {
-        this.driverIndex = driverIndex;
     }
 
     public Boolean getIsValidForBest() {
@@ -134,6 +116,14 @@ public class AccLap {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+    }
+
+    public String getSteamId() {
+        return steamId;
+    }
+
+    public void setSteamId(String steamId) {
+        this.steamId = steamId;
     }
 
     public Integer getCarModel() {
