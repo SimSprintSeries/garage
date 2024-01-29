@@ -64,6 +64,7 @@ public class SssAccLapService implements AccLapService {
                     bestLap.setFirstName(lap.getFirstName());
                     bestLap.setLastName(lap.getLastName());
                     bestLap.setShortName(lap.getShortName());
+                    bestLap.setCarName(lap.getCarName());
                     bestLap.setLaptime(convertSecondsToMinutes(bestLaptime));
                     bestLap.setSector1(convertSecondsToMinutes(bestSector1));
                     bestLap.setSector2(convertSecondsToMinutes(bestSector2));
