@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DriverReverseConverter extends BaseConverter implements Converter<DriverData, Driver> {
-
-    private EloService eloService;
-
     @Override
     public Driver convert(final DriverData source) {
         final Driver target = new Driver();
@@ -21,10 +18,5 @@ public class DriverReverseConverter extends BaseConverter implements Converter<D
         target.setName(source.getNickname());
 
         return target;
-    }
-
-    @Autowired
-    public void setEloService(final EloService eloService) {
-        this.eloService = eloService;
     }
 }

@@ -1,11 +1,10 @@
 package com.sss.garage.model.raceresult;
 
 import com.sss.garage.model.race.Race;
-import com.sss.garage.model.split.Split;
+import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.model.event.Event;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -34,8 +33,15 @@ public class RaceResult {
     @ManyToOne
     private Driver driver;
 
+    private String comment;
+
     @ManyToOne
     private Race race;
+
+    @ManyToOne
+    private Team team;
+
+    private Integer pointsForPosition;
 
     public Long getId() {
         return id;
@@ -85,6 +91,14 @@ public class RaceResult {
         this.driver = driver;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public Race getRace() {
         return race;
     }
@@ -100,5 +114,21 @@ public class RaceResult {
 
     public void setDsq(@NotNull final Boolean dsq) {
         this.dsq = dsq;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

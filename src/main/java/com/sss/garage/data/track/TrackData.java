@@ -12,6 +12,8 @@ public class TrackData {
 
     private String country;
 
+    private String city;
+
     private Set<EventData> events;
 
 
@@ -37,6 +39,14 @@ public class TrackData {
 
     public void setCountry(final String country) {
         this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public Set<EventData> getEvents() {

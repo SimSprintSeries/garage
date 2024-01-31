@@ -1,8 +1,12 @@
 package com.sss.garage.dto.driver;
 
+import com.sss.garage.dto.team.TeamDTO;
+
 public class SimpleDriverDTO {
     private Long id;
     private String nickname;
+
+    private TeamDTO team;
 
     public Long getId() {
         return id;
@@ -18,5 +22,13 @@ public class SimpleDriverDTO {
 
     public void setNickname(final String nickname) {
         this.nickname = nickname;
+    }
+
+    public TeamDTO getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamDTO team) {
+        this.team = team;
     }
 }

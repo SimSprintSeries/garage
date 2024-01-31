@@ -2,17 +2,18 @@ package com.sss.garage.dev.initial.data.legacy;
 
 import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
 
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sss.garage.dev.initial.data.legacy.converter.LegacyDriverConverter;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyDriver;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyEvent;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyLeague;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyRace;
-import com.sss.garage.dev.initial.data.legacy.model.LegacyRaceResult;
+import com.sss.garage.dev.initial.data.legacy.model.*;
+import com.sss.garage.model.acclap.AccLap;
+import com.sss.garage.model.acclap.AccLapRepository;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.event.Event;
@@ -25,10 +26,16 @@ import com.sss.garage.model.league.League;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
+import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
+import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.split.SplitRepository;
+import com.sss.garage.model.team.Team;
+import com.sss.garage.model.team.TeamRepository;
+import com.sss.garage.model.track.Track;
+import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
@@ -36,6 +43,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+
+import javax.json.*;
 
 @Component
 public class LegacyDataImporter {
@@ -55,6 +64,15 @@ public class LegacyDataImporter {
     @Value("${legacy.data.dir}/races.json")
     private Resource racesResource;
 
+    @Value("${legacy.data.dir}/cartable.json")
+    private Resource carsResource;
+
+    @Value("${legacy.data.dir}/tracks.json")
+    private Resource tracksResource;
+
+    @Value("${legacy.data.dir}/teams.json")
+    private Resource teamsResource;
+
     private DiscordUserRepository discordUserRepository;
 
     private DriverRepository driverRepository;
@@ -72,6 +90,14 @@ public class LegacyDataImporter {
     private RaceRepository raceRepository;
 
     private RaceResultRepository raceResultRepository;
+
+    private AccLapRepository accLapRepository;
+
+    private TrackRepository trackRepository;
+
+    private TeamRepository teamRepository;
+
+    private RacePointDictionaryRepository racePointDictionaryRepository;
 
     ObjectMapper objectMapper;
 
@@ -123,6 +149,8 @@ public class LegacyDataImporter {
                     league.setName(l.name);
                     league.setPlatform(l.platform);
                     league.setGame(findGameByName(l.game, games));
+                    league.setBanner(l.banner);
+                    league.setLogo(l.logo);
                     return league;
                 })
                 .collect(Collectors.toSet());
@@ -138,6 +166,20 @@ public class LegacyDataImporter {
                 .collect(Collectors.toSet());
         splitRepository.saveAll(splits);
 
+        List<LegacyTrack> legacyTracks = Arrays.asList(objectMapper.readValue(tracksResource.getFile(), LegacyTrack[].class));
+
+        Set<Track> tracks = legacyTracks.stream()
+                .map(t -> {
+                    final Track track = new Track();
+                    track.setId(t.id);
+                    track.setName(t.name);
+                    track.setCountry(t.country);
+                    track.setCity(t.city);
+                    trackRepository.save(track);
+                    return track;
+                })
+                .collect(Collectors.toSet());
+
         List<LegacyEvent> legacyEvents = Arrays.asList(objectMapper.readValue(eventsResource.getFile(), LegacyEvent[].class));
 
         Set<Event> events = legacyEvents.stream()
@@ -147,10 +189,20 @@ public class LegacyDataImporter {
                     event.setStartDate(e.starts);
                     event.setSprite(e.country);
                     event.setLeague(findLeagueByLegacyId(e.league_id, leagues, legacyLeagues));
+                    event.setTrack(findTrackByLegacyId(e.track_id, tracks, legacyTracks));
                     return event;
                 })
                 .collect(Collectors.toSet());
         eventRepository.saveAll(events);
+
+        for (League league : leagueRepository.findAll()) {
+            try {
+                setStartDateAndEventCount(league);
+            } catch (NullPointerException e) {
+                league.setEventCount(0);
+            }
+            leagueRepository.save(league);
+        }
 
         List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getFile(), LegacyRace[].class));
 
@@ -161,6 +213,7 @@ public class LegacyDataImporter {
                     race.setEvent(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues));
                     race.setStartDate(findLegacyEventById(r.eventid, legacyEvents).starts);
                     race.setSplit(findSplitByLeagueId(race.getEvent().getLeague().getId(), splits, leagues, legacyLeagues));
+                    race.setPointType(findRacePointType(race));
                     return race;
                 })
                 .collect(Collectors.toSet());
@@ -187,6 +240,18 @@ public class LegacyDataImporter {
                         });
         raceRepository.saveAll(races);
 
+        List<LegacyTeam> legacyTeams = Arrays.asList(objectMapper.readValue(teamsResource.getFile(), LegacyTeam[].class));
+        Set<Team> teams = legacyTeams.stream()
+                .map(t -> {
+                    final Team team = new Team();
+                    team.setId(t.id);
+                    team.setName(t.name);
+                    team.setColour(t.colour);
+                    teamRepository.save(team);
+                    return team;
+                })
+                .collect(Collectors.toSet());
+
         List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getFile(), LegacyRaceResult[].class));
         Set<RaceResult> raceResults = legacyRaceResults.stream()
                 .map(r -> {
@@ -198,10 +263,103 @@ public class LegacyDataImporter {
                     raceResult.setFinishPosition(Math.toIntExact(r.position));
                     raceResult.setRace(findRaceByLegacyId(r.raceid, r.eventid, races, legacyRaces, events, legacyEvents, leagues, legacyLeagues));
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
+                    raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
+                    raceResult.setComment(r.comment);
+                    raceResultRepository.save(raceResult);
                     return raceResult;
                 })
                 .collect(Collectors.toSet());
-        raceResultRepository.saveAll(raceResults);
+
+        for(File file : new File(System.getProperty("user.home") + "\\Desktop\\stare resultsy ACC").listFiles()) {
+            if(file.getAbsolutePath().contains("entrylist") || file.isDirectory()) {
+                continue;
+            }
+
+            InputStream fis = new FileInputStream(file.getAbsolutePath());
+
+            JsonObject sessionObject = readObject(fis);
+
+            JsonArray leaderBoardLinesArray = sessionObject.getJsonObject("sessionResult").getJsonArray("leaderBoardLines");
+
+            JsonArrayBuilder driverArrayBuilder = Json.createArrayBuilder();
+
+            for(JsonValue leaderBoardLinesValue : leaderBoardLinesArray) {
+                JsonObject carObject = readObject(new StringReader(leaderBoardLinesValue.toString())).getJsonObject("car");
+                JsonObjectBuilder driverObjectBuilder = Json.createObjectBuilder();
+                int i = 0;
+                for(JsonValue driverValue : carObject.getJsonArray("drivers")) {
+                    JsonObject driverObject = readObject(new StringReader(driverValue.toString()));
+                    driverObjectBuilder.add("carId", carObject.getInt("carId"));
+                    driverObjectBuilder.add("raceNumber", carObject.getInt("raceNumber"));
+                    driverObjectBuilder.add("carModel", carObject.getInt("carModel"));
+                    driverObjectBuilder.add("driverIndex", i);
+                    driverObjectBuilder.add("firstName", driverObject.getString("firstName"));
+                    driverObjectBuilder.add("lastName", driverObject.getString("lastName"));
+                    driverObjectBuilder.add("shortName", driverObject.getString("shortName"));
+                    driverObjectBuilder.add("steamId", driverObject.getString("playerId"));
+                    driverArrayBuilder.add(driverObjectBuilder);
+                    i++;
+                }
+            }
+
+            JsonArray driverJsonArray = driverArrayBuilder.build();
+
+            JsonArray lapJsonArray = sessionObject.getJsonArray("laps");
+
+            JsonArrayBuilder lapArrayBuilder = Json.createArrayBuilder();
+
+            for(JsonValue lapValue : lapJsonArray) {
+                JsonObject lapObject = readObject(new StringReader(lapValue.toString()));
+                JsonObjectBuilder lapObjectBuilder = Json.createObjectBuilder();
+                for(JsonValue driverValue : driverJsonArray) {
+                    JsonObject driverObject = readObject(new StringReader(driverValue.toString()));
+                    if(lapObject.getInt("carId") == driverObject.getInt("carId") && lapObject.getInt("driverIndex") == driverObject.getInt("driverIndex")) {
+                        lapObjectBuilder.add("firstName", driverObject.getString("firstName"));
+                        lapObjectBuilder.add("lastName", driverObject.getString("lastName"));
+                        lapObjectBuilder.add("shortName", driverObject.getString("shortName"));
+                        lapObjectBuilder.add("steamId", driverObject.getString("steamId"));
+                        lapObjectBuilder.add("laptime", lapObject.getInt("laptime"));
+                        lapObjectBuilder.add("isValidForBest", lapObject.getBoolean("isValidForBest"));
+                        lapObjectBuilder.add("raceNumber", driverObject.getInt("raceNumber"));
+                        lapObjectBuilder.add("carModel", driverObject.getInt("carModel"));
+                        lapObjectBuilder.add("trackName", sessionObject.getString("trackName"));
+                        lapObjectBuilder.add("sessionType", sessionObject.getString("sessionType"));
+                        lapObjectBuilder.add("serverName", sessionObject.getString("serverName").split("-")[1].strip());
+                        for(int i=0;i<lapObject.getJsonArray("splits").size();i++) {
+                            lapObjectBuilder.add("sector" + (i+1), lapObject.getJsonArray("splits").getInt(i));
+                        }
+                        lapArrayBuilder.add(lapObjectBuilder);
+                    }
+                }
+            }
+
+            JsonArray legacyLapJsonArray = lapArrayBuilder.build();
+
+            List<LegacyAccLap> legacyAccLaps = Arrays.asList(objectMapper.readValue(legacyLapJsonArray.toString(), LegacyAccLap[].class));
+            List<LegacyCarTable> legacyCarTables = Arrays.asList(objectMapper.readValue(carsResource.getFile(), LegacyCarTable[].class));
+            Set<AccLap> accLaps = legacyAccLaps.stream()
+                    .map(l -> {
+                        final AccLap accLap = new AccLap();
+                        accLap.setIsValidForBest(l.isValidForBest);
+                        accLap.setSector1(String.valueOf(((float)l.sector1/1000)));
+                        accLap.setSector2(String.valueOf(((float)l.sector2/1000)));
+                        accLap.setSector3(String.valueOf(((float)l.sector3/1000)));
+                        accLap.setLaptime(String.valueOf(((float)l.laptime)/1000));
+                        accLap.setFirstName(l.firstName);
+                        accLap.setLastName(l.lastName);
+                        accLap.setShortName(l.shortName);
+                        accLap.setSteamId(l.steamId);
+                        accLap.setCarModel(l.carModel);
+                        accLap.setCarName(findCarNameByCarModel(l.carModel, legacyCarTables));
+                        accLap.setRaceNumber(l.raceNumber);
+                        accLap.setTrackName(l.trackName);
+                        accLap.setSessionType(l.sessionType);
+                        accLap.setServerName(l.serverName);
+                        return accLap;
+                    })
+                    .collect(Collectors.toSet());
+            accLapRepository.saveAll(accLaps);
+        }
     }
 
     private static Driver findDriverByLegacyId(final Long id, final Set<Driver> drivers, final List<LegacyDriver> legacyDrivers) {
@@ -248,6 +406,16 @@ public class LegacyDataImporter {
                 .findFirst().get();
     }
 
+    private static Team findTeamByLegacyId(final Long id, final Set<Team> teams, final List<LegacyTeam> legacyTeams) {
+        LegacyTeam legacyTeam = legacyTeams.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().get();
+
+        return teams.stream()
+                .filter(t -> t.getName().equals(legacyTeam.name))
+                .findFirst().get();
+    }
+
     private static Split findSplitByLeagueId(final Long id, final Set<Split> splits, final Set<League> leagues, final List<LegacyLeague> legacyLeagues) {
         LegacyLeague legacyLeague = legacyLeagues.stream()
                 .filter(l -> l.getName().equals(leagues.stream().filter(l2 -> id.equals(l2.getId())).findFirst().get().getName()))
@@ -274,6 +442,23 @@ public class LegacyDataImporter {
                 .findFirst().get();//always exists
     }
 
+    private void setStartDateAndEventCount(final League league) {
+        LocalDate date = eventRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        league.setStartDate(date.format(formatter));
+        league.setEventCount(eventRepository.countByLeague(league));
+    }
+
+    private static Track findTrackByLegacyId(final Long id, final Set<Track> tracks, final List<LegacyTrack> legacyTracks) {
+        LegacyTrack legacyTrack = legacyTracks.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().get();
+
+        return tracks.stream()
+                .filter(l -> l.getName().equals(legacyTrack.name))
+                .findFirst().get();
+    }
+
     private GameFamily newGameFamily(final String name) {
         final GameFamily gameFamily = new GameFamily();
         gameFamily.setName(name);
@@ -288,6 +473,91 @@ public class LegacyDataImporter {
 
         return other;
     }
+
+    private JsonObject readObject(final InputStream inputStream) {
+        JsonReader reader = Json.createReader(inputStream);
+        JsonObject object = reader.readObject();
+        reader.close();
+        return object;
+    }
+
+    private JsonObject readObject(final StringReader stringReader) {
+        JsonReader reader = Json.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        reader.close();
+        return object;
+    }
+
+    private static String findCarNameByCarModel(final Integer id, final List<LegacyCarTable> legacyCarTables) {
+        LegacyCarTable legacyCarTable = legacyCarTables.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst().get();
+
+        return legacyCarTable.getCarModel();
+    }
+
+    private RacePointType findRacePointType(final Race race) {
+        RacePointType racePointType = RacePointType.F1_GP;
+
+        League league = race.getEvent().getLeague();
+        Game game = league.getGame();
+
+        if(game.getName().equals("F2 2019") || game.getName().equals("F2 2020")) {
+            if(race.getName().equals("Sprint")) {
+                racePointType = RacePointType.F2_SPRINT_2019;
+            } else {
+                racePointType = RacePointType.F2_FEATURE_2019;
+            }
+        } else if (game.getName().equals("F2 22") || game.getName().equals("F2 23")) {
+            if(race.getName().equals("Sprint")) {
+                racePointType = RacePointType.F2_SPRINT_2022;
+            } else {
+                racePointType = RacePointType.F2_FEATURE_2022;
+            }
+        } else if (game.getName().equals("ACC") || league.getName().contains("GT2")) {
+            racePointType = RacePointType.ACC;
+        } else if (game.getName().equals("AC")) {
+            if(league.getName().contains("DTM '90") && race.getName().contains("Wyścig")) {
+                racePointType = RacePointType.AC_DTM;
+            } else if(league.getName().contains("IMSA") && race.getName().contains("Wyścig")) {
+                racePointType = RacePointType.AC_IMSA;
+            } else if (league.getName().equals("Assetto Corsa - Wiosna 2020")) {
+                if(race.getName().equals("Kwalifikacje")) {
+                    racePointType = RacePointType.AC_2020_QUALI;
+                }
+            } else if (league.getName().contains("WTCR")) {
+                if(race.getName().equals("Kwalifikacje")) {
+                    racePointType = RacePointType.AC_WTCR_QUALI;
+                } else {
+                    racePointType = RacePointType.AC_WTCR_RACE;
+                }
+            } else if (league.getName().contains("Praga")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.ACC;
+                } else {
+                    racePointType = RacePointType.AC_PRAGA_R1_RACE_2;
+                }
+            } else if (league.getName().contains("F4")) {
+                if(race.getName().equals("Wyścig 2")) {
+                    racePointType = RacePointType.AC_F4_RACE_2;
+                }
+            } else if(league.getName().contains("Australian")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.AC_ATCC_RACE_1;
+                } else {
+                    racePointType = RacePointType.AC_ATCC_RACE_2;
+                }
+            } else if (league.getName().contains("Formula 3")) {
+                if(race.getName().equals("Wyścig 1")) {
+                    racePointType = RacePointType.F2_FEATURE_2019;
+                } else {
+                    racePointType = RacePointType.F2_SPRINT_2019;
+                }
+            }
+        }
+        return racePointType;
+    }
+
 
     @Autowired
     public void setObjectMapper(final ObjectMapper objectMapper) {
@@ -337,5 +607,25 @@ public class LegacyDataImporter {
     @Autowired
     public void setGameFamilyRepository(final GameFamilyRepository gameFamilyRepository) {
         this.gameFamilyRepository = gameFamilyRepository;
+    }
+
+    @Autowired
+    public void setAccLapRepository(final AccLapRepository accLapRepository) {
+        this.accLapRepository = accLapRepository;
+    }
+
+    @Autowired
+    public void setTrackRepository(final TrackRepository trackRepository) {
+        this.trackRepository = trackRepository;
+    }
+
+    @Autowired
+    public void setTeamRepository(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
+    }
+
+    @Autowired
+    public void setRacePointDictionaryRepository(RacePointDictionaryRepository racePointDictionaryRepository) {
+        this.racePointDictionaryRepository = racePointDictionaryRepository;
     }
 }

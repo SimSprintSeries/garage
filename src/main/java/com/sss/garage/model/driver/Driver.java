@@ -1,6 +1,10 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.classification.Classification;
+import com.sss.garage.model.entry.Entry;
+import com.sss.garage.model.report.Report;
 import com.sss.garage.model.split.Split;
+import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.elo.history.EloHistory;
@@ -9,6 +13,7 @@ import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +40,21 @@ public class Driver {
 
     @ManyToMany
     private Set<Split> splits;
+
+    @OneToMany(mappedBy = "reportingDriver")
+    private List<Report> reporting;
+
+    @OneToMany(mappedBy = "reportedDriver")
+    private List<Report> reported;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Entry> entries;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Classification> classifications;
+
+    @ManyToOne
+    private Team team;
 
 
     public Long getId() {
@@ -91,5 +111,45 @@ public class Driver {
 
     public void setSplits(final Set<Split> splits) {
         this.splits = splits;
+    }
+
+    public List<Report> getReporting() {
+        return reporting;
+    }
+
+    public void setReporting(List<Report> reporting) {
+        this.reporting = reporting;
+    }
+
+    public List<Report> getReported() {
+        return reported;
+    }
+
+    public void setReported(List<Report> reported) {
+        this.reported = reported;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
+    public List<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(List<Classification> classifications) {
+        this.classifications = classifications;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

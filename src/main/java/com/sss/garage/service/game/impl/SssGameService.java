@@ -10,6 +10,8 @@ import com.sss.garage.service.event.EventService;
 import com.sss.garage.service.game.GameService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,11 +31,6 @@ public class SssGameService implements GameService {
     }
 
     @Override
-    public List<Game> getAllGames() {
-        return gameRepository.findAll();
-    }
-
-    @Override
     public void createGame(final Game game) {
         gameRepository.save(game);
     }
@@ -41,6 +38,11 @@ public class SssGameService implements GameService {
     @Override
     public void deleteGame(final Long id) {
         gameRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Game> getGamesPaginated(final Pageable pageable) {
+        return gameRepository.findAll(pageable);
     }
 
     @Autowired

@@ -2,6 +2,7 @@ package com.sss.garage.data.raceresult;
 
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.race.RaceData;
+import com.sss.garage.data.team.TeamData;
 
 public class RaceResultData {
     private Long id;
@@ -18,7 +19,13 @@ public class RaceResultData {
 
     private DriverData driverData;
 
+    private String comment;
+
     private RaceData raceData;
+
+    private TeamData teamData;
+
+    private Integer pointsForPosition;
 
     public Long getId() {
         return id;
@@ -68,19 +75,43 @@ public class RaceResultData {
         this.fastestLap = fastestLap;
     }
 
-    public DriverData getDriverData() {
+    public DriverData getDriver() {
         return driverData;
     }
 
-    public void setDriverData(DriverData driverData) {
+    public void setDriver(DriverData driverData) {
         this.driverData = driverData;
     }
 
-    public RaceData getRaceData() {
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public RaceData getRace() {
         return raceData;
     }
 
-    public void setRaceData(RaceData raceData) {
+    public void setRace(RaceData raceData) {
         this.raceData = raceData;
+    }
+
+    public TeamData getTeam() {
+        return teamData;
+    }
+
+    public void setTeam(TeamData teamData) {
+        this.teamData = teamData;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
     }
 }

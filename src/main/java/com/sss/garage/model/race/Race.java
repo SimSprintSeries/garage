@@ -1,14 +1,17 @@
 package com.sss.garage.model.race;
 
+import java.util.List;
 import java.util.Set;
 
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
+import com.sss.garage.model.report.Report;
+import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 
-import com.sss.garage.model.track.Track;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -48,6 +51,12 @@ public class Race extends Event {
      * Indicates if this race can score any points to the championship
      */
     private Boolean pointScoring = true;
+
+    @OneToMany(mappedBy = "race")
+    private List<Report> penalties;
+
+    @Enumerated
+    private RacePointType pointType;
 
     public Split getSplit() {
         return split;
@@ -119,5 +128,21 @@ public class Race extends Event {
 
     public void setPointScoring(final Boolean pointScoring) {
         this.pointScoring = pointScoring;
+    }
+
+    public List<Report> getPenalties() {
+        return penalties;
+    }
+
+    public void setPenalties(List<Report> penalties) {
+        this.penalties = penalties;
+    }
+
+    public RacePointType getPointType() {
+        return pointType;
+    }
+
+    public void setPointType(final RacePointType racePointType) {
+        this.pointType = racePointType;
     }
 }

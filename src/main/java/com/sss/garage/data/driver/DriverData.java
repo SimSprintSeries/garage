@@ -2,6 +2,7 @@ package com.sss.garage.data.driver;
 
 import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.team.TeamData;
 
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,8 @@ public class DriverData {
     private String discordName;
     private Set<Integer> stats;
     private Set<SplitData> splits;
+
+    private TeamData team;
 
     public Long getId() {
         return id;
@@ -60,5 +63,13 @@ public class DriverData {
 
     public void setSplits(final Set<SplitData> splits) {
         this.splits = splits;
+    }
+
+    public TeamData getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamData team) {
+        this.team = team;
     }
 }

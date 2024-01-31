@@ -4,6 +4,8 @@ import com.sss.garage.model.track.Track;
 import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.service.track.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +15,6 @@ import java.util.Optional;
 public class SssTrackService implements TrackService {
 
     private TrackRepository trackRepository;
-
-    @Override
-    public List<Track> getAllTracks() {
-        return trackRepository.findAll();
-    }
 
     @Override
     public Optional<Track> getTrack(Long id) {
@@ -32,6 +29,11 @@ public class SssTrackService implements TrackService {
     @Override
     public void deleteTrack(final Long id) {
         trackRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Track> getTracksPaginated(final String name, final String country, final Pageable pageable) {
+        return trackRepository.findAllByParams(name, country, pageable);
     }
 
     @Autowired

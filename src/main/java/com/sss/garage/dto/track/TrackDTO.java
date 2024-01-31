@@ -13,6 +13,8 @@ public class TrackDTO {
 
     private String country;
 
+    private String city;
+
     private Set<EventDTO> events;
 
 
@@ -38,6 +40,14 @@ public class TrackDTO {
 
     public void setCountry(final String country) {
         this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Set<EventDTO> getEvents() {

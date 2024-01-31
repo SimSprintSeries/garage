@@ -16,10 +16,9 @@ public class RaceInterceptor extends EmptyInterceptor {
     @Override
     public boolean onSave(final Object entity, final Object id, final Object[] state, final String[] propertyNames,
                           final Type[] types) throws CallbackException {
-        if(!(entity instanceof Race)) {
+        if(!(entity instanceof Race race)) {
             return super.onSave(entity, id, state, propertyNames, types);
         }
-        final Race race = (Race) entity;
         if(race.getParentRaceEvent() != null) {
             race.setEvent(null);
         }

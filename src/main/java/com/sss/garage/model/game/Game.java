@@ -1,5 +1,6 @@
 package com.sss.garage.model.game;
 
+import com.sss.garage.model.entry.Entry;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,6 +37,9 @@ public class Game {
 
     @ManyToOne
     private GameFamily gameFamily;
+
+    @OneToMany(mappedBy = "game")
+    private Set<Entry> entries;
 
 
     public Long getId() {
@@ -76,5 +80,13 @@ public class Game {
 
     public void setGameFamily(final GameFamily gameFamily) {
         this.gameFamily = gameFamily;
+    }
+
+    public Set<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(Set<Entry> entries) {
+        this.entries = entries;
     }
 }

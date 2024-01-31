@@ -2,6 +2,7 @@ package com.sss.garage.dto.raceresult;
 
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.race.RaceDTO;
+import com.sss.garage.dto.team.TeamDTO;
 
 public class RaceResultDTO {
     private Long id;
@@ -18,7 +19,13 @@ public class RaceResultDTO {
 
     private SimpleDriverDTO driverDTO;
 
+    private String comment;
+
     private RaceDTO raceDTO;
+
+    private TeamDTO teamDTO;
+
+    private Integer pointsForPosition;
 
     public Long getId() {
         return id;
@@ -68,19 +75,43 @@ public class RaceResultDTO {
         this.fastestLap = fastestLap;
     }
 
-    public SimpleDriverDTO getDriverDTO() {
+    public SimpleDriverDTO getDriver() {
         return driverDTO;
     }
 
-    public void setDriverDTO(SimpleDriverDTO driverDTO) {
+    public void setDriver(SimpleDriverDTO driverDTO) {
         this.driverDTO = driverDTO;
     }
 
-    public RaceDTO getRaceDTO() {
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public RaceDTO getRace() {
         return raceDTO;
     }
 
-    public void setRaceDTO(RaceDTO raceDTO) {
+    public void setRace(RaceDTO raceDTO) {
         this.raceDTO = raceDTO;
+    }
+
+    public TeamDTO getTeam() {
+        return teamDTO;
+    }
+
+    public void setTeam(TeamDTO teamDTO) {
+        this.teamDTO = teamDTO;
+    }
+
+    public Integer getPointsForPosition() {
+        return pointsForPosition;
+    }
+
+    public void setPointsForPosition(Integer pointsForPosition) {
+        this.pointsForPosition = pointsForPosition;
     }
 }

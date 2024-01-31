@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import com.sss.garage.model.event.Event;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 
 import org.springframework.data.domain.Page;
@@ -17,10 +19,9 @@ public interface RaceService {
     Boolean isQuali(final Race race);
     void save(final Race race);
     void saveAll(final Collection<Race> races);
-    Page<Race> getAllPlayableRaces(final Pageable pageable);
-    Page<Race> getCompletedPlayableRaces(final Pageable pageable);
-    Page<Race> getUncompletedPlayableRaces(final Pageable pageable);
-    List<Race> getAllRaces();
+    Page<Race> getAllPlayableRaces(final League league, final Pageable pageable);
+    Page<Race> getCompletedPlayableRaces(final League league, final Pageable pageable);
+    Page<Race> getUncompletedPlayableRaces(final League league, final Pageable pageable);
     void deleteRace(final Long id);
-
+    Page<Race> getAllRacesByEvent(final Event event, final Pageable pageable);
 }

@@ -16,6 +16,8 @@ public class Track {
 
     private String country;
 
+    private String city;
+
     @OneToMany(mappedBy = "track")
     private Set<Event> events;
 
@@ -42,6 +44,14 @@ public class Track {
 
     public void setCountry(final String country) {
         this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Set<Event> getEvents() {

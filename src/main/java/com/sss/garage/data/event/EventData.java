@@ -11,6 +11,7 @@ public class EventData {
     private Date startDate;
     private LeagueData league;
     private TrackData track;
+    private Boolean activeForPresence;
 
     public Long getId() {
         return id;
@@ -50,5 +51,13 @@ public class EventData {
 
     public void setTrack(final TrackData track) {
         this.track = track;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
     }
 }

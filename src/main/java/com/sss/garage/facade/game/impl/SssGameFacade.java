@@ -10,6 +10,8 @@ import com.sss.garage.service.game.GameService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,16 +20,9 @@ public class SssGameFacade extends SssBaseFacade implements GameFacade {
     private GameService gameService;
 
     @Override
-    public List<GameData> getAllGames() {
-        return gameService.getAllGames().stream()
-                .map(g -> conversionService.convert(g, GameData.class))
-                .toList();
-    }
-
-    @Override
     public GameData getGame(final Long id) {
         return gameService.getGame(id)
-                .map(l -> conversionService.convert(l, GameData.class))
+                .map(g -> conversionService.convert(g, GameData.class))
                 .orElseThrow();
     }
 
@@ -39,6 +34,12 @@ public class SssGameFacade extends SssBaseFacade implements GameFacade {
     @Override
     public void deleteGame(final Long id) {
         gameService.deleteGame(id);
+    }
+
+    @Override
+    public Page<GameData> getGamesPaginated(final Pageable pageable) {
+        Page<Game> game = gameService.getGamesPaginated(pageable);
+        return game.map(g -> conversionService.convert(g, GameData.class));
     }
 
     @Autowired

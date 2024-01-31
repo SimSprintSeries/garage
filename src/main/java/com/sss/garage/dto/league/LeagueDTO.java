@@ -7,6 +7,8 @@ public class LeagueDTO {
     private String name;
     private String platform;
     private GameDTO game;
+    public String startDate;
+    public Integer eventCount;
 
     public Long getId() {
         return id;
@@ -38,5 +40,21 @@ public class LeagueDTO {
 
     public void setGame(final GameDTO game) {
         this.game = game;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public Integer getEventCount() {
+        return eventCount;
+    }
+
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
     }
 }

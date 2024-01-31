@@ -19,6 +19,7 @@ public class TrackConverter extends BaseConverter implements Converter<Track, Tr
         data.setId(source.getId());
         data.setName(source.getName());
         data.setCountry(source.getCountry());
+        data.setCity(source.getCity());
 
         return data;
     }

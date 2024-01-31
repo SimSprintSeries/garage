@@ -11,6 +11,7 @@ public class LegacyEvent {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date starts;
     public Long league_id;
+    public Long track_id;
 
     public Long getId() {
         return id;
@@ -50,5 +51,13 @@ public class LegacyEvent {
 
     public void setLeague_id(final Long league_id) {
         this.league_id = league_id;
+    }
+
+    public Long getTrack_id() {
+        return track_id;
+    }
+
+    public void setTrack_id(Long track_id) {
+        this.track_id = track_id;
     }
 }

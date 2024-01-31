@@ -5,9 +5,16 @@ import java.util.Optional;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
+import com.sss.garage.model.event.Event;
+import com.sss.garage.model.event.EventRepository;
+import com.sss.garage.model.league.League;
+import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.driver.DriverService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +22,9 @@ public class SssDriverService implements DriverService {
 
     private DriverRepository driverRepository;
 
-    public List<Driver> getAllDrivers() {
-        return driverRepository.findAll();
-    }
+    private EventRepository eventRepository;
+
+    private RaceResultRepository raceResultRepository;
 
     @Override
     public Optional<Driver> getDriver(final Long id) {
@@ -34,8 +41,37 @@ public class SssDriverService implements DriverService {
         driverRepository.deleteById(id);
     }
 
+    @Override
+    public Page<Driver> getDriversPaginated(final Pageable pageable) {
+        return driverRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Driver> getDriversByLeague(League league, Pageable pageable) {
+        Event event = eventRepository.findFirstByLeagueOrderByStartDateAsc(league); // first event for checking if league has double-raced events
+        List<Driver> drivers = driverRepository.findDriversByLeague(league);
+        for(Driver driver : drivers) {
+            if (event.getRaces().stream().findFirst().orElseThrow().getName().equals("Parent race")) {
+                driver.setTeam(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));
+            } else {
+                driver.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
+            }
+        }
+        return new PageImpl<>(drivers, pageable, drivers.size());
+    }
+
     @Autowired
     public void setDriverRepository(final DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
+    }
+
+    @Autowired
+    public void setEventRepository(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
+    @Autowired
+    public void setRaceResultRepository(RaceResultRepository raceResultRepository) {
+        this.raceResultRepository = raceResultRepository;
     }
 }

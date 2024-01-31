@@ -1,5 +1,6 @@
 package com.sss.garage.model.league;
 
+import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -35,6 +36,17 @@ public class League {
     private Boolean active = false;
 
     private String discordGroupId;
+
+    private String startDate;
+
+    private Integer eventCount;
+
+    private String banner;
+
+    private String logo;
+
+    @OneToMany(mappedBy = "league")
+    private Set<Classification> classifications;
 
 
     public Long getId() {
@@ -100,5 +112,45 @@ public class League {
 
     public void setDiscordGroupId(final String discordGroupId) {
         this.discordGroupId = discordGroupId;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public Integer getEventCount() {
+        return eventCount;
+    }
+
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Set<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(Set<Classification> classifications) {
+        this.classifications = classifications;
     }
 }

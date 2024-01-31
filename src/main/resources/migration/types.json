@@ -42,5 +42,13 @@
   {
     "type": 11,
     "league": "Gran Turismo"
+  },
+  {
+    "type": 12,
+    "league": "F1 23"
+  },
+  {
+    "type": 13,
+    "league": "F2 23"
   }
 ]
