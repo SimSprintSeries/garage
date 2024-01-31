@@ -27,6 +27,7 @@ public class CookieUtils {
         return Optional.empty();
     }
 
+    //Could cause an issue in case we need to add another cookies in the application. Not likely. But this is quite bad code
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
@@ -44,10 +45,7 @@ public class CookieUtils {
         if (cookies != null) {
             for (Cookie cookie: cookies) {
                 if (cookie.getName().equals(name)) {
-                    cookie.setValue("");
-                    cookie.setPath("/");
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
+                    addCookie(response, name, "", 0); //delete cookie
                 }
             }
         }
