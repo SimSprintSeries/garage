@@ -35,6 +35,7 @@ public class SssUserService implements UserService {
     @Override
     public void revokeUserToken(final DiscordUser discordUser) {
         discordUser.setCurrentJwtToken(null);
+        discordUser.setTokenExpiryDate(null);
         userRepository.save(discordUser);
     }
 

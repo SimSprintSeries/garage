@@ -1,7 +1,6 @@
 package com.sss.garage.service.session;
 
 import com.sss.garage.model.user.DiscordUser;
-import com.sss.garage.model.user.auth.DiscordOAuth2User;
 import com.sss.garage.service.auth.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,17 @@ public class SssSessionService implements SessionService {
 
     @Override
     public DiscordUser getCurrentUser() {
-        final Authentication principal = (Authentication) getCurrentAuthentication().getPrincipal();
+        final Object principal = getCurrentAuthentication().getPrincipal();
         if(principal instanceof DiscordUser) {
             return (DiscordUser) principal;
         }
-        // principal instance of DiscordOAuth2User
-        // could not yet be in the database...
-        return userService.saveUser(conversionService.convert(principal.getPrincipal(), DiscordUser.class));
+        else if (principal instanceof Authentication) {
+            // principal instance of DiscordOAuth2User
+            // could not yet be in the database...
+            return userService.saveUser(conversionService.convert(((Authentication)principal).getPrincipal(), DiscordUser.class));
+        }
+
+        throw new RuntimeException("Authentication error. Contact SSS Admins");
     }
 
     @Override
