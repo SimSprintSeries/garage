@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import com.sss.garage.model.driver.Driver;
 import java.util.Date;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -27,6 +26,10 @@ public class DiscordUser {
     private String currentJwtToken;
 
     private Date tokenExpiryDate;
+
+    private String avatarId;
+
+    private String displayName;
 
     private boolean rolesUpToDate = false;
 
@@ -92,6 +95,22 @@ public class DiscordUser {
 
     public void setRolesUpToDate(final boolean rolesUpToDate) {
         this.rolesUpToDate = rolesUpToDate;
+    }
+
+    public String getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(final String avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(final String globalName) {
+        this.displayName = globalName;
     }
 
     @Override

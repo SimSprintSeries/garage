@@ -16,6 +16,9 @@ public class DiscordOAuth2ToUserConverter implements Converter<DiscordOAuth2User
         user.setUsername(source.getUsername());
         user.setEmail(source.getAttribute("email"));
         user.setDiscriminator(source.getAttribute("discriminator"));
+        user.setAvatarId(source.getAttribute("avatar"));
+        user.setDisplayName(source.getAttribute("global_name"));
+
         return user;
     }
 }

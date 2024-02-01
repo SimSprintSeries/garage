@@ -16,6 +16,7 @@ public class DiscordOAuth2UserConverter implements Converter<OAuth2User, Discord
         discordUser.setUsername(source.getAttribute("username"));
         discordUser.setAttributes(source.getAttributes());
         // more possible values: avatar, discriminator :bilew:, public_flags, banner, locale, mfa enabled, premium type, verified
+        // If you want to get more attributes from discord, do it in DiscordOAuth2ToUserConverter
 
         return discordUser;
     }
