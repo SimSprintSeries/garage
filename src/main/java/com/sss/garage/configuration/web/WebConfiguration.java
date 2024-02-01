@@ -11,6 +11,8 @@ import com.sss.garage.converter.league.DetailedLeagueConverter;
 import com.sss.garage.converter.league.LeagueConverter;
 import com.sss.garage.converter.race.RaceConverter;
 import com.sss.garage.converter.split.SplitConverter;
+import com.sss.garage.converter.user.DiscordUserConverter;
+import com.sss.garage.data.user.user.DiscordUserData;
 import com.sss.garage.service.discord.converter.DiscordOAuth2ToUserConverter;
 import com.sss.garage.service.discord.converter.DiscordOAuth2UserConverter;
 import com.sss.garage.service.discord.converter.DiscordRoleConverter;
@@ -40,6 +42,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     private DetailedLeagueConverter detailedLeagueConverter;
     private RaceConverter raceConverter;
     private SplitConverter splitConverter;
+    private DiscordUserConverter discordUserConverter;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -56,6 +59,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addConverter(detailedLeagueConverter);
         registry.addConverter(raceConverter);
         registry.addConverter(splitConverter);
+        registry.addConverter(discordUserConverter);
     }
 
     @Bean
@@ -136,5 +140,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Autowired
     public void setDetailedLeagueConverter(final DetailedLeagueConverter detailedLeagueConverter) {
         this.detailedLeagueConverter = detailedLeagueConverter;
+    }
+
+    @Autowired
+    public void setDiscordUserConverter(final DiscordUserConverter discordUserConverter) {
+        this.discordUserConverter = discordUserConverter;
     }
 }

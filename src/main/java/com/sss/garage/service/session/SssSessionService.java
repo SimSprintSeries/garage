@@ -1,10 +1,7 @@
 package com.sss.garage.service.session;
 
 import com.sss.garage.model.user.DiscordUser;
-import com.sss.garage.service.auth.user.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -12,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SssSessionService implements SessionService {
 
-    private UserService userService;
-    private ConversionService conversionService;
+//    private UserService userService;
+//    private ConversionService conversionService;
 
     @Override
     public DiscordUser getCurrentUser() {
@@ -24,7 +21,8 @@ public class SssSessionService implements SessionService {
         else if (principal instanceof Authentication) {
             // principal instance of DiscordOAuth2User
             // could not yet be in the database...
-            return userService.saveUser(conversionService.convert(((Authentication)principal).getPrincipal(), DiscordUser.class));
+//            return userService.saveUser(conversionService.convert(((Authentication)principal).getPrincipal(), DiscordUser.class));
+            throw new RuntimeException("Contact Ryszard. He was wrong"); // If I was wrong - do not create circular dependency. Only use Session Service in User Service, not the other way around
         }
 
         throw new RuntimeException("Authentication error. Contact SSS Admins");
@@ -40,13 +38,13 @@ public class SssSessionService implements SessionService {
         SecurityContextHolder.getContextHolderStrategy().getContext().setAuthentication(authentication);
     }
 
-    @Autowired
-    public void setUserService(final UserService userService) {
-        this.userService = userService;
-    }
+//    @Autowired
+//    public void setUserService(final UserService userService) {
+//        this.userService = userService;
+//    }
 
-    @Autowired
-    public void setConversionService(final ConversionService conversionService) {
-        this.conversionService = conversionService;
-    }
+//    @Autowired
+//    public void setConversionService(final ConversionService conversionService) {
+//        this.conversionService = conversionService;
+//    }
 }

@@ -2,6 +2,7 @@ package com.sss.garage.configuration.security;
 
 import static com.sss.garage.constants.WebConstants.ELO_CALCULATION_ENDPOINT;
 import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
+import static com.sss.garage.constants.WebConstants.USER_ENDPOINT;
 
 import com.sss.garage.filter.GenerateNewJwtTokenFilter;
 import com.sss.garage.filter.JwtAuthenticationFilter;
@@ -72,6 +73,7 @@ public class SecurityConfiguration {
                                 .userService(oAuth2UserService)))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to driver
+                        .requestMatchers(USER_ENDPOINT + "/**").authenticated()
                         .requestMatchers(ELO_CALCULATION_ENDPOINT + "/**").hasRole(roles.admin())
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

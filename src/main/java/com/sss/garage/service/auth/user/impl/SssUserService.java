@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 import com.sss.garage.service.auth.user.UserService;
+import com.sss.garage.service.session.SessionService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,18 @@ public class SssUserService implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(SssUserService.class);
 
     private DiscordUserRepository userRepository;
+
+    private SessionService sessionService;
+
+    @Override
+    public Optional<DiscordUser> getCurrentUser() {
+        try {
+            return Optional.of(sessionService.getCurrentUser());
+        }
+        catch (RuntimeException e) {
+            return Optional.empty();
+        }
+    }
 
     @Override
     public Optional<DiscordUser> findUserById(final String id) {
@@ -51,5 +64,10 @@ public class SssUserService implements UserService {
     @Autowired
     public void setUserRepository(final DiscordUserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setSessionService(final SessionService sessionService) {
+        this.sessionService = sessionService;
     }
 }
