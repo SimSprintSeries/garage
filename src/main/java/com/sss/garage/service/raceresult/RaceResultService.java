@@ -6,7 +6,6 @@ import com.sss.garage.model.raceresult.RaceResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface RaceResultService {
@@ -18,4 +17,10 @@ public interface RaceResultService {
 
     Page<RaceResult> getRaceResultsPaginated(String finishPosition, Boolean polePosition, Boolean dnf, Boolean dsq
             , Boolean fastestLap, Driver driver, Race race, Pageable pageable);
+
+    Integer calculateAndSaveTotalDriverWins(final Driver driver);
+
+    Integer calculateAndSaveTotalDriverTopTenResults(final Driver driver);
+
+    Integer calculateAndSaveTotalRacesDriven(final Driver driver);
 }

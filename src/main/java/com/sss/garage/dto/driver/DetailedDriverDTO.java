@@ -11,6 +11,12 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     private Set<SplitDTO> splits;
 
+    private Integer totalWins;
+
+    private Integer totalTopTenResults;
+
+    private Integer totalRacesDriven;
+
     public String getDiscordName() {
         return discordName;
     }
@@ -33,5 +39,29 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     public void setSplits(final Set<SplitDTO> splits) {
         this.splits = splits;
+    }
+
+    public Integer getTotalWins() {
+        return totalWins;
+    }
+
+    public void setTotalWins(final Integer totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    public Integer getTotalTopTenResults() {
+        return totalTopTenResults;
+    }
+
+    public void setTotalTopTenResults(final Integer totalTopTenResults) {
+        this.totalTopTenResults = totalTopTenResults;
+    }
+
+    public Integer getTotalRacesDriven() {
+        return totalRacesDriven;
+    }
+
+    public void setTotalRacesDriven(final Integer totalRacesDriven) {
+        this.totalRacesDriven = totalRacesDriven;
     }
 }

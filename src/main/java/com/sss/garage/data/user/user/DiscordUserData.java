@@ -12,6 +12,8 @@ public class DiscordUserData {
 
     private String avatar;
 
+    private Long driverId;
+
     public Long getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class DiscordUserData {
 
     public void setAvatar(final String avatar) {
         this.avatar = avatar;
+    }
+
+    public Long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(final Long driverId) {
+        this.driverId = driverId;
     }
 }

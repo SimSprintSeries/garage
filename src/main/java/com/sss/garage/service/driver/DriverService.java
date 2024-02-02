@@ -18,4 +18,6 @@ public interface DriverService {
     Page<Driver> getDriversPaginated(final Pageable pageable);
 
     Page<Driver> getDriversByLeague(final League league, final Pageable pageable);
+
+    void saveDriver(final Driver driver);
 }

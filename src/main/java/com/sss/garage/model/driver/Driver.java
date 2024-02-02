@@ -12,6 +12,7 @@ import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.elo.Elo;
 import com.sss.garage.model.raceresult.RaceResult;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -53,9 +54,26 @@ public class Driver {
     @OneToMany(mappedBy = "driver")
     private List<Classification> classifications;
 
-    @ManyToOne
-    private Team team;
+    /**
+     * Null if not calculated yet!
+     * Remember to add in calculation in results processing!
+     */
+    @Nullable
+    private Integer totalWins;
 
+    /**
+     * Null if not calculated yet!
+     * Remember to add in calculation in results processing!
+     */
+    @Nullable
+    private Integer totalTopTenResults;
+
+    /**
+     * Null if not calculated yet!
+     * Remember to add in calculation in results processing!
+     */
+    @Nullable
+    private Integer totalRacesDriven;
 
     public Long getId() {
         return id;
@@ -145,11 +163,29 @@ public class Driver {
         this.classifications = classifications;
     }
 
-    public Team getTeam() {
-        return team;
+    public Integer getTotalWins() {
+        return totalWins;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTotalWins(final Integer totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    @Nullable
+    public Integer getTotalTopTenResults() {
+        return totalTopTenResults;
+    }
+
+    public void setTotalTopTenResults(@Nullable final Integer totalTopTenResults) {
+        this.totalTopTenResults = totalTopTenResults;
+    }
+
+    @Nullable
+    public Integer getTotalRacesDriven() {
+        return totalRacesDriven;
+    }
+
+    public void setTotalRacesDriven(@Nullable final Integer totalRacesDriven) {
+        this.totalRacesDriven = totalRacesDriven;
     }
 }

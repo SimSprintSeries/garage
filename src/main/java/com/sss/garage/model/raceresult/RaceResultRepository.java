@@ -11,8 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     @Query("SELECT r FROM RaceResult r WHERE (r.finishPosition=:finishPosition OR :finishPosition IS NULL) " +
@@ -125,4 +123,7 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND rr.finishPosition = :finishPosition " +
             "GROUP BY rr.team, e.league)")
     Integer countFinishPositionByTeamAndLeague(Team team, League league, Integer finishPosition);
+    Integer countRaceResultsByDriverAndFinishPosition(final Driver driver, final Integer finishPosition);
+    Integer countRaceResultsByDriverAndFinishPositionLessThanEqual(final Driver driver, final Integer finishPosition);
+    Integer countRaceResultByDriver(final Driver driver);
 }

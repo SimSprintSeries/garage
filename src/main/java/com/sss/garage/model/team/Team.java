@@ -31,9 +31,6 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private Set<Classification> classifications;
 
-    @OneToMany(mappedBy = "team")
-    private Set<Driver> drivers;
-
     public Long getId() {
         return id;
     }
@@ -88,13 +85,5 @@ public class Team {
 
     public void setClassifications(Set<Classification> classifications) {
         this.classifications = classifications;
-    }
-
-    public Set<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
     }
 }

@@ -48,16 +48,13 @@ public class SssDriverService implements DriverService {
 
     @Override
     public Page<Driver> getDriversByLeague(League league, Pageable pageable) {
-        Event event = eventRepository.findFirstByLeagueOrderByStartDateAsc(league); // first event for checking if league has double-raced events
         List<Driver> drivers = driverRepository.findDriversByLeague(league);
-        for(Driver driver : drivers) {
-            if (event.getRaces().stream().findFirst().orElseThrow().getName().equals("Parent race")) {
-                driver.setTeam(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));
-            } else {
-                driver.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
-            }
-        }
         return new PageImpl<>(drivers, pageable, drivers.size());
+    }
+
+    @Override
+    public void saveDriver(final Driver driver) {
+        driverRepository.save(driver);
     }
 
     @Autowired

@@ -1,25 +1,29 @@
 package com.sss.garage.facade.driver.impl;
 
 import com.sss.garage.data.driver.DriverData;
+import com.sss.garage.data.team.TeamData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
 import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.league.LeagueService;
-import org.apache.logging.log4j.util.Strings;
+import com.sss.garage.service.team.TeamService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import jakarta.validation.constraints.NotEmpty;
 
 @Service
 public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private DriverService driverService;
 
     private LeagueService leagueService;
+
+    private TeamService teamService;
 
     @Override
     public DriverData getDriver(final Long id) {
@@ -43,13 +47,18 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     }
 
     @Override
-    public Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable) {
-        League league = null;
-        if(Strings.isNotEmpty(leagueId)) {
-            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
-        }
-        Page<Driver> drivers = driverService.getDriversByLeague(league, pageable);
-        return drivers.map(d -> conversionService.convert(d, DriverData.class));
+    public Page<DriverData> getDriversByLeague(@NotEmpty final String leagueId, final Pageable pageable) {
+        final League league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        return driverService.getDriversByLeague(league, pageable)
+                .map(d -> {
+                    // populate additional session-specific parameters
+                    final DriverData data = conversionService.convert(d, DriverData.class);
+
+                    teamService.findTeamForDriverAndLeague(d, league)
+                            .ifPresent(t -> data.setTeam(conversionService.convert(t, TeamData.class)));
+
+                    return data;
+                });
     }
 
     @Autowired
@@ -60,5 +69,10 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     @Autowired
     public void setLeagueService(LeagueService leagueService) {
         this.leagueService = leagueService;
+    }
+
+    @Autowired
+    public void setTeamService(final TeamService teamService) {
+        this.teamService = teamService;
     }
 }

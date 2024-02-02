@@ -12,9 +12,11 @@ public class DriverData {
     private String nickname;
     private Set<EloData> elos;
     private String discordName;
+    private Integer totalWins;
+    private Integer totalTopTenResults;
+    private Integer totalRacesDriven;
     private Set<Integer> stats;
     private Set<SplitData> splits;
-
     private TeamData team;
 
     public Long getId() {
@@ -71,5 +73,29 @@ public class DriverData {
 
     public void setTeam(TeamData team) {
         this.team = team;
+    }
+
+    public Integer getTotalWins() {
+        return totalWins;
+    }
+
+    public void setTotalWins(final Integer totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    public Integer getTotalTopTenResults() {
+        return totalTopTenResults;
+    }
+
+    public void setTotalTopTenResults(final Integer totalTopTenResults) {
+        this.totalTopTenResults = totalTopTenResults;
+    }
+
+    public Integer getTotalRacesDriven() {
+        return totalRacesDriven;
+    }
+
+    public void setTotalRacesDriven(final Integer totalRacesDriven) {
+        this.totalRacesDriven = totalRacesDriven;
     }
 }

@@ -6,6 +6,7 @@ import com.sss.garage.model.racepointdictionary.RacePointDictionary;
 import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
+import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.raceresult.RaceResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,35 @@ public class SssRaceResultService implements RaceResultService {
     private RaceResultRepository raceResultRepository;
 
     private RacePointDictionaryRepository racePointDictionaryRepository;
+
+    private DriverService driverService;
+
+    @Override
+    public Integer calculateAndSaveTotalDriverWins(final Driver driver) {
+        final Integer totalWins = raceResultRepository.countRaceResultsByDriverAndFinishPosition(driver, 1);
+        driver.setTotalWins(totalWins);
+        driverService.saveDriver(driver);
+
+        return totalWins;
+    }
+
+    @Override
+    public Integer calculateAndSaveTotalDriverTopTenResults(final Driver driver) {
+        final Integer totalTopTenResults = raceResultRepository.countRaceResultsByDriverAndFinishPositionLessThanEqual(driver, 10);
+        driver.setTotalTopTenResults(totalTopTenResults);
+        driverService.saveDriver(driver);
+
+        return totalTopTenResults;
+    }
+
+    @Override
+    public Integer calculateAndSaveTotalRacesDriven(final Driver driver) {
+        final Integer allRaceResults = raceResultRepository.countRaceResultByDriver(driver);// maybe needs some filtering?
+        driver.setTotalRacesDriven(allRaceResults);
+        driverService.saveDriver(driver);
+
+        return allRaceResults;
+    }
 
     @Override
     public Optional<RaceResult> getRaceResult(final Long id) {
@@ -84,5 +114,10 @@ public class SssRaceResultService implements RaceResultService {
     @Autowired
     public void setRacePointDictionaryRepository(RacePointDictionaryRepository racePointDictionaryRepository) {
         this.racePointDictionaryRepository = racePointDictionaryRepository;
+    }
+
+    @Autowired
+    public void setDriverService(final DriverService driverService) {
+        this.driverService = driverService;
     }
 }
