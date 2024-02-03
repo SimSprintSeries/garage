@@ -2,7 +2,7 @@ package com.sss.garage.dto.user;
 
 public class BasicDiscordUserDTO {
 
-    private Long id;
+    private String id;
 
     private String username;
 
@@ -14,11 +14,11 @@ public class BasicDiscordUserDTO {
 
     private Long driverId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
