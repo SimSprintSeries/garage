@@ -69,4 +69,9 @@ public class SssTeamService implements TeamService {
     public void setEventService(final EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
+    @Autowired
+    public void setRaceResultRepository(RaceResultRepository raceResultRepository) {
+        this.raceResultRepository = raceResultRepository;
+    }
 }
