@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>SimSprintSeries</title>
+</head>
+<body style="background-color:#00A64F;">
+<div align="center">
+    <h1 style='font-family:"Termina", Termina, monospace; text-transform: uppercase;'>Tabela czasów SimSprintSeries - Imola</h1>
+    <br/><br/>
+    <table cellpadding="10" style='font-family:"Termina", Termina, monospace;'>
+        <thead>
+            <tr>
+                <th style="text-transform: uppercase; font-size: 20px;">Pozycja</th>
+                <th style="text-transform: uppercase; font-size: 20px;">Nick</th>
+                <th style="text-transform: uppercase; font-size: 20px;">Data</th>
+                <th style="text-transform: uppercase; font-size: 20px;">Czas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="times : ${times}">
+                <td th:utext="${times.id}" style="text-align: center;">Pozycja</td>
+                <td th:utext="${times.nick}" style="text-transform: uppercase;">Nick</td>
+                <td th:utext="${times.date}">Data</td>
+                <td th:utext="${times.time}">Czas</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

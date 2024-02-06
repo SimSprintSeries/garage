@@ -1,8 +1,8 @@
-package com.sss.garage.facade.penalty.impl;
+package com.sss.garage.facade.report.impl;
 
 import com.sss.garage.data.report.ReportData;
 import com.sss.garage.facade.SssBaseFacade;
-import com.sss.garage.facade.penalty.ReportFacade;
+import com.sss.garage.facade.report.ReportFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.service.driver.DriverService;

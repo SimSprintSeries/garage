@@ -3,7 +3,7 @@ package com.sss.garage.controller.report;
 import com.sss.garage.controller.SssBaseController;
 import com.sss.garage.data.report.ReportData;
 import com.sss.garage.dto.report.ReportDTO;
-import com.sss.garage.facade.penalty.ReportFacade;
+import com.sss.garage.facade.report.ReportFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -25,9 +25,9 @@ public class ReportController extends SssBaseController {
     private ReportFacade reportFacade;
 
     @GetMapping("/{id}")
-    @Operation(operationId = "getPenalty", summary = "Get penalty information")
+    @Operation(operationId = "getReport", summary = "Get report information")
     @ResponseStatus(HttpStatus.OK)
-    public ReportDTO getPenalty(@PathVariable final Long id) {
+    public ReportDTO getReport(@PathVariable final Long id) {
         ReportData gameData = reportFacade.getReport(id);
 
         return mapper.map(gameData, ReportDTO.class);
@@ -35,15 +35,15 @@ public class ReportController extends SssBaseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "createPenalty", summary = "Create new penalty")
-    public void createPenalty(@RequestBody ReportDTO reportDTO) {
+    @Operation(operationId = "createReport", summary = "Create new report")
+    public void createReport(@RequestBody ReportDTO reportDTO) {
         reportFacade.createReport(mapper.map(reportDTO, ReportData.class));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "deletePenalty", summary = "Delete penalty by ID")
-    public void deleteGame(@PathVariable final Long id) {
+    @Operation(operationId = "deleteReport", summary = "Delete report by ID")
+    public void deleteReport(@PathVariable final Long id) {
         reportFacade.deleteReport(id);
     }
 

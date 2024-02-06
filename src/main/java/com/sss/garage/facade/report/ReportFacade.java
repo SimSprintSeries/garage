@@ -1,4 +1,4 @@
-package com.sss.garage.facade.penalty;
+package com.sss.garage.facade.report;
 
 import com.sss.garage.data.report.ReportData;
 import org.springframework.data.domain.Page;
