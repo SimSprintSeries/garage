@@ -17,6 +17,12 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     private Integer totalRacesDriven;
 
+    private Integer podiums;
+
+    private Integer polePositions;
+
+    private Integer fastestLaps;
+
     public String getDiscordName() {
         return discordName;
     }
@@ -63,5 +69,29 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     public void setTotalRacesDriven(final Integer totalRacesDriven) {
         this.totalRacesDriven = totalRacesDriven;
+    }
+
+    public Integer getPodiums() {
+        return podiums;
+    }
+
+    public void setPodiums(final Integer podiums) {
+        this.podiums = podiums;
+    }
+
+    public Integer getPolePositions() {
+        return polePositions;
+    }
+
+    public void setPolePositions(final Integer polePositions) {
+        this.polePositions = polePositions;
+    }
+
+    public Integer getFastestLaps() {
+        return fastestLaps;
+    }
+
+    public void setFastestLaps(final Integer fastestLaps) {
+        this.fastestLaps = fastestLaps;
     }
 }

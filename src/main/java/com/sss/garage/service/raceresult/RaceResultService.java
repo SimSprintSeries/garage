@@ -23,4 +23,10 @@ public interface RaceResultService {
     Integer calculateAndSaveTotalDriverTopTenResults(final Driver driver);
 
     Integer calculateAndSaveTotalRacesDriven(final Driver driver);
+
+    Integer calculateAndSaveTotalPodiums(final Driver driver);
+
+    Integer calculateAndSaveFastestLaps(final Driver driver);
+
+    Integer calculateAndSavePolePositions(final Driver driver);
 }

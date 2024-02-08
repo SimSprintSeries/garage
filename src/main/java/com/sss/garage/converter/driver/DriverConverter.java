@@ -38,6 +38,9 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
         data.setTotalWins(Optional.ofNullable(source.getTotalWins()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverWins(source)));
         data.setTotalTopTenResults(Optional.ofNullable(source.getTotalTopTenResults()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverTopTenResults(source)));
         data.setTotalRacesDriven(Optional.ofNullable(source.getTotalRacesDriven()).orElseGet(() -> raceResultService.calculateAndSaveTotalRacesDriven(source)));
+        data.setPodiums(Optional.ofNullable(source.getPodiums()).orElseGet(() -> raceResultService.calculateAndSaveTotalPodiums(source)));
+        data.setFastestLaps(Optional.ofNullable(source.getFastestLaps()).orElseGet(() -> raceResultService.calculateAndSaveFastestLaps(source)));
+        data.setPolePositions(Optional.ofNullable(source.getPolePositions()).orElseGet(() -> raceResultService.calculateAndSavePolePositions(source)));
 
         return data;
     }

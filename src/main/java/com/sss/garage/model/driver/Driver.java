@@ -75,6 +75,15 @@ public class Driver {
     @Nullable
     private Integer totalRacesDriven;
 
+    @Nullable
+    private Integer podiums;
+
+    @Nullable
+    private Integer polePositions;
+
+    @Nullable
+    private Integer fastestLaps;
+
     public Long getId() {
         return id;
     }
@@ -187,5 +196,32 @@ public class Driver {
 
     public void setTotalRacesDriven(@Nullable final Integer totalRacesDriven) {
         this.totalRacesDriven = totalRacesDriven;
+    }
+
+    @Nullable
+    public Integer getPodiums() {
+        return podiums;
+    }
+
+    public void setPodiums(@Nullable final Integer podiums) {
+        this.podiums = podiums;
+    }
+
+    @Nullable
+    public Integer getPolePositions() {
+        return polePositions;
+    }
+
+    public void setPolePositions(@Nullable final Integer polePositions) {
+        this.polePositions = polePositions;
+    }
+
+    @Nullable
+    public Integer getFastestLaps() {
+        return fastestLaps;
+    }
+
+    public void setFastestLaps(@Nullable final Integer fastestLaps) {
+        this.fastestLaps = fastestLaps;
     }
 }

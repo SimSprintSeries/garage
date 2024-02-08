@@ -126,4 +126,6 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     Integer countRaceResultsByDriverAndFinishPosition(final Driver driver, final Integer finishPosition);
     Integer countRaceResultsByDriverAndFinishPositionLessThanEqual(final Driver driver, final Integer finishPosition);
     Integer countRaceResultByDriver(final Driver driver);
+    Integer countRaceResultByDriverAndFastestLap(final Driver driver, final Boolean fastestLap);
+    Integer countRaceResultByDriverAndPolePosition(final Driver driver, final Boolean polePosition);
 }

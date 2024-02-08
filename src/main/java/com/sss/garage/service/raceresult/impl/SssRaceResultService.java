@@ -54,6 +54,33 @@ public class SssRaceResultService implements RaceResultService {
     }
 
     @Override
+    public Integer calculateAndSaveTotalPodiums(final Driver driver) {
+        final Integer totalPodiums = raceResultRepository.countRaceResultsByDriverAndFinishPositionLessThanEqual(driver, 3);
+        driver.setPodiums(totalPodiums);
+        driverService.saveDriver(driver);
+
+        return totalPodiums;
+    }
+
+    @Override
+    public Integer calculateAndSaveFastestLaps(final Driver driver) {
+        final Integer totalFastestLaps = raceResultRepository.countRaceResultByDriverAndFastestLap(driver, true);
+        driver.setFastestLaps(totalFastestLaps);
+        driverService.saveDriver(driver);
+
+        return totalFastestLaps;
+    }
+
+    @Override
+    public Integer calculateAndSavePolePositions(final Driver driver) {
+        final Integer polePositions = raceResultRepository.countRaceResultByDriverAndPolePosition(driver, true);
+        driver.setPolePositions(polePositions);
+        driverService.saveDriver(driver);
+
+        return polePositions;
+    }
+
+    @Override
     public Optional<RaceResult> getRaceResult(final Long id) {
         setPointsForPosition();
         return raceResultRepository.findById(id);

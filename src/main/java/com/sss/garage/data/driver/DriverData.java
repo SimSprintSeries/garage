@@ -19,6 +19,12 @@ public class DriverData {
     private Set<SplitData> splits;
     private TeamData team;
 
+    private Integer podiums;
+
+    private Integer polePositions;
+
+    private Integer fastestLaps;
+
     public Long getId() {
         return id;
     }
@@ -97,5 +103,29 @@ public class DriverData {
 
     public void setTotalRacesDriven(final Integer totalRacesDriven) {
         this.totalRacesDriven = totalRacesDriven;
+    }
+
+    public Integer getPodiums() {
+        return podiums;
+    }
+
+    public void setPodiums(final Integer podiums) {
+        this.podiums = podiums;
+    }
+
+    public Integer getPolePositions() {
+        return polePositions;
+    }
+
+    public void setPolePositions(final Integer polePositions) {
+        this.polePositions = polePositions;
+    }
+
+    public Integer getFastestLaps() {
+        return fastestLaps;
+    }
+
+    public void setFastestLaps(final Integer fastestLaps) {
+        this.fastestLaps = fastestLaps;
     }
 }
