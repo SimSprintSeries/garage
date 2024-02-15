@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class DriverConverter extends BaseConverter implements Converter<Driver, DriverData> {
+public class DriverConverter extends BasicDriverConverter implements Converter<Driver, DriverData> {
 
     private EloService eloService;
 
@@ -26,12 +26,8 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
 
     @Override
     public DriverData convert(final Driver source) {
-        final DriverData data = new DriverData();
+        final DriverData data = super.convert(source); // id, nickname, discordValues
 
-        Optional.ofNullable(source.getDiscordUser()).ifPresent(u -> data.setDiscordUser(getConversionService().convert(u, DiscordUserData.class)));
-
-        data.setId(source.getId());
-        data.setNickname(source.getName()); // in case discord user is null
         data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).collect(Collectors.toSet()));
         data.setSplits(source.getSplits().stream().map(s -> getConversionService().convert(s, SplitData.class)).collect(Collectors.toSet()));
         data.setTotalWins(Optional.ofNullable(source.getTotalWins()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverWins(source)));
