@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import com.sss.garage.model.driver.Driver;
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -116,5 +117,18 @@ public class DiscordUser {
     @Override
     public String toString() {
         return id.toString();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final DiscordUser that = (DiscordUser) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

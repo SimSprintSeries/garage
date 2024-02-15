@@ -2,14 +2,18 @@ package com.sss.garage.service.auth.user.impl;
 
 import java.util.Optional;
 
+import com.sss.garage.model.role.DiscordRole;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
+import com.sss.garage.service.auth.role.RoleService;
 import com.sss.garage.service.auth.user.UserService;
 import com.sss.garage.service.session.SessionService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +23,25 @@ public class SssUserService implements UserService {
     private DiscordUserRepository userRepository;
 
     private SessionService sessionService;
+
+    private RoleService roleService;
+
+    @Override
+    public Boolean isCurrentlyLoggedInUser(final DiscordUser discordUser) {
+        return discordUser != null && discordUser.equals(getAuthentication().getPrincipal());
+    }
+
+    @Override // TODO: Store in session on login
+    public Boolean isCurrentUserAdmin() {
+        return getAuthentication().getAuthorities().stream()
+                .filter(a -> a instanceof DiscordRole)
+                .map(DiscordRole.class::cast)
+                .anyMatch(r -> roleService.getAdminRole().equals(r));
+    }
+
+    private Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
 
     @Override
     public Optional<DiscordUser> getCurrentUser() {
@@ -69,5 +92,10 @@ public class SssUserService implements UserService {
     @Autowired
     public void setSessionService(final SessionService sessionService) {
         this.sessionService = sessionService;
+    }
+
+    @Autowired
+    public void setRoleService(final RoleService roleService) {
+        this.roleService = roleService;
     }
 }

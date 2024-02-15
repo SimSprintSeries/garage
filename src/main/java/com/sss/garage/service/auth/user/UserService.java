@@ -11,4 +11,8 @@ public interface UserService {
     DiscordUser saveUser(final DiscordUser discordUser);
     void revokeUserToken(final DiscordUser discordUser);
     void deprecateUserRoles(final Long id);
+
+    Boolean isCurrentUserAdmin();
+
+    Boolean isCurrentlyLoggedInUser(final DiscordUser discordUser);
 }

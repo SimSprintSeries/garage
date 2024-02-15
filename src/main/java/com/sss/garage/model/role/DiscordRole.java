@@ -1,5 +1,7 @@
 package com.sss.garage.model.role;
 
+import java.util.Objects;
+
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Entity;
@@ -34,4 +36,16 @@ public class DiscordRole implements GrantedAuthority {
         this.code = code;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final DiscordRole that = (DiscordRole) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

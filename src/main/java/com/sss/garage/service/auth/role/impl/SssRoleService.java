@@ -24,6 +24,16 @@ public class SssRoleService implements RoleService {
     private RoleMapperStrategy localMapperStrategy;
     private RoleMapperStrategy sssMapperStrategy;
 
+    private DiscordRole adminRole;
+
+    @Override
+    public DiscordRole getAdminRole() {
+        if(adminRole == null) {
+            adminRole = findById("ROLE_" + getRoleMapperStrategy().admin()).orElseThrow();
+        }
+        return adminRole;
+    }
+
     @Override
     public RoleMapperStrategy getRoleMapperStrategy() {
         switch (activeProfile){

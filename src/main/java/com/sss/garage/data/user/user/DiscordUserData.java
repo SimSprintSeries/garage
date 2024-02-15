@@ -14,6 +14,8 @@ public class DiscordUserData {
 
     private Long driverId;
 
+    private Boolean isAdmin;
+
     public Long getId() {
         return id;
     }
@@ -60,5 +62,13 @@ public class DiscordUserData {
 
     public void setDriverId(final Long driverId) {
         this.driverId = driverId;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(final Boolean admin) {
+        isAdmin = admin;
     }
 }
