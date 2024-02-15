@@ -7,6 +7,7 @@ import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.game.GameData;
 import com.sss.garage.model.elo.Elo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +32,7 @@ public class EloConverter extends BaseConverter implements Converter<Elo, EloDat
         return basicDriverConverter;
     }
 
+    @Autowired
     public void setBasicDriverConverter(final BasicDriverConverter basicDriverConverter) {
         this.basicDriverConverter = basicDriverConverter;
     }
