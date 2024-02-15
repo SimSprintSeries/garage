@@ -4,6 +4,7 @@ import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.user.user.DiscordUserData;
 import com.sss.garage.model.driver.Driver;
 
 import com.sss.garage.service.elo.EloService;
@@ -27,12 +28,10 @@ public class DriverConverter extends BaseConverter implements Converter<Driver, 
     public DriverData convert(final Driver source) {
         final DriverData data = new DriverData();
 
-        if (source.getDiscordUser() != null) {
-            data.setDiscordName(source.getDiscordUser().getUsername() + "#" + source.getDiscordUser().getDiscriminator());
-        }
+        Optional.ofNullable(source.getDiscordUser()).ifPresent(u -> data.setDiscordUser(getConversionService().convert(u, DiscordUserData.class)));
 
         data.setId(source.getId());
-        data.setNickname(source.getName());
+        data.setNickname(source.getName()); // in case discord user is null
         data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).collect(Collectors.toSet()));
         data.setSplits(source.getSplits().stream().map(s -> getConversionService().convert(s, SplitData.class)).collect(Collectors.toSet()));
         data.setTotalWins(Optional.ofNullable(source.getTotalWins()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverWins(source)));

@@ -6,7 +6,6 @@ import com.sss.garage.dto.split.SplitDTO;
 import java.util.Set;
 
 public class DetailedDriverDTO extends SimpleDriverDTO {
-    private String discordName;
     private Set<EloDTO> elos;
 
     private Set<SplitDTO> splits;
@@ -22,14 +21,6 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
     private Integer polePositions;
 
     private Integer fastestLaps;
-
-    public String getDiscordName() {
-        return discordName;
-    }
-
-    public void setDiscordName(final String discordName) {
-        this.discordName = discordName;
-    }
 
     public Set<EloDTO> getElos() {
         return elos;

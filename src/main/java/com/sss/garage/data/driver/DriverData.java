@@ -3,15 +3,14 @@ package com.sss.garage.data.driver;
 import com.sss.garage.data.elo.EloData;
 import com.sss.garage.data.split.SplitData;
 import com.sss.garage.data.team.TeamData;
+import com.sss.garage.data.user.user.DiscordUserData;
 
-import java.util.List;
 import java.util.Set;
 
 public class DriverData {
     private Long id;
     private String nickname;
     private Set<EloData> elos;
-    private String discordName;
     private Integer totalWins;
     private Integer totalTopTenResults;
     private Integer totalRacesDriven;
@@ -24,6 +23,8 @@ public class DriverData {
     private Integer polePositions;
 
     private Integer fastestLaps;
+
+    private DiscordUserData discordUser;
 
     public Long getId() {
         return id;
@@ -47,14 +48,6 @@ public class DriverData {
 
     public void setElos(final Set<EloData> elos) {
         this.elos = elos;
-    }
-
-    public String getDiscordName() {
-        return discordName;
-    }
-
-    public void setDiscordName(final String discordName) {
-        this.discordName = discordName;
     }
 
     public Set<Integer> getStats() {
@@ -127,5 +120,13 @@ public class DriverData {
 
     public void setFastestLaps(final Integer fastestLaps) {
         this.fastestLaps = fastestLaps;
+    }
+
+    public DiscordUserData getDiscordUser() {
+        return discordUser;
+    }
+
+    public void setDiscordUser(final DiscordUserData discordUser) {
+        this.discordUser = discordUser;
     }
 }

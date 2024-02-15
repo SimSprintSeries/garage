@@ -17,12 +17,11 @@ public class DiscordUserConverter extends BaseConverter implements Converter<Dis
         final DiscordUserData data = new DiscordUserData();
 
         data.setId(source.getId());
-        data.setAvatar(source.getAvatarId());
-        data.setBilew(source.getDiscriminator());
-        data.setDisplayName(source.getDisplayName());
-        data.setUsername(source.getUsername());
-        Optional.ofNullable(source.getDriver())
-                .ifPresent(d -> data.setDriverId(d.getId()));
+        Optional.ofNullable(source.getAvatarId()).ifPresent(data::setAvatar);
+        Optional.ofNullable(source.getDiscriminator()).ifPresent(data::setBilew);
+        Optional.ofNullable(source.getDisplayName()).ifPresent(data::setDisplayName);
+        Optional.ofNullable(source.getUsername()).ifPresent(data::setUsername);
+        Optional.ofNullable(source.getDriver()).ifPresent(d -> data.setDriverId(d.getId())); // Do not change to Driver converter. Will cause infinite loop
 
         return data;
     }
