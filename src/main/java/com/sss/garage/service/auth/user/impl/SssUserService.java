@@ -28,7 +28,7 @@ public class SssUserService implements UserService {
 
     @Override
     public Boolean isCurrentlyLoggedInUser(final DiscordUser discordUser) {
-        return discordUser != null && discordUser.equals(getAuthentication().getPrincipal());
+        return discordUser != null && getAuthentication() != null && discordUser.equals(getAuthentication().getPrincipal());
     }
 
     @Override // TODO: Store in session on login
