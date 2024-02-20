@@ -9,6 +9,8 @@ public class LeagueDTO {
     private GameDTO game;
     public String startDate;
     public Integer eventCount;
+    private String banner;
+    private String logo;
 
     public Long getId() {
         return id;
@@ -56,5 +58,21 @@ public class LeagueDTO {
 
     public void setEventCount(Integer eventCount) {
         this.eventCount = eventCount;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

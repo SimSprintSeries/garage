@@ -22,6 +22,8 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
         data.setStartDate(source.getStartDate());
         data.setEventCount(source.getEventCount());
+        data.setBanner(source.getBanner());
+        data.setLogo(source.getLogo());
 
         return data;
     }

@@ -10,6 +10,8 @@ public class LeagueData {
     private GameData game;
     private String startDate;
     private Integer eventCount;
+    private String banner;
+    private String logo;
 
     public Long getId() {
         return id;
@@ -65,5 +67,21 @@ public class LeagueData {
 
     public void setEventCount(Integer eventCount) {
         this.eventCount = eventCount;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

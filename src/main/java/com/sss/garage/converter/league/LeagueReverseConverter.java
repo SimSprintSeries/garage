@@ -20,6 +20,8 @@ public class LeagueReverseConverter extends BaseConverter implements Converter<L
         target.setPlatform(source.getPlatform());
         target.setStartDate(source.getStartDate());
         target.setEventCount(source.getEventCount());
+        target.setBanner(source.getBanner());
+        target.setLogo(source.getLogo());
 
         return target;
     }
