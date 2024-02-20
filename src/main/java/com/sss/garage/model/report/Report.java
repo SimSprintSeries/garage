@@ -19,8 +19,10 @@ public class Report {
 
     private String incidentLink;
 
+    @Column(length = 1000)
     private String incidentDescription;
 
+    @Column(length = 1000)
     private String decisionDescription;
 
     private Date reportDate;

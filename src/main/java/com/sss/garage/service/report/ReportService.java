@@ -1,6 +1,7 @@
 package com.sss.garage.service.report;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.report.Report;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +15,6 @@ public interface ReportService {
 
     void deleteReport(final Long id);
 
-    Page<Report> getReportsPaginated(final Driver reportingDriver, final Driver reportedDriver, final Pageable pageable);
-
     Page<Report> getReportsPaginated(final Boolean checked, final Driver reportingDriver,
-                                     final Driver reportedDriver, final Pageable pageable);
+                                     final Driver reportedDriver, final League league, final Pageable pageable);
 }

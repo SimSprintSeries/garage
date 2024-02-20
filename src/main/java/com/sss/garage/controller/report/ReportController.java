@@ -51,16 +51,17 @@ public class ReportController extends SssBaseController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "getReportsPaginated", summary = "Get list of all reports")
     public Page<ReportDTO> getReportsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                                 @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                                 @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
-                                                 @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
-                                                 @Parameter(description = "Optional checked flag to filter by - true returns checked reports, false returns unchecked, null returns all")
+                                               @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                               @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                               @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                               @Parameter(description = "Optional checked flag to filter by - true returns checked reports, false returns unchecked, null returns all")
                                                       @RequestParam(value = "checked", required = false) final Boolean checked,
-                                                 @Parameter(description = "Optional reporting driver ID to filter by") @RequestParam(value = "reportingDriverId", required = false) final String reportingDriverId,
-                                                 @Parameter(description = "Optional reported driver ID to filter by") @RequestParam(value = "reportedDriverId", required = false) final String reportedDriverId) {
+                                               @Parameter(description = "Optional reporting driver ID to filter by") @RequestParam(value = "reportingDriverId", required = false) final String reportingDriverId,
+                                               @Parameter(description = "Optional reported driver ID to filter by") @RequestParam(value = "reportedDriverId", required = false) final String reportedDriverId,
+                                               @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
-        return this.reportFacade.getReportsPaginated(checked, reportingDriverId, reportedDriverId, pageable).map(p -> mapper.map(p, ReportDTO.class));
+        return this.reportFacade.getReportsPaginated(checked, reportingDriverId, reportedDriverId, leagueId, pageable).map(p -> mapper.map(p, ReportDTO.class));
     }
 
     @Autowired

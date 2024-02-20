@@ -1,6 +1,7 @@
 package com.sss.garage.service.report.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.report.ReportRepository;
 import com.sss.garage.service.report.ReportService;
@@ -31,16 +32,10 @@ public class SssReportService implements ReportService {
     }
 
     @Override
-    public Page<Report> getReportsPaginated(final Driver reportingDriver, final Driver reportedDriver,
-                                            final Pageable pageable) {
-        return reportRepository.findAllByReportingDriverAndReportedDriver(reportingDriver, reportedDriver, pageable);
-    }
-
-    @Override
     public Page<Report> getReportsPaginated(final Boolean checked, final Driver reportingDriver,
-                                            final Driver reportedDriver, final Pageable pageable) {
+                                            final Driver reportedDriver, final League league, final Pageable pageable) {
         return reportRepository.findAllByCheckedAndReportingDriverAndReportedDriver(checked, reportingDriver,
-                reportedDriver, pageable);
+                reportedDriver, league, pageable);
     }
 
     @Autowired

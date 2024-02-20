@@ -12,5 +12,5 @@ public interface ReportFacade {
     void deleteReport(final Long id);
 
     Page<ReportData> getReportsPaginated(final Boolean checked, final String reportingDriverId,
-                                         final String reportedDriverId, final Pageable pageable);
+                                         final String reportedDriverId, final String leagueId, final Pageable pageable);
 }
