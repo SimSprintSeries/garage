@@ -26,7 +26,6 @@ import com.sss.garage.model.league.League;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
-import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
@@ -96,8 +95,6 @@ public class LegacyDataImporter {
     private TrackRepository trackRepository;
 
     private TeamRepository teamRepository;
-
-    private RacePointDictionaryRepository racePointDictionaryRepository;
 
     ObjectMapper objectMapper;
 
@@ -270,7 +267,7 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        for(File file : new File(System.getProperty("user.home") + "\\Desktop\\stare resultsy ACC").listFiles()) {
+        for(File file : new File(System.getProperty("user.dir") + "\\src\\main\\resources\\accsessions").listFiles()) {
             if(file.getAbsolutePath().contains("entrylist") || file.isDirectory()) {
                 continue;
             }
@@ -558,7 +555,6 @@ public class LegacyDataImporter {
         return racePointType;
     }
 
-
     @Autowired
     public void setObjectMapper(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -622,10 +618,5 @@ public class LegacyDataImporter {
     @Autowired
     public void setTeamRepository(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
-    }
-
-    @Autowired
-    public void setRacePointDictionaryRepository(RacePointDictionaryRepository racePointDictionaryRepository) {
-        this.racePointDictionaryRepository = racePointDictionaryRepository;
     }
 }
