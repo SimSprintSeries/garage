@@ -16,9 +16,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SssClassificationService implements ClassificationService {
@@ -50,19 +49,26 @@ public class SssClassificationService implements ClassificationService {
             } else {
                 classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
             }
+            classification.setLeague(league);
             classification.setPoints(raceResultRepository.findPointsByDriverAndLeague(driver, league));
-            classification.setP1Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 1));
-            classification.setP2Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 2));
-            classification.setP3Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 3));
-            classification.setP4Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 4));
-            classification.setP5Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 5));
-            classification.setP6Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 6));
-            classification.setP7Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 7));
-            classification.setP8Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 8));
-            classification.setP9Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 9));
-            classification.setP10Count(raceResultRepository.countFinishPositionByDriverAndLeague(driver, league, 10));
             classifications.add(classification);
         }
+
+        List<Classification> duplicates = findDuplicates(classifications);
+
+        for (int j = 1; j < 11; j++) {
+            if (!duplicates.isEmpty()) {
+                List<Classification> filtered = new ArrayList<>();
+                for (Classification classification : duplicates) {
+                    classification.setPosition(j);
+                    classification.setPositionCount(raceResultRepository
+                            .countFinishPositionByDriverAndLeague(classification.getDriver(), classification.getLeague(), j));
+                    filtered.add(classification);
+                }
+                duplicates = findDuplicates(filtered);
+            }
+        }
+
         sortClassification(classifications);
         return new PageImpl<>(classifications, pageable, classifications.size());
     }
@@ -72,30 +78,41 @@ public class SssClassificationService implements ClassificationService {
         for (Team team : teamRepository.findTeamsByLeague(league)) {
             Classification classification = new Classification();
             classification.setTeam(team);
+            classification.setLeague(league);
             classification.setPoints(raceResultRepository.findPointsByTeamAndLeague(team, league));
-            classification.setP1Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 1));
-            classification.setP2Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 2));
-            classification.setP3Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 3));
-            classification.setP4Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 4));
-            classification.setP5Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 5));
-            classification.setP6Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 6));
-            classification.setP7Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 7));
-            classification.setP8Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 8));
-            classification.setP9Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 9));
-            classification.setP10Count(raceResultRepository.countFinishPositionByTeamAndLeague(team, league, 10));
             classifications.add(classification);
         }
+
+        List<Classification> duplicates = findDuplicates(classifications);
+
+        for (int j = 1; j < 11; j++) {
+            if (!duplicates.isEmpty()) {
+                List<Classification> filtered = new ArrayList<>();
+                for (Classification classification : duplicates) {
+                    classification.setPosition(j);
+                    classification.setPositionCount(raceResultRepository
+                            .countFinishPositionByTeamAndLeague(classification.getTeam(), classification.getLeague(), j));
+                    filtered.add(classification);
+                }
+                duplicates = findDuplicates(filtered);
+            }
+        }
+
         sortClassification(classifications);
         return new PageImpl<>(classifications, pageable, classifications.size());
     }
 
     private void sortClassification(final List<Classification> classifications) {
         classifications.sort(Comparator.comparing(Classification::getPoints)
-                .thenComparing(Classification::getP1Count).thenComparing(Classification::getP2Count)
-                .thenComparing(Classification::getP3Count).thenComparing(Classification::getP4Count)
-                .thenComparing(Classification::getP5Count).thenComparing(Classification::getP6Count)
-                .thenComparing(Classification::getP7Count).thenComparing(Classification::getP8Count)
-                .thenComparing(Classification::getP9Count).thenComparing(Classification::getP10Count).reversed());
+                .thenComparing(Classification::getPosition, Comparator.reverseOrder())
+                .thenComparing(Classification::getPositionCount).reversed());
+    }
+
+    private List<Classification> findDuplicates(final List<Classification> classifications) {
+        return classifications.stream()
+                .collect(Collectors.groupingBy(i -> Arrays.asList(i.getPoints(), i.getPosition(), i.getPositionCount())))
+                .values().stream()
+                .filter(classificationList -> classificationList.size() > 1).flatMap(List::stream).toList();
     }
 
     @Autowired
