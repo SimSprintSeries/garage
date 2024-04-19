@@ -618,5 +618,35 @@
     "game": "F1 23",
     "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_335_banner_900.png",
     "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_334_logo_0.png"
+  },
+  {
+    "id": 66,
+    "name": "F1 23 - Liga A - Wiosna 2024",
+    "type": 12,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 23",
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_340_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_338_logo_0.png"
+  },
+  {
+    "id": 67,
+    "name": "F1 23 - Liga B - Wiosna 2024",
+    "type": 12,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 23",
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_343_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_342_logo_0.png"
+  },
+  {
+    "id": 68,
+    "name": "F1 23 - Liga C - Wiosna 2024",
+    "type": 12,
+    "split": "C",
+    "platform": "PC",
+    "game": "F1 23",
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_346_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_344_logo_0.png"
   }
 ]
