@@ -100,7 +100,7 @@ public class LegacyDataImporter {
 
     public void importLegacyData() throws IOException {
         LegacyDriverConverter legacyDriverDriverConverter = new LegacyDriverConverter();
-        List<LegacyDriver> legacyDrivers = Arrays.asList(objectMapper.readValue(driversResource.getFile(), LegacyDriver[].class));
+        List<LegacyDriver> legacyDrivers = Arrays.asList(objectMapper.readValue(driversResource.getInputStream(), LegacyDriver[].class));
         Set<DiscordUser> dcUsers = legacyDrivers.stream()
                 .filter(d -> Objects.nonNull(d.discordUserId))
                 .map(d -> {
@@ -119,7 +119,7 @@ public class LegacyDataImporter {
 
         driverRepository.saveAll(drivers);
 
-        List<LegacyLeague> legacyLeagues = Arrays.asList(objectMapper.readValue(leaguesResource.getFile(), LegacyLeague[].class));
+        List<LegacyLeague> legacyLeagues = Arrays.asList(objectMapper.readValue(leaguesResource.getInputStream(), LegacyLeague[].class));
 
         final GameFamily f1Family = newGameFamily("F1");
         final GameFamily acFamily = newGameFamily("AC");
@@ -163,7 +163,7 @@ public class LegacyDataImporter {
                 .collect(Collectors.toSet());
         splitRepository.saveAll(splits);
 
-        List<LegacyTrack> legacyTracks = Arrays.asList(objectMapper.readValue(tracksResource.getFile(), LegacyTrack[].class));
+        List<LegacyTrack> legacyTracks = Arrays.asList(objectMapper.readValue(tracksResource.getInputStream(), LegacyTrack[].class));
 
         Set<Track> tracks = legacyTracks.stream()
                 .map(t -> {
@@ -177,7 +177,7 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        List<LegacyEvent> legacyEvents = Arrays.asList(objectMapper.readValue(eventsResource.getFile(), LegacyEvent[].class));
+        List<LegacyEvent> legacyEvents = Arrays.asList(objectMapper.readValue(eventsResource.getInputStream(), LegacyEvent[].class));
 
         Set<Event> events = legacyEvents.stream()
                 .map(e -> {
@@ -201,7 +201,7 @@ public class LegacyDataImporter {
             leagueRepository.save(league);
         }
 
-        List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getFile(), LegacyRace[].class));
+        List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getInputStream(), LegacyRace[].class));
 
         Set<Race> races = legacyRaces.stream()
                 .map(r -> {
@@ -237,7 +237,7 @@ public class LegacyDataImporter {
                         });
         raceRepository.saveAll(races);
 
-        List<LegacyTeam> legacyTeams = Arrays.asList(objectMapper.readValue(teamsResource.getFile(), LegacyTeam[].class));
+        List<LegacyTeam> legacyTeams = Arrays.asList(objectMapper.readValue(teamsResource.getInputStream(), LegacyTeam[].class));
         Set<Team> teams = legacyTeams.stream()
                 .map(t -> {
                     final Team team = new Team();
@@ -249,7 +249,7 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getFile(), LegacyRaceResult[].class));
+        List<LegacyRaceResult> legacyRaceResults = Arrays.asList(objectMapper.readValue(raceResultsResource.getInputStream(), LegacyRaceResult[].class));
         Set<RaceResult> raceResults = legacyRaceResults.stream()
                 .map(r -> {
                     final RaceResult raceResult = new RaceResult();
@@ -267,7 +267,7 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        for(File file : new File(System.getProperty("user.dir") + "\\src\\main\\resources\\accsessions").listFiles()) {
+        for(File file : new File(System.getProperty("user.dir") + "garage/src/main/resources").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
             if(file.getAbsolutePath().contains("entrylist") || file.isDirectory()) {
                 continue;
             }
@@ -333,7 +333,7 @@ public class LegacyDataImporter {
             JsonArray legacyLapJsonArray = lapArrayBuilder.build();
 
             List<LegacyAccLap> legacyAccLaps = Arrays.asList(objectMapper.readValue(legacyLapJsonArray.toString(), LegacyAccLap[].class));
-            List<LegacyCarTable> legacyCarTables = Arrays.asList(objectMapper.readValue(carsResource.getFile(), LegacyCarTable[].class));
+            List<LegacyCarTable> legacyCarTables = Arrays.asList(objectMapper.readValue(carsResource.getInputStream(), LegacyCarTable[].class));
             Set<AccLap> accLaps = legacyAccLaps.stream()
                     .map(l -> {
                         final AccLap accLap = new AccLap();
