@@ -40,7 +40,7 @@ import com.sss.garage.model.user.DiscordUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.json.*;
@@ -49,28 +49,28 @@ import javax.json.*;
 public class LegacyDataImporter {
 
     @Value("${legacy.data.dir}/leagues.json")
-    private Resource leaguesResource;
+    private ClassPathResource leaguesResource;
 
     @Value("${legacy.data.dir}/drivers.json")
-    private Resource driversResource;
+    private ClassPathResource driversResource;
 
     @Value("${legacy.data.dir}/events.json")
-    private Resource eventsResource;
+    private ClassPathResource eventsResource;
 
     @Value("${legacy.data.dir}/raceresults.json")
-    private Resource raceResultsResource;
+    private ClassPathResource raceResultsResource;
 
     @Value("${legacy.data.dir}/races.json")
-    private Resource racesResource;
+    private ClassPathResource racesResource;
 
     @Value("${legacy.data.dir}/cartable.json")
-    private Resource carsResource;
+    private ClassPathResource carsResource;
 
     @Value("${legacy.data.dir}/tracks.json")
-    private Resource tracksResource;
+    private ClassPathResource tracksResource;
 
     @Value("${legacy.data.dir}/teams.json")
-    private Resource teamsResource;
+    private ClassPathResource teamsResource;
 
     private DiscordUserRepository discordUserRepository;
 
