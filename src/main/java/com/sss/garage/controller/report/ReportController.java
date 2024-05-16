@@ -2,6 +2,7 @@ package com.sss.garage.controller.report;
 
 import com.sss.garage.controller.SssBaseController;
 import com.sss.garage.data.report.ReportData;
+import com.sss.garage.dto.report.DecisionDTO;
 import com.sss.garage.dto.report.ReportDTO;
 import com.sss.garage.facade.report.ReportFacade;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,6 +63,13 @@ public class ReportController extends SssBaseController {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
         return this.reportFacade.getReportsPaginated(checked, reportingDriverId, reportedDriverId, leagueId, pageable).map(p -> mapper.map(p, ReportDTO.class));
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "editReport", summary = "Edit specific report")
+    public void editReport(@PathVariable final Long id, @RequestBody final DecisionDTO decision) {
+        reportFacade.editReport(id, mapper.map(decision, ReportData.class));
     }
 
     @Autowired

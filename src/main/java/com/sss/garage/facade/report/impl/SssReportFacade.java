@@ -15,6 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Service
 public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     private ReportService reportService;
@@ -31,8 +34,10 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     }
 
     @Override
-    public void createReport(final ReportData penalty) {
-        reportService.createReport(conversionService.convert(penalty, Report.class));
+    public void createReport(final ReportData report) {
+        report.setReportDate(Date.from(Instant.now()));
+        report.setChecked(report.getDecisionDescription() != null);
+        reportService.createReport(conversionService.convert(report, Report.class));
     }
 
     @Override
@@ -57,6 +62,11 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
         }
         return reportService.getReportsPaginated(checked, reportingDriver, reportedDriver, league, pageable)
                 .map(p -> conversionService.convert(p, ReportData.class));
+    }
+
+    @Override
+    public void editReport(final Long id, final ReportData decision) {
+        reportService.editReport(id, conversionService.convert(decision,Report.class));
     }
 
     @Autowired

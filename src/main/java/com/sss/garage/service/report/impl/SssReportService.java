@@ -38,6 +38,11 @@ public class SssReportService implements ReportService {
                 reportedDriver, league, pageable);
     }
 
+    @Override
+    public void editReport(final Long id, final Report report) {
+        reportRepository.save(report);
+    }
+
     @Autowired
     public void setReportRepository(final ReportRepository reportRepository) {
         this.reportRepository = reportRepository;

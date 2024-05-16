@@ -17,4 +17,6 @@ public interface ReportService {
 
     Page<Report> getReportsPaginated(final Boolean checked, final Driver reportingDriver,
                                      final Driver reportedDriver, final League league, final Pageable pageable);
+
+    void editReport(final Long id, final Report report);
 }

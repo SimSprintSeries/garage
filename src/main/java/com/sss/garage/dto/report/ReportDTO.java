@@ -1,30 +1,25 @@
 package com.sss.garage.dto.report;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sss.garage.dto.driver.SimpleDriverDTO;
-import com.sss.garage.dto.race.RaceDTO;
 
 import java.util.Date;
 
 public class ReportDTO {
     private Long id;
 
-    private Integer penaltySeconds;
-
-    private Integer penaltyPoints;
-
     private String incidentLink;
 
     private String incidentDescription;
 
-    private String decisionDescription;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date reportDate;
 
-    private SimpleDriverDTO reportingDriver;
+    private String reportingDriverId;
 
-    private SimpleDriverDTO reportedDriver;
+    private String reportedDriverId;
 
-    private RaceDTO race;
+    private String raceId;
 
     private Boolean checked;
 
@@ -34,22 +29,6 @@ public class ReportDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getPenaltySeconds() {
-        return penaltySeconds;
-    }
-
-    public void setPenaltySeconds(Integer penaltySeconds) {
-        this.penaltySeconds = penaltySeconds;
-    }
-
-    public Integer getPenaltyPoints() {
-        return penaltyPoints;
-    }
-
-    public void setPenaltyPoints(Integer penaltyPoints) {
-        this.penaltyPoints = penaltyPoints;
     }
 
     public String getIncidentLink() {
@@ -68,14 +47,6 @@ public class ReportDTO {
         this.incidentDescription = incidentDescription;
     }
 
-    public String getDecisionDescription() {
-        return decisionDescription;
-    }
-
-    public void setDecisionDescription(String decisionDescription) {
-        this.decisionDescription = decisionDescription;
-    }
-
     public Date getReportDate() {
         return reportDate;
     }
@@ -84,28 +55,28 @@ public class ReportDTO {
         this.reportDate = reportDate;
     }
 
-    public SimpleDriverDTO getReportingDriver() {
-        return reportingDriver;
+    public String getReportingDriverId() {
+        return reportingDriverId;
     }
 
-    public void setReportingDriver(SimpleDriverDTO reportingDriver) {
-        this.reportingDriver = reportingDriver;
+    public void setReportingDriverId(String reportingDriverId) {
+        this.reportingDriverId = reportingDriverId;
     }
 
-    public SimpleDriverDTO getReportedDriver() {
-        return reportedDriver;
+    public String getReportedDriverId() {
+        return reportedDriverId;
     }
 
-    public void setReportedDriver(SimpleDriverDTO reportedDriver) {
-        this.reportedDriver = reportedDriver;
+    public void setReportedDriverId(String reportedDriverId) {
+        this.reportedDriverId = reportedDriverId;
     }
 
-    public RaceDTO getRace() {
-        return race;
+    public String getRaceId() {
+        return raceId;
     }
 
-    public void setRace(RaceDTO race) {
-        this.race = race;
+    public void setRaceId(String raceId) {
+        this.raceId = raceId;
     }
 
     public Boolean getChecked() {

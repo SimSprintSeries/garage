@@ -13,4 +13,6 @@ public interface ReportFacade {
 
     Page<ReportData> getReportsPaginated(final Boolean checked, final String reportingDriverId,
                                          final String reportedDriverId, final String leagueId, final Pageable pageable);
+
+    void editReport(final Long id, final ReportData decision);
 }

@@ -267,7 +267,7 @@ public class LegacyDataImporter {
                 })
                 .collect(Collectors.toSet());
 
-        for(File file : new File(System.getProperty("user.dir") + "garage/src/main/resources").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
+        /*for(File file : new File(System.getProperty("user.dir") + "garage/src/main/resources").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
             if(file.getAbsolutePath().contains("entrylist") || file.isDirectory()) {
                 continue;
             }
@@ -356,7 +356,7 @@ public class LegacyDataImporter {
                     })
                     .collect(Collectors.toSet());
             accLapRepository.saveAll(accLaps);
-        }
+        }*/
     }
 
     private static Driver findDriverByLegacyId(final Long id, final Set<Driver> drivers, final List<LegacyDriver> legacyDrivers) {
