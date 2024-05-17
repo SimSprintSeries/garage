@@ -28,10 +28,10 @@ public class ReportController extends SssBaseController {
     @GetMapping("/{id}")
     @Operation(operationId = "getReport", summary = "Get report information")
     @ResponseStatus(HttpStatus.OK)
-    public ReportDTO getReport(@PathVariable final Long id) {
+    public DecisionDTO getReport(@PathVariable final Long id) {
         ReportData gameData = reportFacade.getReport(id);
 
-        return mapper.map(gameData, ReportDTO.class);
+        return mapper.map(gameData, DecisionDTO.class);
     }
 
     @PostMapping
@@ -51,7 +51,7 @@ public class ReportController extends SssBaseController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "getReportsPaginated", summary = "Get list of all reports")
-    public Page<ReportDTO> getReportsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+    public Page<DecisionDTO> getReportsPaginated(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                                @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
                                                @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
                                                @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
@@ -62,7 +62,7 @@ public class ReportController extends SssBaseController {
                                                @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
 
-        return this.reportFacade.getReportsPaginated(checked, reportingDriverId, reportedDriverId, leagueId, pageable).map(p -> mapper.map(p, ReportDTO.class));
+        return this.reportFacade.getReportsPaginated(checked, reportingDriverId, reportedDriverId, leagueId, pageable).map(p -> mapper.map(p, DecisionDTO.class));
     }
 
     @PatchMapping("/{id}")
@@ -76,5 +76,4 @@ public class ReportController extends SssBaseController {
     public void setReportFacade(final ReportFacade reportFacade) {
         this.reportFacade = reportFacade;
     }
-
 }

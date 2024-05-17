@@ -1,21 +1,11 @@
 package com.sss.garage.dto.report;
 
-public class DecisionDTO {
-    private Long id;
-
+public class DecisionDTO extends ReportDTO {
     private Integer penaltySeconds;
 
     private Integer penaltyPoints;
 
     private String decisionDescription;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getPenaltySeconds() {
         return penaltySeconds;

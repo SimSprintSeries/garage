@@ -1,5 +1,7 @@
 package com.sss.garage.model.event;
 
+import com.sss.garage.model.game.family.GameFamily;
+import com.sss.garage.model.game.family.GameFamilyRepository;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.track.Track;
 import org.springframework.data.domain.Page;
@@ -7,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
@@ -22,4 +26,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "AND e.startDate > NOW() " +
             "ORDER BY e.startDate ASC LIMIT 1")
     Event findNextEventByLeague(League league);
+
+    @Query("SELECT e FROM Event e LEFT JOIN League l ON e.league = l " +
+            "LEFT JOIN Game g ON l.game = g " +
+            "WHERE g.gameFamily=:gameFamily")
+    List<Event> findAllByGameFamily(GameFamily gameFamily);
 }

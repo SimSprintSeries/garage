@@ -36,7 +36,6 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     @Override
     public void createReport(final ReportData report) {
         report.setReportDate(Date.from(Instant.now()));
-        report.setChecked(report.getDecisionDescription() != null);
         reportService.createReport(conversionService.convert(report, Report.class));
     }
 
@@ -65,8 +64,9 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     }
 
     @Override
-    public void editReport(final Long id, final ReportData decision) {
-        reportService.editReport(id, conversionService.convert(decision,Report.class));
+    public void editReport(final Long id, final ReportData report) {
+        report.setChecked(report.getDecisionDescription() != null);
+        reportService.editReport(id, conversionService.convert(report,Report.class));
     }
 
     @Autowired

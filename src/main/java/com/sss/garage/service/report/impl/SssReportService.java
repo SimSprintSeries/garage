@@ -40,7 +40,12 @@ public class SssReportService implements ReportService {
 
     @Override
     public void editReport(final Long id, final Report report) {
-        reportRepository.save(report);
+        Report newReport = reportRepository.findById(id).orElseThrow();
+        newReport.setDecisionDescription(report.getDecisionDescription());
+        newReport.setPenaltyPoints(report.getPenaltyPoints());
+        newReport.setPenaltySeconds(report.getPenaltySeconds());
+        newReport.setChecked(report.getChecked());
+        reportRepository.save(newReport);
     }
 
     @Autowired
