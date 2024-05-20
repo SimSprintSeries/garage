@@ -73,6 +73,18 @@ public class DriverController extends SssBaseController {
         return this.driverFacade.getDriversByLeague(id, pageable).map(d -> mapper.map(d, SimpleDriverDTO.class));
     }
 
+    @GetMapping("/event/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "getDriversByEvent", summary = "Get list of all drivers in an event")
+    public Page<SimpleDriverDTO> getDriversByEvent(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
+                                                   @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
+                                                   @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                                   @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
+                                                   @PathVariable final String id) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
+        return this.driverFacade.getDriversByEvent(id, pageable).map(d -> mapper.map(d, SimpleDriverDTO.class));
+    }
+
     @Autowired
     public void setDriverFacade(DriverFacade driverFacade) {
         this.driverFacade = driverFacade;

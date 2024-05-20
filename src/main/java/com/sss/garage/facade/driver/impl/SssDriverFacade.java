@@ -5,9 +5,13 @@ import com.sss.garage.data.team.TeamData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.driver.DriverFacade;
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.service.driver.DriverService;
+import com.sss.garage.service.event.EventService;
 import com.sss.garage.service.league.LeagueService;
+import com.sss.garage.service.race.RaceService;
 import com.sss.garage.service.team.TeamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,8 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private LeagueService leagueService;
 
     private TeamService teamService;
+
+    private EventService eventService;
 
     @Override
     public DriverData getDriver(final Long id) {
@@ -61,6 +67,13 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
                 });
     }
 
+    @Override
+    public Page<DriverData> getDriversByEvent(@NotEmpty final String eventId, final Pageable pageable) {
+        final Event event = eventService.getEvent(Long.valueOf(eventId)).orElseThrow();
+        return driverService.getDriversByEvent(event, pageable)
+                .map(d -> conversionService.convert(d, DriverData.class));
+    }
+
     @Autowired
     public void setDriverService(DriverService driverService) {
         this.driverService = driverService;
@@ -74,5 +87,10 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     @Autowired
     public void setTeamService(final TeamService teamService) {
         this.teamService = teamService;
+    }
+
+    @Autowired
+    public void setEventService(final EventService eventService) {
+        this.eventService = eventService;
     }
 }

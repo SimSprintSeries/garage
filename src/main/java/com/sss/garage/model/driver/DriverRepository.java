@@ -1,6 +1,8 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,4 +17,10 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE e.league=:league)")
     List<Driver> findDriversByLeague(League league);
+
+    @Query("SELECT rr.driver FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
+            "WHERE pr.event=:event) " +
+            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
+            "WHERE r.event=:event)")
+    List<Driver> findDriversByEvent(Event event);
 }

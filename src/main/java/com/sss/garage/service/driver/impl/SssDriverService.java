@@ -8,6 +8,7 @@ import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.event.EventRepository;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.driver.DriverService;
 
@@ -47,8 +48,14 @@ public class SssDriverService implements DriverService {
     }
 
     @Override
-    public Page<Driver> getDriversByLeague(League league, Pageable pageable) {
+    public Page<Driver> getDriversByLeague(final League league, final Pageable pageable) {
         List<Driver> drivers = driverRepository.findDriversByLeague(league);
+        return new PageImpl<>(drivers, pageable, drivers.size());
+    }
+
+    @Override
+    public Page<Driver> getDriversByEvent(final Event event, final Pageable pageable) {
+        List<Driver> drivers = driverRepository.findDriversByEvent(event);
         return new PageImpl<>(drivers, pageable, drivers.size());
     }
 

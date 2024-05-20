@@ -14,4 +14,6 @@ public interface DriverFacade {
     Page<DriverData> getDriversPaginated(final Pageable pageable);
 
     Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable);
+
+    Page<DriverData> getDriversByEvent(final String eventId, final Pageable pageable);
 }
