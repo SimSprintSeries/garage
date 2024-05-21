@@ -11,7 +11,7 @@ import java.util.List;
 public interface RaceResultFacade {
     RaceResultData getRaceResult(final Long id);
 
-    void createRaceResult(final RaceResultData raceResultData);
+    void createRaceResults(final List<RaceResultData> raceResultsData);
 
     void deleteRaceResult(final Long id);
 

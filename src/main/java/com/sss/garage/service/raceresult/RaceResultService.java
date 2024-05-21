@@ -6,12 +6,13 @@ import com.sss.garage.model.raceresult.RaceResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface RaceResultService {
     Optional<RaceResult> getRaceResult(final Long id);
 
-    void createRaceResult(final RaceResult raceResult);
+    void createRaceResults(final List<RaceResult> raceResults);
 
     void deleteRaceResult(final Long id);
 

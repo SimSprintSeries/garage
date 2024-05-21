@@ -13,10 +13,6 @@ public class TeamDTO {
 
     private GameDTO gameDTO;
 
-    private Set<EntryDTO> entryDTOS;
-
-    private Set<RaceResultDTO> raceResults;
-
     private String colour;
 
     public Long getId() {
@@ -41,22 +37,6 @@ public class TeamDTO {
 
     public void setGame(GameDTO gameDTO) {
         this.gameDTO = gameDTO;
-    }
-
-    public Set<EntryDTO> getEntry() {
-        return entryDTOS;
-    }
-
-    public void setEntry(Set<EntryDTO> entryDTOS) {
-        this.entryDTOS = entryDTOS;
-    }
-
-    public Set<RaceResultDTO> getRaceResults() {
-        return raceResults;
-    }
-
-    public void setRaceResults(Set<RaceResultDTO> raceResults) {
-        this.raceResults = raceResults;
     }
 
     public String getColour() {

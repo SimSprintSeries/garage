@@ -87,8 +87,8 @@ public class SssRaceResultService implements RaceResultService {
     }
 
     @Override
-    public void createRaceResult(final RaceResult raceResult) {
-        raceResultRepository.save(raceResult);
+    public void createRaceResults(final List<RaceResult> raceResults) {
+        raceResultRepository.saveAll(raceResults);
     }
 
     @Override

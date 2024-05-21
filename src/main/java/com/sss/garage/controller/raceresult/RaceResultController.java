@@ -39,8 +39,9 @@ public class RaceResultController extends SssBaseController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "createRaceResult", summary = "Create new race result")
-    public void createRaceResult(@RequestBody RaceResultDTO raceResultDTO) {
-        raceResultFacade.createRaceResult(mapper.map(raceResultDTO, RaceResultData.class));
+    public void createRaceResult(@RequestBody List<RaceResultDTO> raceResultsDTO) {
+        List<RaceResultData> raceResultsData = raceResultsDTO.stream().map(r -> mapper.map(r, RaceResultData.class)).toList();
+        raceResultFacade.createRaceResults(raceResultsData);
     }
 
     @DeleteMapping("/{id}")
