@@ -25,6 +25,7 @@ public class SssRoleService implements RoleService {
     private RoleMapperStrategy sssMapperStrategy;
 
     private DiscordRole adminRole;
+    private DiscordRole stewardRole;
 
     @Override
     public DiscordRole getAdminRole() {
@@ -32,6 +33,14 @@ public class SssRoleService implements RoleService {
             adminRole = findById("ROLE_" + getRoleMapperStrategy().admin()).orElseThrow();
         }
         return adminRole;
+    }
+
+    @Override
+    public DiscordRole getStewardRole() {
+        if(stewardRole == null) {
+            stewardRole = findById("ROLE_" + getRoleMapperStrategy().steward()).orElseThrow();
+        }
+        return stewardRole;
     }
 
     @Override

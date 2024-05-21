@@ -14,5 +14,7 @@ public interface UserService {
 
     Boolean isCurrentUserAdmin();
 
+    Boolean isCurrentUserSteward();
+
     Boolean isCurrentlyLoggedInUser(final DiscordUser discordUser);
 }

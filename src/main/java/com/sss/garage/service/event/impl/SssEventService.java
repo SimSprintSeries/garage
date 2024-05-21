@@ -23,14 +23,12 @@ public class SssEventService implements EventService {
 
     private EventRepository eventRepository;
 
-    private GameFamilyRepository gameFamilyRepository;
-
     @Override
     public Page<Event> getAllEvents(final League league, final Track track, final Pageable pageable) {
-        List<Event> events = getLast10Events(gameFamilyRepository.findById(1).orElseThrow());
+        /*List<Event> events = getLast10Events(eventRepository.findById(1L).orElseThrow().getLeague().getGame().getGameFamily());
         for (Event event : events) {
             System.out.println(event.getName() + event.getStartDate());
-        }
+        }*/
         return eventRepository.findAllByParams(league, track, pageable);
     }
 
@@ -68,10 +66,5 @@ public class SssEventService implements EventService {
     @Autowired
     public void setEventRepository(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
-    }
-
-    @Autowired
-    public void setGameFamilyRepository(GameFamilyRepository gameFamilyRepository) {
-        this.gameFamilyRepository = gameFamilyRepository;
     }
 }

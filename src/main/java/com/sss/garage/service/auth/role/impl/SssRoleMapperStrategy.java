@@ -13,6 +13,11 @@ public class SssRoleMapperStrategy implements RoleMapperStrategy {
     }
 
     @Override
+    public String steward() {
+        return null;
+    }
+
+    @Override
     public String user() {
         return null;
     }

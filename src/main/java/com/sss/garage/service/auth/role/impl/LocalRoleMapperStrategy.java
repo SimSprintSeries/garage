@@ -13,6 +13,11 @@ public class LocalRoleMapperStrategy implements RoleMapperStrategy {
     }
 
     @Override
+    public String steward() {
+        return "1075533713233948722";
+    }
+
+    @Override
     public String user() {
         return "1059454168525447178";
     }

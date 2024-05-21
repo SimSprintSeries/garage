@@ -29,6 +29,7 @@ public class DiscordUserConverter extends BaseConverter implements Converter<Dis
 
         if(userService.isCurrentlyLoggedInUser(source)) { // only for current user
             data.setIsAdmin(userService.isCurrentUserAdmin());
+            data.setIsSteward(userService.isCurrentUserSteward());
         }
 
         return data;

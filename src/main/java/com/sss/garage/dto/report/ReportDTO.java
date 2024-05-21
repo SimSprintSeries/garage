@@ -2,6 +2,7 @@ package com.sss.garage.dto.report;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sss.garage.dto.driver.SimpleDriverDTO;
+import com.sss.garage.dto.race.RaceDTO;
 
 import java.util.Date;
 
@@ -15,11 +16,11 @@ public class ReportDTO {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date reportDate;
 
-    private String reportingDriverId;
+    private SimpleDriverDTO reportingDriver;
 
-    private String reportedDriverId;
+    private SimpleDriverDTO reportedDriver;
 
-    private String raceId;
+    private RaceDTO race;
 
     private Boolean checked;
 
@@ -55,28 +56,28 @@ public class ReportDTO {
         this.reportDate = reportDate;
     }
 
-    public String getReportingDriverId() {
-        return reportingDriverId;
+    public SimpleDriverDTO getReportingDriver() {
+        return reportingDriver;
     }
 
-    public void setReportingDriverId(String reportingDriverId) {
-        this.reportingDriverId = reportingDriverId;
+    public void setReportingDriver(SimpleDriverDTO reportingDriver) {
+        this.reportingDriver = reportingDriver;
     }
 
-    public String getReportedDriverId() {
-        return reportedDriverId;
+    public SimpleDriverDTO getReportedDriver() {
+        return reportedDriver;
     }
 
-    public void setReportedDriverId(String reportedDriverId) {
-        this.reportedDriverId = reportedDriverId;
+    public void setReportedDriver(SimpleDriverDTO reportedDriver) {
+        this.reportedDriver = reportedDriver;
     }
 
-    public String getRaceId() {
-        return raceId;
+    public RaceDTO getRace() {
+        return race;
     }
 
-    public void setRaceId(String raceId) {
-        this.raceId = raceId;
+    public void setRace(RaceDTO race) {
+        this.race = race;
     }
 
     public Boolean getChecked() {

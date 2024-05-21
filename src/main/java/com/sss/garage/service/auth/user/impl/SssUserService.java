@@ -39,6 +39,14 @@ public class SssUserService implements UserService {
                 .anyMatch(r -> roleService.getAdminRole().equals(r));
     }
 
+    @Override // TODO: Store in session on login
+    public Boolean isCurrentUserSteward() {
+        return getAuthentication().getAuthorities().stream()
+                .filter(a -> a instanceof DiscordRole)
+                .map(DiscordRole.class::cast)
+                .anyMatch(r -> roleService.getStewardRole().equals(r));
+    }
+
     private Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }

@@ -16,6 +16,8 @@ public class BasicDiscordUserDTO {
 
     private Boolean isAdmin;
 
+    private Boolean isSteward;
+
     public String getId() {
         return id;
     }
@@ -70,5 +72,13 @@ public class BasicDiscordUserDTO {
 
     public void setIsAdmin(final Boolean admin) {
         isAdmin = admin;
+    }
+
+    public Boolean getIsSteward() {
+        return isSteward;
+    }
+
+    public void setIsSteward(final Boolean isSteward) {
+        this.isSteward = isSteward;
     }
 }
