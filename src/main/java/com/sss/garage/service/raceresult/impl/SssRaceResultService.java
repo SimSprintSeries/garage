@@ -82,12 +82,13 @@ public class SssRaceResultService implements RaceResultService {
 
     @Override
     public Optional<RaceResult> getRaceResult(final Long id) {
-        setPointsForPosition();
+        setPointsForPosition(raceResultRepository.findById(id).stream().toList());
         return raceResultRepository.findById(id);
     }
 
     @Override
     public void createRaceResults(final List<RaceResult> raceResults) {
+        setPointsForPosition(raceResults);
         raceResultRepository.saveAll(raceResults);
     }
 
@@ -101,7 +102,7 @@ public class SssRaceResultService implements RaceResultService {
             , final Boolean fastestLap, final Driver driver, final Race race, final Pageable pageable) {
         Page<RaceResult> raceResults = raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
         if(raceResults.stream().findFirst().orElseThrow().getPointsForPosition() == null) {
-            setPointsForPosition();
+            setPointsForPosition(raceResultRepository.findAll());
         }
         return raceResults;
     }
@@ -111,9 +112,9 @@ public class SssRaceResultService implements RaceResultService {
                 .orElseThrow().pointsForPosition(raceResult.getFinishPosition());
     }
 
-    private void setPointsForPosition() {
-        List<RaceResult> raceResults = new ArrayList<>();
-        for(RaceResult raceResult : raceResultRepository.findAll()) {
+    private void setPointsForPosition(List<RaceResult> raceResults) {
+        List<RaceResult> raceResultsNew = new ArrayList<>();
+        for(RaceResult raceResult : raceResults) {
             RacePointDictionary racePointDictionary = racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
                     .orElseThrow();
             if(raceResult.getPointsForPosition() == null) {
@@ -127,10 +128,10 @@ public class SssRaceResultService implements RaceResultService {
                     }
                 }
                 raceResult.setPointsForPosition(points);
-                raceResults.add(raceResult);
+                raceResultsNew.add(raceResult);
             }
         }
-        raceResultRepository.saveAll(raceResults);
+        raceResultRepository.saveAll(raceResultsNew);
     }
 
     @Autowired

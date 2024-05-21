@@ -2,13 +2,16 @@ package com.sss.garage.converter.event;
 
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.event.EventData;
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.track.Track;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class EventReverseConverter extends BaseConverter implements Converter<EventData, Event> {
@@ -26,5 +29,6 @@ public class EventReverseConverter extends BaseConverter implements Converter<Ev
         target.setStartDate(source.getStartDate());
         target.setTrack(getConversionService().convert(source.getTrack(), Track.class));
         target.setActiveForPresence(source.getActiveForPresence());
+        target.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, Race.class)).collect(Collectors.toSet()));
     }
 }

@@ -1,8 +1,10 @@
 package com.sss.garage.data.event;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.track.TrackData;
 
 public class EventData {
@@ -12,6 +14,7 @@ public class EventData {
     private LeagueData league;
     private TrackData track;
     private Boolean activeForPresence;
+    private Set<RaceData> races;
 
     public Long getId() {
         return id;
@@ -57,7 +60,15 @@ public class EventData {
         return activeForPresence;
     }
 
-    public void setActiveForPresence(Boolean activeForPresence) {
+    public void setActiveForPresence(final Boolean activeForPresence) {
         this.activeForPresence = activeForPresence;
+    }
+
+    public Set<RaceData> getRaces() {
+        return races;
+    }
+
+    public void setRaces(final Set<RaceData> races) {
+        this.races = races;
     }
 }

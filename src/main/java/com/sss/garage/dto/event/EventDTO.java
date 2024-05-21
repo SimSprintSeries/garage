@@ -1,7 +1,10 @@
 package com.sss.garage.dto.event;
 
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.dto.race.RaceDTO;
 import com.sss.garage.dto.track.TrackDTO;
+
+import java.util.Set;
 
 public class EventDTO {
     private Long id;
@@ -10,6 +13,7 @@ public class EventDTO {
     private LeagueDTO league;
     private TrackDTO track;
     private Boolean activeForPresence;
+    private Set<RaceDTO> races;
 
     public Long getId() {
         return id;
@@ -55,7 +59,15 @@ public class EventDTO {
         return activeForPresence;
     }
 
-    public void setActiveForPresence(Boolean activeForPresence) {
+    public void setActiveForPresence(final Boolean activeForPresence) {
         this.activeForPresence = activeForPresence;
+    }
+
+    public Set<RaceDTO> getRaces() {
+        return races;
+    }
+
+    public void setRaces(final Set<RaceDTO> races) {
+        this.races = races;
     }
 }

@@ -1,13 +1,16 @@
 package com.sss.garage.converter.event;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.track.TrackData;
 import com.sss.garage.model.event.Event;
 
+import com.sss.garage.model.race.Race;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +32,6 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setStartDate(source.getStartDate());
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
         data.setActiveForPresence(source.getActiveForPresence());
+        data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
     }
 }
