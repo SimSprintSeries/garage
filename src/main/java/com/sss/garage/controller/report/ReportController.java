@@ -34,11 +34,11 @@ public class ReportController extends SssBaseController {
         return mapper.map(gameData, DecisionDTO.class);
     }
 
-    @PostMapping
+    @PostMapping("/race/{raceId}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "createReport", summary = "Create new report")
-    public void createReport(@RequestBody ReportDTO reportDTO) {
-        reportFacade.createReport(mapper.map(reportDTO, ReportData.class));
+    public void createReport(@RequestBody ReportDTO reportDTO, @PathVariable String raceId) {
+        reportFacade.createReport(raceId, mapper.map(reportDTO, ReportData.class));
     }
 
     @DeleteMapping("/{id}")

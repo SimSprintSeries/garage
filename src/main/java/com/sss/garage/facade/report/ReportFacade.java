@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface ReportFacade {
     ReportData getReport(final Long id);
 
-    void createReport(final ReportData penalty);
+    void createReport(final String raceId, final ReportData penalty);
 
     void deleteReport(final Long id);
 

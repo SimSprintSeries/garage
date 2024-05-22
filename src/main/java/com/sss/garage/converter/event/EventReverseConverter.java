@@ -29,6 +29,5 @@ public class EventReverseConverter extends BaseConverter implements Converter<Ev
         target.setStartDate(source.getStartDate());
         target.setTrack(getConversionService().convert(source.getTrack(), Track.class));
         target.setActiveForPresence(source.getActiveForPresence());
-        target.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, Race.class)).collect(Collectors.toSet()));
     }
 }

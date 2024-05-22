@@ -1,13 +1,16 @@
 package com.sss.garage.facade.report.impl;
 
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.report.ReportData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.report.ReportFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.league.LeagueService;
+import com.sss.garage.service.race.RaceService;
 import com.sss.garage.service.report.ReportService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
 
     private LeagueService leagueService;
 
+    private RaceService raceService;
+
     @Override
     public ReportData getReport(final Long id) {
         return reportService.getReport(id)
@@ -34,8 +39,13 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     }
 
     @Override
-    public void createReport(final ReportData report) {
+    public void createReport(final String raceId, final ReportData report) {
+        Race race = null;
+        if(Strings.isNotEmpty(raceId)) {
+            race = raceService.findById(Long.valueOf(raceId)).orElseThrow();
+        }
         report.setReportDate(Date.from(Instant.now()));
+        report.setRace(conversionService.convert(race, RaceData.class));
         reportService.createReport(conversionService.convert(report, Report.class));
     }
 
@@ -70,17 +80,22 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     }
 
     @Autowired
-    public void setReportService(ReportService reportService) {
+    public void setReportService(final ReportService reportService) {
         this.reportService = reportService;
     }
 
     @Autowired
-    public void setDriverService(DriverService driverService) {
+    public void setDriverService(final DriverService driverService) {
         this.driverService = driverService;
     }
 
     @Autowired
-    public void setLeagueService(LeagueService leagueService) {
+    public void setLeagueService(final LeagueService leagueService) {
         this.leagueService = leagueService;
+    }
+
+    @Autowired
+    public void setRaceService(final RaceService raceService) {
+        this.raceService = raceService;
     }
 }
