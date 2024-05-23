@@ -18,6 +18,7 @@ import com.sss.garage.service.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -86,7 +87,10 @@ public class SecurityConfiguration {
                 .cors()
                     .configurationSource(request -> {
                         final CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-                            config.setAllowCredentials(true);
+                        config.addAllowedMethod(HttpMethod.PATCH);
+                        config.addAllowedMethod(HttpMethod.DELETE);
+                        config.addAllowedMethod(HttpMethod.PUT);
+                        config.setAllowCredentials(true);
                         config.addAllowedOriginPattern("http://localhost*");
                         config.addAllowedOriginPattern("http://discord.com");
                         config.addAllowedOriginPattern("http://discordapp.com");
