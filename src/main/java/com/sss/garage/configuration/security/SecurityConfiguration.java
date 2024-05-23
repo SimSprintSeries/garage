@@ -4,6 +4,8 @@ import static com.sss.garage.constants.WebConstants.ELO_CALCULATION_ENDPOINT;
 import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
 import static com.sss.garage.constants.WebConstants.USER_ENDPOINT;
 
+import java.util.List;
+
 import com.sss.garage.filter.GenerateNewJwtTokenFilter;
 import com.sss.garage.filter.JwtAuthenticationFilter;
 import com.sss.garage.filter.OAuth2LoginAuthenticationContinueChainFilter;
@@ -87,9 +89,7 @@ public class SecurityConfiguration {
                 .cors()
                     .configurationSource(request -> {
                         final CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-                        config.addAllowedMethod(HttpMethod.PATCH);
-                        config.addAllowedMethod(HttpMethod.DELETE);
-                        config.addAllowedMethod(HttpMethod.PUT);
+                        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
                         config.setAllowCredentials(true);
                         config.addAllowedOriginPattern("http://localhost*");
                         config.addAllowedOriginPattern("http://discord.com");
