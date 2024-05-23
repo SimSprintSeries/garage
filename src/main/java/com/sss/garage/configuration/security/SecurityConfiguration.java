@@ -96,6 +96,7 @@ public class SecurityConfiguration {
                         config.addAllowedOriginPattern("http://discordapp.com");
                         config.addAllowedOriginPattern("https://discord.com");
                         config.addAllowedOriginPattern("https://discordapp.com");
+                        config.addAllowedOriginPattern("http://192.168.0.14:5173");
                         return config;
                     }).and()
                 .csrf().disable();
