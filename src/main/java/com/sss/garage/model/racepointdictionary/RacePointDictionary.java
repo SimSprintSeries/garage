@@ -5,15 +5,7 @@ import java.util.List;
 
 import com.sss.garage.model.racepointtype.RacePointType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OrderColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "racePointType" }) })
@@ -41,7 +33,7 @@ public class RacePointDictionary {
     @Column(unique = true)
     private RacePointType racePointType;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @OrderColumn
     private List<Integer> points;
 

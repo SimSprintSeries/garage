@@ -82,7 +82,6 @@ public class SssRaceResultService implements RaceResultService {
 
     @Override
     public Optional<RaceResult> getRaceResult(final Long id) {
-        setPointsForPosition(raceResultRepository.findById(id).stream().toList());
         return raceResultRepository.findById(id);
     }
 
@@ -100,11 +99,7 @@ public class SssRaceResultService implements RaceResultService {
     @Override
     public Page<RaceResult> getRaceResultsPaginated(final String finishPosition, final Boolean polePosition, final Boolean dnf, final Boolean dsq
             , final Boolean fastestLap, final Driver driver, final Race race, final Pageable pageable) {
-        Page<RaceResult> raceResults = raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
-        if(raceResults.stream().findFirst().orElseThrow().getPointsForPosition() == null) {
-            setPointsForPosition(raceResultRepository.findAll());
-        }
-        return raceResults;
+        return raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
     }
 
     private Integer findPointsForPosition(final RaceResult raceResult) {

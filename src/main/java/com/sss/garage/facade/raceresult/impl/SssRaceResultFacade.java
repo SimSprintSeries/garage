@@ -1,5 +1,6 @@
 package com.sss.garage.facade.raceresult.impl;
 
+import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.raceresult.RaceResultData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.raceresult.RaceResultFacade;
@@ -32,8 +33,15 @@ public class SssRaceResultFacade extends SssBaseFacade implements RaceResultFaca
     }
 
     @Override
-    public void createRaceResults(final List<RaceResultData> raceResultsData) {
+    public void createRaceResults(final String raceId, final List<RaceResultData> raceResultsData) {
+        Race race;
+        if(Strings.isNotEmpty(raceId)) {
+            race = raceService.findById(Long.valueOf(raceId)).orElseThrow();
+        } else {
+            race = null;
+        }
         List<RaceResult> raceResults = raceResultsData.stream().map(r -> conversionService.convert(r, RaceResult.class)).toList();
+        raceResults.forEach(r -> r.setRace(race));
         raceResultService.createRaceResults(raceResults);
     }
 

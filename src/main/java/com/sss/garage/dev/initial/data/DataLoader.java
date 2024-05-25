@@ -71,12 +71,6 @@ public class DataLoader {
     }
 
     private void setupF1GPPoints() {
-//        final Race race = raceRepository.findById(486L).orElseThrow();
-//        race.setPointType(RacePointType.F1_GP);
-//        raceRepository.save(race);
-//
-//        racePointDictionaryRepository.findByRacePointType(race.getPointType()).orElseThrow().pointsForPosition(1);
-
         if(racePointDictionaryRepository.existsByRacePointType(RacePointType.F1_GP)) {
             return;
         }

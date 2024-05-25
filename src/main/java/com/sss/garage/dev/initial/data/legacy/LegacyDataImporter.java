@@ -26,6 +26,8 @@ import com.sss.garage.model.league.League;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.race.RaceRepository;
+import com.sss.garage.model.racepointdictionary.RacePointDictionary;
+import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.raceresult.RaceResultRepository;
@@ -40,6 +42,7 @@ import com.sss.garage.model.user.DiscordUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -89,6 +92,8 @@ public class LegacyDataImporter {
     private RaceRepository raceRepository;
 
     private RaceResultRepository raceResultRepository;
+
+    private RacePointDictionaryRepository racePointDictionaryRepository;
 
     private AccLapRepository accLapRepository;
 
@@ -262,6 +267,7 @@ public class LegacyDataImporter {
                     raceResult.setDriver(findDriverByLegacyId(r.driver, drivers, legacyDrivers));
                     raceResult.setTeam(findTeamByLegacyId(r.teamid, teams, legacyTeams));
                     raceResult.setComment(r.comment);
+                    raceResult.setPointsForPosition(findPointsForPosition(raceResult));
                     raceResultRepository.save(raceResult);
                     return raceResult;
                 })
@@ -555,6 +561,22 @@ public class LegacyDataImporter {
         return racePointType;
     }
 
+    private Integer findPointsForPosition(final RaceResult raceResult) {
+        RacePointDictionary racePointDictionary = racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
+                .orElseThrow();
+        Integer points = racePointDictionaryRepository.findByRacePointType(raceResult.getRace().getPointType())
+                .orElseThrow().pointsForPosition(raceResult.getFinishPosition());
+        if(racePointDictionary.getPolePositionScored() && raceResult.getPolePosition()) {
+            points = points + racePointDictionary.getPolePositionPoints();
+        }
+        if(racePointDictionary.getFastestLapScored()) {
+            if((!racePointDictionary.getFastestLapForTop10() || raceResult.getFinishPosition() < 11) && raceResult.getFastestLap()) {
+                points = points + racePointDictionary.getFastestLapPoints();
+            }
+        }
+        return points;
+    }
+
     @Autowired
     public void setObjectMapper(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -598,6 +620,11 @@ public class LegacyDataImporter {
     @Autowired
     public void setRaceResultRepository(final RaceResultRepository raceResultRepository) {
         this.raceResultRepository = raceResultRepository;
+    }
+
+    @Autowired
+    public void setRacePointDictionaryRepository(final RacePointDictionaryRepository racePointDictionaryRepository) {
+        this.racePointDictionaryRepository = racePointDictionaryRepository;
     }
 
     @Autowired
