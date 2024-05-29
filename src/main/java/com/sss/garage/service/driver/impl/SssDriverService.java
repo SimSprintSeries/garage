@@ -10,6 +10,7 @@ import com.sss.garage.model.event.EventRepository;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResultRepository;
+import com.sss.garage.model.split.Split;
 import com.sss.garage.service.driver.DriverService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,6 @@ import org.springframework.stereotype.Service;
 public class SssDriverService implements DriverService {
 
     private DriverRepository driverRepository;
-
-    private EventRepository eventRepository;
-
-    private RaceResultRepository raceResultRepository;
 
     @Override
     public Optional<Driver> getDriver(final Long id) {
@@ -60,22 +57,23 @@ public class SssDriverService implements DriverService {
     }
 
     @Override
+    public Page<Driver> getDriversBySplit(final Split split, final Pageable pageable) {
+        List<Driver> drivers = driverRepository.findDriversBySplit(split);
+        return new PageImpl<>(drivers, pageable, drivers.size());
+    }
+
+    @Override
     public void saveDriver(final Driver driver) {
         driverRepository.save(driver);
+    }
+
+    @Override
+    public void setDriversForSplit(final List<Driver> drivers) {
+        driverRepository.saveAll(drivers);
     }
 
     @Autowired
     public void setDriverRepository(final DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
-    }
-
-    @Autowired
-    public void setEventRepository(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
-
-    @Autowired
-    public void setRaceResultRepository(RaceResultRepository raceResultRepository) {
-        this.raceResultRepository = raceResultRepository;
     }
 }

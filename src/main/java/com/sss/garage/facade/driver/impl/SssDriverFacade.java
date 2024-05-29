@@ -8,18 +8,24 @@ import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.split.Split;
 import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.event.EventService;
 import com.sss.garage.service.league.LeagueService;
 import com.sss.garage.service.race.RaceService;
+import com.sss.garage.service.split.SplitService;
 import com.sss.garage.service.team.TeamService;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
@@ -30,6 +36,8 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     private TeamService teamService;
 
     private EventService eventService;
+
+    private SplitService splitService;
 
     @Override
     public DriverData getDriver(final Long id) {
@@ -74,13 +82,28 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
                 .map(d -> conversionService.convert(d, DriverData.class));
     }
 
+    @Override
+    public Page<DriverData> getDriversBySplit(@NotEmpty final String splitId, final Pageable pageable) {
+        final Split split = splitService.getSplit(Long.valueOf(splitId)).orElseThrow();
+        return driverService.getDriversBySplit(split, pageable)
+                .map(d -> conversionService.convert(d, DriverData.class));
+    }
+
+    @Override
+    public void setDriversForSplit(@NotEmpty final String splitId, final List<DriverData> driversData) {
+        final Split split = splitService.getSplit(Long.valueOf(splitId)).orElseThrow();
+        List<Driver> drivers = driversData.stream().map(d -> conversionService.convert(d, Driver.class)).toList();
+        drivers.forEach(d -> d.setSplits(Set.of(split)));
+        driverService.setDriversForSplit(drivers);
+    }
+
     @Autowired
-    public void setDriverService(DriverService driverService) {
+    public void setDriverService(final DriverService driverService) {
         this.driverService = driverService;
     }
 
     @Autowired
-    public void setLeagueService(LeagueService leagueService) {
+    public void setLeagueService(final LeagueService leagueService) {
         this.leagueService = leagueService;
     }
 
@@ -92,5 +115,10 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     @Autowired
     public void setEventService(final EventService eventService) {
         this.eventService = eventService;
+    }
+
+    @Autowired
+    public void setSplitService(final SplitService splitService) {
+        this.splitService = splitService;
     }
 }

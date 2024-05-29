@@ -3,6 +3,7 @@ package com.sss.garage.model.driver;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
+import com.sss.garage.model.split.Split;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,4 +24,7 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
             "WHERE r.event=:event)")
     List<Driver> findDriversByEvent(Event event);
+
+    @Query("SELECT d FROM Driver d LEFT JOIN Split s ON s=:split")
+    List<Driver> findDriversBySplit(Split split);
 }

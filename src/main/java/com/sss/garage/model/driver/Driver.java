@@ -2,6 +2,7 @@ package com.sss.garage.model.driver;
 
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
+import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.split.Split;
 import com.sss.garage.model.team.Team;
@@ -83,6 +84,9 @@ public class Driver {
 
     @Nullable
     private Integer fastestLaps;
+
+    @OneToMany(mappedBy = "driver")
+    private Set<Presence> presences;
 
     public Long getId() {
         return id;
@@ -223,5 +227,13 @@ public class Driver {
 
     public void setFastestLaps(@Nullable final Integer fastestLaps) {
         this.fastestLaps = fastestLaps;
+    }
+
+    public Set<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(final Set<Presence> presences) {
+        this.presences = presences;
     }
 }

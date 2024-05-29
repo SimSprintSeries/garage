@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
+import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
@@ -38,6 +39,9 @@ public class Event {
     private Track track;
 
     private Boolean activeForPresence = false;
+
+    @OneToMany(mappedBy = "event")
+    private Set<Presence> presences;
 
     public Long getId() {
         return id;
@@ -101,5 +105,13 @@ public class Event {
 
     public void setActiveForPresence(Boolean activeForPresence) {
         this.activeForPresence = activeForPresence;
+    }
+
+    public Set<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(Set<Presence> presences) {
+        this.presences = presences;
     }
 }
