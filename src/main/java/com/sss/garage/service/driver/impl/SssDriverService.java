@@ -58,7 +58,7 @@ public class SssDriverService implements DriverService {
 
     @Override
     public Page<Driver> getDriversBySplit(final Split split, final Pageable pageable) {
-        List<Driver> drivers = driverRepository.findDriversBySplit(split);
+        List<Driver> drivers = driverRepository.findDriversBySplitsIsContaining(split);
         return new PageImpl<>(drivers, pageable, drivers.size());
     }
 

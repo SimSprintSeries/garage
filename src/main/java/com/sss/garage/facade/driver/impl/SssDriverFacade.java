@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -92,9 +94,16 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     @Override
     public void setDriversForSplit(@NotEmpty final String splitId, final List<DriverData> driversData) {
         final Split split = splitService.getSplit(Long.valueOf(splitId)).orElseThrow();
+        Set<Split> splits = new HashSet<>();
+        splits.add(split);
         List<Driver> drivers = driversData.stream().map(d -> conversionService.convert(d, Driver.class)).toList();
-        drivers.forEach(d -> d.setSplits(Set.of(split)));
-        driverService.setDriversForSplit(drivers);
+        List<Driver> newDrivers = new ArrayList<>();
+        for(Driver driver : drivers) {
+            Driver newDriver = driverService.getDriver(driver.getId()).orElseThrow();
+            newDriver.setSplits(splits);
+            newDrivers.add(newDriver);
+        }
+        driverService.setDriversForSplit(newDrivers);
     }
 
     @Autowired

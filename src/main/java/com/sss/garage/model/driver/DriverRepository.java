@@ -25,6 +25,5 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             "WHERE r.event=:event)")
     List<Driver> findDriversByEvent(Event event);
 
-    @Query("SELECT d FROM Driver d LEFT JOIN Split s ON s=:split")
-    List<Driver> findDriversBySplit(Split split);
+    List<Driver> findDriversBySplitsIsContaining(Split split);
 }
