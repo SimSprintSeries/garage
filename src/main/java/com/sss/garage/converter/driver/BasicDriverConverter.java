@@ -1,18 +1,12 @@
 package com.sss.garage.converter.driver;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
-import com.sss.garage.data.elo.EloData;
-import com.sss.garage.data.split.SplitData;
 import com.sss.garage.data.user.user.DiscordUserData;
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.service.elo.EloService;
-import com.sss.garage.service.raceresult.RaceResultService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

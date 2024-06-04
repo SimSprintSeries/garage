@@ -3,8 +3,6 @@ package com.sss.garage.converter.driver;
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.service.elo.EloService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

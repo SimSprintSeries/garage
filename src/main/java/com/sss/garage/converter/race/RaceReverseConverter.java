@@ -21,6 +21,7 @@ public class RaceReverseConverter extends BaseConverter implements Converter<Rac
 
         target.setId(source.getId());
         target.setSplit(getConversionService().convert(source.getSplit(), Split.class));
+        target.setActiveForPresence(source.getActiveForPresence());
 
         return target;
     }

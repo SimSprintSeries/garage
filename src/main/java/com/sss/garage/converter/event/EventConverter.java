@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.presence.PresenceData;
 import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.track.TrackData;
 import com.sss.garage.model.event.Event;
@@ -31,7 +32,6 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setDisplayText(source.getName());
         data.setStartDate(source.getStartDate());
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
-        data.setActiveForPresence(source.getActiveForPresence());
         data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
     }
 }

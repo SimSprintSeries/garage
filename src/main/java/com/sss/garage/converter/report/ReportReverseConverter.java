@@ -8,6 +8,9 @@ import com.sss.garage.model.race.Race;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Component
 public class ReportReverseConverter extends BaseConverter implements Converter<ReportData, Report> {
     @Override
@@ -25,9 +28,8 @@ public class ReportReverseConverter extends BaseConverter implements Converter<R
         target.setReportedDriver(getConversionService().convert(source.getReportedDriver(), Driver.class));
         target.setRace(getConversionService().convert(source.getRace(), Race.class));
         target.setChecked(source.getChecked());
+        target.setReportDate(Date.from(Instant.now()));
 
         return target;
     }
-
-
 }

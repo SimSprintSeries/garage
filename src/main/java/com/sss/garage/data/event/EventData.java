@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import com.sss.garage.data.league.LeagueData;
+import com.sss.garage.data.presence.PresenceData;
 import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.track.TrackData;
 
@@ -13,7 +14,6 @@ public class EventData {
     private Date startDate;
     private LeagueData league;
     private TrackData track;
-    private Boolean activeForPresence;
     private Set<RaceData> races;
 
     public Long getId() {
@@ -54,14 +54,6 @@ public class EventData {
 
     public void setTrack(final TrackData track) {
         this.track = track;
-    }
-
-    public Boolean getActiveForPresence() {
-        return activeForPresence;
-    }
-
-    public void setActiveForPresence(final Boolean activeForPresence) {
-        this.activeForPresence = activeForPresence;
     }
 
     public Set<RaceData> getRaces() {

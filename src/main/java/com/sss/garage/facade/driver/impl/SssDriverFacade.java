@@ -16,7 +16,6 @@ import com.sss.garage.service.race.RaceService;
 import com.sss.garage.service.split.SplitService;
 import com.sss.garage.service.team.TeamService;
 
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +36,7 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
 
     private TeamService teamService;
 
-    private EventService eventService;
+    private RaceService raceService;
 
     private SplitService splitService;
 
@@ -78,9 +77,9 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     }
 
     @Override
-    public Page<DriverData> getDriversByEvent(@NotEmpty final String eventId, final Pageable pageable) {
-        final Event event = eventService.getEvent(Long.valueOf(eventId)).orElseThrow();
-        return driverService.getDriversByEvent(event, pageable)
+    public Page<DriverData> getDriversByRace(@NotEmpty final String raceId, final Pageable pageable) {
+        final Race race = raceService.findById(Long.valueOf(raceId)).orElseThrow();
+        return driverService.getDriversByRace(race, pageable)
                 .map(d -> conversionService.convert(d, DriverData.class));
     }
 
@@ -122,8 +121,8 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     }
 
     @Autowired
-    public void setEventService(final EventService eventService) {
-        this.eventService = eventService;
+    public void setRaceService(final RaceService raceService) {
+        this.raceService = raceService;
     }
 
     @Autowired

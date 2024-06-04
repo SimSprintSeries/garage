@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.driver.Driver;
-import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.split.Split;
@@ -22,7 +21,7 @@ public interface DriverService {
 
     Page<Driver> getDriversByLeague(final League league, final Pageable pageable);
 
-    Page<Driver> getDriversByEvent(final Event event, final Pageable pageable);
+    Page<Driver> getDriversByRace(final Race race, final Pageable pageable);
 
     Page<Driver> getDriversBySplit(final Split split, final Pageable pageable);
 

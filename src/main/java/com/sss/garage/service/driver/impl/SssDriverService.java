@@ -51,8 +51,8 @@ public class SssDriverService implements DriverService {
     }
 
     @Override
-    public Page<Driver> getDriversByEvent(final Event event, final Pageable pageable) {
-        List<Driver> drivers = driverRepository.findDriversByEvent(event);
+    public Page<Driver> getDriversByRace(final Race race, final Pageable pageable) {
+        List<Driver> drivers = driverRepository.findDriversByRace(race);
         return new PageImpl<>(drivers, pageable, drivers.size());
     }
 

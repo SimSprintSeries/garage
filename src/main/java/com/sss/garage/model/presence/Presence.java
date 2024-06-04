@@ -2,7 +2,10 @@ package com.sss.garage.model.presence;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.Event;
+import com.sss.garage.model.race.Race;
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Presence {
@@ -11,14 +14,14 @@ public class Presence {
     private Long id;
 
     @ManyToOne
-    private Event event;
+    private Race race;
 
     @ManyToOne
     private Driver driver;
 
     private Boolean isPresent;
 
-    private Boolean isAbsent;
+    private Date date;
 
     public Long getId() {
         return id;
@@ -28,12 +31,12 @@ public class Presence {
         this.id = id;
     }
 
-    public Event getEvent() {
-        return event;
+    public Race getRace() {
+        return race;
     }
 
-    public void setEvent(final Event event) {
-        this.event = event;
+    public void setRace(final Race race) {
+        this.race = race;
     }
 
     public Driver getDriver() {
@@ -52,11 +55,11 @@ public class Presence {
         this.isPresent = isPresent;
     }
 
-    public Boolean getIsAbsent() {
-        return isAbsent;
+    public Date getDate() {
+        return date;
     }
 
-    public void setIsAbsent(final Boolean isAbsent) {
-        this.isAbsent = isAbsent;
+    public void setDate(final Date date) {
+        this.date = date;
     }
 }

@@ -19,11 +19,8 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             "WHERE e.league=:league)")
     List<Driver> findDriversByLeague(League league);
 
-    @Query("SELECT rr.driver FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
-            "WHERE pr.event=:event) " +
-            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
-            "WHERE r.event=:event)")
-    List<Driver> findDriversByEvent(Event event);
+    @Query("SELECT rr.driver FROM RaceResult rr WHERE rr.race=:race")
+    List<Driver> findDriversByRace(Race race);
 
     List<Driver> findDriversBySplitsIsContaining(Split split);
 }

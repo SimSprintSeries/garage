@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
+import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
@@ -57,6 +58,11 @@ public class Race extends Event {
 
     @Enumerated
     private RacePointType pointType;
+
+    private Boolean activeForPresence = false;
+
+    @OneToMany(mappedBy = "race")
+    private Set<Presence> presences;
 
     public Split getSplit() {
         return split;
@@ -144,5 +150,21 @@ public class Race extends Event {
 
     public void setPointType(final RacePointType racePointType) {
         this.pointType = racePointType;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
+    }
+
+    public Set<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(Set<Presence> presences) {
+        this.presences = presences;
     }
 }

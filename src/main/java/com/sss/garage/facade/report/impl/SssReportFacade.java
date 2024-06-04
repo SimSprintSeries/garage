@@ -44,7 +44,6 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
         if(Strings.isNotEmpty(raceId)) {
             race = raceService.findById(Long.valueOf(raceId)).orElseThrow();
         }
-        report.setReportDate(Date.from(Instant.now()));
         report.setRace(conversionService.convert(race, RaceData.class));
         reportService.createReport(conversionService.convert(report, Report.class));
     }
