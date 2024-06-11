@@ -16,15 +16,15 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     Integer countByLeague(League league);
 
-    Event findFirstByLeagueOrderByStartDateAsc(League league);
-
     @Query("SELECT e FROM Event e WHERE (e.league = :league OR :league IS NULL ) " +
             "AND (e.track=:track OR :track IS NULL)")
     Page<Event> findAllByParams(final League league, final Track track, final Pageable pageable);
 
-    @Query("SELECT e FROM Event e WHERE e.league = :league " +
-            "AND e.startDate > NOW() " +
-            "ORDER BY e.startDate ASC LIMIT 1")
+    @Query("SELECT e FROM Event e " +
+            "LEFT JOIN Race r ON r.event = e " +
+            "WHERE e.league = :league " +
+            "AND r.startDate > NOW() " +
+            "ORDER BY r.startDate ASC LIMIT 1")
     Event findNextEventByLeague(League league);
 
     @Query("SELECT e FROM Event e LEFT JOIN League l ON e.league = l " +

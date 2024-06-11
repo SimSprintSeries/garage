@@ -40,4 +40,6 @@ public interface RaceRepository extends JpaRepository<Race, Long> {
             "AND r.parentRaceEvent IS NULL " +
             "AND r.name NOT LIKE '%Parent%')")
     Page<Race> findAllByEvent(final Event event, final Pageable pageable);
+
+    Race findFirstByLeagueOrderByStartDateAsc(League league);
 }

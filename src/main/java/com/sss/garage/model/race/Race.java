@@ -1,29 +1,49 @@
 package com.sss.garage.model.race;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 
+import org.jetbrains.annotations.NotNull;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Race extends Event {
+public class Race {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    private String name;
+
+    @NotNull
+    private Date startDate;
 
     @ManyToOne
     private Split split;
 
     @ManyToOne
     private Event event;
+
+    @ManyToOne
+    private League league;
 
     @OneToMany(mappedBy = "race")
     private Set<RaceResult> raceResults;
@@ -166,5 +186,39 @@ public class Race extends Event {
 
     public void setPresences(Set<Presence> presences) {
         this.presences = presences;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NotNull final String name) {
+        this.name = name;
+    }
+
+    @NotNull
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(@NotNull final Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(final League league) {
+        this.league = league;
     }
 }

@@ -4,9 +4,12 @@ import com.sss.garage.data.presence.PresenceData;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.split.SplitData;
 
+import java.util.Date;
 import java.util.Set;
 
-public class RaceData extends EventData {
+public class RaceData {
+    private Long id;
+    private Date startDate;
     private SplitData split;
     private String displayText;
     private Boolean activeForPresence;
@@ -42,5 +45,21 @@ public class RaceData extends EventData {
 
     public void setPresences(final Set<PresenceData> presences) {
         this.presences = presences;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(final Date startDate) {
+        this.startDate = startDate;
     }
 }

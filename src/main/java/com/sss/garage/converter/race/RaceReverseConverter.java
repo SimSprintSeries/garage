@@ -12,22 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class RaceReverseConverter extends BaseConverter implements Converter<RaceData, Race> {
 
-    private EventReverseConverter eventReverseConverter;
-
     @Override
     public Race convert(final RaceData source) {
         final Race target = new Race();
-        eventReverseConverter.convert(source, target);
 
-        target.setId(source.getId());
+//        target.setId(source.getId()); Nigdy się nie powinno ustawiać ID na sztywno
         target.setSplit(getConversionService().convert(source.getSplit(), Split.class));
         target.setActiveForPresence(source.getActiveForPresence());
 
         return target;
-    }
-
-    @Autowired
-    public void setEventReverseConverter(EventReverseConverter eventReverseConverter) {
-        this.eventReverseConverter = eventReverseConverter;
     }
 }

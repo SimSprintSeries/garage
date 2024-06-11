@@ -16,24 +16,18 @@ import java.util.stream.Collectors;
 @Component
 public class RaceConverter extends BaseConverter implements Converter<Race, RaceData> {
 
-    private EventConverter eventConverter;
-
     @Override
     public RaceData convert(final Race source) {
         RaceData data = new RaceData();
-        eventConverter.convert(source, data);
 
+        data.setId(source.getId());
         data.setSplit(getConversionService().convert(source.getSplit(), SplitData.class));
-        //data.setDisplayText(data.getSplit().getDisplayText() + " - " + source.getName());
+        data.setDisplayText(data.getSplit().getDisplayText() + " - " + source.getName());
         data.setDisplayText(source.getEvent().getName() + " - " + source.getName());
         data.setActiveForPresence(source.getActiveForPresence());
         data.setPresences(source.getPresences().stream().map(p -> getConversionService().convert(p, PresenceData.class)).collect(Collectors.toSet()));
+        data.setStartDate(source.getStartDate());
 
         return data;
-    }
-
-    @Autowired
-    public void setEventConverter(final EventConverter eventConverter) {
-        this.eventConverter = eventConverter;
     }
 }

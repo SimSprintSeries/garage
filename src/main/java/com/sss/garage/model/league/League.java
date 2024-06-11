@@ -1,6 +1,7 @@
 package com.sss.garage.model.league;
 
 import com.sss.garage.model.classification.Classification;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
 
@@ -29,6 +30,9 @@ public class League {
 
     @OneToMany(mappedBy="league")
     private Set<Event> events;
+
+    @OneToMany(mappedBy="league")
+    private Set<Race> races;
 
     @OneToMany(mappedBy="league")
     private Set<Split> splits;

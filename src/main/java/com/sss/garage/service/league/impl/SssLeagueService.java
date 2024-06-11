@@ -3,6 +3,7 @@ package com.sss.garage.service.league.impl;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.EventRepository;
 import com.sss.garage.model.league.LeagueRepository;
+import com.sss.garage.model.race.RaceRepository;
 import com.sss.garage.service.league.LeagueService;
 import com.sss.garage.model.league.League;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +22,8 @@ public class SssLeagueService implements LeagueService {
     private LeagueRepository leagueRepository;
 
     private EventRepository eventRepository;
+
+    private RaceRepository raceRepository;
 
     @Override
     public Optional<League> getLeague(final Long id) {
@@ -50,7 +52,7 @@ public class SssLeagueService implements LeagueService {
     }
 
     private void setStartDateAndEventCount(final League league) {
-        LocalDate date = eventRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate date = raceRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         league.setStartDate(date.format(formatter));
         league.setEventCount(eventRepository.countByLeague(league));
@@ -64,5 +66,10 @@ public class SssLeagueService implements LeagueService {
     @Autowired
     public void setEventRepository(final EventRepository eventRepository) {
         this.eventRepository = eventRepository;
+    }
+
+    @Autowired
+    public void setRaceRepository(final RaceRepository raceRepository) {
+        this.raceRepository = raceRepository;
     }
 }

@@ -86,18 +86,16 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     @Query("SELECT rr.team FROM RaceResult rr " +
             "LEFT JOIN Race r ON rr.race = r " +
             "LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
-            "LEFT JOIN Event e ON pr.event = e " +
             "WHERE rr.driver=:driver " +
-            "AND e.league=:league " +
-            "ORDER BY e.startDate DESC LIMIT 1")
+            "AND r.league=:league " +
+            "ORDER BY r.startDate DESC LIMIT 1")
     Team findLastTeamByDriverAndLeagueForParentRaces(Driver driver, League league);
 
     @Query("SELECT rr.team FROM RaceResult rr " +
             "LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
-            "AND e.league=:league " +
-            "ORDER BY e.startDate DESC LIMIT 1")
+            "AND r.league=:league " +
+            "ORDER BY r.startDate DESC LIMIT 1")
     Team findLastTeamByDriverAndLeague(Driver driver, League league);
 
     @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +

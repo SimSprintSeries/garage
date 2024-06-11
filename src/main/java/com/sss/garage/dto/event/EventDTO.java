@@ -9,7 +9,6 @@ import java.util.Set;
 public class EventDTO {
     private Long id;
     private String displayText;
-    private String startDate;
     private LeagueDTO league;
     private TrackDTO track;
     private Set<RaceDTO> races;
@@ -28,14 +27,6 @@ public class EventDTO {
 
     public void setDisplayText(final String displayText) {
         this.displayText = displayText;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(final String startDate) {
-        this.startDate = startDate;
     }
 
     public LeagueDTO getLeague() {

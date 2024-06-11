@@ -57,12 +57,6 @@ public class SssEventService implements EventService {
         return eventRepository.findNextEventByLeague(league);
     }
 
-    private List<Event> getLast10Events(final GameFamily gameFamily) {
-        return eventRepository.findAllByGameFamily(gameFamily).stream().filter(e -> LocalDateTime.now()
-                        .isAfter(LocalDateTime.ofInstant(e.getStartDate().toInstant(), ZoneId.systemDefault())))
-                .sorted(Comparator.comparing(Event::getStartDate).reversed()).limit(10).toList();
-    }
-
     @Autowired
     public void setEventRepository(EventRepository eventRepository) {
         this.eventRepository = eventRepository;

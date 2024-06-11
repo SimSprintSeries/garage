@@ -11,7 +11,6 @@ import com.sss.garage.data.track.TrackData;
 public class EventData {
     private Long id;
     private String displayText;
-    private Date startDate;
     private LeagueData league;
     private TrackData track;
     private Set<RaceData> races;
@@ -30,14 +29,6 @@ public class EventData {
 
     public void setDisplayText(final String displayText) {
         this.displayText = displayText;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(final Date startDate) {
-        this.startDate = startDate;
     }
 
     public LeagueData getLeague() {
