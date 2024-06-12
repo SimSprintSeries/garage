@@ -29,10 +29,13 @@ public class EventController extends SssBaseController {
     @ResponseStatus(HttpStatus.OK)
     public Page<EventDTO> getAllEvents(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                        @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                       @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                       @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") String sort,
                                        @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
                                        @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId,
                                        @Parameter(description = "Optional track ID to filter by") @RequestParam(value = "trackId", required = false) final String trackId) {
+        if("startDate".equals(sort)) {
+            sort = "r.startDate";
+        }
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
         return this.eventFacade.getAllEvents(leagueId, trackId, pageable).map(e -> mapper.map(e, EventDTO.class));
     }

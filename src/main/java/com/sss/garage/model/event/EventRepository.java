@@ -16,9 +16,13 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     Integer countByLeague(League league);
 
-    @Query("SELECT e FROM Event e WHERE (e.league = :league OR :league IS NULL ) " +
+    @Query("SELECT e FROM Event e " +
+            "JOIN Race r on r.event = e " +
+            "WHERE (e.league = :league OR :league IS NULL ) " +
             "AND (e.track=:track OR :track IS NULL)")
     Page<Event> findAllByParams(final League league, final Track track, final Pageable pageable);
+
+//    Page<Event> findAllByLeagueAndTrack(final League league, final Track track, final Pageable pageable);
 
     @Query("SELECT e FROM Event e " +
             "LEFT JOIN Race r ON r.event = e " +
