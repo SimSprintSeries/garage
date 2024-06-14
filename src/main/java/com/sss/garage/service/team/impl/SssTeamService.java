@@ -10,6 +10,7 @@ import com.sss.garage.model.team.TeamRepository;
 import com.sss.garage.service.team.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,7 @@ public class SssTeamService implements TeamService {
      */
     @Override
     public Optional<Team> findTeamForDriverAndLeague(final Driver driver, final League league) {
-        Event event = eventRepository.findNextEventByLeague(league); // first event for checking if league has double-raced events
+        Event event = eventRepository.findAllByParams(league, null, PageRequest.of(0, 5)).stream().findFirst().orElseThrow(); // first event from league for checking if league has double-raced events
 
         if (event.getRaces().stream().findFirst().orElseThrow().getName().equals("Parent race")) {
             return Optional.ofNullable(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));

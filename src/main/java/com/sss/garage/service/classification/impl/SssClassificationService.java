@@ -40,7 +40,7 @@ public class SssClassificationService implements ClassificationService {
 
     private Page<Classification> setClassification(final League league, final Pageable pageable) {
         List<Classification> classifications = new ArrayList<>();
-        Event event = eventRepository.findNextEventByLeague(league); // first event for checking if league has double-raced events
+        Event event = eventRepository.findAllByParams(league, null, pageable).stream().findFirst().orElseThrow(); // first event from league for checking if league has double-raced events
         for (Driver driver : driverRepository.findDriversByLeague(league)) {
             Classification classification = new Classification();
             classification.setDriver(driver);
