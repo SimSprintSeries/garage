@@ -1,10 +1,10 @@
 package com.sss.garage.service.game.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.game.GameRepository;
+import com.sss.garage.model.game.family.GameFamilyRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.service.event.EventService;
 import com.sss.garage.service.game.GameService;
@@ -19,6 +19,7 @@ public class SssGameService implements GameService {
 
     private EventService eventService;
     private GameRepository gameRepository;
+    private GameFamilyRepository gameFamilyRepository;
 
     @Override
     public Game getGame(final Race race) {
@@ -45,6 +46,11 @@ public class SssGameService implements GameService {
         return gameRepository.findAll(pageable);
     }
 
+    @Override
+    public Game getGameFamilyByName(final String name) {
+        return gameFamilyRepository.findByName(name).orElseThrow();
+    }
+
     @Autowired
     public void setEventService(final EventService eventService) {
         this.eventService = eventService;
@@ -53,5 +59,10 @@ public class SssGameService implements GameService {
     @Autowired
     public void setGameRepository(final GameRepository gameRepository) {
         this.gameRepository = gameRepository;
+    }
+
+    @Autowired
+    public void setGameFamilyRepository(final GameFamilyRepository gameFamilyRepository) {
+        this.gameFamilyRepository = gameFamilyRepository;
     }
 }

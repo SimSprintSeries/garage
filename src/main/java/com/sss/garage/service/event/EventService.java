@@ -1,12 +1,14 @@
 package com.sss.garage.service.event;
 
 import com.sss.garage.model.event.Event;
+import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.track.Track;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.Optional;
 
 public interface EventService {
@@ -16,4 +18,5 @@ public interface EventService {
     void createEvent(final Event event);
     void deleteEvent(final Long id);
     Event getNextEvent(final League league);
+    Date get10thEventDateByGameFamily(final Game gameFamily);
 }

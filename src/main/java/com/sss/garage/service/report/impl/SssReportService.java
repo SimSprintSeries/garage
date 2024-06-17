@@ -1,6 +1,7 @@
 package com.sss.garage.service.report.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.report.ReportRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -46,6 +48,11 @@ public class SssReportService implements ReportService {
         newReport.setPenaltySeconds(report.getPenaltySeconds());
         newReport.setChecked(report.getChecked());
         reportRepository.save(newReport);
+    }
+
+    @Override
+    public Integer getPenaltyPoints(final Driver driver, final Game gameFamily, final Date date) {
+        return reportRepository.findPenaltyPointsByDriverAndGameFamilyAndDate(driver, gameFamily, date);
     }
 
     @Autowired

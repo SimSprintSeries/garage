@@ -26,6 +26,10 @@ public class DriverData {
 
     private DiscordUserData discordUser;
 
+    private Integer penaltyPointsF1;
+
+    private Integer penaltyPointsAC;
+
     public Long getId() {
         return id;
     }
@@ -128,5 +132,21 @@ public class DriverData {
 
     public void setDiscordUser(final DiscordUserData discordUser) {
         this.discordUser = discordUser;
+    }
+
+    public Integer getPenaltyPointsF1() {
+        return penaltyPointsF1;
+    }
+
+    public void setPenaltyPointsF1(final Integer penaltyPointsF1) {
+        this.penaltyPointsF1 = penaltyPointsF1;
+    }
+
+    public Integer getPenaltyPointsAC() {
+        return penaltyPointsAC;
+    }
+
+    public void setPenaltyPointsAC(final Integer penaltyPointsAC) {
+        this.penaltyPointsAC = penaltyPointsAC;
     }
 }

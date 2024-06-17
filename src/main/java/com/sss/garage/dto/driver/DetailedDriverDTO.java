@@ -22,6 +22,10 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     private Integer fastestLaps;
 
+    private Integer penaltyPointsF1;
+
+    private Integer penaltyPointsAC;
+
     public Set<EloDTO> getElos() {
         return elos;
     }
@@ -84,5 +88,21 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
 
     public void setFastestLaps(final Integer fastestLaps) {
         this.fastestLaps = fastestLaps;
+    }
+
+    public Integer getPenaltyPointsF1() {
+        return penaltyPointsF1;
+    }
+
+    public void setPenaltyPointsF1(final Integer penaltyPointsF1) {
+        this.penaltyPointsF1 = penaltyPointsF1;
+    }
+
+    public Integer getPenaltyPointsAC() {
+        return penaltyPointsAC;
+    }
+
+    public void setPenaltyPointsAC(final Integer penaltyPointsAC) {
+        this.penaltyPointsAC = penaltyPointsAC;
     }
 }

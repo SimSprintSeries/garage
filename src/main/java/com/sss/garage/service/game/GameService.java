@@ -1,6 +1,5 @@
 package com.sss.garage.service.game;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.sss.garage.model.game.Game;
@@ -14,4 +13,5 @@ public interface GameService {
     void createGame(final Game game);
     void deleteGame(final Long id);
     Page<Game> getGamesPaginated(final Pageable pageable);
+    Game getGameFamilyByName(final String name);
 }

@@ -2,8 +2,7 @@ package com.sss.garage.service.event.impl;
 
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.event.EventRepository;
-import com.sss.garage.model.game.family.GameFamily;
-import com.sss.garage.model.game.family.GameFamilyRepository;
+import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.track.Track;
@@ -14,8 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -25,10 +22,8 @@ public class SssEventService implements EventService {
 
     @Override
     public Page<Event> getAllEvents(final League league, final Track track, final Pageable pageable) {
-        /*List<Event> events = getLast10Events(eventRepository.findById(1L).orElseThrow().getLeague().getGame().getGameFamily());
-        for (Event event : events) {
-            System.out.println(event.getName() + event.getStartDate());
-        }*/
+        System.out.println(eventRepository.find10thEventDateByGameFamily(league.getGame().getGameFamily()));
+
         return eventRepository.findAllByParams(league, track, pageable);
     }
 
@@ -55,6 +50,11 @@ public class SssEventService implements EventService {
     @Override
     public Event getNextEvent(final League league) {
         return eventRepository.findNextEventByLeague(league);
+    }
+
+    @Override
+    public Date get10thEventDateByGameFamily(final Game gameFamily) {
+        return eventRepository.find10thEventDateByGameFamily(gameFamily);
     }
 
     @Autowired
