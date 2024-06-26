@@ -15,11 +15,9 @@ public interface DriverFacade {
 
     Page<DriverData> getDriversPaginated(final Pageable pageable);
 
-    Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable);
-
     Page<DriverData> getDriversByRace(final String raceId, final Pageable pageable);
 
-    Page<DriverData> getDriversBySplit(final String splitId, final Pageable pageable);
+    Page<DriverData> getDriversByLeague(final String leagueId, final Pageable pageable);
 
     void setDriversForSplit(final String splitId, final List<DriverData> driversData);
 }

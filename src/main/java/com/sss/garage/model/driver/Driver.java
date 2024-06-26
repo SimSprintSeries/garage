@@ -2,10 +2,9 @@ package com.sss.garage.model.driver;
 
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.report.Report;
-import com.sss.garage.model.split.Split;
-import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
 
 import com.sss.garage.model.elo.history.EloHistory;
@@ -41,7 +40,7 @@ public class Driver {
     private Set<RaceResult> raceResults;
 
     @ManyToMany
-    private Set<Split> splits;
+    private Set<League> leagues;
 
     @OneToMany(mappedBy = "reportingDriver")
     private List<Report> reporting;
@@ -136,12 +135,12 @@ public class Driver {
         this.raceResults = raceResults;
     }
 
-    public Set<Split> getSplits() {
-        return splits;
+    public Set<League> getLeagues() {
+        return leagues;
     }
 
-    public void setSplits(final Set<Split> splits) {
-        this.splits = splits;
+    public void setLeagues(final Set<League> leagues) {
+        this.leagues = leagues;
     }
 
     public List<Report> getReporting() {

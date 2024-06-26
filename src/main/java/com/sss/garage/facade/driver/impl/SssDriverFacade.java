@@ -84,22 +84,15 @@ public class SssDriverFacade extends SssBaseFacade implements DriverFacade {
     }
 
     @Override
-    public Page<DriverData> getDriversBySplit(@NotEmpty final String splitId, final Pageable pageable) {
-        final Split split = splitService.getSplit(Long.valueOf(splitId)).orElseThrow();
-        return driverService.getDriversBySplit(split, pageable)
-                .map(d -> conversionService.convert(d, DriverData.class));
-    }
-
-    @Override
-    public void setDriversForSplit(@NotEmpty final String splitId, final List<DriverData> driversData) {
-        final Split split = splitService.getSplit(Long.valueOf(splitId)).orElseThrow();
-        Set<Split> splits = new HashSet<>();
-        splits.add(split);
+    public void setDriversForSplit(@NotEmpty final String leagueId, final List<DriverData> driversData) {
+        final League league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        Set<League> leagues = new HashSet<>();
+        leagues.add(league);
         List<Driver> drivers = driversData.stream().map(d -> conversionService.convert(d, Driver.class)).toList();
         List<Driver> newDrivers = new ArrayList<>();
         for(Driver driver : drivers) {
             Driver newDriver = driverService.getDriver(driver.getId()).orElseThrow();
-            newDriver.setSplits(splits);
+            newDriver.setLeagues(leagues);
             newDrivers.add(newDriver);
         }
         driverService.setDriversForSplit(newDrivers);

@@ -2,6 +2,7 @@ package com.sss.garage.dto.league;
 
 import java.util.List;
 
+import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.event.EventDTO;
 import com.sss.garage.dto.split.SplitDTO;
 
@@ -9,6 +10,8 @@ public class DetailedLeagueDTO extends LeagueDTO {
     private List<EventDTO> events;
 
     private List<SplitDTO> splits;
+
+    private List<SimpleDriverDTO> drivers;
 
     private Boolean active;
 
@@ -28,6 +31,14 @@ public class DetailedLeagueDTO extends LeagueDTO {
 
     public void setSplits(final List<SplitDTO> splits) {
         this.splits = splits;
+    }
+
+    public List<SimpleDriverDTO> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(final List<SimpleDriverDTO> drivers) {
+        this.drivers = drivers;
     }
 
     public Boolean getActive() {

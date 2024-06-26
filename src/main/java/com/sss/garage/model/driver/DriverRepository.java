@@ -22,5 +22,5 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
     @Query("SELECT rr.driver FROM RaceResult rr WHERE rr.race=:race")
     List<Driver> findDriversByRace(Race race);
 
-    List<Driver> findDriversBySplitsIsContaining(Split split);
+    List<Driver> findDriversByLeaguesIsContaining(League league);
 }

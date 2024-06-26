@@ -46,19 +46,13 @@ public class SssDriverService implements DriverService {
 
     @Override
     public Page<Driver> getDriversByLeague(final League league, final Pageable pageable) {
-        List<Driver> drivers = driverRepository.findDriversByLeague(league);
+        List<Driver> drivers = driverRepository.findDriversByLeaguesIsContaining(league);
         return new PageImpl<>(drivers, pageable, drivers.size());
     }
 
     @Override
     public Page<Driver> getDriversByRace(final Race race, final Pageable pageable) {
         List<Driver> drivers = driverRepository.findDriversByRace(race);
-        return new PageImpl<>(drivers, pageable, drivers.size());
-    }
-
-    @Override
-    public Page<Driver> getDriversBySplit(final Split split, final Pageable pageable) {
-        List<Driver> drivers = driverRepository.findDriversBySplitsIsContaining(split);
         return new PageImpl<>(drivers, pageable, drivers.size());
     }
 

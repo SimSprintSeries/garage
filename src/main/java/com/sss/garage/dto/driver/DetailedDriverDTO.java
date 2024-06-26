@@ -1,6 +1,7 @@
 package com.sss.garage.dto.driver;
 
 import com.sss.garage.dto.elo.EloDTO;
+import com.sss.garage.dto.league.LeagueDTO;
 import com.sss.garage.dto.split.SplitDTO;
 
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class DetailedDriverDTO extends SimpleDriverDTO {
     private Set<EloDTO> elos;
 
-    private Set<SplitDTO> splits;
+    private Set<LeagueDTO> leagues;
 
     private Integer totalWins;
 
@@ -34,12 +35,12 @@ public class DetailedDriverDTO extends SimpleDriverDTO {
         this.elos = elos;
     }
 
-    public Set<SplitDTO> getSplits() {
-        return splits;
+    public Set<LeagueDTO> getLeagues() {
+        return leagues;
     }
 
-    public void setSplits(final Set<SplitDTO> splits) {
-        this.splits = splits;
+    public void setLeagues(final Set<LeagueDTO> leagues) {
+        this.leagues = leagues;
     }
 
     public Integer getTotalWins() {

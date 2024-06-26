@@ -23,8 +23,6 @@ public interface DriverService {
 
     Page<Driver> getDriversByRace(final Race race, final Pageable pageable);
 
-    Page<Driver> getDriversBySplit(final Split split, final Pageable pageable);
-
     void saveDriver(final Driver driver);
 
     void setDriversForSplit(final List<Driver> drivers);

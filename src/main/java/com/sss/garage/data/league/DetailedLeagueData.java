@@ -2,6 +2,7 @@ package com.sss.garage.data.league;
 
 import java.util.List;
 
+import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.split.SplitData;
 
@@ -9,6 +10,8 @@ public class DetailedLeagueData extends LeagueData {
     private List<EventData> events;
 
     private List<SplitData> splits;
+
+    private List<DriverData> drivers;
 
     private Boolean active;
 
@@ -42,6 +45,14 @@ public class DetailedLeagueData extends LeagueData {
 
     public void setSplits(final List<SplitData> splits) {
         this.splits = splits;
+    }
+
+    public List<DriverData> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(final List<DriverData> drivers) {
+        this.drivers = drivers;
     }
 
     public Boolean getActive() {

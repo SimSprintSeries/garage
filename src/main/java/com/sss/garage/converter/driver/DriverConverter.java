@@ -2,7 +2,7 @@ package com.sss.garage.converter.driver;
 
 import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.elo.EloData;
-import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.model.driver.Driver;
 
 import com.sss.garage.model.game.Game;
@@ -43,7 +43,7 @@ public class DriverConverter extends BasicDriverConverter implements Converter<D
         final DriverData data = super.convert(source); // id, nickname, discordValues
 
         data.setElos(eloService.getAllElos(source).stream().map(e -> getConversionService().convert(e, EloData.class)).collect(Collectors.toSet()));
-        data.setSplits(source.getSplits().stream().map(s -> getConversionService().convert(s, SplitData.class)).collect(Collectors.toSet()));
+        data.setLeagues(source.getLeagues().stream().map(l -> getConversionService().convert(l, LeagueData.class)).collect(Collectors.toSet()));
         data.setTotalWins(Optional.ofNullable(source.getTotalWins()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverWins(source)));
         data.setTotalTopTenResults(Optional.ofNullable(source.getTotalTopTenResults()).orElseGet(() -> raceResultService.calculateAndSaveTotalDriverTopTenResults(source)));
         data.setTotalRacesDriven(Optional.ofNullable(source.getTotalRacesDriven()).orElseGet(() -> raceResultService.calculateAndSaveTotalRacesDriven(source)));

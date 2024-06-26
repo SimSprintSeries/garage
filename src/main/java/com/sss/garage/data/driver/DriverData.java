@@ -1,7 +1,7 @@
 package com.sss.garage.data.driver;
 
 import com.sss.garage.data.elo.EloData;
-import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.data.team.TeamData;
 import com.sss.garage.data.user.user.DiscordUserData;
 
@@ -15,7 +15,7 @@ public class DriverData {
     private Integer totalTopTenResults;
     private Integer totalRacesDriven;
     private Set<Integer> stats;
-    private Set<SplitData> splits;
+    private Set<LeagueData> leagues;
     private TeamData team;
 
     private Integer podiums;
@@ -62,12 +62,12 @@ public class DriverData {
         this.stats = stats;
     }
 
-    public Set<SplitData> getSplits() {
-        return splits;
+    public Set<LeagueData> getLeagues() {
+        return leagues;
     }
 
-    public void setSplits(final Set<SplitData> splits) {
-        this.splits = splits;
+    public void setLeagues(final Set<LeagueData> leagues) {
+        this.leagues = leagues;
     }
 
     public TeamData getTeam() {

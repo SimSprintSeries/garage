@@ -1,6 +1,7 @@
 package com.sss.garage.model.league;
 
 import com.sss.garage.model.classification.Classification;
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
@@ -36,6 +37,9 @@ public class League {
 
     @OneToMany(mappedBy="league")
     private Set<Split> splits;
+
+    @ManyToMany(mappedBy = "leagues")
+    private Set<Driver> drivers;
 
     private Boolean active = false;
 
@@ -89,8 +93,16 @@ public class League {
         return splits;
     }
 
-    public void setSplits(final Set<Split> splitList) {
+    public void setSplits(final Set<Split> splits) {
         this.splits = splits;
+    }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(final Set<Driver> drivers) {
+        this.drivers = drivers;
     }
 
     @NotNull
