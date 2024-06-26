@@ -120,16 +120,6 @@
     "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_17_logo_0.png"
   },
   {
-    "id": 13,
-    "name": "Funrace",
-    "type": 10,
-    "split": "other",
-    "platform": "PC",
-    "game": "other",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_177_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_47_logo_0.png"
-  },
-  {
     "id": 14,
     "name": "Formuła 1 - PlayStation 4",
     "type": 5,
@@ -218,16 +208,6 @@
     "game": "AC",
     "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_123_banner_900.jpeg",
     "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_124_logo_0.png"
-  },
-  {
-    "id": 23,
-    "name": "Assetto Corsa - F1 2007",
-    "type": 3,
-    "split": "A",
-    "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_128_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_126_logo_0.png"
   },
   {
     "id": 24,

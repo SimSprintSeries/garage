@@ -196,15 +196,6 @@ public class LegacyDataImporter {
                 .collect(Collectors.toSet());
         eventRepository.saveAll(events);
 
-        for (League league : leagueRepository.findAll()) {
-            try {
-                setStartDateAndEventCount(league);
-            } catch (NullPointerException e) {
-                league.setEventCount(0);
-            }
-            leagueRepository.save(league);
-        }
-
         List<LegacyRace> legacyRaces = Arrays.asList(objectMapper.readValue(racesResource.getInputStream(), LegacyRace[].class));
 
         Set<Race> races = legacyRaces.stream()
@@ -241,6 +232,15 @@ public class LegacyDataImporter {
                             races.add(parentRace);
                         });
         raceRepository.saveAll(races);
+
+        for (League league : leagueRepository.findAll()) {
+            try {
+                setStartDateAndEventCount(league);
+            } catch (NullPointerException e) {
+                league.setEventCount(0);
+            }
+            leagueRepository.save(league);
+        }
 
         List<LegacyTeam> legacyTeams = Arrays.asList(objectMapper.readValue(teamsResource.getInputStream(), LegacyTeam[].class));
         Set<Team> teams = legacyTeams.stream()

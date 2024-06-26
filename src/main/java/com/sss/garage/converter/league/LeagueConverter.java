@@ -18,10 +18,6 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class LeagueConverter extends BaseConverter implements Converter<League, LeagueData> {
 
-    private RaceRepository raceRepository;
-
-    private EventRepository eventRepository;
-
     @Override
     public LeagueData convert(final League source) {
         final LeagueData data = new LeagueData();
@@ -31,27 +27,11 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
         data.setDisplayText(source.getName());
         data.setPlatform(source.getPlatform());
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
-        data.setStartDate(findStartDate(source));
-        data.setEventCount(eventRepository.countByLeague(source));
+        data.setStartDate(source.getStartDate());
+        data.setEventCount(source.getEventCount());
         data.setBanner(source.getBanner());
         data.setLogo(source.getLogo());
 
         return data;
-    }
-
-    private String findStartDate(final League league) {
-        LocalDate date = raceRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return date.format(formatter);
-    }
-
-    @Autowired
-    public void setRaceRepository(final RaceRepository raceRepository) {
-        this.raceRepository = raceRepository;
-    }
-
-    @Autowired
-    public void setEventRepository(final EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
     }
 }
