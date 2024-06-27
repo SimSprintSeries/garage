@@ -14,7 +14,8 @@ public interface LeagueRepository extends JpaRepository<League, Long> {
             "AND (l.active=:active OR :active IS NULL)")
     Page<League> findAllByParams(String platform, String name, Boolean active, Pageable pageable);
 
-    @Query("SELECT DISTINCT e.league FROM Event e WHERE e.id IN(SELECT e.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
+    @Query("SELECT DISTINCT e.league FROM Event e LEFT JOIN Race r ON e = r.event " +
+            "WHERE e.id IN(SELECT e.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
             "LEFT JOIN Event e ON pr.event = e " +
             "WHERE rr.driver=:driver) " +
             "OR e.id IN(SELECT e.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +

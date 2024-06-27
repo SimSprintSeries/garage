@@ -85,9 +85,13 @@ public class LeagueController extends SssBaseController {
     @Operation(operationId = "getLeaguesForDriver", summary = "Get list of all leagues for a driver")
     public Page<LeagueDTO> getLeaguesForDriver(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
                                          @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                         @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") final String sort,
+                                         @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "id") String sort,
                                          @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
                                          @PathVariable final String id) {
+        if("startDate".equals(sort)) {
+            sort = "r.startDate";
+        }
+
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
         return this.leagueFacade.getLeaguesForDriver(id, pageable).map(l -> mapper.map(l, LeagueDTO.class));
     }
