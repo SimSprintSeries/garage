@@ -22,9 +22,15 @@ public class ReportData {
 
     private DriverData reportingDriver;
 
+    private String reportingDriverId;
+
     private DriverData reportedDriver;
 
+    private String reportedDriverId;
+
     private RaceData race;
+
+    private String raceId;
 
     private Boolean checked;
 
@@ -92,6 +98,14 @@ public class ReportData {
         this.reportingDriver = reportingDriver;
     }
 
+    public String getReportingDriverId() {
+        return reportingDriverId;
+    }
+
+    public void setReportingDriverId(final String reportingDriverId) {
+        this.reportingDriverId = reportingDriverId;
+    }
+
     public DriverData getReportedDriver() {
         return reportedDriver;
     }
@@ -100,12 +114,28 @@ public class ReportData {
         this.reportedDriver = reportedDriver;
     }
 
+    public String getReportedDriverId() {
+        return reportedDriverId;
+    }
+
+    public void setReportedDriverId(final String reportedDriverId) {
+        this.reportedDriverId = reportedDriverId;
+    }
+
     public RaceData getRace() {
         return race;
     }
 
     public void setRace(RaceData race) {
         this.race = race;
+    }
+
+    public String getRaceId() {
+        return raceId;
+    }
+
+    public void setRaceId(final String raceId) {
+        this.raceId = raceId;
     }
 
     public Boolean getChecked() {

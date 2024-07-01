@@ -29,8 +29,6 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
 
     private LeagueService leagueService;
 
-    private RaceService raceService;
-
     @Override
     public ReportData getReport(final Long id) {
         return reportService.getReport(id)
@@ -40,11 +38,7 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
 
     @Override
     public void createReport(final String raceId, final ReportData report) {
-        Race race = null;
-        if(Strings.isNotEmpty(raceId)) {
-            race = raceService.findById(Long.valueOf(raceId)).orElseThrow();
-        }
-        report.setRace(conversionService.convert(race, RaceData.class));
+        report.setRaceId(raceId);
         reportService.createReport(conversionService.convert(report, Report.class));
     }
 
@@ -91,10 +85,5 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     @Autowired
     public void setLeagueService(final LeagueService leagueService) {
         this.leagueService = leagueService;
-    }
-
-    @Autowired
-    public void setRaceService(final RaceService raceService) {
-        this.raceService = raceService;
     }
 }

@@ -13,15 +13,8 @@ import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.split.Split;
 
+import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Race {
@@ -74,7 +67,7 @@ public class Race {
     private Boolean pointScoring = true;
 
     @OneToMany(mappedBy = "race")
-    private List<Report> penalties;
+    private List<Report> reports;
 
     @Enumerated
     private RacePointType pointType;
@@ -156,12 +149,12 @@ public class Race {
         this.pointScoring = pointScoring;
     }
 
-    public List<Report> getPenalties() {
-        return penalties;
+    public List<Report> getReports() {
+        return reports;
     }
 
-    public void setPenalties(List<Report> penalties) {
-        this.penalties = penalties;
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
     }
 
     public RacePointType getPointType() {

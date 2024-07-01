@@ -18,9 +18,15 @@ public class ReportDTO {
 
     private SimpleDriverDTO reportingDriver;
 
+    private String reportingDriverId;
+
     private SimpleDriverDTO reportedDriver;
 
+    private String reportedDriverId;
+
     private RaceDTO race;
+
+    private String raceId;
 
     private Boolean checked;
 
@@ -28,7 +34,7 @@ public class ReportDTO {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -36,7 +42,7 @@ public class ReportDTO {
         return incidentLink;
     }
 
-    public void setIncidentLink(String incidentLink) {
+    public void setIncidentLink(final String incidentLink) {
         this.incidentLink = incidentLink;
     }
 
@@ -44,7 +50,7 @@ public class ReportDTO {
         return incidentDescription;
     }
 
-    public void setIncidentDescription(String incidentDescription) {
+    public void setIncidentDescription(final String incidentDescription) {
         this.incidentDescription = incidentDescription;
     }
 
@@ -52,7 +58,7 @@ public class ReportDTO {
         return reportDate;
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(final Date reportDate) {
         this.reportDate = reportDate;
     }
 
@@ -60,31 +66,55 @@ public class ReportDTO {
         return reportingDriver;
     }
 
-    public void setReportingDriver(SimpleDriverDTO reportingDriver) {
+    public void setReportingDriver(final SimpleDriverDTO reportingDriver) {
         this.reportingDriver = reportingDriver;
+    }
+
+    public String getReportingDriverId() {
+        return reportingDriverId;
+    }
+
+    public void setReportingDriverId(final String reportingDriverId) {
+        this.reportingDriverId = reportingDriverId;
     }
 
     public SimpleDriverDTO getReportedDriver() {
         return reportedDriver;
     }
 
-    public void setReportedDriver(SimpleDriverDTO reportedDriver) {
+    public void setReportedDriver(final SimpleDriverDTO reportedDriver) {
         this.reportedDriver = reportedDriver;
+    }
+
+    public String getReportedDriverId() {
+        return reportedDriverId;
+    }
+
+    public void setReportedDriverId(final String reportedDriverId) {
+        this.reportedDriverId = reportedDriverId;
     }
 
     public RaceDTO getRace() {
         return race;
     }
 
-    public void setRace(RaceDTO race) {
+    public void setRace(final RaceDTO race) {
         this.race = race;
+    }
+
+    public String getRaceId() {
+        return raceId;
+    }
+
+    public void setRaceId(final String raceId) {
+        this.raceId = raceId;
     }
 
     public Boolean getChecked() {
         return checked;
     }
 
-    public void setChecked(Boolean checked) {
+    public void setChecked(final Boolean checked) {
         this.checked = checked;
     }
 }
