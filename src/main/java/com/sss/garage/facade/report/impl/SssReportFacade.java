@@ -1,25 +1,20 @@
 package com.sss.garage.facade.report.impl;
 
-import com.sss.garage.data.race.RaceData;
+import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.report.ReportData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.report.ReportFacade;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
-import com.sss.garage.model.race.Race;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.league.LeagueService;
-import com.sss.garage.service.race.RaceService;
 import com.sss.garage.service.report.ReportService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
-import java.util.Date;
 
 @Service
 public class SssReportFacade extends SssBaseFacade implements ReportFacade {
@@ -39,6 +34,7 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     @Override
     public void createReport(final String raceId, final ReportData report) {
         report.setRaceId(raceId);
+        report.setChecked(report.getDecisionDescription() != null);
         reportService.createReport(conversionService.convert(report, Report.class));
     }
 
@@ -69,6 +65,9 @@ public class SssReportFacade extends SssBaseFacade implements ReportFacade {
     @Override
     public void editReport(final Long id, final ReportData report) {
         report.setChecked(report.getDecisionDescription() != null);
+        report.setReportingDriverId(reportService.getReport(id).orElseThrow().getReportingDriver().getId().toString());
+        report.setReportedDriverId(reportService.getReport(id).orElseThrow().getReportedDriver().getId().toString());
+        report.setRaceId(reportService.getReport(id).orElseThrow().getRace().getId().toString());
         reportService.editReport(id, conversionService.convert(report,Report.class));
     }
 
