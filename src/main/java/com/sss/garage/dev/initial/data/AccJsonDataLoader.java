@@ -28,19 +28,25 @@ public class AccJsonDataLoader {
 
     private final List<File> importedFiles = new ArrayList<>();
 
-    @Scheduled(cron = "0 */1 * ? * *")
+    @Scheduled(cron = "0 */5 * ? * *")
     public void loadAccJsonData() throws IOException {
         if(importedFiles.isEmpty() && !lapRepository.findAllByParams(null, null, null).isEmpty()) {
             lapRepository.deleteAll();
         }
-        for (File file : new File(System.getProperty("user.dir") + "/src/main/resources/accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
+        for (File file : new File("/home/debian/garage/src/main/resources/accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
             if (file.getAbsolutePath().contains("entrylist") || file.isDirectory() || importedFiles.contains(file)) {
                 continue;
             }
 
             InputStream fis = new FileInputStream(file.getAbsolutePath());
 
-            JsonObject sessionObject = readObject(fis);
+            JsonObject sessionObject;
+
+            try {
+                sessionObject = readObject(fis);
+            } catch (JsonException e) {
+                continue;
+            }
 
             JsonArray leaderBoardLinesArray = sessionObject.getJsonObject("sessionResult").getJsonArray("leaderBoardLines");
 
@@ -77,6 +83,9 @@ public class AccJsonDataLoader {
                 for (JsonValue driverValue : driverJsonArray) {
                     JsonObject driverObject = readObject(new StringReader(driverValue.toString()));
                     if (lapObject.getInt("carId") == driverObject.getInt("carId") && lapObject.getInt("driverIndex") == driverObject.getInt("driverIndex")) {
+                        if (lapObject.getJsonArray("splits").size() !=3) {
+                            continue;
+                        }
                         lapObjectBuilder.add("firstName", driverObject.getString("firstName"));
                         lapObjectBuilder.add("lastName", driverObject.getString("lastName"));
                         lapObjectBuilder.add("shortName", driverObject.getString("shortName"));

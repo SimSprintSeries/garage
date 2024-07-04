@@ -144,6 +144,10 @@
     "carModel": "McLaren 720S GT3 Evo 2023"
   },
   {
+    "id": 36,
+    "carModel": "Ford Mustang GT3"
+  },
+  {
     "id": 50,
     "carModel": "Alpine A110 GT4 2018"
   },
@@ -186,5 +190,29 @@
   {
     "id": 61,
     "carModel": "Porsche 718 Cayman GT4 Clubsport 2019"
+  },
+  {
+    "id": 80,
+    "carModel": "Audi R8 LMS GT2"
+  },
+  {
+    "id": 82,
+    "carModel": "KTM XBOW GT2"
+  },
+  {
+    "id": 83,
+    "carModel": "Maserati MC20 GT2"
+  },
+  {
+    "id": 84,
+    "carModel": "Mercedes AMG GT2"
+  },
+  {
+    "id": 85,
+    "carModel": "Porsche 911 GT2 RS CS Evo"
+  },
+  {
+    "id": 86,
+    "carModel": "Porsche 935"
   }
 ]
