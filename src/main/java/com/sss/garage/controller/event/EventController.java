@@ -16,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.sss.garage.constants.WebConstants.*;
 
 @RestController
@@ -54,6 +56,14 @@ public class EventController extends SssBaseController {
     @Operation(operationId = "createEvent", summary = "Create new event")
     public void createEvent(@RequestBody EventDTO eventDTO) {
         eventFacade.createEvent(mapper.map(eventDTO, EventData.class));
+    }
+
+    @PostMapping("/league/{leagueId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "createEvents", summary = "Create new events for league")
+    public void createEvent(@RequestBody List<EventDTO> eventsDTO, @PathVariable final String leagueId) {
+        List<EventData> eventsData = eventsDTO.stream().map(e -> mapper.map(e, EventData.class)).toList();
+        eventFacade.createEvents(eventsData, leagueId);
     }
 
     @DeleteMapping("/{id}")

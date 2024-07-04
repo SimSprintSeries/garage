@@ -59,6 +59,19 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
     }
 
     @Override
+    public void createRaces(final List<RaceData> racesData, final String eventId) {
+        Event event;
+        if(Strings.isNotEmpty(eventId)) {
+            event = eventRepository.findById(Long.valueOf(eventId)).orElseThrow();
+        } else {
+            event = null;
+        }
+        List<Race> races = racesData.stream().map(r -> conversionService.convert(r, Race.class)).toList();
+        races.forEach(r -> r.setEvent(event));
+        raceService.saveAll(races);
+    }
+
+    @Override
     public void deleteRace(final Long id) {
         raceService.deleteRace(id);
     }

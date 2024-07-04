@@ -1,8 +1,5 @@
 package com.sss.garage.facade.league.impl;
 
-import java.util.List;
-
-import com.sss.garage.data.driver.DriverData;
 import com.sss.garage.data.league.DetailedLeagueData;
 import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.facade.SssBaseFacade;
@@ -43,7 +40,7 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
     }
 
     @Override
-    public void deleteLeague(Long id) {
+    public void deleteLeague(final Long id) {
         leagueService.deleteLeague(id);
     }
 

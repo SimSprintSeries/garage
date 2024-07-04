@@ -1,17 +1,17 @@
 package com.sss.garage.dto.race;
 
 import com.sss.garage.dto.presence.PresenceDTO;
-import com.sss.garage.dto.event.EventDTO;
 import com.sss.garage.dto.split.SplitDTO;
 
 import java.util.Set;
 
-public class RaceDTO extends EventDTO {
+public class RaceDTO {
     private SplitDTO split;
     private Boolean activeForPresence;
     private Set<PresenceDTO> presences;
     private Long id;
     private String startDate;
+    private String name;
 
     public SplitDTO getSplit() {
         return split;
@@ -37,12 +37,10 @@ public class RaceDTO extends EventDTO {
         this.presences = presences;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(final Long id) {
         this.id = id;
     }
@@ -53,5 +51,13 @@ public class RaceDTO extends EventDTO {
 
     public void setStartDate(final String startDate) {
         this.startDate = startDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 }

@@ -16,9 +16,10 @@ public class RaceReverseConverter extends BaseConverter implements Converter<Rac
     public Race convert(final RaceData source) {
         final Race target = new Race();
 
-//        target.setId(source.getId()); Nigdy się nie powinno ustawiać ID na sztywno
         target.setSplit(getConversionService().convert(source.getSplit(), Split.class));
         target.setActiveForPresence(source.getActiveForPresence());
+        target.setStartDate(source.getStartDate());
+        target.setName(source.getName());
 
         return target;
     }

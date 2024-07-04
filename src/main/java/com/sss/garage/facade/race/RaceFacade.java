@@ -12,6 +12,7 @@ public interface RaceFacade {
     Page<RaceData> getRacesPaginated(final String leagueId, final Boolean completed, final Pageable pageable);
     RaceData getRace(final Long id);
     void createRace(final RaceData raceData);
+    void createRaces(final List<RaceData> racesData, final String eventId);
     void deleteRace(final Long id);
     Page<RaceData> getAllRacesByEvent(final String eventId, final Pageable pageable);
 }

@@ -38,12 +38,17 @@ public class SssEventService implements EventService {
     }
 
     @Override
-    public void createEvent(Event event) {
+    public void createEvent(final Event event) {
         eventRepository.save(event);
     }
 
     @Override
-    public void deleteEvent(Long id) {
+    public void createEvents(final List<Event> events) {
+        eventRepository.saveAll(events);
+    }
+
+    @Override
+    public void deleteEvent(final Long id) {
         eventRepository.deleteById(id);
     }
 

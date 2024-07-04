@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SssEventFacade extends SssBaseFacade implements EventFacade {
     private EventService eventService;
@@ -46,12 +48,25 @@ public class SssEventFacade extends SssBaseFacade implements EventFacade {
     }
 
     @Override
-    public void createEvent(EventData eventData) {
+    public void createEvent(final EventData eventData) {
         eventService.createEvent(conversionService.convert(eventData, Event.class));
     }
 
     @Override
-    public void deleteEvent(Long id) {
+    public void createEvents(final List<EventData> eventsData, final String leagueId) {
+        League league;
+        if(Strings.isNotEmpty(leagueId)) {
+            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
+        } else {
+            league = null;
+        }
+        List<Event> events = eventsData.stream().map(e -> conversionService.convert(e, Event.class)).toList();
+        events.forEach(e -> e.setLeague(league));
+        eventService.createEvents(events);
+    }
+
+    @Override
+    public void deleteEvent(final Long id) {
         eventService.deleteEvent(id);
     }
 

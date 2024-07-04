@@ -1,7 +1,6 @@
 package com.sss.garage.data.race;
 
 import com.sss.garage.data.presence.PresenceData;
-import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.split.SplitData;
 
 import java.util.Date;
@@ -14,6 +13,7 @@ public class RaceData {
     private String displayText;
     private Boolean activeForPresence;
     private Set<PresenceData> presences;
+    private String name;
 
     public SplitData getSplit() {
         return split;
@@ -61,5 +61,13 @@ public class RaceData {
 
     public void setStartDate(final Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 }
