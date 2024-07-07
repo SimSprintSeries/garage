@@ -12,6 +12,7 @@ public class RaceDTO {
     private Long id;
     private String startDate;
     private String name;
+    private String displayText;
 
     public SplitDTO getSplit() {
         return split;
@@ -59,5 +60,13 @@ public class RaceDTO {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(final String displayText) {
+        this.displayText = displayText;
     }
 }
