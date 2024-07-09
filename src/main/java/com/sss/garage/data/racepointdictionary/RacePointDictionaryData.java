@@ -1,40 +1,14 @@
-package com.sss.garage.model.racepointdictionary;
-
-import java.util.Collections;
-import java.util.List;
+package com.sss.garage.data.racepointdictionary;
 
 import com.sss.garage.model.racepointtype.RacePointType;
 
-import jakarta.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "racePointType" }) })
-public class RacePointDictionary {
-
-    public RacePointDictionary() {
-    }
-
-    public RacePointDictionary(final RacePointType racePointType, final List<Integer> points,
-                               final Boolean fastestLapScored, final Integer fastestLapPoints, final Boolean fastestLapForTop10,
-                               final Boolean polePositionScored, final Integer polePositionPoints) {
-        this.racePointType = racePointType;
-        this.points = points;
-        this.fastestLapScored = fastestLapScored;
-        this.fastestLapPoints = fastestLapPoints;
-        this.fastestLapForTop10 = fastestLapForTop10;
-        this.polePositionScored = polePositionScored;
-        this.polePositionPoints = polePositionPoints;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RacePointDictionaryData {
     private Long id;
 
-    @Column(unique = true)
     private RacePointType racePointType;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
     private List<Integer> points;
 
     private Boolean fastestLapScored;
@@ -51,7 +25,7 @@ public class RacePointDictionary {
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,7 +42,6 @@ public class RacePointDictionary {
     }
 
     public void setPoints(final List<Integer> points) {
-        points.removeAll(Collections.singleton(0)); // remove all 0 point scoring positions in the list
         this.points = points;
     }
 
@@ -110,16 +83,5 @@ public class RacePointDictionary {
 
     public void setPolePositionPoints(Integer polePositionPoints) {
         this.polePositionPoints = polePositionPoints;
-    }
-
-    /**
-     * Returns how many points specified position earned in this type of point scoring
-     * @param position !!!!! NON-ZERO-INDEXED DRIVER RESULT !!!!!
-     */
-    public Integer pointsForPosition(final Integer position) {
-        if(position > points.size() || position < 1) {
-            return 0;
-        }
-        return points.get(position - 1);
     }
 }

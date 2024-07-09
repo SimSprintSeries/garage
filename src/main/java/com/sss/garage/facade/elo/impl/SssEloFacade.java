@@ -56,7 +56,6 @@ public class SssEloFacade extends SssBaseFacade implements EloFacade {
     public void updateElo(List<Race> races) {
         races.stream()
                 .filter(Predicate.not(Race::getIncludedInElo))
-                .filter(r -> r.getContainedRaces().isEmpty())
                 .filter(r -> !raceService.isQuali(r))
                 .forEach(eloCalculationService::calculateAndSave);
     }

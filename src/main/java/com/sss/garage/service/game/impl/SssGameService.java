@@ -43,7 +43,7 @@ public class SssGameService implements GameService {
 
     @Override
     public Page<Game> getGamesPaginated(final Pageable pageable) {
-        return gameRepository.findAll(pageable);
+        return gameRepository.findAllGames(pageable);
     }
 
     @Override

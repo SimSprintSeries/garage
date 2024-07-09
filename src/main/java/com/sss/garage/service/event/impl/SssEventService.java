@@ -22,14 +22,12 @@ public class SssEventService implements EventService {
 
     @Override
     public Page<Event> getAllEvents(final League league, final Track track, final Pageable pageable) {
-        System.out.println(eventRepository.find10thEventDateByGameFamily(league.getGame().getGameFamily()));
-
         return eventRepository.findAllByParams(league, track, pageable);
     }
 
     @Override
     public Event getEvent(final Race race) {
-        return race.getEvent() != null ? race.getEvent() : race.getParentRaceEvent().getEvent();
+        return race.getEvent();
     }
 
     @Override

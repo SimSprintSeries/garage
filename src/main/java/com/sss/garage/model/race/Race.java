@@ -7,7 +7,6 @@ import java.util.Set;
 import com.sss.garage.model.elo.history.EloHistory;
 import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.League;
-import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.report.Report;
 import com.sss.garage.model.racepointtype.RacePointType;
 import com.sss.garage.model.raceresult.RaceResult;
@@ -40,12 +39,6 @@ public class Race {
 
     @OneToMany(mappedBy = "race")
     private Set<RaceResult> raceResults;
-
-    @OneToMany(mappedBy = "parentRaceEvent")
-    private Set<Race> containedRaces;
-
-    @ManyToOne
-    private Race parentRaceEvent;
 
     /**
      * Elo history with value from BEFORE elo calculation for this race
@@ -94,22 +87,6 @@ public class Race {
 
     public void setRaceResults(final Set<RaceResult> raceResults) {
         this.raceResults = raceResults;
-    }
-
-    public Set<Race> getContainedRaces() {
-        return containedRaces;
-    }
-
-    public void setContainedRaces(final Set<Race> containedRaces) {
-        this.containedRaces = containedRaces;
-    }
-
-    public Race getParentRaceEvent() {
-        return parentRaceEvent;
-    }
-
-    public void setParentRaceEvent(final Race parentRaceEvent) {
-        this.parentRaceEvent = parentRaceEvent;
     }
 
     public Boolean getIncludedInElo() {

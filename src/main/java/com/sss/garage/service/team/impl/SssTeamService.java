@@ -52,12 +52,6 @@ public class SssTeamService implements TeamService {
      */
     @Override
     public Optional<Team> findTeamForDriverAndLeague(final Driver driver, final League league) {
-        Event event = eventRepository.findAllByParams(league, null, PageRequest.of(0, 5)).stream().findFirst().orElseThrow(); // first event from league for checking if league has double-raced events
-
-        if (event.getRaces().stream().findFirst().orElseThrow().getName().equals("Parent race")) {
-            return Optional.ofNullable(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));
-        }
-
         return Optional.ofNullable(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
     }
 

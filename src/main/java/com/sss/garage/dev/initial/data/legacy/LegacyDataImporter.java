@@ -1,7 +1,5 @@
 package com.sss.garage.dev.initial.data.legacy;
 
-import static com.sss.garage.constants.WebConstants.PARENT_RACE_NAME;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -200,27 +198,6 @@ public class LegacyDataImporter {
                     return race;
                 })
                 .collect(Collectors.toSet());
-
-        Map<Event, List<Race>> multipleRacesRaces = races.stream()
-                        .collect(Collectors.groupingBy(Race::getEvent));
-
-        multipleRacesRaces.entrySet().stream()
-                .filter(e -> e.getValue().size() > 1)
-                        .forEach(e -> {
-                            final Race parentRace = new Race();
-                            parentRace.setEvent(e.getKey());
-                            parentRace.setName(PARENT_RACE_NAME);
-                            parentRace.setSplit(e.getValue().stream().findFirst().get().getSplit());
-                            parentRace.setPointScoring(false);
-                            e.getValue().stream().findAny().ifPresent(r -> {
-                                parentRace.setStartDate(r.getStartDate());
-                            });
-                            e.getValue().forEach(r -> {
-                                r.setParentRaceEvent(parentRace);
-                                r.setDatePlaceholder(false);
-                            });
-                            races.add(parentRace);
-                        });
         raceRepository.saveAll(races);
 
         for (League league : leagueRepository.findAll()) {
@@ -303,8 +280,7 @@ public class LegacyDataImporter {
 
         return races.stream()
                 .filter(r -> r.getName().equals(legacyRace.racename) &&
-                        (r.getEvent() != null ? r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues)) :
-                        r.getParentRaceEvent().getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues))))
+                        (r.getEvent().equals(findEventByLegacyId(eventId, events, legacyEvents, leagues, legacyLeagues))))
                 .findFirst().get();
     }
 

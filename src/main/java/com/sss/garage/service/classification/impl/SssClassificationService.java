@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
 public class SssClassificationService implements ClassificationService {
     private RaceResultRepository raceResultRepository;
 
-    private EventRepository eventRepository;
-
     private DriverRepository driverRepository;
 
     private TeamRepository teamRepository;
@@ -40,15 +38,10 @@ public class SssClassificationService implements ClassificationService {
 
     private Page<Classification> setClassification(final League league, final Pageable pageable) {
         List<Classification> classifications = new ArrayList<>();
-        Event event = eventRepository.findAllByParams(league, null, pageable).stream().findFirst().orElseThrow(); // first event from league for checking if league has double-raced events
         for (Driver driver : driverRepository.findDriversByLeague(league)) {
             Classification classification = new Classification();
             classification.setDriver(driver);
-            if (event.getRaces().stream().findFirst().orElseThrow().getName().equals("Parent race")) {
-                classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeagueForParentRaces(driver, league));
-            } else {
-                classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
-            }
+            classification.setTeam(raceResultRepository.findLastTeamByDriverAndLeague(driver, league));
             classification.setLeague(league);
             classification.setPoints(raceResultRepository.findPointsByDriverAndLeague(driver, league));
             classifications.add(classification);
@@ -118,11 +111,6 @@ public class SssClassificationService implements ClassificationService {
     @Autowired
     public void setRaceResultRepository(RaceResultRepository raceResultRepository) {
         this.raceResultRepository = raceResultRepository;
-    }
-
-    @Autowired
-    public void setEventRepository(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
     }
 
     @Autowired

@@ -59,37 +59,18 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND rr.fastestLap=true")
     Integer countFlByParams(Driver driver, League league, Game game, String split);
 
-    @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Race pr ON r.parentRaceEvent = pr LEFT JOIN Event e ON pr.event = e " +
+    @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
             "AND e.league=:league " +
-            "GROUP BY rr.driver, e.league) " +
-            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
-            "WHERE rr.driver=:driver " +
-            "AND e.league=:league " +
-            "GROUP BY rr.driver, e.league)")
+            "GROUP BY rr.driver, e.league")
     Integer findPointsByDriverAndLeague(Driver driver, League league);
 
-    @Query("SELECT COUNT(*) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Race pr ON r.parentRaceEvent = pr LEFT JOIN Event e ON pr.event = e " +
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
             "AND e.league=:league " +
             "AND rr.finishPosition = :finishPosition " +
-            "GROUP BY rr.driver, e.league) " +
-            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
-            "WHERE rr.driver=:driver " +
-            "AND e.league=:league " +
-            "AND rr.finishPosition = :finishPosition " +
-            "GROUP BY rr.driver, e.league)")
+            "GROUP BY rr.driver, e.league")
     Integer countFinishPositionByDriverAndLeague(Driver driver, League league, Integer finishPosition);
-
-    @Query("SELECT rr.team FROM RaceResult rr " +
-            "LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Race pr ON r.parentRaceEvent = pr " +
-            "WHERE rr.driver=:driver " +
-            "AND r.league=:league " +
-            "ORDER BY r.startDate DESC LIMIT 1")
-    Team findLastTeamByDriverAndLeagueForParentRaces(Driver driver, League league);
 
     @Query("SELECT rr.team FROM RaceResult rr " +
             "LEFT JOIN Race r ON rr.race = r " +
@@ -98,28 +79,17 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "ORDER BY r.startDate DESC LIMIT 1")
     Team findLastTeamByDriverAndLeague(Driver driver, League league);
 
-    @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Race pr ON r.parentRaceEvent = pr LEFT JOIN Event e ON pr.event = e " +
+    @Query("SELECT SUM(rr.pointsForPosition) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.team=:team " +
             "AND e.league=:league " +
-            "GROUP BY rr.team, e.league) " +
-            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
-            "WHERE rr.team=:team " +
-            "AND e.league=:league " +
-            "GROUP BY rr.team, e.league)")
+            "GROUP BY rr.team, e.league")
     Integer findPointsByTeamAndLeague(Team team, League league);
 
-    @Query("SELECT COUNT(*) FROM RaceResult rr WHERE rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r " +
-            "LEFT JOIN Race pr ON r.parentRaceEvent = pr LEFT JOIN Event e ON pr.event = e " +
+    @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.team=:team " +
             "AND e.league=:league " +
             "AND rr.finishPosition = :finishPosition " +
-            "GROUP BY rr.team, e.league) " +
-            "OR rr.id IN(SELECT rr.id FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
-            "WHERE rr.team=:team " +
-            "AND e.league=:league " +
-            "AND rr.finishPosition = :finishPosition " +
-            "GROUP BY rr.team, e.league)")
+            "GROUP BY rr.team, e.league")
     Integer countFinishPositionByTeamAndLeague(Team team, League league, Integer finishPosition);
     Integer countRaceResultsByDriverAndFinishPosition(final Driver driver, final Integer finishPosition);
     Integer countRaceResultsByDriverAndFinishPositionLessThanEqual(final Driver driver, final Integer finishPosition);
