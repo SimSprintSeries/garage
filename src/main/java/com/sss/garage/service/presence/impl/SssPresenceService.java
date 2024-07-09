@@ -1,6 +1,7 @@
 package com.sss.garage.service.presence.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.event.Event;
 import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.presence.PresenceRepository;
 import com.sss.garage.model.race.Race;
@@ -18,8 +19,8 @@ public class SssPresenceService implements PresenceService {
     }
 
     @Override
-    public Presence getByDriverAndRace(Driver driver, Race race) {
-        return presenceRepository.findByDriverAndRace(driver, race);
+    public Presence getByDriverAndEvent(Driver driver, Event event) {
+        return presenceRepository.findByDriverAndEvent(driver, event);
     }
 
     @Autowired

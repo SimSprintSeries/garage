@@ -72,11 +72,6 @@ public class Race {
     @Enumerated
     private RacePointType pointType;
 
-    private Boolean activeForPresence = false;
-
-    @OneToMany(mappedBy = "race")
-    private Set<Presence> presences;
-
     public Split getSplit() {
         return split;
     }
@@ -163,22 +158,6 @@ public class Race {
 
     public void setPointType(final RacePointType racePointType) {
         this.pointType = racePointType;
-    }
-
-    public Boolean getActiveForPresence() {
-        return activeForPresence;
-    }
-
-    public void setActiveForPresence(Boolean activeForPresence) {
-        this.activeForPresence = activeForPresence;
-    }
-
-    public Set<Presence> getPresences() {
-        return presences;
-    }
-
-    public void setPresences(Set<Presence> presences) {
-        this.presences = presences;
     }
 
     public Long getId() {

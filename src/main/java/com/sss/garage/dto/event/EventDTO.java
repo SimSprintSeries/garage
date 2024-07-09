@@ -1,6 +1,7 @@
 package com.sss.garage.dto.event;
 
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.dto.presence.PresenceDTO;
 import com.sss.garage.dto.race.RaceDTO;
 import com.sss.garage.dto.track.TrackDTO;
 
@@ -13,6 +14,8 @@ public class EventDTO {
     private LeagueDTO league;
     private TrackDTO track;
     private Set<RaceDTO> races;
+    private Set<PresenceDTO> presences;
+    private Boolean activeForPresence;
 
     public Long getId() {
         return id;
@@ -60,5 +63,21 @@ public class EventDTO {
 
     public void setRaces(final Set<RaceDTO> races) {
         this.races = races;
+    }
+
+    public Set<PresenceDTO> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(final Set<PresenceDTO> presences) {
+        this.presences = presences;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(final Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
     }
 }

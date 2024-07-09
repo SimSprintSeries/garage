@@ -2,7 +2,6 @@ package com.sss.garage.model.presence;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.event.Event;
-import com.sss.garage.model.race.Race;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ public class Presence {
     private Long id;
 
     @ManyToOne
-    private Race race;
+    private Event event;
 
     @ManyToOne
     private Driver driver;
@@ -31,12 +30,12 @@ public class Presence {
         this.id = id;
     }
 
-    public Race getRace() {
-        return race;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setRace(final Race race) {
-        this.race = race;
+    public void setEvent(final Event event) {
+        this.event = event;
     }
 
     public Driver getDriver() {

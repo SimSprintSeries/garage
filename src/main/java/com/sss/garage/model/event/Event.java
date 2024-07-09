@@ -3,6 +3,7 @@ package com.sss.garage.model.event;
 import java.util.Date;
 import java.util.Set;
 
+import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
@@ -31,6 +32,11 @@ public class Event {
 
     @ManyToOne
     private Track track;
+
+    private Boolean activeForPresence = false;
+
+    @OneToMany(mappedBy = "event")
+    private Set<Presence> presences;
 
     public Long getId() {
         return id;
@@ -78,5 +84,21 @@ public class Event {
 
     public void setTrack(final Track track) {
         this.track = track;
+    }
+
+    public Boolean getActiveForPresence() {
+        return activeForPresence;
+    }
+
+    public void setActiveForPresence(Boolean activeForPresence) {
+        this.activeForPresence = activeForPresence;
+    }
+
+    public Set<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(Set<Presence> presences) {
+        this.presences = presences;
     }
 }

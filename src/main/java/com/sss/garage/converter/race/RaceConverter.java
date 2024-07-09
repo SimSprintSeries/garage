@@ -21,8 +21,6 @@ public class RaceConverter extends BaseConverter implements Converter<Race, Race
         data.setId(source.getId());
         data.setSplit(getConversionService().convert(source.getSplit(), SplitData.class));
         data.setDisplayText(source.getEvent().getName() + " - " + source.getName());
-        data.setActiveForPresence(source.getActiveForPresence());
-        data.setPresences(source.getPresences().stream().map(p -> getConversionService().convert(p, PresenceData.class)).collect(Collectors.toSet()));
         data.setStartDate(source.getStartDate());
 
         return data;

@@ -18,11 +18,11 @@ public class PresenceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "setPresenceForDriverAndRace", summary = "Set presence for driver at specific race")
-    public void setPresenceForDriverAndRace(@Parameter(description = "Event ID") @RequestParam(value = "raceId") final String raceId,
+    @Operation(operationId = "setPresenceForDriverAndEvent", summary = "Set presence for driver at specific event")
+    public void setPresenceForDriverAndEvent(@Parameter(description = "Event ID") @RequestParam(value = "eventId") final String eventId,
                                              @Parameter(description = "Driver ID") @RequestParam(value = "driverId") final String driverId,
                                              @Parameter(description = "Presence") @RequestParam(value = "isPresent") final Boolean isPresent) {
-        presenceFacade.setPresenceForDriverAndRace(isPresent, raceId, driverId);
+        presenceFacade.setPresenceForDriverAndEvent(isPresent, eventId, driverId);
     }
 
     @Autowired

@@ -26,7 +26,7 @@ public class PresenceConverter extends BaseConverter implements Converter<Presen
         data.setIsPresent(source.getIsPresent());
         data.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
 
-        List<Driver> driversInSplit = driverService.getDriversByLeague(source.getRace().getLeague(), PageRequest.of(0,50))
+        List<Driver> driversInSplit = driverService.getDriversByLeague(source.getEvent().getLeague(), PageRequest.of(0,50))
                 .stream().toList();
         if(driversInSplit.contains(source.getDriver())) {
             data.setIsAssignedToSplit(true);

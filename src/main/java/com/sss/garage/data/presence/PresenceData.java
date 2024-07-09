@@ -1,12 +1,13 @@
 package com.sss.garage.data.presence;
 
 import com.sss.garage.data.driver.DriverData;
+import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.race.RaceData;
 
 public class PresenceData {
     private Long id;
 
-    private RaceData race;
+    private EventData event;
 
     private DriverData driver;
 
@@ -22,12 +23,12 @@ public class PresenceData {
         this.id = id;
     }
 
-    public RaceData getRace() {
-        return race;
+    public EventData getEvent() {
+        return event;
     }
 
-    public void setRace(final RaceData race) {
-        this.race = race;
+    public void setEvent(final EventData event) {
+        this.event = event;
     }
 
     public DriverData getDriver() {
