@@ -21,15 +21,13 @@ public class AccLapConverter extends BaseConverter implements Converter<AccLap, 
         data.setFirstName(source.getFirstName());
         data.setLastName(source.getLastName());
         data.setShortName(source.getShortName());
-        data.setRaceNumber(source.getRaceNumber());
-        data.setCarModel(source.getCarModel());
         data.setCarName(source.getCarName());
         data.setTrackName(source.getTrackName());
-        data.setSessionType(source.getSessionType());
-        data.setServerName(source.getServerName());
-        data.setStartDate(source.getStartDate());
-        data.setLapCount(source.getLapCount());
+        data.setValidLaps(source.getValidLaps());
         data.setTheoreticalBest(source.getTheoreticalBest());
+        data.setSteamId(source.getSteamId());
+        data.setTotalTime(source.getTotalTime());
+        data.setTotalLaps(source.getTotalLaps());
 
         return data;
     }

@@ -36,13 +36,6 @@ public class RacePointDictionaryController extends SssBaseController {
         return racePointDictionaryFacade.getRacePointDictionaries(pageable).map(p -> mapper.map(p, RacePointDictionaryDTO.class));
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    @Operation(operationId = "createRacePointDictionary", summary = "Create new race point dictionary")
-    public void createRacePointDictionary(@RequestBody RacePointDictionaryDTO racePointDictionaryDTO) {
-        racePointDictionaryFacade.createRacePointDictionary(mapper.map(racePointDictionaryDTO, RacePointDictionaryData.class));
-    }
-
     @Autowired
     public void setRacePointDictionaryFacade(final RacePointDictionaryFacade racePointDictionaryFacade) {
         this.racePointDictionaryFacade = racePointDictionaryFacade;

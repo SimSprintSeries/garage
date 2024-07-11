@@ -22,21 +22,17 @@ public class SssAccLapService implements AccLapService {
     }
 
     @Override
-    public void createLap(final AccLap lap) {
-        lapRepository.save(lap);
-    }
-
-    @Override
-    public void deleteLap(final Long id) {
-        lapRepository.deleteById(id);
-    }
-
-    @Override
-    public Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
+    public Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName,
+                                                     final String serverName, final String className, final Pageable pageable) {
         List<AccLap> laps = lapRepository.findAllByParams(sessionType, trackName, serverName);
         Set<String> steamIds = new HashSet<>();
         List<AccLap> bestLaps = new ArrayList<>();
         for (AccLap lap : laps) {
+            if (!lap.getCarName().matches(".*(?i)" + className + ".*")) {
+                if (className != null) {
+                    continue;
+                }
+            }
             steamIds.add(lap.getSteamId());
         }
         for (String steamId : steamIds) {
@@ -65,17 +61,25 @@ public class SssAccLapService implements AccLapService {
                     bestLap.setLastName(lap.getLastName());
                     bestLap.setShortName(lap.getShortName());
                     bestLap.setCarName(lap.getCarName());
+                    bestLap.setSteamId(steamId);
                     bestLap.setLaptime(convertSecondsToMinutes(bestLaptime));
                     bestLap.setSector1(convertSecondsToMinutes(bestSector1));
                     bestLap.setSector2(convertSecondsToMinutes(bestSector2));
                     bestLap.setSector3(convertSecondsToMinutes(bestSector3));
                     bestLap.setTheoreticalBest(convertSecondsToMinutes(bestSector1 + bestSector2 + bestSector3));
-                    bestLap.setLapCount(lapCount);
+                    bestLap.setValidLaps(lapCount);
+                    bestLap.setTotalTime(convertSecondsToMinutes(Float.valueOf(lap.getTotalTime())));
+                    bestLap.setTotalLaps(lap.getTotalLaps());
                 }
             }
             bestLaps.add(bestLap);
         }
-        Collections.sort(bestLaps, (o1, o2) -> convertMinutesToSeconds(o1.getLaptime()).compareTo(convertMinutesToSeconds(o2.getLaptime())));
+        if (sessionType.equalsIgnoreCase("R")) {
+            bestLaps.sort(Comparator.comparing(AccLap::getTotalLaps).reversed()
+                    .thenComparing((AccLap l) -> convertMinutesToSeconds(l.getTotalTime())));
+        } else {
+            bestLaps.sort(Comparator.comparing((AccLap l) -> convertMinutesToSeconds(l.getLaptime())));
+        }
         Integer start = (int)pageable.getOffset();
         Integer end = Math.min((start + pageable.getPageSize()), bestLaps.size());
         return new PageImpl<>(bestLaps.subList(start, end), pageable, bestLaps.size());

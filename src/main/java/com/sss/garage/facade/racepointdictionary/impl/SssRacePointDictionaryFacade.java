@@ -20,11 +20,6 @@ public class SssRacePointDictionaryFacade extends SssBaseFacade implements RaceP
         return racePointDictionaries.map(p -> conversionService.convert(p, RacePointDictionaryData.class));
     }
 
-    @Override
-    public void createRacePointDictionary(final RacePointDictionaryData racePointDictionary) {
-        racePointDictionaryService.createRacePointDictionary(conversionService.convert(racePointDictionary, RacePointDictionary.class));
-    }
-
     @Autowired
     public void setRacePointDictionaryService(final RacePointDictionaryService racePointDictionaryService) {
         this.racePointDictionaryService = racePointDictionaryService;

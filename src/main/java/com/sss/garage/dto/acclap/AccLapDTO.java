@@ -37,9 +37,13 @@ public class AccLapDTO {
 
     private Date startDate;
 
-    private Integer lapCount;
+    private Integer validLaps;
 
     private String theoreticalBest;
+
+    private String totalTime;
+
+    private Integer totalLaps;
 
     public Long getId() {
         return id;
@@ -177,12 +181,12 @@ public class AccLapDTO {
         this.startDate = startDate;
     }
 
-    public Integer getLapCount() {
-        return lapCount;
+    public Integer getValidLaps() {
+        return validLaps;
     }
 
-    public void setLapCount(Integer lapCount) {
-        this.lapCount = lapCount;
+    public void setValidLaps(Integer validLaps) {
+        this.validLaps = validLaps;
     }
 
     public String getTheoreticalBest() {
@@ -191,5 +195,21 @@ public class AccLapDTO {
 
     public void setTheoreticalBest(String theoreticalBest) {
         this.theoreticalBest = theoreticalBest;
+    }
+
+    public String getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(final String totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public Integer getTotalLaps() {
+        return totalLaps;
+    }
+
+    public void setTotalLaps(final Integer totalLaps) {
+        this.totalLaps = totalLaps;
     }
 }

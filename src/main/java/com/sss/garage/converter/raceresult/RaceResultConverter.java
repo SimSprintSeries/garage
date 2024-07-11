@@ -28,6 +28,7 @@ public class RaceResultConverter extends BaseConverter implements Converter<Race
         //data.setRace(getConversionService().convert(source.getRace(), RaceData.class));
         data.setTeam(getConversionService().convert(source.getTeam(), TeamData.class));
         data.setPointsForPosition(source.getPointsForPosition());
+        data.setGapToFirst(source.getGapToFirst());
 
         return data;
     }

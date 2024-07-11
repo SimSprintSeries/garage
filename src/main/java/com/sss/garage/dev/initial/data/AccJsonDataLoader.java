@@ -54,6 +54,7 @@ public class AccJsonDataLoader {
 
             for (JsonValue leaderBoardLinesValue : leaderBoardLinesArray) {
                 JsonObject carObject = readObject(new StringReader(leaderBoardLinesValue.toString())).getJsonObject("car");
+                JsonObject timingObject = readObject(new StringReader(leaderBoardLinesValue.toString())).getJsonObject("timing");
                 JsonObjectBuilder driverObjectBuilder = Json.createObjectBuilder();
                 int i = 0;
                 for (JsonValue driverValue : carObject.getJsonArray("drivers")) {
@@ -66,6 +67,8 @@ public class AccJsonDataLoader {
                     driverObjectBuilder.add("lastName", driverObject.getString("lastName"));
                     driverObjectBuilder.add("shortName", driverObject.getString("shortName"));
                     driverObjectBuilder.add("steamId", driverObject.getString("playerId"));
+                    driverObjectBuilder.add("totalTime", timingObject.getInt("totalTime"));
+                    driverObjectBuilder.add("totalLaps", timingObject.getInt("lapCount"));
                     driverArrayBuilder.add(driverObjectBuilder);
                     i++;
                 }
@@ -100,6 +103,8 @@ public class AccJsonDataLoader {
                         for (int i = 0; i < lapObject.getJsonArray("splits").size(); i++) {
                             lapObjectBuilder.add("sector" + (i + 1), lapObject.getJsonArray("splits").getInt(i));
                         }
+                        lapObjectBuilder.add("totalTime", driverObject.getInt("totalTime"));
+                        lapObjectBuilder.add("totalLaps", driverObject.getInt("totalLaps"));
                         lapArrayBuilder.add(lapObjectBuilder);
                     }
                 }
@@ -127,6 +132,8 @@ public class AccJsonDataLoader {
                         accLap.setTrackName(l.trackName);
                         accLap.setSessionType(l.sessionType);
                         accLap.setServerName(l.serverName);
+                        accLap.setTotalTime(String.valueOf(((float) l.totalTime) / 1000));
+                        accLap.setTotalLaps(l.totalLaps);
                         return accLap;
                     })
                     .collect(Collectors.toSet());

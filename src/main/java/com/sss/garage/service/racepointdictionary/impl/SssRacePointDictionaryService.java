@@ -26,12 +26,6 @@ public class SssRacePointDictionaryService implements RacePointDictionaryService
         return racePointDictionaryRepository.findAll(pageable);
     }
 
-
-    @Override
-    public void createRacePointDictionary(final RacePointDictionary racePointDictionary) {
-        racePointDictionaryRepository.save(racePointDictionary);
-    }
-
     @Autowired
     public void setRacePointDictionaryRepository(final RacePointDictionaryRepository racePointDictionaryRepository) {
         this.racePointDictionaryRepository = racePointDictionaryRepository;

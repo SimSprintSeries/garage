@@ -27,6 +27,8 @@ public class RaceResultDTO {
 
     private Integer pointsForPosition;
 
+    private String gapToFirst;
+
     public Long getId() {
         return id;
     }
@@ -113,5 +115,13 @@ public class RaceResultDTO {
 
     public void setPointsForPosition(Integer pointsForPosition) {
         this.pointsForPosition = pointsForPosition;
+    }
+
+    public String getGapToFirst() {
+        return gapToFirst;
+    }
+
+    public void setGapToFirst(final String gapToFirst) {
+        this.gapToFirst = gapToFirst;
     }
 }

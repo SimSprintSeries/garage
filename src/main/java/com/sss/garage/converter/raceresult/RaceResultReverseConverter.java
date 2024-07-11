@@ -28,6 +28,7 @@ public class RaceResultReverseConverter extends BaseConverter implements Convert
         target.setRace(getConversionService().convert(source.getRace(), Race.class));
         target.setTeam(getConversionService().convert(source.getTeam(), Team.class));
         target.setPointsForPosition(source.getPointsForPosition());
+        target.setGapToFirst(source.getGapToFirst());
 
         return target;
     }

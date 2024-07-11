@@ -42,15 +42,19 @@ public class AccLap {
 
     private Date startDate;
 
-    private Integer lapCount;
+    private Integer validLaps;
 
     private String theoreticalBest;
+
+    private String totalTime;
+
+    private Integer totalLaps;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -58,7 +62,7 @@ public class AccLap {
         return isValidForBest;
     }
 
-    public void setIsValidForBest(Boolean isValidForBest) {
+    public void setIsValidForBest(final Boolean isValidForBest) {
         this.isValidForBest = isValidForBest;
     }
 
@@ -66,7 +70,7 @@ public class AccLap {
         return laptime;
     }
 
-    public void setLaptime(String laptime) {
+    public void setLaptime(final String laptime) {
         this.laptime = laptime;
     }
 
@@ -74,7 +78,7 @@ public class AccLap {
         return sector1;
     }
 
-    public void setSector1(String sector1) {
+    public void setSector1(final String sector1) {
         this.sector1 = sector1;
     }
 
@@ -82,7 +86,7 @@ public class AccLap {
         return sector2;
     }
 
-    public void setSector2(String sector2) {
+    public void setSector2(final String sector2) {
         this.sector2 = sector2;
     }
 
@@ -90,7 +94,7 @@ public class AccLap {
         return sector3;
     }
 
-    public void setSector3(String sector3) {
+    public void setSector3(final String sector3) {
         this.sector3 = sector3;
     }
 
@@ -98,7 +102,7 @@ public class AccLap {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -106,7 +110,7 @@ public class AccLap {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -114,7 +118,7 @@ public class AccLap {
         return shortName;
     }
 
-    public void setShortName(String shortName) {
+    public void setShortName(final String shortName) {
         this.shortName = shortName;
     }
 
@@ -122,7 +126,7 @@ public class AccLap {
         return steamId;
     }
 
-    public void setSteamId(String steamId) {
+    public void setSteamId(final String steamId) {
         this.steamId = steamId;
     }
 
@@ -130,7 +134,7 @@ public class AccLap {
         return carModel;
     }
 
-    public void setCarModel(Integer carModel) {
+    public void setCarModel(final Integer carModel) {
         this.carModel = carModel;
     }
 
@@ -138,7 +142,7 @@ public class AccLap {
         return carName;
     }
 
-    public void setCarName(String carName) {
+    public void setCarName(final String carName) {
         this.carName = carName;
     }
 
@@ -146,7 +150,7 @@ public class AccLap {
         return raceNumber;
     }
 
-    public void setRaceNumber(Integer raceNumber) {
+    public void setRaceNumber(final Integer raceNumber) {
         this.raceNumber = raceNumber;
     }
 
@@ -154,7 +158,7 @@ public class AccLap {
         return trackName;
     }
 
-    public void setTrackName(String trackName) {
+    public void setTrackName(final String trackName) {
         this.trackName = trackName;
     }
 
@@ -162,7 +166,7 @@ public class AccLap {
         return sessionType;
     }
 
-    public void setSessionType(String sessionType) {
+    public void setSessionType(final String sessionType) {
         this.sessionType = sessionType;
     }
 
@@ -170,7 +174,7 @@ public class AccLap {
         return serverName;
     }
 
-    public void setServerName(String serverName) {
+    public void setServerName(final String serverName) {
         this.serverName = serverName;
     }
 
@@ -178,23 +182,39 @@ public class AccLap {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(final Date startDate) {
         this.startDate = startDate;
     }
 
-    public Integer getLapCount() {
-        return lapCount;
+    public Integer getValidLaps() {
+        return validLaps;
     }
 
-    public void setLapCount(Integer lapCount) {
-        this.lapCount = lapCount;
+    public void setValidLaps(final Integer validLaps) {
+        this.validLaps = validLaps;
     }
 
     public String getTheoreticalBest() {
         return theoreticalBest;
     }
 
-    public void setTheoreticalBest(String theoreticalBest) {
+    public void setTheoreticalBest(final String theoreticalBest) {
         this.theoreticalBest = theoreticalBest;
+    }
+
+    public String getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(final String totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public Integer getTotalLaps() {
+        return totalLaps;
+    }
+
+    public void setTotalLaps(final Integer totalLaps) {
+        this.totalLaps = totalLaps;
     }
 }

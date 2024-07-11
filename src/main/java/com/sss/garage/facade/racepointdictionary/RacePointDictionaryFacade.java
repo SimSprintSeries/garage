@@ -6,6 +6,4 @@ import org.springframework.data.domain.Pageable;
 
 public interface RacePointDictionaryFacade {
     Page<RacePointDictionaryData> getRacePointDictionaries(final Pageable pageable);
-
-    void createRacePointDictionary(final RacePointDictionaryData racePointDictionary);
 }

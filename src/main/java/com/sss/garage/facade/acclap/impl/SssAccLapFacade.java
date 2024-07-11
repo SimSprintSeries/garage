@@ -25,18 +25,9 @@ public class SssAccLapFacade extends SssBaseFacade implements AccLapFacade {
     }
 
     @Override
-    public void createLap(final AccLapData lapData) {
-        lapService.createLap(conversionService.convert(lapData, AccLap.class));
-    }
-
-    @Override
-    public void deleteLap(final Long id) {
-        lapService.deleteLap(id);
-    }
-
-    @Override
-    public Page<AccLapData> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable) {
-        Page<AccLap> lap = lapService.getFastestLapsForEveryDriver(sessionType, trackName, serverName, pageable);
+    public Page<AccLapData> getFastestLapsForEveryDriver(final String sessionType, final String trackName,
+                                                         final String serverName, final String className, final Pageable pageable) {
+        Page<AccLap> lap = lapService.getFastestLapsForEveryDriver(sessionType, trackName, serverName, className, pageable);
         return lap.map(l -> conversionService.convert(l, AccLapData.class));
     }
 

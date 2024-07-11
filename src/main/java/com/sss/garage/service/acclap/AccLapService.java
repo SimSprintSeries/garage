@@ -10,9 +10,6 @@ import java.util.Optional;
 public interface AccLapService {
     Optional<AccLap> getLap(final Long id);
 
-    void createLap(final AccLap lap);
-
-    void deleteLap(final Long id);
-
-    Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName, final String serverName, final Pageable pageable);
+    Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName,
+                                              final String serverName, final String className, final Pageable pageable);
 }

@@ -43,6 +43,8 @@ public class RaceResult {
 
     private Integer pointsForPosition;
 
+    private String gapToFirst;
+
     public Long getId() {
         return id;
     }
@@ -130,5 +132,13 @@ public class RaceResult {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public String getGapToFirst() {
+        return gapToFirst;
+    }
+
+    public void setGapToFirst(final String gapToFirst) {
+        this.gapToFirst = gapToFirst;
     }
 }

@@ -35,6 +35,10 @@ public class LegacyAccLap {
 
     public String serverName;
 
+    public Integer totalTime;
+
+    public Integer totalLaps;
+
     public Long getId() {
             return id;
         }
