@@ -3,11 +3,14 @@ package com.sss.garage.facade.league;
 import com.sss.garage.data.league.LeagueData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface LeagueFacade {
     LeagueData getLeague(final Long id);
 
-    void createLeague(final LeagueData leagueData);
+    void createLeague(final LeagueData leagueData) throws IOException;
 
     void deleteLeague(final Long id);
 

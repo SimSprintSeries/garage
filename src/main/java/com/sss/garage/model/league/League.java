@@ -49,9 +49,13 @@ public class League {
 
     private Integer eventCount;
 
-    private String banner;
+    @Lob
+    @Column(length = 2147483647)
+    private byte[] banner;
 
-    private String logo;
+    @Lob
+    @Column(length = 2147483647)
+    private byte[] logo;
 
     @OneToMany(mappedBy = "league")
     private Set<Classification> classifications;
@@ -134,7 +138,7 @@ public class League {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(final String startDate) {
         this.startDate = startDate;
     }
 
@@ -142,23 +146,23 @@ public class League {
         return eventCount;
     }
 
-    public void setEventCount(Integer eventCount) {
+    public void setEventCount(final Integer eventCount) {
         this.eventCount = eventCount;
     }
 
-    public String getBanner() {
+    public byte[] getBanner() {
         return banner;
     }
 
-    public void setBanner(String banner) {
+    public void setBanner(final byte[] banner) {
         this.banner = banner;
     }
 
-    public String getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(final byte[] logo) {
         this.logo = logo;
     }
 
@@ -166,7 +170,7 @@ public class League {
         return classifications;
     }
 
-    public void setClassifications(Set<Classification> classifications) {
+    public void setClassifications(final Set<Classification> classifications) {
         this.classifications = classifications;
     }
 }

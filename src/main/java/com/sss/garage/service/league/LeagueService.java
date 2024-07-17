@@ -4,14 +4,16 @@ import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public interface LeagueService {
     Optional<League> getLeague(final Long id);
 
-    void createLeague(final League league);
+    void createLeague(final League league) throws IOException;
 
     void deleteLeague(final Long id);
 

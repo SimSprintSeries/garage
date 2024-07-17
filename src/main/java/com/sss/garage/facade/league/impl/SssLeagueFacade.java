@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
 
@@ -35,7 +37,7 @@ public class SssLeagueFacade extends SssBaseFacade implements LeagueFacade  {
     }
 
     @Override
-    public void createLeague(final LeagueData leagueData) {
+    public void createLeague(final LeagueData leagueData) throws IOException {
         leagueService.createLeague(conversionService.convert(leagueData, League.class));
     }
 

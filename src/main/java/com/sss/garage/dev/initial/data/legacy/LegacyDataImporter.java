@@ -139,8 +139,8 @@ public class LegacyDataImporter {
                     league.setName(l.name);
                     league.setPlatform(l.platform);
                     league.setGame(findGameByName(l.game, games));
-                    league.setBanner(l.banner);
-                    league.setLogo(l.logo);
+                    league.setBanner(l.banner.getBytes()); // do zmiany - ma ściągać zdjęcie, a nie link
+                    league.setLogo(l.logo.getBytes());
                     return league;
                 })
                 .collect(Collectors.toSet());

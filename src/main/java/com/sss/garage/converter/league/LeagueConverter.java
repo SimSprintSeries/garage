@@ -3,17 +3,14 @@ package com.sss.garage.converter.league;
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.game.GameData;
 import com.sss.garage.data.league.LeagueData;
-import com.sss.garage.model.event.EventRepository;
 import com.sss.garage.model.league.League;
 
-import com.sss.garage.model.race.RaceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sss.garage.util.image.ImageUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 @Component
 public class LeagueConverter extends BaseConverter implements Converter<League, LeagueData> {
@@ -29,8 +26,12 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
         data.setStartDate(source.getStartDate());
         data.setEventCount(source.getEventCount());
-        data.setBanner(source.getBanner());
-        data.setLogo(source.getLogo());
+        try {
+            data.setBanner(ImageUtils.decompressImage(source.getBanner()));
+            data.setLogo(ImageUtils.decompressImage(source.getLogo()));
+        } catch (DataFormatException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return data;
     }

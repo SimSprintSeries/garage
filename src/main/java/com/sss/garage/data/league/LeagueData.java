@@ -1,6 +1,7 @@
 package com.sss.garage.data.league;
 
 import com.sss.garage.data.game.GameData;
+import org.springframework.web.multipart.MultipartFile;
 
 public class LeagueData {
     private Long id;
@@ -10,8 +11,10 @@ public class LeagueData {
     private GameData game;
     private String startDate;
     private Integer eventCount;
-    private String banner;
-    private String logo;
+    private byte[] banner;
+    private byte[] logo;
+    private MultipartFile bannerFile;
+    private MultipartFile logoFile;
 
     public Long getId() {
         return id;
@@ -57,7 +60,7 @@ public class LeagueData {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(final String startDate) {
         this.startDate = startDate;
     }
 
@@ -65,23 +68,39 @@ public class LeagueData {
         return eventCount;
     }
 
-    public void setEventCount(Integer eventCount) {
+    public void setEventCount(final Integer eventCount) {
         this.eventCount = eventCount;
     }
 
-    public String getBanner() {
+    public byte[] getBanner() {
         return banner;
     }
 
-    public void setBanner(String banner) {
+    public void setBanner(final byte[] banner) {
         this.banner = banner;
     }
 
-    public String getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(final byte[] logo) {
         this.logo = logo;
+    }
+
+    public MultipartFile getBannerFile() {
+        return bannerFile;
+    }
+
+    public void setBannerFile(final MultipartFile bannerFile) {
+        this.bannerFile = bannerFile;
+    }
+
+    public MultipartFile getLogoFile() {
+        return logoFile;
+    }
+
+    public void setLogoFile(final MultipartFile logoFile) {
+        this.logoFile = logoFile;
     }
 }

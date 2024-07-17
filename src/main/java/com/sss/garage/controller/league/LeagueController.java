@@ -25,6 +25,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
+import java.io.IOException;
+
 import static com.sss.garage.constants.WebConstants.*;
 
 @RestController
@@ -47,7 +49,7 @@ public class LeagueController extends SssBaseController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(operationId = "createLeague", summary = "Create new league")
-    public void createLeague(@RequestBody LeagueDTO leagueDTO) {
+    public void createLeague(@ModelAttribute LeagueDTO leagueDTO) throws IOException {
         leagueFacade.createLeague(mapper.map(leagueDTO, LeagueData.class));
     }
 
