@@ -2,6 +2,7 @@ package com.sss.garage.model.league;
 
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.image.Image;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.split.Split;
 import jakarta.persistence.*;
@@ -49,17 +50,11 @@ public class League {
 
     private Integer eventCount;
 
-    @Lob
-    @Column(length = 2147483647)
-    private byte[] banner;
-
-    @Lob
-    @Column(length = 2147483647)
-    private byte[] logo;
-
     @OneToMany(mappedBy = "league")
     private Set<Classification> classifications;
 
+    @OneToOne(mappedBy = "league")
+    private Image image;
 
     public Long getId() {
         return id;
@@ -150,27 +145,19 @@ public class League {
         this.eventCount = eventCount;
     }
 
-    public byte[] getBanner() {
-        return banner;
-    }
-
-    public void setBanner(final byte[] banner) {
-        this.banner = banner;
-    }
-
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public void setLogo(final byte[] logo) {
-        this.logo = logo;
-    }
-
     public Set<Classification> getClassifications() {
         return classifications;
     }
 
     public void setClassifications(final Set<Classification> classifications) {
         this.classifications = classifications;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(final Image image) {
+        this.image = image;
     }
 }

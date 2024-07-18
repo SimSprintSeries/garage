@@ -1,7 +1,6 @@
 package com.sss.garage.facade.event.impl;
 
 import com.sss.garage.data.event.EventData;
-import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.facade.SssBaseFacade;
 import com.sss.garage.facade.event.EventFacade;
 import com.sss.garage.model.event.Event;

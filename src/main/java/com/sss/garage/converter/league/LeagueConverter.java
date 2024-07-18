@@ -2,6 +2,7 @@ package com.sss.garage.converter.league;
 
 import com.sss.garage.converter.BaseConverter;
 import com.sss.garage.data.game.GameData;
+import com.sss.garage.data.image.ImageData;
 import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.model.league.League;
 
@@ -26,12 +27,6 @@ public class LeagueConverter extends BaseConverter implements Converter<League, 
         data.setGame(getConversionService().convert(source.getGame(), GameData.class));
         data.setStartDate(source.getStartDate());
         data.setEventCount(source.getEventCount());
-        try {
-            data.setBanner(ImageUtils.decompressImage(source.getBanner()));
-            data.setLogo(ImageUtils.decompressImage(source.getLogo()));
-        } catch (DataFormatException | IOException e) {
-            throw new RuntimeException(e);
-        }
 
         return data;
     }

@@ -5,9 +5,7 @@
     "type": 1,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_34_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_32_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 2,
@@ -15,9 +13,7 @@
     "type": 1,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_37_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_35_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 3,
@@ -25,9 +21,7 @@
     "type": 2,
     "split": "A",
     "platform": "PC",
-    "game": "F2 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_46_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_44_logo_0.png"
+    "game": "F2 2019"
   },
   {
     "id": 4,
@@ -35,9 +29,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_7_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_5_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 5,
@@ -45,9 +37,7 @@
     "type": 1,
     "split": "A",
     "platform": "PS",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_31_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_29_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 6,
@@ -55,9 +45,7 @@
     "type": 1,
     "split": "C",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_40_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_38_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 7,
@@ -65,9 +53,7 @@
     "type": 1,
     "split": "other",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_16_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_14_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 8,
@@ -75,9 +61,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_13_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_11_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 9,
@@ -85,9 +69,7 @@
     "type": 11,
     "split": "other",
     "platform": "PC",
-    "game": "other",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_51_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_49_logo_0.png"
+    "game": "other"
   },
   {
     "id": 10,
@@ -95,9 +77,7 @@
     "type": 5,
     "split": "A",
     "platform": "XBOX",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_43_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_41_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 11,
@@ -105,9 +85,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_4_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_2_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 12,
@@ -115,9 +93,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_19_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_17_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 14,
@@ -125,9 +101,7 @@
     "type": 5,
     "split": "A",
     "platform": "PS",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_28_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_26_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 15,
@@ -135,9 +109,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_10_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_8_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 16,
@@ -145,9 +117,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_22_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_20_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 17,
@@ -155,9 +125,7 @@
     "type": 5,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_25_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_23_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 18,
@@ -165,9 +133,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_57_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_55_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 19,
@@ -175,9 +141,7 @@
     "type": 5,
     "split": "A",
     "platform": "XBOX",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_88_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_86_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 20,
@@ -185,9 +149,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_106_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_104_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 21,
@@ -195,9 +157,7 @@
     "type": 5,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_103_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_101_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 22,
@@ -205,9 +165,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_123_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_124_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 24,
@@ -215,9 +173,7 @@
     "type": 5,
     "split": "inny",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_161_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_162_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 26,
@@ -225,9 +181,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_171_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_168_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 27,
@@ -235,9 +189,7 @@
     "type": 6,
     "split": "A",
     "platform": "PC",
-    "game": "F2 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_175_banner_900.png",
-    "logo": "https://cdn.discordapp.com/attachments/1062362633933692968/1099056213293023272/image-5.png?ex=6698c61c&is=6697749c&hm=75d3f72824bccb90013972fd70539db10f1280a74c95b9afa11f59de41a9e2e2&"
+    "game": "F2 2020"
   },
   {
     "id": 29,
@@ -245,9 +197,7 @@
     "type": 7,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2021",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_188_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_191_logo_0.png"
+    "game": "F1 2021"
   },
   {
     "id": 30,
@@ -255,9 +205,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_187_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_189_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 31,
@@ -265,9 +213,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_212_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_206_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 32,
@@ -275,9 +221,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_217_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_218_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 33,
@@ -285,9 +229,7 @@
     "type": 6,
     "split": "A",
     "platform": "PC",
-    "game": "F2 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_222_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_220_logo_0.png"
+    "game": "F2 2020"
   },
   {
     "id": 35,
@@ -295,9 +237,7 @@
     "type": 7,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2021",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_235_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_223_logo_0.png"
+    "game": "F1 2021"
   },
   {
     "id": 36,
@@ -305,9 +245,7 @@
     "type": 7,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2021",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_240_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_226_logo_0.png"
+    "game": "F1 2021"
   },
   {
     "id": 37,
@@ -315,9 +253,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_237_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_229_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 38,
@@ -325,9 +261,7 @@
     "type": 5,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_239_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_232_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 39,
@@ -335,9 +269,7 @@
     "type": 1,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_247_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_245_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 40,
@@ -345,9 +277,7 @@
     "type": 1,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.discordapp.com/attachments/1062362633933692968/1099056213293023272/image-5.png?ex=6698c61c&is=6697749c&hm=75d3f72824bccb90013972fd70539db10f1280a74c95b9afa11f59de41a9e2e2&",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_241_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 41,
@@ -355,9 +285,7 @@
     "type": 1,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2019",
-    "banner": "https://cdn.discordapp.com/attachments/1062362633933692968/1099056213293023272/image-5.png?ex=6698c61c&is=6697749c&hm=75d3f72824bccb90013972fd70539db10f1280a74c95b9afa11f59de41a9e2e2&",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_243_logo_0.png"
+    "game": "F1 2019"
   },
   {
     "id": 42,
@@ -365,9 +293,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_253_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_271_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 43,
@@ -375,9 +301,7 @@
     "type": 5,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2020",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_264_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_273_logo_0.png"
+    "game": "F1 2020"
   },
   {
     "id": 44,
@@ -385,9 +309,7 @@
     "type": 7,
     "split": "A",
     "platform": "PC",
-    "game": "F1 2021",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_266_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_267_logo_0.png"
+    "game": "F1 2021"
   },
   {
     "id": 45,
@@ -395,9 +317,7 @@
     "type": 7,
     "split": "B",
     "platform": "PC",
-    "game": "F1 2021",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_265_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_269_logo_0.png"
+    "game": "F1 2021"
   },
   {
     "id": 46,
@@ -405,9 +325,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_277_banner_900.jpeg",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_275_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 47,
@@ -415,9 +333,7 @@
     "type": 8,
     "split": "A",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_281_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_279_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 48,
@@ -425,9 +341,7 @@
     "type": 8,
     "split": "A",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_287_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_285_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 49,
@@ -435,9 +349,7 @@
     "type": 8,
     "split": "B",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_290_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_288_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 50,
@@ -445,9 +357,7 @@
     "type": 8,
     "split": "C",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_293_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_291_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 51,
@@ -455,9 +365,7 @@
     "type": 3,
     "split": "A",
     "platform": "PC",
-    "game": "AC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_296_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_294_logo_0.png"
+    "game": "AC"
   },
   {
     "id": 52,
@@ -465,9 +373,7 @@
     "type": 4,
     "split": "A",
     "platform": "PC",
-    "game": "ACC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_299_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_297_logo_0.png"
+    "game": "ACC"
   },
   {
     "id": 53,
@@ -475,9 +381,7 @@
     "type": 9,
     "split": "A",
     "platform": "PC",
-    "game": "F2 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_302_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_300_logo_0.png"
+    "game": "F2 22"
   },
   {
     "id": 54,
@@ -485,9 +389,7 @@
     "type": 9,
     "split": "B",
     "platform": "PC",
-    "game": "F2 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_305_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_303_logo_0.png"
+    "game": "F2 22"
   },
   {
     "id": 55,
@@ -495,9 +397,7 @@
     "type": 4,
     "split": "A",
     "platform": "PC",
-    "game": "ACC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_308_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_306_logo_0.png"
+    "game": "ACC"
   },
   {
     "id": 56,
@@ -505,9 +405,7 @@
     "type": 8,
     "split": "A",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_311_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_309_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 57,
@@ -515,9 +413,7 @@
     "type": 8,
     "split": "B",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_314_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_312_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 58,
@@ -525,9 +421,7 @@
     "type": 8,
     "split": "C",
     "platform": "PC",
-    "game": "F1 22",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_317_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_315_logo_0.png"
+    "game": "F1 22"
   },
   {
     "id": 59,
@@ -535,9 +429,7 @@
     "type": 4,
     "split": "A",
     "platform": "PC",
-    "game": "ACC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_320_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_318_logo_0.png"
+    "game": "ACC"
   },
   {
     "id": 60,
@@ -545,9 +437,7 @@
     "type": 4,
     "split": "A",
     "platform": "PC",
-    "game": "ACC",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_323_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_321_logo_0.png"
+    "game": "ACC"
   },
   {
     "id": 61,
@@ -555,9 +445,7 @@
     "type": 13,
     "split": "A",
     "platform": "PC",
-    "game": "F2 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_324_banner_900.png",
-    "logo": "https://cdn.discordapp.com/attachments/1062362633933692968/1099056213293023272/image-5.png?ex=6698c61c&is=6697749c&hm=75d3f72824bccb90013972fd70539db10f1280a74c95b9afa11f59de41a9e2e2&"
+    "game": "F2 23"
   },
   {
     "id": 62,
@@ -565,9 +453,7 @@
     "type": 12,
     "split": "A",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_325_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_328_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 63,
@@ -575,9 +461,7 @@
     "type": 12,
     "split": "B",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_326_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_330_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 64,
@@ -585,9 +469,7 @@
     "type": 12,
     "split": "C",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_327_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_332_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 65,
@@ -595,9 +477,7 @@
     "type": 12,
     "split": "A",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_335_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_334_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 66,
@@ -605,9 +485,7 @@
     "type": 12,
     "split": "A",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_340_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_338_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 67,
@@ -615,9 +493,7 @@
     "type": 12,
     "split": "B",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_343_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_342_logo_0.png"
+    "game": "F1 23"
   },
   {
     "id": 68,
@@ -625,8 +501,6 @@
     "type": 12,
     "split": "C",
     "platform": "PC",
-    "game": "F1 23",
-    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_346_banner_900.png",
-    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_344_logo_0.png"
+    "game": "F1 23"
   }
 ]

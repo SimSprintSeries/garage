@@ -11,8 +11,6 @@ public class LeagueData {
     private GameData game;
     private String startDate;
     private Integer eventCount;
-    private byte[] banner;
-    private byte[] logo;
     private MultipartFile bannerFile;
     private MultipartFile logoFile;
 
@@ -70,22 +68,6 @@ public class LeagueData {
 
     public void setEventCount(final Integer eventCount) {
         this.eventCount = eventCount;
-    }
-
-    public byte[] getBanner() {
-        return banner;
-    }
-
-    public void setBanner(final byte[] banner) {
-        this.banner = banner;
-    }
-
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public void setLogo(final byte[] logo) {
-        this.logo = logo;
     }
 
     public MultipartFile getBannerFile() {

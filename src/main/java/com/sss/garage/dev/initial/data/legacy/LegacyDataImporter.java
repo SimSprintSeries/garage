@@ -1,6 +1,7 @@
 package com.sss.garage.dev.initial.data.legacy;
 
 import java.io.*;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +19,8 @@ import com.sss.garage.model.game.Game;
 import com.sss.garage.model.game.GameRepository;
 import com.sss.garage.model.game.family.GameFamily;
 import com.sss.garage.model.game.family.GameFamilyRepository;
+import com.sss.garage.model.image.Image;
+import com.sss.garage.model.image.ImageRepository;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.race.Race;
@@ -36,16 +39,22 @@ import com.sss.garage.model.track.TrackRepository;
 import com.sss.garage.model.user.DiscordUser;
 import com.sss.garage.model.user.DiscordUserRepository;
 
+import com.sss.garage.util.image.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+
+import javax.imageio.ImageIO;
 
 @Component
 public class LegacyDataImporter {
 
     @Value("${legacy.data.dir}/leagues.json")
     private ClassPathResource leaguesResource;
+
+    @Value("${legacy.data.dir}/images.json")
+    private ClassPathResource imagesResource;
 
     @Value("${legacy.data.dir}/drivers.json")
     private ClassPathResource driversResource;
@@ -88,6 +97,8 @@ public class LegacyDataImporter {
     private TrackRepository trackRepository;
 
     private TeamRepository teamRepository;
+
+    private ImageRepository imageRepository;
 
     ObjectMapper objectMapper;
 
@@ -139,12 +150,26 @@ public class LegacyDataImporter {
                     league.setName(l.name);
                     league.setPlatform(l.platform);
                     league.setGame(findGameByName(l.game, games));
-                    league.setBanner(l.banner.getBytes()); // do zmiany - ma ściągać zdjęcie, a nie link
-                    league.setLogo(l.logo.getBytes());
                     return league;
                 })
                 .collect(Collectors.toSet());
         leagueRepository.saveAll(leagues);
+
+        List<LegacyImage> legacyImages = Arrays.asList(objectMapper.readValue(imagesResource.getInputStream(), LegacyImage[].class));
+        Set<Image> images = legacyImages.stream()
+                .map(i -> {
+                    final Image image = new Image();
+                    try {
+                        image.setBanner(ImageUtils.compressImage(ImageUtils.toByteArray(ImageIO.read(new URL(i.banner)), "png")));
+                        image.setLogo(ImageUtils.compressImage(ImageUtils.toByteArray(ImageIO.read(new URL(i.logo)), "png")));
+                        image.setLeague(findLeagueByLegacyId(i.leagueid, leagues, legacyLeagues));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return image;
+                })
+                .collect(Collectors.toSet());
+        imageRepository.saveAll(images);
 
         Set<Split> splits = legacyLeagues.stream()
                 .map(l -> {
@@ -493,5 +518,10 @@ public class LegacyDataImporter {
     @Autowired
     public void setTeamRepository(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
+    }
+
+    @Autowired
+    public void setImageRepository(final ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
     }
 }

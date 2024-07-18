@@ -1,5 +1,7 @@
 package com.sss.garage.util.image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.zip.DataFormatException;
@@ -46,5 +48,14 @@ public class ImageUtils {
         outputStream.close();
 
         return outputStream.toByteArray();
+    }
+
+    public static byte[] toByteArray(BufferedImage bi, String format)
+            throws IOException {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bi, format, baos);
+        return baos.toByteArray();
+
     }
 }
