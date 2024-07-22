@@ -17,4 +17,6 @@ public interface LeagueFacade {
     Page<LeagueData> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable);
 
     Page<LeagueData> getLeaguesForDriver(final String driverId, final Pageable pageable);
+
+    LeagueData getLeagueByName(final String name);
 }

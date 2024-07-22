@@ -5,4 +5,6 @@ import com.sss.garage.model.league.League;
 
 public interface ImageService {
     Image getImage(final League league);
+
+    void createImage(final Image image);
 }

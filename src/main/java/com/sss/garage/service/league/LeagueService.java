@@ -20,4 +20,6 @@ public interface LeagueService {
     Page<League> getLeaguesPaginated(final String platform, final String name, final Boolean active, final Pageable pageable);
 
     Page<League> getLeaguesForDriver(final Driver driver, final Pageable pageable);
+
+    League getLeagueByName(final String name);
 }

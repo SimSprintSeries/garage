@@ -23,6 +23,7 @@ public class DetailedLeagueData extends LeagueData {
     public DetailedLeagueData(final LeagueData leagueData) {
         this.setId(leagueData.getId());
         this.setGame(leagueData.getGame());
+        this.setGameId(leagueData.getGameId());
         this.setName(leagueData.getName());
         this.setPlatform(leagueData.getPlatform());
         this.setStartDate(leagueData.getStartDate());

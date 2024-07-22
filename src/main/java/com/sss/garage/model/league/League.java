@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class League {
 
     @Id

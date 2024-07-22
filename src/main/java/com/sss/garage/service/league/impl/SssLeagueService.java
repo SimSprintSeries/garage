@@ -43,6 +43,11 @@ public class SssLeagueService implements LeagueService {
         return leagueRepository.findLeaguesForDriver(driver, pageable);
     }
 
+    @Override
+    public League getLeagueByName(final String name) {
+        return leagueRepository.findByName(name);
+    }
+
     @Autowired
     public void setLeagueRepository(final LeagueRepository leagueRepository) {
         this.leagueRepository = leagueRepository;

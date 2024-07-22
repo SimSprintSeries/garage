@@ -6,6 +6,7 @@ import com.sss.garage.model.game.Game;
 import com.sss.garage.model.image.Image;
 import com.sss.garage.model.image.ImageRepository;
 import com.sss.garage.model.league.League;
+import com.sss.garage.service.game.GameService;
 import com.sss.garage.util.image.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -15,32 +16,28 @@ import java.io.IOException;
 
 @Component
 public class LeagueReverseConverter extends BaseConverter implements Converter<LeagueData, League> {
-    private ImageRepository imageRepository;
+    private GameService gameService;
 
     @Override
     public League convert(final LeagueData source) {
         final League target = new League();
 
-        target.setGame(getConversionService().convert(source.getGame(), Game.class));
+        try {
+            target.setGame(gameService.getGame(Long.valueOf(source.getGameId())).orElseThrow());
+        } catch (NumberFormatException e) {
+            target.setGame(getConversionService().convert(source.getGame(), Game.class));
+        }
         target.setId(source.getId());
         target.setName(source.getName());
         target.setPlatform(source.getPlatform());
         target.setStartDate(source.getStartDate());
         target.setEventCount(source.getEventCount());
 
-        try {
-            imageRepository.save(new Image(target,
-                    ImageUtils.compressImage(source.getBannerFile().getBytes()),
-                    ImageUtils.compressImage(source.getLogoFile().getBytes())));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         return target;
     }
 
     @Autowired
-    public void setImageRepository(final ImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
+    public void setGameService(final GameService gameService) {
+        this.gameService = gameService;
     }
 }

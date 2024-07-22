@@ -8,6 +8,7 @@ public class LeagueDTO {
     private String name;
     private String platform;
     private GameDTO game;
+    private String gameId;
     public String startDate;
     public Integer eventCount;
     private MultipartFile bannerFile;
@@ -43,6 +44,14 @@ public class LeagueDTO {
 
     public void setGame(final GameDTO game) {
         this.game = game;
+    }
+
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(final String gameId) {
+        this.gameId = gameId;
     }
 
     public String getStartDate() {

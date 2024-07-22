@@ -9,6 +9,7 @@ public class LeagueData {
     private String displayText;
     private String platform;
     private GameData game;
+    private String gameId;
     private String startDate;
     private Integer eventCount;
     private MultipartFile bannerFile;
@@ -36,6 +37,14 @@ public class LeagueData {
 
     public void setGame(final GameData game) {
         this.game = game;
+    }
+
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(final String gameId) {
+        this.gameId = gameId;
     }
 
     public String getPlatform() {

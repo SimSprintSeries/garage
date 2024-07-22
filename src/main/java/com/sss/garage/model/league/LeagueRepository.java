@@ -17,4 +17,6 @@ public interface LeagueRepository extends JpaRepository<League, Long> {
     @Query("SELECT DISTINCT e.league FROM Event e LEFT JOIN Race r ON e = r.event LEFT JOIN RaceResult rr ON rr.race = r " +
             "WHERE rr.driver=:driver")
     Page<League> findLeaguesForDriver(Driver driver, Pageable pageable);
+
+    League findByName(final String name);
 }

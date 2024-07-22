@@ -16,6 +16,11 @@ public class SssImageService implements ImageService {
         return imageRepository.findByLeague(league).orElseThrow();
     }
 
+    @Override
+    public void createImage(Image image) {
+        imageRepository.save(image);
+    }
+
     @Autowired
     public void setImageRepository(final ImageRepository imageRepository) {
         this.imageRepository = imageRepository;

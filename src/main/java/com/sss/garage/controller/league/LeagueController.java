@@ -2,10 +2,12 @@ package com.sss.garage.controller.league;
 
 import com.sss.garage.controller.SssBaseController;
 import com.sss.garage.data.event.EventData;
+import com.sss.garage.data.image.ImageData;
 import com.sss.garage.data.league.LeagueData;
 import com.sss.garage.dto.event.EventDTO;
 import com.sss.garage.dto.league.LeagueDTO;
 import com.sss.garage.facade.event.EventFacade;
+import com.sss.garage.facade.image.ImageFacade;
 import com.sss.garage.facade.league.LeagueFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,6 +40,8 @@ public class LeagueController extends SssBaseController {
 
     private EventFacade eventFacade;
 
+    private ImageFacade imageFacade;
+
     @GetMapping(path = "/{leagueId}")
     @Operation(operationId = "getLeague", summary = "Get info about a specific league")
     @ResponseStatus(HttpStatus.OK)
@@ -51,6 +55,12 @@ public class LeagueController extends SssBaseController {
     @Operation(operationId = "createLeague", summary = "Create new league")
     public void createLeague(@ModelAttribute LeagueDTO leagueDTO) throws IOException {
         leagueFacade.createLeague(mapper.map(leagueDTO, LeagueData.class));
+
+        ImageData imageData = new ImageData();
+        imageData.setBanner(leagueDTO.getBannerFile().getBytes());
+        imageData.setLogo(leagueDTO.getLogoFile().getBytes());
+        imageData.setLeague(leagueFacade.getLeagueByName(leagueDTO.getName()));
+        imageFacade.createImage(imageData);
     }
 
     @GetMapping
@@ -102,7 +112,12 @@ public class LeagueController extends SssBaseController {
     }
 
     @Autowired
-    public void setEventFacade(EventFacade eventFacade) {
+    public void setEventFacade(final EventFacade eventFacade) {
         this.eventFacade = eventFacade;
+    }
+
+    @Autowired
+    public void setImageFacade(final ImageFacade imageFacade) {
+        this.imageFacade = imageFacade;
     }
 }
