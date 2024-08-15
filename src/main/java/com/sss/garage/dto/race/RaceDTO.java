@@ -5,7 +5,6 @@ import com.sss.garage.dto.split.SplitDTO;
 public class RaceDTO {
     private SplitDTO split;
     private Long id;
-    private String startDate;
     private String name;
     private String displayText;
 
@@ -23,14 +22,6 @@ public class RaceDTO {
 
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(final String startDate) {
-        this.startDate = startDate;
     }
 
     public String getName() {

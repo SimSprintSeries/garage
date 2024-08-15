@@ -23,8 +23,9 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
 
     @Query("SELECT SUM(rep.penaltyPoints) FROM Report rep " +
             "LEFT JOIN Race r ON rep.race = r " +
+            "LEFT JOIN Event e ON r.event = e " +
             "LEFT JOIN League l ON r.league = l " +
             "LEFT JOIN Game g ON l.game = g " +
-            "WHERE r.startDate>=:date AND rep.reportedDriver=:driver AND g.gameFamily=:gameFamily")
+            "WHERE e.startDate>=:date AND rep.reportedDriver=:driver AND g.gameFamily=:gameFamily")
     Integer findPenaltyPointsByDriverAndGameFamilyAndDate(final Driver driver, final Game gameFamily, final Date date);
 }

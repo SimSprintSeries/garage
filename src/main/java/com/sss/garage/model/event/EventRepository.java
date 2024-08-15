@@ -2,6 +2,7 @@ package com.sss.garage.model.event;
 
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.race.Race;
 import com.sss.garage.model.track.Track;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,15 +27,17 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e " +
             "LEFT JOIN Race r ON r.event = e " +
             "WHERE e.league = :league " +
-            "AND r.startDate > NOW() " +
-            "ORDER BY r.startDate ASC LIMIT 1")
+            "AND e.startDate > NOW() " +
+            "ORDER BY e.startDate ASC LIMIT 1")
     Event findNextEventByLeague(League league);
 
-    @Query("SELECT r.startDate FROM Race r LEFT JOIN Event e ON r.event = e " +
+    @Query("SELECT e.startDate FROM Race r LEFT JOIN Event e ON r.event = e " +
             "LEFT JOIN League l ON e.league = l " +
             "LEFT JOIN Game g ON l.game = g " +
             "WHERE g.gameFamily=:gameFamily " +
-            "GROUP BY g.gameFamily, WEEK(r.startDate), YEAR(r.startDate) " +
-            "ORDER BY r.startDate DESC LIMIT 1 OFFSET 9")
+            "GROUP BY g.gameFamily, WEEK(e.startDate), YEAR(e.startDate) " +
+            "ORDER BY e.startDate DESC LIMIT 1 OFFSET 9")
     Date find10thEventDateByGameFamily(Game gameFamily);
+
+    Event findFirstByLeagueOrderByStartDateAsc(League league);
 }

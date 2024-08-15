@@ -25,9 +25,6 @@ public class Race {
     @NotNull
     private String name;
 
-    @NotNull
-    private Date startDate;
-
     @ManyToOne
     private Split split;
 
@@ -152,15 +149,6 @@ public class Race {
 
     public void setName(@NotNull final String name) {
         this.name = name;
-    }
-
-    @NotNull
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(@NotNull final Date startDate) {
-        this.startDate = startDate;
     }
 
     public League getLeague() {

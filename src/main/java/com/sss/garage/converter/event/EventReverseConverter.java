@@ -29,5 +29,6 @@ public class EventReverseConverter extends BaseConverter implements Converter<Ev
         target.setLeague(Optional.ofNullable(source.getLeague()).map(e -> getConversionService().convert(e, League.class)).orElse(null));
         target.setTrack(getConversionService().convert(source.getTrack(), Track.class));
         target.setActiveForPresence(source.getActiveForPresence());
+        target.setStartDate(source.getStartDate());
     }
 }

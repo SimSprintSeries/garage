@@ -16,6 +16,7 @@ public class EventDTO {
     private Set<RaceDTO> races;
     private Set<PresenceDTO> presences;
     private Boolean activeForPresence;
+    private String startDate;
 
     public Long getId() {
         return id;
@@ -79,5 +80,13 @@ public class EventDTO {
 
     public void setActiveForPresence(final Boolean activeForPresence) {
         this.activeForPresence = activeForPresence;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(final String startDate) {
+        this.startDate = startDate;
     }
 }

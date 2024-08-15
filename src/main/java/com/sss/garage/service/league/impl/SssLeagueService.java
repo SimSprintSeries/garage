@@ -1,6 +1,7 @@
 package com.sss.garage.service.league.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.event.Event;
 import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.service.league.LeagueService;
 import com.sss.garage.model.league.League;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SssLeagueService implements LeagueService {
@@ -20,7 +24,10 @@ public class SssLeagueService implements LeagueService {
 
     @Override
     public Optional<League> getLeague(final Long id) {
-        return leagueRepository.findById(id);
+        League league = leagueRepository.findById(id).orElseThrow();
+        league.setEvents(league.getEvents().stream()
+                .sorted(Comparator.comparing(Event::getStartDate)).collect(Collectors.toCollection(LinkedHashSet::new)));
+        return Optional.of(league);
     }
 
     @Override

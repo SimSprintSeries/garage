@@ -204,6 +204,7 @@ public class LegacyDataImporter {
                     event.setSprite(e.country);
                     event.setLeague(findLeagueByLegacyId(e.league_id, leagues, legacyLeagues));
                     event.setTrack(findTrackByLegacyId(e.track_id, tracks, legacyTracks));
+                    event.setStartDate(findLegacyEventById(e.id, legacyEvents).starts);
                     return event;
                 })
                 .collect(Collectors.toSet());
@@ -217,7 +218,6 @@ public class LegacyDataImporter {
                     race.setName(r.racename);
                     race.setEvent(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues));
                     race.setLeague(findEventByLegacyId(r.eventid, events, legacyEvents, leagues, legacyLeagues).getLeague());
-                    race.setStartDate(findLegacyEventById(r.eventid, legacyEvents).starts);
                     race.setSplit(findSplitByLeagueId(race.getEvent().getLeague().getId(), splits, leagues, legacyLeagues));
                     race.setPointType(findRacePointType(race));
                     return race;
@@ -346,7 +346,7 @@ public class LegacyDataImporter {
     }
 
     private void setStartDateAndEventCount(final League league) {
-        LocalDate date = raceRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate date = eventRepository.findFirstByLeagueOrderByStartDateAsc(league).getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         league.setStartDate(date.format(formatter));
         league.setEventCount(eventRepository.countByLeague(league));

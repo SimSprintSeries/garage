@@ -38,6 +38,9 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private Set<Presence> presences;
 
+    @NotNull
+    private Date startDate;
+
     public Long getId() {
         return id;
     }
@@ -100,5 +103,14 @@ public class Event {
 
     public void setPresences(Set<Presence> presences) {
         this.presences = presences;
+    }
+
+    @NotNull
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(@NotNull final Date startDate) {
+        this.startDate = startDate;
     }
 }

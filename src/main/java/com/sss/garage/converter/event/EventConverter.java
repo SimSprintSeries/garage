@@ -34,5 +34,6 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setPresences(source.getPresences().stream().map(p -> getConversionService().convert(p, PresenceData.class)).collect(Collectors.toSet()));
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
         data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
+        data.setStartDate(source.getStartDate());
     }
 }

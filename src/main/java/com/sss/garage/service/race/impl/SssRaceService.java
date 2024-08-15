@@ -38,7 +38,7 @@ public class SssRaceService implements RaceService {
 
     @Override
     public List<Race> getGameSortedRacesSince(final Race race) {
-        return raceRepository.findAllByStartDateGreaterThanEqual(race.getStartDate(), SORT_BY_START_DATE_ASC).stream()
+        return raceRepository.findAllByStartDateGreaterThanEqual(race.getEvent().getStartDate(), SORT_BY_START_DATE_ASC).stream()
                 .filter(r -> gameService.getGame(race).equals(gameService.getGame(r)))
                 .toList();
     }

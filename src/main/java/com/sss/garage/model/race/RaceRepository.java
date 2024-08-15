@@ -17,6 +17,8 @@ import java.util.Set;
 public interface RaceRepository extends JpaRepository<Race, Long> {
     List<Race> findAllByPointScoring(final Boolean pointScoring, final Sort sort);
     List<Race> findAllByPointScoringAndIncludedInElo(final Boolean pointScoring, final Boolean includedInElo, final Sort sort);
+    @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
+            "WHERE e.startDate >= :date")
     List<Race> findAllByStartDateGreaterThanEqual(final Date date, final Sort sort);
     @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
             "WHERE :datePlaceholder = true " +
@@ -24,16 +26,14 @@ public interface RaceRepository extends JpaRepository<Race, Long> {
     Page<Race> findAllByDatePlaceholderAndLeague(final Boolean datePlaceholder, final League league, final Pageable pageable);
     @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
             "WHERE :datePlaceholder = true " +
-            "AND r.startDate <= :date " +
+            "AND e.startDate <= :date " +
             "AND e.league = :league OR :league IS NULL")
     Page<Race> findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
     @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
             "WHERE :datePlaceholder = true " +
-            "AND r.startDate > :date " +
+            "AND e.startDate > :date " +
             "AND e.league = :league OR :league IS NULL")
     Page<Race> findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
     @Query("SELECT r FROM Race r WHERE r.event = :event OR :event IS NULL")
     Page<Race> findAllByEvent(final Event event, final Pageable pageable);
-
-    Race findFirstByLeagueOrderByStartDateAsc(League league);
 }

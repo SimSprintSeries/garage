@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class RaceData {
     private Long id;
-    private Date startDate;
     private SplitData split;
     private String displayText;
     private Boolean activeForPresence;
@@ -53,14 +52,6 @@ public class RaceData {
 
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(final Date startDate) {
-        this.startDate = startDate;
     }
 
     public String getName() {

@@ -59,8 +59,8 @@ public class SssEloCalculationService implements EloCalculationService {
             gameEloValuesSnapshot.put(driver, gameElo.getValue());
             gameFamilyEloValuesSnapshot.put(driver, gameFamilyElo.getValue());
 
-            historyToSave.add(new EloHistory(gameElo, race.getStartDate(), race));
-            historyToSave.add(new EloHistory(gameFamilyElo, race.getStartDate(), race));
+            historyToSave.add(new EloHistory(gameElo, race.getEvent().getStartDate(), race));
+            historyToSave.add(new EloHistory(gameFamilyElo, race.getEvent().getStartDate(), race));
         }
         eloRepository.saveAll(historyToSave);
 
