@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface RaceFacade {
-    Page<RaceData> getRacesPaginated(final String leagueId, final Boolean completed, final Pageable pageable);
     RaceData getRace(final Long id);
     void createRace(final RaceData raceData);
     void createRaces(final List<RaceData> racesData, final String eventId);

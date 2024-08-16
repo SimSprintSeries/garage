@@ -64,21 +64,6 @@ public class SssRaceService implements RaceService {
     }
 
     @Override
-    public Page<Race> getAllPlayableRaces(final League league, final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholderAndLeague(true, league, pageable);
-    }
-
-    @Override
-    public Page<Race> getCompletedPlayableRaces(final League league, final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
-    }
-
-    @Override
-    public Page<Race> getUncompletedPlayableRaces(final League league, final Pageable pageable) {
-        return raceRepository.findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
-    }
-
-    @Override
     public void deleteRace(final Long id) {
         raceRepository.deleteById(id);
     }

@@ -19,9 +19,6 @@ public interface RaceService {
     Boolean isQuali(final Race race);
     void save(final Race race);
     void saveAll(final Collection<Race> races);
-    Page<Race> getAllPlayableRaces(final League league, final Pageable pageable);
-    Page<Race> getCompletedPlayableRaces(final League league, final Pageable pageable);
-    Page<Race> getUncompletedPlayableRaces(final League league, final Pageable pageable);
     void deleteRace(final Long id);
     Page<Race> getAllRacesByEvent(final Event event, final Pageable pageable);
 }

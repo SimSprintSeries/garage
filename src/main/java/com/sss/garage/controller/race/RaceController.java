@@ -33,22 +33,6 @@ public class RaceController extends SssBaseController {
 
     private RaceFacade raceFacade;
 
-    @GetMapping
-    @Operation(operationId = "getRaces", summary = "Get races sorted by race date", description = "Get all races with sorting option. Optionally you can filter by completed flag, which indicates whether race has already completed or not.")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiResponse(responseCode = "200", description = "Page of RaceDTO", content = @Content(schema = @Schema(implementation = RaceDTO.class)))
-    public Page<RaceDTO> getEvents(@Parameter(description = "The current result page requested") @RequestParam(value = "currentPage", defaultValue = DEFAULT_CURRENT_PAGE) final int currentPage,
-                                   @Parameter(description = "The number of results returned per page") @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE) final int pageSize,
-                                   @Parameter(description = "Sorting method applied to the returned results") @RequestParam(value = "sort", defaultValue = "startDate") final String sort,
-                                   @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "DESC") final String sortDirection,
-                                   @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId,
-                                   @Parameter(description = "Optional completed flag to filter by. True to get only completed events, false to get upcoming, null to get all")
-                                                @RequestParam(value = "completed", required = false) final Boolean completed) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
-
-        return raceFacade.getRacesPaginated(leagueId, completed, pageable).map(r -> mapper.map(r, RaceDTO.class));
-    }
-
     @GetMapping("/{id}")
     @Operation(operationId = "getRace", summary = "Get race information")
     @ResponseStatus(HttpStatus.OK)

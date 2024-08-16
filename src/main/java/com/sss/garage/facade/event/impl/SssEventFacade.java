@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SssEventFacade extends SssBaseFacade implements EventFacade {
@@ -26,16 +27,25 @@ public class SssEventFacade extends SssBaseFacade implements EventFacade {
     private TrackService trackService;
 
     @Override
-    public Page<EventData> getAllEvents(final String leagueId, final String trackId, final Pageable pageable) {
+    public Page<EventData> getAllEvents(final String leagueId, final String trackId, final Boolean completed, final Pageable pageable) {
         League league = null;
         Track track = null;
+        Page<Event> events;
         if(Strings.isNotEmpty(leagueId)) {
             league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
         }
         if(Strings.isNotEmpty(trackId)) {
             track = trackService.getTrack(Long.valueOf(trackId)).orElseThrow();
         }
-        Page<Event> events = eventService.getAllEvents(league, track, pageable);
+        if(Objects.isNull(completed)) {
+            events = eventService.getAllPlayableEvents(league, track, pageable);
+        }
+        else if(completed) {
+            events = eventService.getCompletedPlayableEvents(league, pageable);
+        }
+        else {
+            events = eventService.getUncompletedPlayableEvents(league, pageable);
+        }
         return events.map(e -> conversionService.convert(e, EventData.class));
     }
 

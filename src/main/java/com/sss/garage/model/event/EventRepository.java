@@ -2,7 +2,6 @@ package com.sss.garage.model.event;
 
 import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
-import com.sss.garage.model.race.Race;
 import com.sss.garage.model.track.Track;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +37,24 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "GROUP BY g.gameFamily, WEEK(e.startDate), YEAR(e.startDate) " +
             "ORDER BY e.startDate DESC LIMIT 1 OFFSET 9")
     Date find10thEventDateByGameFamily(Game gameFamily);
+
+    @Query("SELECT e FROM Event e " +
+            "WHERE :datePlaceholder = true " +
+            "AND e.league = :league OR :league IS NULL " +
+            "AND e.track = :track OR :track IS NULL")
+    Page<Event> findAllByDatePlaceholderAndLeague(final Boolean datePlaceholder, final League league, final Track track, final Pageable pageable);
+
+    @Query("SELECT e FROM Event e " +
+            "WHERE :datePlaceholder = true " +
+            "AND e.startDate <= :date " +
+            "AND (e.league = :league OR :league IS NULL)")
+    Page<Event> findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
+
+    @Query("SELECT e FROM Event e " +
+            "WHERE :datePlaceholder = true " +
+            "AND e.startDate > :date " +
+            "AND (e.league = :league OR :league IS NULL)")
+    Page<Event> findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
 
     Event findFirstByLeagueOrderByStartDateAsc(League league);
 }

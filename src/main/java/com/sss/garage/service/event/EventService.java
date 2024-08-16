@@ -20,5 +20,8 @@ public interface EventService {
     void createEvents(final List<Event> events);
     void deleteEvent(final Long id);
     Event getNextEvent(final League league);
+    Page<Event> getAllPlayableEvents(final League league, final Track track, final Pageable pageable);
+    Page<Event> getCompletedPlayableEvents(final League league, final Pageable pageable);
+    Page<Event> getUncompletedPlayableEvents(final League league, final Pageable pageable);
     Date get10thEventDateByGameFamily(final Game gameFamily);
 }

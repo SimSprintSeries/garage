@@ -20,20 +20,6 @@ public interface RaceRepository extends JpaRepository<Race, Long> {
     @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
             "WHERE e.startDate >= :date")
     List<Race> findAllByStartDateGreaterThanEqual(final Date date, final Sort sort);
-    @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
-            "WHERE :datePlaceholder = true " +
-            "AND e.league = :league OR :league IS NULL")
-    Page<Race> findAllByDatePlaceholderAndLeague(final Boolean datePlaceholder, final League league, final Pageable pageable);
-    @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
-            "WHERE :datePlaceholder = true " +
-            "AND e.startDate <= :date " +
-            "AND e.league = :league OR :league IS NULL")
-    Page<Race> findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
-    @Query("SELECT r FROM Race r LEFT JOIN Event e ON r.event = e " +
-            "WHERE :datePlaceholder = true " +
-            "AND e.startDate > :date " +
-            "AND e.league = :league OR :league IS NULL")
-    Page<Race> findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(final Boolean datePlaceholder, final Date date, final League league, final Pageable pageable);
     @Query("SELECT r FROM Race r WHERE r.event = :event OR :event IS NULL")
     Page<Race> findAllByEvent(final Event event, final Pageable pageable);
 }

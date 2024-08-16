@@ -56,6 +56,21 @@ public class SssEventService implements EventService {
     }
 
     @Override
+    public Page<Event> getAllPlayableEvents(final League league, final Track track, final Pageable pageable) {
+        return eventRepository.findAllByDatePlaceholderAndLeague(true, league, track, pageable);
+    }
+
+    @Override
+    public Page<Event> getCompletedPlayableEvents(final League league, final Pageable pageable) {
+        return eventRepository.findAllByDatePlaceholderAndStartDateGreaterThanAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
+    }
+
+    @Override
+    public Page<Event> getUncompletedPlayableEvents(final League league, final Pageable pageable) {
+        return eventRepository.findAllByDatePlaceholderAndStartDateLessThanEqualAndLeague(true, new Date(System.currentTimeMillis()), league, pageable);
+    }
+
+    @Override
     public Date get10thEventDateByGameFamily(final Game gameFamily) {
         return eventRepository.find10thEventDateByGameFamily(gameFamily);
     }

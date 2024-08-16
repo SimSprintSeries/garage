@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface EventFacade {
-    Page<EventData> getAllEvents(final String leagueId, final String trackId, final Pageable pageable);
+    Page<EventData> getAllEvents(final String leagueId, final String trackId, final Boolean completed, final Pageable pageable);
     EventData getEvent(final Long id);
     void createEvent(final EventData eventData);
     void createEvents(final List<EventData> events, final String leagueId);

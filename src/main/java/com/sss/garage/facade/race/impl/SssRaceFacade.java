@@ -24,29 +24,7 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
 
     private RaceService raceService;
 
-    private LeagueService leagueService;
-
     private EventRepository eventRepository;
-
-    @Override
-    public Page<RaceData> getRacesPaginated(final String leagueId, final Boolean completed, final Pageable pageable) {
-        Page<Race> races;
-        League league = null;
-        if(Strings.isNotEmpty(leagueId)) {
-            league = leagueService.getLeague(Long.valueOf(leagueId)).orElseThrow();
-        }
-        if(Objects.isNull(completed)) {
-            races = raceService.getAllPlayableRaces(league, pageable);
-        }
-        else if(completed) {
-            races = raceService.getCompletedPlayableRaces(league, pageable);
-        }
-        else {
-            races = raceService.getUncompletedPlayableRaces(league, pageable);
-        }
-
-        return races.map(r -> conversionService.convert(r, RaceData.class));
-    }
 
     @Override
     public RaceData getRace(final Long id) {
@@ -89,11 +67,6 @@ public class SssRaceFacade extends SssBaseFacade implements RaceFacade {
     @Autowired
     public void setRaceService(final RaceService raceService) {
         this.raceService = raceService;
-    }
-
-    @Autowired
-    public void setLeagueService(final LeagueService leagueService) {
-        this.leagueService = leagueService;
     }
 
     @Autowired
