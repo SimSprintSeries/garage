@@ -66,6 +66,8 @@ public class SssClassificationService implements ClassificationService {
             }
         }
         
+        classifications.sort(Comparator.comparing(Classification::getPosition));
+        
         return new PageImpl<>(classifications, pageable, classifications.size());
     }
     
