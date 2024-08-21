@@ -66,7 +66,7 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "GROUP BY rr.driver, e.league")
     Integer findPointsByDriverAndLeague(Driver driver, League league);
 
-    @Cacheable("driverPositionsCount")
+    @Cacheable(value = "driverPositionsCount", key = "#driver.id.toString().concat('-').concat(#league.id.toString()).concat('-').concat(#finishPosition)")
     @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
             "AND e.league=:league " +

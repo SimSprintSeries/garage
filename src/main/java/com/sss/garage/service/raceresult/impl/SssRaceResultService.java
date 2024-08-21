@@ -93,7 +93,9 @@ public class SssRaceResultService implements RaceResultService {
     public void createRaceResults(final List<RaceResult> raceResults) {
         setPointsForPosition(raceResults);
         final Cache cache = cacheManager.getCache("driverPositionsCount");
-        raceResults.forEach(cache::evict);
+        raceResults.forEach(rr -> {
+            cache.evict(rr.getDriver().getId() + "-" + rr.getRace().getLeague().getId() + "-" + rr.getFinishPosition());
+        });
         raceResultRepository.saveAll(raceResults);
     }
 
