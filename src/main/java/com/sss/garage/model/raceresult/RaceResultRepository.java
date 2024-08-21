@@ -5,6 +5,7 @@ import com.sss.garage.model.game.Game;
 import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.team.Team;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,6 +66,7 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "GROUP BY rr.driver, e.league")
     Integer findPointsByDriverAndLeague(Driver driver, League league);
 
+    @Cacheable("driverPositionsCount")
     @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
             "AND e.league=:league " +

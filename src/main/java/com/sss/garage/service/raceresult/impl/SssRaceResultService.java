@@ -9,6 +9,8 @@ import com.sss.garage.model.raceresult.RaceResultRepository;
 import com.sss.garage.service.driver.DriverService;
 import com.sss.garage.service.raceresult.RaceResultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class SssRaceResultService implements RaceResultService {
     private RacePointDictionaryRepository racePointDictionaryRepository;
 
     private DriverService driverService;
+    
+    private CacheManager cacheManager;
 
     @Override
     public Integer calculateAndSaveTotalDriverWins(final Driver driver) {
@@ -88,6 +92,8 @@ public class SssRaceResultService implements RaceResultService {
     @Override
     public void createRaceResults(final List<RaceResult> raceResults) {
         setPointsForPosition(raceResults);
+        final Cache cache = cacheManager.getCache("driverPositionsCount");
+        raceResults.forEach(cache::evict);
         raceResultRepository.saveAll(raceResults);
     }
 
@@ -143,4 +149,10 @@ public class SssRaceResultService implements RaceResultService {
     public void setDriverService(final DriverService driverService) {
         this.driverService = driverService;
     }
+
+    @Autowired
+    public void setCacheManager(final CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
+    }
+    
 }

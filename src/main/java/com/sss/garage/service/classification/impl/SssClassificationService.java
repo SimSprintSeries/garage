@@ -66,7 +66,7 @@ public class SssClassificationService implements ClassificationService {
             }
         }
         
-        classifications.sort(Comparator.comparing(Classification::getPosition));
+        classifications.sort(Comparator.comparing(Classification::getPosition).reversed());
         
         return new PageImpl<>(classifications, pageable, classifications.size());
     }
@@ -81,6 +81,8 @@ public class SssClassificationService implements ClassificationService {
                     classification.getDriver(), classification.getLeague(), checkingPosition);
                 if (thisPositionCount == null) {
                     thisPositionCount = 0;
+                } else {
+                    ++thisPositionCount;
                 }
                 
                 classification.setPositionCount(classification.getPositionCount() + thisPositionCount);// The sum is not really necessary, but whoever has the highest wins
