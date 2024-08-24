@@ -37,7 +37,7 @@ public class AccJsonDataLoader {
         if(importedFiles.isEmpty() && !lapRepository.findAllByParams(null, null, null).isEmpty()) {
             lapRepository.deleteAll();
         }
-        for (File file : new File("C:\\Users\\raves\\Desktop\\repos\\garage\\src\\main\\resources\\accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
+        for (File file : new File("/home/debian/garage/src/main/resources/accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
             if (file.getAbsolutePath().contains("entrylist") || file.isDirectory() || importedFiles.contains(file)) {
                 continue;
             }
