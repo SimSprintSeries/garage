@@ -5,6 +5,8 @@ import com.sss.garage.dev.initial.data.legacy.model.LegacyAccLap;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyCarTable;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
+import com.sss.garage.model.track.Track;
+import com.sss.garage.model.track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -24,6 +26,8 @@ public class AccJsonDataLoader {
 
     private AccLapRepository lapRepository;
 
+    private TrackRepository trackRepository;
+
     private ObjectMapper objectMapper;
 
     private final List<File> importedFiles = new ArrayList<>();
@@ -33,7 +37,7 @@ public class AccJsonDataLoader {
         if(importedFiles.isEmpty() && !lapRepository.findAllByParams(null, null, null).isEmpty()) {
             lapRepository.deleteAll();
         }
-        for (File file : new File("/home/debian/garage/src/main/resources/accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
+        for (File file : new File("C:\\Users\\raves\\Desktop\\repos\\garage\\src\\main\\resources\\accsessions").listFiles()) { // TODO: ścieżka się rozpierdoli jak coś zmienimy
             if (file.getAbsolutePath().contains("entrylist") || file.isDirectory() || importedFiles.contains(file)) {
                 continue;
             }
@@ -129,7 +133,7 @@ public class AccJsonDataLoader {
                         accLap.setCarModel(l.carModel);
                         accLap.setCarName(findCarNameByCarModel(l.carModel, legacyCarTables));
                         accLap.setRaceNumber(l.raceNumber);
-                        accLap.setTrackName(l.trackName);
+                        accLap.setTrack(findTrackByName(l.trackName));
                         accLap.setSessionType(l.sessionType);
                         accLap.setServerName(l.serverName);
                         accLap.setTotalTime(String.valueOf(((float) l.totalTime) / 1000));
@@ -164,9 +168,18 @@ public class AccJsonDataLoader {
         return legacyCarTable.getCarModel();
     }
 
+    private Track findTrackByName(final String trackName) {
+        return trackRepository.findByAccName(trackName);
+    }
+
     @Autowired
     public void setLapRepository(final AccLapRepository lapRepository) {
         this.lapRepository = lapRepository;
+    }
+
+    @Autowired
+    public void setTrackRepository(final TrackRepository trackRepository) {
+        this.trackRepository = trackRepository;
     }
 
     @Autowired

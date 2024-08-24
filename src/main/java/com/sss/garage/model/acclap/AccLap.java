@@ -1,5 +1,6 @@
 package com.sss.garage.model.acclap;
 
+import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -34,7 +35,8 @@ public class AccLap {
 
     private Integer raceNumber;
 
-    private String trackName;
+    @ManyToOne
+    private Track track;
 
     private String sessionType;
 
@@ -154,12 +156,12 @@ public class AccLap {
         this.raceNumber = raceNumber;
     }
 
-    public String getTrackName() {
-        return trackName;
+    public Track getTrack() {
+        return track;
     }
 
-    public void setTrackName(final String trackName) {
-        this.trackName = trackName;
+    public void setTrack(final Track track) {
+        this.track = track;
     }
 
     public String getSessionType() {

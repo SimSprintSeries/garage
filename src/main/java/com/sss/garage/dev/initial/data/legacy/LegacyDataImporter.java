@@ -190,6 +190,7 @@ public class LegacyDataImporter {
                     track.setName(t.name);
                     track.setCountry(t.country);
                     track.setCity(t.city);
+                    track.setAccName(t.accName);
                     trackRepository.save(track);
                     return track;
                 })

@@ -5,6 +5,7 @@ public class LegacyTrack {
     public String name;
     public String country;
     public String city;
+    public String accName;
 
     public Long getId() {
         return id;
@@ -36,5 +37,13 @@ public class LegacyTrack {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getAccName() {
+        return accName;
+    }
+
+    public void setAccName(final String accName) {
+        this.accName = accName;
     }
 }

@@ -2,6 +2,7 @@ package com.sss.garage.service.acclap.impl;
 
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
+import com.sss.garage.model.track.Track;
 import com.sss.garage.service.acclap.AccLapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,9 +23,9 @@ public class SssAccLapService implements AccLapService {
     }
 
     @Override
-    public Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final String trackName,
+    public Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final Track track,
                                                      final String serverName, final String className, final Pageable pageable) {
-        List<AccLap> laps = lapRepository.findAllByParams(sessionType, trackName, serverName);
+        List<AccLap> laps = lapRepository.findAllByParams(sessionType, track, serverName);
         Set<String> steamIds = new HashSet<>();
         List<AccLap> bestLaps = new ArrayList<>();
         for (AccLap lap : laps) {

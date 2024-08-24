@@ -12,17 +12,14 @@ public class AccLapConverter extends BaseConverter implements Converter<AccLap, 
     public AccLapData convert(final AccLap source) {
         final AccLapData data = new AccLapData();
 
-        data.setId(source.getId());
         data.setSector1(source.getSector1());
         data.setSector2(source.getSector2());
         data.setSector3(source.getSector3());
         data.setLaptime(source.getLaptime());
-        data.setIsValidForBest(source.getIsValidForBest());
         data.setFirstName(source.getFirstName());
         data.setLastName(source.getLastName());
         data.setShortName(source.getShortName());
         data.setCarName(source.getCarName());
-        data.setTrackName(source.getTrackName());
         data.setValidLaps(source.getValidLaps());
         data.setTheoreticalBest(source.getTheoreticalBest());
         data.setSteamId(source.getSteamId());

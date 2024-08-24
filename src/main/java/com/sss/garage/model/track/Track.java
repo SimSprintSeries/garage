@@ -1,5 +1,6 @@
 package com.sss.garage.model.track;
 
+import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.event.Event;
 import jakarta.persistence.*;
 
@@ -20,6 +21,11 @@ public class Track {
 
     @OneToMany(mappedBy = "track")
     private Set<Event> events;
+
+    private String accName;
+
+    @OneToMany(mappedBy = "track")
+    private Set<AccLap> laps;
 
 
     public Long getId() {
@@ -60,5 +66,21 @@ public class Track {
 
     public void setEvents(final Set<Event> events) {
         this.events = events;
+    }
+
+    public String getAccName() {
+        return accName;
+    }
+
+    public void setAccName(final String accName) {
+        this.accName = accName;
+    }
+
+    public Set<AccLap> getLaps() {
+        return laps;
+    }
+
+    public void setLaps(final Set<AccLap> laps) {
+        this.laps = laps;
     }
 }

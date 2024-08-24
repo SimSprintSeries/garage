@@ -1,11 +1,7 @@
 package com.sss.garage.data.acclap;
 
-import java.util.Date;
-
 public class AccLapData {
     private Long id;
-
-    private Boolean isValidForBest;
 
     private String laptime;
 
@@ -23,19 +19,7 @@ public class AccLapData {
 
     private String steamId;
 
-    private Integer carModel;
-
     private String carName;
-
-    private Integer raceNumber;
-
-    private String trackName;
-
-    private String sessionType;
-
-    private String serverName;
-
-    private Date startDate;
 
     private Integer validLaps;
 
@@ -51,14 +35,6 @@ public class AccLapData {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getIsValidForBest() {
-        return isValidForBest;
-    }
-
-    public void setIsValidForBest(Boolean isValidForBest) {
-        this.isValidForBest = isValidForBest;
     }
 
     public String getLaptime() {
@@ -125,60 +101,12 @@ public class AccLapData {
         this.steamId = steamId;
     }
 
-    public Integer getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(Integer carModel) {
-        this.carModel = carModel;
-    }
-
     public String getCarName() {
         return carName;
     }
 
     public void setCarName(String carName) {
         this.carName = carName;
-    }
-
-    public Integer getRaceNumber() {
-        return raceNumber;
-    }
-
-    public void setRaceNumber(Integer raceNumber) {
-        this.raceNumber = raceNumber;
-    }
-
-    public String getTrackName() {
-        return trackName;
-    }
-
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
-    }
-
-    public String getSessionType() {
-        return sessionType;
-    }
-
-    public void setSessionType(String sessionType) {
-        this.sessionType = sessionType;
-    }
-
-    public String getServerName() {
-        return serverName;
-    }
-
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public Integer getValidLaps() {
