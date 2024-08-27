@@ -15,6 +15,8 @@ public class DiscordUser {
     @Id
     private Long id;
 
+    private Long steamId;
+
     private String username;
 
     private String email;
@@ -40,6 +42,14 @@ public class DiscordUser {
 
     public void setId(final Long id) {
         this.id = id;
+    }
+
+    public Long getSteamId() {
+        return steamId;
+    }
+
+    public void setSteamId(final Long steamId) {
+        this.steamId = steamId;
     }
 
     public String getUsername() {

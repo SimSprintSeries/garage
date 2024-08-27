@@ -1,5 +1,6 @@
 package com.sss.garage.model.acclap;
 
+import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
@@ -26,6 +27,9 @@ public class AccLap {
     private String lastName;
 
     private String shortName;
+
+    @ManyToOne
+    private Driver driver;
 
     private String steamId;
 
@@ -122,6 +126,14 @@ public class AccLap {
 
     public void setShortName(final String shortName) {
         this.shortName = shortName;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(final Driver driver) {
+        this.driver = driver;
     }
 
     public String getSteamId() {

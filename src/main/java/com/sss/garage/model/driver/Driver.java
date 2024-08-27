@@ -1,5 +1,6 @@
 package com.sss.garage.model.driver;
 
+import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.entry.Entry;
 import com.sss.garage.model.league.League;
@@ -86,6 +87,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private Set<Presence> presences;
+
+    @OneToMany(mappedBy = "driver")
+    private Set<AccLap> laps;
 
     public Long getId() {
         return id;
@@ -234,5 +238,13 @@ public class Driver {
 
     public void setPresences(final Set<Presence> presences) {
         this.presences = presences;
+    }
+
+    public Set<AccLap> getLaps() {
+        return laps;
+    }
+
+    public void setLaps(final Set<AccLap> laps) {
+        this.laps = laps;
     }
 }

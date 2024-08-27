@@ -4,6 +4,8 @@ public class BasicDiscordUserDTO {
 
     private String id;
 
+    private Long steamId;
+
     private String username;
 
     private String displayName;
@@ -24,6 +26,14 @@ public class BasicDiscordUserDTO {
 
     public void setId(final String id) {
         this.id = id;
+    }
+
+    public Long getSteamId() {
+        return steamId;
+    }
+
+    public void setSteamId(final Long steamId) {
+        this.steamId = steamId;
     }
 
     public String getUsername() {

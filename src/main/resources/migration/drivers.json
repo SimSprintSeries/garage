@@ -2,2966 +2,3696 @@
   {
     "id": 1,
     "name": "The Crasher",
-    "discordUserId": "628666292722728973"
+    "discordUserId": "628666292722728973",
+    "steamId": null
   },
   {
     "id": 2,
     "name": "Tymek",
-    "discordUserId": "337914043278819329"
+    "discordUserId": "337914043278819329",
+    "steamId": null
   },
   {
     "id": 3,
     "name": "eska",
-    "discordUserId": "634699926978166796"
+    "discordUserId": "634699926978166796",
+    "steamId": null
   },
   {
     "id": 4,
     "name": "Zielonooki",
-    "discordUserId": "553967362076835861"
+    "discordUserId": "553967362076835861",
+    "steamId": null
   },
   {
     "id": 5,
     "name": "BilewAxe",
-    "discordUserId": "405122834038521867"
+    "discordUserId": "405122834038521867",
+    "steamId": null
   },
   {
     "id": 6,
     "name": "mat",
-    "discordUserId": "338744367319613442"
+    "discordUserId": "338744367319613442",
+    "steamId": null
   },
   {
     "id": 7,
     "name": "Jeepla",
-    "discordUserId": "289077582597718016"
+    "discordUserId": "289077582597718016",
+    "steamId": null
   },
   {
     "id": 8,
     "name": "SuchyMISTRZ",
-    "discordUserId": "139152933538234368"
+    "discordUserId": "139152933538234368",
+    "steamId": null
   },
   {
     "id": 9,
     "name": "Koniur",
-    "discordUserId": "385168513632829451"
+    "discordUserId": "385168513632829451",
+    "steamId": null
   },
   {
     "id": 10,
     "name": "Noname",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 11,
     "name": "Balu",
-    "discordUserId": "643456969201549322"
+    "discordUserId": "643456969201549322",
+    "steamId": null
   },
   {
     "id": 12,
     "name": "ChudyByk",
-    "discordUserId": "376469108419592193"
+    "discordUserId": "376469108419592193",
+    "steamId": null
   },
   {
     "id": 13,
     "name": "montrey",
-    "discordUserId": "341137845412429825"
+    "discordUserId": "341137845412429825",
+    "steamId": null
   },
   {
     "id": 14,
     "name": "Supa Skillz Boy",
-    "discordUserId": "436923523936550922"
+    "discordUserId": "436923523936550922",
+    "steamId": null
   },
   {
     "id": 15,
     "name": "Cytrus",
-    "discordUserId": "422819508651163648"
+    "discordUserId": "422819508651163648",
+    "steamId": null
   },
   {
     "id": 16,
     "name": "Lunar",
-    "discordUserId": "268050481761353728"
+    "discordUserId": "268050481761353728",
+    "steamId": null
   },
   {
     "id": 17,
     "name": "Mały Książe",
-    "discordUserId": "602991326354735114"
+    "discordUserId": "602991326354735114",
+    "steamId": null
   },
   {
     "id": 18,
     "name": "Orangutan Moet",
-    "discordUserId": "457101319388528653"
+    "discordUserId": "457101319388528653",
+    "steamId": null
   },
   {
     "id": 19,
     "name": "Mirabelka",
-    "discordUserId": "304570198906896384"
+    "discordUserId": "304570198906896384",
+    "steamId": "76561198050569617"
   },
   {
     "id": 20,
     "name": "Kiwi",
-    "discordUserId": "272392277777711106"
+    "discordUserId": "272392277777711106",
+    "steamId": "76561198304257910"
   },
   {
     "id": 21,
     "name": "Rexus",
-    "discordUserId": "347718057340436482"
+    "discordUserId": "347718057340436482",
+    "steamId": null
   },
   {
     "id": 22,
     "name": "Szumotal",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 23,
     "name": "Narp",
-    "discordUserId": "833929275567636480"
+    "discordUserId": "833929275567636480",
+    "steamId": null
   },
   {
     "id": 24,
     "name": "Kocpis",
-    "discordUserId": "334050368440762368"
+    "discordUserId": "334050368440762368",
+    "steamId": null
   },
   {
     "id": 25,
     "name": "enzi",
-    "discordUserId": "641163722840211466"
+    "discordUserId": "641163722840211466",
+    "steamId": null
   },
   {
     "id": 26,
     "name": "GZUZ",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 27,
     "name": "Fretja_",
-    "discordUserId": "648685578459807745"
+    "discordUserId": "648685578459807745",
+    "steamId": null
   },
   {
     "id": 28,
     "name": "w_krystian",
-    "discordUserId": "530748697534005248"
+    "discordUserId": "530748697534005248",
+    "steamId": null
   },
   {
     "id": 29,
     "name": "ZigiZig",
-    "discordUserId": "642000275347079179"
+    "discordUserId": "642000275347079179",
+    "steamId": null
   },
   {
     "id": 30,
     "name": "zlotonosy",
-    "discordUserId": "645638911854641152"
+    "discordUserId": "645638911854641152",
+    "steamId": null
   },
   {
     "id": 31,
     "name": "CrassusX",
-    "discordUserId": "364787814715621388"
+    "discordUserId": "364787814715621388",
+    "steamId": null
   },
   {
     "id": 32,
     "name": "zielonygaj",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 33,
     "name": "mihau__slv",
-    "discordUserId": "642060869970427927"
+    "discordUserId": "642060869970427927",
+    "steamId": null
   },
   {
     "id": 34,
     "name": "glodny-piernik",
-    "discordUserId": "649315804319318036"
+    "discordUserId": "649315804319318036",
+    "steamId": null
   },
   {
     "id": 35,
     "name": "kamil185x",
-    "discordUserId": "643543625468477481"
+    "discordUserId": "643543625468477481",
+    "steamId": null
   },
   {
     "id": 36,
     "name": "BooltPL",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 37,
     "name": "vav77vav",
-    "discordUserId": "228180619551703040"
+    "discordUserId": "228180619551703040",
+    "steamId": null
   },
   {
     "id": 38,
     "name": "Kamikx123",
-    "discordUserId": "592435318603644939"
+    "discordUserId": "592435318603644939",
+    "steamId": null
   },
   {
     "id": 39,
     "name": "Adoxer_27",
-    "discordUserId": "651163379628769280"
+    "discordUserId": "651163379628769280",
+    "steamId": null
   },
   {
     "id": 40,
     "name": "Drabis97",
-    "discordUserId": "411648388413784064"
+    "discordUserId": "411648388413784064",
+    "steamId": null
   },
   {
     "id": 41,
     "name": "hpiotrekh",
-    "discordUserId": "529408364699189258"
+    "discordUserId": "529408364699189258",
+    "steamId": null
   },
   {
     "id": 42,
     "name": "Lise2137",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 43,
     "name": "Feniu1789",
-    "discordUserId": "470860702777868318"
+    "discordUserId": "470860702777868318",
+    "steamId": null
   },
   {
     "id": 44,
     "name": "Rybzon",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 45,
     "name": "BigKr4SHh",
-    "discordUserId": "376819664686153728"
+    "discordUserId": "376819664686153728",
+    "steamId": null
   },
   {
     "id": 46,
     "name": "Adi11777b",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 47,
     "name": "Kappakox",
-    "discordUserId": "352877304311054337"
+    "discordUserId": "352877304311054337",
+    "steamId": null
   },
   {
     "id": 48,
     "name": "nappy",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 49,
     "name": "Wyżeł",
-    "discordUserId": "253231713520582657"
+    "discordUserId": "253231713520582657",
+    "steamId": null
   },
   {
     "id": 50,
     "name": "Krzyś_ck",
-    "discordUserId": "639189322159095859"
+    "discordUserId": "639189322159095859",
+    "steamId": null
   },
   {
     "id": 51,
     "name": "paw3n",
-    "discordUserId": "332913330647728139"
+    "discordUserId": "332913330647728139",
+    "steamId": null
   },
   {
     "id": 52,
     "name": "Shamu",
-    "discordUserId": "279008677359386624"
+    "discordUserId": "279008677359386624",
+    "steamId": null
   },
   {
     "id": 53,
     "name": "Davy Strange",
-    "discordUserId": "226061943394271233"
+    "discordUserId": "226061943394271233",
+    "steamId": null
   },
   {
     "id": 54,
     "name": "bullfrog",
-    "discordUserId": "507301941513027585"
+    "discordUserId": "507301941513027585",
+    "steamId": null
   },
   {
     "id": 55,
     "name": "Pawulon",
-    "discordUserId": "315426917681463302"
+    "discordUserId": "315426917681463302",
+    "steamId": null
   },
   {
     "id": 56,
     "name": "Pigro",
-    "discordUserId": "383899519739363329"
+    "discordUserId": "383899519739363329",
+    "steamId": null
   },
   {
     "id": 57,
     "name": "Rocktune",
-    "discordUserId": "80744639593713664"
+    "discordUserId": "80744639593713664",
+    "steamId": null
   },
   {
     "id": 58,
     "name": "roxxie",
-    "discordUserId": "605022593270939698"
+    "discordUserId": "605022593270939698",
+    "steamId": null
   },
   {
     "id": 59,
     "name": "Matiz91",
-    "discordUserId": "380516482913927168"
+    "discordUserId": "380516482913927168",
+    "steamId": null
   },
   {
     "id": 60,
     "name": "VVoyak",
-    "discordUserId": "443151777424998400"
+    "discordUserId": "443151777424998400",
+    "steamId": null
   },
   {
     "id": 61,
     "name": "Reeposter",
-    "discordUserId": "258707097036914689"
+    "discordUserId": "258707097036914689",
+    "steamId": "76561198020794728"
   },
   {
     "id": 62,
     "name": "pustelnia13",
-    "discordUserId": "465910591090065408"
+    "discordUserId": "465910591090065408",
+    "steamId": null
   },
   {
     "id": 63,
     "name": "Leazy123",
-    "discordUserId": "344553947857420290"
+    "discordUserId": "344553947857420290",
+    "steamId": null
   },
   {
     "id": 64,
     "name": "MaSHeR",
-    "discordUserId": "454338673236770818"
+    "discordUserId": "454338673236770818",
+    "steamId": "76561198184870938"
   },
   {
     "id": 65,
     "name": "Muttley",
-    "discordUserId": "243435570267815937"
+    "discordUserId": "243435570267815937",
+    "steamId": null
   },
   {
     "id": 66,
     "name": "elzero",
-    "discordUserId": "331189373012017163"
+    "discordUserId": "331189373012017163",
+    "steamId": null
   },
   {
     "id": 67,
     "name": "corgi błyskawica",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 68,
     "name": "xetrian",
-    "discordUserId": "305428672368607243"
+    "discordUserId": "305428672368607243",
+    "steamId": null
   },
   {
     "id": 69,
     "name": "ppysio",
-    "discordUserId": "550326721539342346"
+    "discordUserId": "550326721539342346",
+    "steamId": null
   },
   {
     "id": 70,
     "name": "Maciszek",
-    "discordUserId": "400226473073573898"
+    "discordUserId": "400226473073573898",
+    "steamId": null
   },
   {
     "id": 71,
     "name": "FRT",
-    "discordUserId": "635927990366109707"
+    "discordUserId": "635927990366109707",
+    "steamId": null
   },
   {
     "id": 72,
     "name": "Mapis",
-    "discordUserId": "353920267556487169"
+    "discordUserId": "353920267556487169",
+    "steamId": null
   },
   {
     "id": 73,
     "name": "SWiTCH",
-    "discordUserId": "289074742298804225"
+    "discordUserId": "289074742298804225",
+    "steamId": null
   },
   {
     "id": 74,
     "name": "guzbi",
-    "discordUserId": "649375933517660175"
+    "discordUserId": "649375933517660175",
+    "steamId": null
   },
   {
     "id": 75,
     "name": "SZCZUR3K",
-    "discordUserId": "413666626387443712"
+    "discordUserId": "413666626387443712",
+    "steamId": null
   },
   {
     "id": 76,
     "name": "Ilidolan",
-    "discordUserId": "274586842454687744"
+    "discordUserId": "274586842454687744",
+    "steamId": null
   },
   {
     "id": 77,
     "name": "Fultest",
-    "discordUserId": "388052351921160192"
+    "discordUserId": "388052351921160192",
+    "steamId": null
   },
   {
     "id": 78,
     "name": "MrZiut",
-    "discordUserId": "459027742977949707"
+    "discordUserId": "459027742977949707",
+    "steamId": null
   },
   {
     "id": 79,
     "name": "Xalion",
-    "discordUserId": "289096653049167873"
+    "discordUserId": "289096653049167873",
+    "steamId": null
   },
   {
     "id": 80,
     "name": "KeRmiT",
-    "discordUserId": "289081289515073537"
+    "discordUserId": "289081289515073537",
+    "steamId": null
   },
   {
     "id": 81,
     "name": "K0sa",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 82,
     "name": "ufol666",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 83,
     "name": "Mimouz",
-    "discordUserId": "355866747707981824"
+    "discordUserId": "355866747707981824",
+    "steamId": null
   },
   {
     "id": 84,
     "name": "Kogzu",
-    "discordUserId": "127087028209713152"
+    "discordUserId": "127087028209713152",
+    "steamId": null
   },
   {
     "id": 85,
     "name": "Silence",
-    "discordUserId": "631915651639934991"
+    "discordUserId": "631915651639934991",
+    "steamId": null
   },
   {
     "id": 86,
     "name": "FOXuuu",
-    "discordUserId": "660121100654608384"
+    "discordUserId": "660121100654608384",
+    "steamId": null
   },
   {
     "id": 87,
     "name": "DIV",
-    "discordUserId": "439492987119075328"
+    "discordUserId": "439492987119075328",
+    "steamId": null
   },
   {
     "id": 88,
     "name": "qaspar",
-    "discordUserId": "325221502955945984"
+    "discordUserId": "325221502955945984",
+    "steamId": null
   },
   {
     "id": 89,
     "name": "C4sper",
-    "discordUserId": "154193057498005504"
+    "discordUserId": "154193057498005504",
+    "steamId": null
   },
   {
     "id": 90,
     "name": "Muadib",
-    "discordUserId": "369530715211038720"
+    "discordUserId": "369530715211038720",
+    "steamId": null
   },
   {
     "id": 91,
     "name": "Burstaine",
-    "discordUserId": "317022022783991820"
+    "discordUserId": "317022022783991820",
+    "steamId": null
   },
   {
     "id": 92,
     "name": "Kacper Synowiec",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 93,
     "name": "Paskudny",
-    "discordUserId": "376464883665076233"
+    "discordUserId": "376464883665076233",
+    "steamId": null
   },
   {
     "id": 94,
     "name": "vvoltam",
-    "discordUserId": "184348965704040448"
+    "discordUserId": "184348965704040448",
+    "steamId": null
   },
   {
     "id": 95,
     "name": "Tetrycy",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 96,
     "name": "Metit",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 97,
     "name": "Koster",
-    "discordUserId": "295232225388265472"
+    "discordUserId": "295232225388265472",
+    "steamId": null
   },
   {
     "id": 98,
     "name": "Tec3ies",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 99,
     "name": "Czyżyk",
-    "discordUserId": "627157480270594051"
+    "discordUserId": "627157480270594051",
+    "steamId": null
   },
   {
     "id": 100,
     "name": "Myslav",
-    "discordUserId": "246337656554782720"
+    "discordUserId": "246337656554782720",
+    "steamId": null
   },
   {
     "id": 101,
     "name": "Bo33",
-    "discordUserId": "318084702554685441"
+    "discordUserId": "318084702554685441",
+    "steamId": null
   },
   {
     "id": 102,
     "name": "Poleani",
-    "discordUserId": "411240845338083348"
+    "discordUserId": "411240845338083348",
+    "steamId": null
   },
   {
     "id": 103,
     "name": "saatens",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 104,
     "name": "Gradej96",
-    "discordUserId": "673825468432252928"
+    "discordUserId": "673825468432252928",
+    "steamId": null
   },
   {
     "id": 105,
     "name": "LEIS",
-    "discordUserId": "498601327090204674"
+    "discordUserId": "498601327090204674",
+    "steamId": null
   },
   {
     "id": 106,
     "name": "3veriles",
-    "discordUserId": "561176229995347968"
+    "discordUserId": "561176229995347968",
+    "steamId": null
   },
   {
     "id": 107,
     "name": "Papik",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 108,
     "name": "Libet",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 109,
     "name": "GODINHO",
-    "discordUserId": "595932403483279370"
+    "discordUserId": "595932403483279370",
+    "steamId": null
   },
   {
     "id": 110,
     "name": "Nyded",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 111,
     "name": "Matio",
-    "discordUserId": "497536558874755083"
+    "discordUserId": "497536558874755083",
+    "steamId": null
   },
   {
     "id": 112,
     "name": "Lewa noga",
-    "discordUserId": "556095909297913866"
+    "discordUserId": "556095909297913866",
+    "steamId": null
   },
   {
     "id": 113,
     "name": "Wetlen",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 114,
     "name": "Peli",
-    "discordUserId": "255292128882589696"
+    "discordUserId": "255292128882589696",
+    "steamId": null
   },
   {
     "id": 115,
     "name": "Adamson",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 116,
     "name": "dOLARe",
-    "discordUserId": "542757669757255702"
+    "discordUserId": "542757669757255702",
+    "steamId": null
   },
   {
     "id": 117,
     "name": "risko",
-    "discordUserId": "653349612781961237"
+    "discordUserId": "653349612781961237",
+    "steamId": null
   },
   {
     "id": 118,
     "name": "WojtekTygrys77",
-    "discordUserId": "279943444451950593"
+    "discordUserId": "279943444451950593",
+    "steamId": null
   },
   {
     "id": 119,
     "name": "Skiller",
-    "discordUserId": "392060196421107713"
+    "discordUserId": "392060196421107713",
+    "steamId": null
   },
   {
     "id": 120,
     "name": "T4kk9r",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 121,
     "name": "Korwin",
-    "discordUserId": "435492993332674571"
+    "discordUserId": "435492993332674571",
+    "steamId": null
   },
   {
     "id": 122,
     "name": "wersow",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 123,
     "name": "ZackO'Luck",
-    "discordUserId": null
-  },
+    "discordUserId": null,
+    "steamId": null },
   {
     "id": 124,
     "name": "montana",
-    "discordUserId": "293820084890370058"
+    "discordUserId": "293820084890370058",
+    "steamId": null
   },
   {
     "id": 125,
     "name": "Arrrkadio",
-    "discordUserId": "620316807873429515"
+    "discordUserId": "620316807873429515",
+    "steamId": null
   },
   {
     "id": 126,
     "name": "Buli",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 127,
     "name": "SmyrSmyrSmyr",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 128,
     "name": "domin",
-    "discordUserId": "314840488735801346"
+    "discordUserId": "314840488735801346",
+    "steamId": null
   },
   {
     "id": 129,
     "name": "FoXello",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 130,
     "name": "DawTul",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 131,
     "name": "Daterix",
-    "discordUserId": "653305357522960405"
+    "discordUserId": "653305357522960405",
+    "steamId": null
   },
   {
     "id": 132,
     "name": "Hash",
-    "discordUserId": "289107062820962305"
+    "discordUserId": "289107062820962305",
+    "steamId": null
   },
   {
     "id": 133,
     "name": "Matias",
-    "discordUserId": "337581215945195521"
+    "discordUserId": "337581215945195521",
+    "steamId": null
   },
   {
     "id": 134,
     "name": "bartekkolan",
-    "discordUserId": "627863336964325405"
+    "discordUserId": "627863336964325405",
+    "steamId": null
   },
   {
     "id": 135,
     "name": "Speed76",
-    "discordUserId": "712330265124405339"
+    "discordUserId": "712330265124405339",
+    "steamId": null
   },
   {
     "id": 136,
     "name": "Kwadrat",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 137,
     "name": "Miś",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 138,
     "name": "KAPEC_11",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 139,
     "name": "Alcmann",
-    "discordUserId": "626381949031940096"
+    "discordUserId": "626381949031940096",
+    "steamId": "76561198230386772"
   },
   {
     "id": 140,
     "name": "Kamil Kostyra",
-    "discordUserId": "355032368274472961"
+    "discordUserId": "355032368274472961",
+    "steamId": null
   },
   {
     "id": 141,
     "name": "Quorthon",
-    "discordUserId": "357212233895378945"
+    "discordUserId": "357212233895378945",
+    "steamId": null
   },
   {
     "id": 142,
     "name": "Cortez",
-    "discordUserId": "533625968087138325"
+    "discordUserId": "533625968087138325",
+    "steamId": null
   },
   {
     "id": 143,
     "name": "Godl1ke",
-    "discordUserId": "692820881960861696"
+    "discordUserId": "692820881960861696",
+    "steamId": null
   },
   {
     "id": 144,
     "name": "PusteQ",
-    "discordUserId": "183265192803696641"
+    "discordUserId": "183265192803696641",
+    "steamId": null
   },
   {
     "id": 145,
     "name": "ajame1985",
-    "discordUserId": "388756741162008576"
+    "discordUserId": "388756741162008576",
+    "steamId": null
   },
   {
     "id": 147,
     "name": "Bibr",
-    "discordUserId": "301757690898677761"
+    "discordUserId": "301757690898677761",
+    "steamId": null
   },
   {
     "id": 148,
     "name": "Damian Borkowski",
-    "discordUserId": "415873812895105024"
+    "discordUserId": "415873812895105024",
+    "steamId": null
   },
   {
     "id": 149,
     "name": "Jakub Jaworski",
-    "discordUserId": "419255002914226177"
+    "discordUserId": "419255002914226177",
+    "steamId": null
   },
   {
     "id": 150,
     "name": "Epilpstd",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 151,
     "name": "MA100DONT",
-    "discordUserId": "370624843818991616"
+    "discordUserId": "370624843818991616",
+    "steamId": null
   },
   {
     "id": 152,
     "name": "Mateusz Sklorz",
-    "discordUserId": "380443096615223297"
+    "discordUserId": "380443096615223297",
+    "steamId": null
   },
   {
     "id": 153,
     "name": "Mateusz Ochenkowski",
-    "discordUserId": "268431765570322432"
+    "discordUserId": "268431765570322432",
+    "steamId": "76561198055840269"
   },
   {
     "id": 154,
     "name": "SRC_kamilek2424",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 155,
     "name": "ultraknur55",
-    "discordUserId": "601875035577384970"
+    "discordUserId": "601875035577384970",
+    "steamId": null
   },
   {
     "id": 156,
     "name": "kokosowymurzyn",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 157,
     "name": "Aksel",
-    "discordUserId": "634786802846400512"
+    "discordUserId": "634786802846400512",
+    "steamId": null
   },
   {
     "id": 158,
     "name": "kawulok111",
-    "discordUserId": "374261216396181505"
+    "discordUserId": "374261216396181505",
+    "steamId": null
   },
   {
     "id": 159,
     "name": "Treteeek",
-    "discordUserId": "246576716728893440"
+    "discordUserId": "246576716728893440",
+    "steamId": null
   },
   {
     "id": 160,
     "name": "TheAntoniusz",
-    "discordUserId": "715295107632594956"
+    "discordUserId": "715295107632594956",
+    "steamId": null
   },
   {
     "id": 161,
     "name": "Rojospeedway",
-    "discordUserId": "734333569702297680"
+    "discordUserId": "734333569702297680",
+    "steamId": null
   },
   {
     "id": 162,
     "name": "Sulejewsky",
-    "discordUserId": "267055525668192267"
+    "discordUserId": "267055525668192267",
+    "steamId": null
   },
   {
     "id": 163,
     "name": "Ozkee",
-    "discordUserId": "732698618267435079"
+    "discordUserId": "732698618267435079",
+    "steamId": null
   },
   {
     "id": 164,
     "name": "invi1ctus777",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 165,
     "name": "Twaardy",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 166,
     "name": "Iggy",
-    "discordUserId": "282557466758086656"
+    "discordUserId": "282557466758086656",
+    "steamId": null
   },
   {
     "id": 167,
     "name": "fast knob",
-    "discordUserId": "216206335333761024"
+    "discordUserId": "216206335333761024",
+    "steamId": null
   },
   {
     "id": 168,
     "name": "gwizdek3",
-    "discordUserId": "660563103796297745"
+    "discordUserId": "660563103796297745",
+    "steamId": null
   },
   {
     "id": 169,
     "name": "Shadow23",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 170,
     "name": "Przemas507",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 171,
     "name": "BoroSBM",
-    "discordUserId": "388750294323953664"
+    "discordUserId": "388750294323953664",
+    "steamId": null
   },
   {
     "id": 172,
     "name": "Verqlan",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 173,
     "name": "HaSuHaSu",
-    "discordUserId": "315915245333905429"
+    "discordUserId": "315915245333905429",
+    "steamId": null
   },
   {
     "id": 174,
     "name": "KONARFkosz",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 175,
     "name": "Emsikowy",
-    "discordUserId": "737940362240327722"
+    "discordUserId": "737940362240327722",
+    "steamId": null
   },
   {
     "id": 176,
     "name": "Kielkozaur",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 177,
     "name": "Mysza",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 178,
     "name": "Valtteri",
-    "discordUserId": "668425480902541323"
+    "discordUserId": "668425480902541323",
+    "steamId": null
   },
   {
     "id": 179,
     "name": "Susuke15",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 180,
     "name": "Mac13j",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 181,
     "name": "TomChuck90",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 182,
     "name": "Hołda Jarek",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 183,
     "name": "MariuszAd",
-    "discordUserId": "748970031198765106"
+    "discordUserId": "748970031198765106",
+    "steamId": null
   },
   {
     "id": 184,
     "name": "Aubameyang47",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 185,
     "name": "RFWEC",
-    "discordUserId": "469183521337114624"
+    "discordUserId": "469183521337114624",
+    "steamId": null
   },
   {
     "id": 186,
     "name": "Liseu",
-    "discordUserId": "408628924575121408"
+    "discordUserId": "408628924575121408",
+    "steamId": null
   },
   {
     "id": 187,
     "name": "Sheehan",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 188,
     "name": "Filton",
-    "discordUserId": "329335987283034113"
+    "discordUserId": "329335987283034113",
+    "steamId": null
   },
   {
     "id": 189,
     "name": "Car Box",
-    "discordUserId": "546444404525760522"
+    "discordUserId": "546444404525760522",
+    "steamId": null
   },
   {
     "id": 190,
     "name": "Bedi4776",
-    "discordUserId": "673210433011974197"
+    "discordUserId": "673210433011974197",
+    "steamId": null
   },
   {
     "id": 191,
     "name": "chmielson",
-    "discordUserId": "663059650375319562"
+    "discordUserId": "663059650375319562",
+    "steamId": null
   },
   {
     "id": 192,
     "name": "XxBigxDaddyX",
-    "discordUserId": "700706450946654279"
+    "discordUserId": "700706450946654279",
+    "steamId": null
   },
   {
     "id": 193,
     "name": "Fancik",
-    "discordUserId": "481096510306648075"
+    "discordUserId": "481096510306648075",
+    "steamId": null
   },
   {
     "id": 194,
     "name": "piter",
-    "discordUserId": "561520169898475520"
+    "discordUserId": "561520169898475520",
+    "steamId": null
   },
   {
     "id": 196,
     "name": "Bartosz Juszczak",
-    "discordUserId": "203277526259335169"
+    "discordUserId": "203277526259335169",
+    "steamId": null
   },
   {
     "id": 197,
     "name": "Daro",
-    "discordUserId": "628976914370920449"
+    "discordUserId": "628976914370920449",
+    "steamId": null
   },
   {
     "id": 198,
     "name": "Ju Hamsterberg",
-    "discordUserId": "338434397562732544"
+    "discordUserId": "338434397562732544",
+    "steamId": null
   },
   {
     "id": 199,
     "name": "JML_Golomp",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 200,
     "name": "pawbek6229",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 201,
     "name": "FranekDolas_10",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 202,
     "name": "Iwaniwanczuk77",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 203,
     "name": "miko",
-    "discordUserId": "401504814850244620"
+    "discordUserId": "401504814850244620",
+    "steamId": null
   },
   {
     "id": 204,
     "name": "ACKA",
-    "discordUserId": "343458391378755584"
+    "discordUserId": "343458391378755584",
+    "steamId": null
   },
   {
     "id": 205,
     "name": "Verquis",
-    "discordUserId": "322136556196593676"
+    "discordUserId": "322136556196593676",
+    "steamId": null
   },
   {
     "id": 207,
     "name": "zzzzzz",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 208,
     "name": "Frevky",
-    "discordUserId": "143700602713669633"
+    "discordUserId": "143700602713669633",
+    "steamId": null
   },
   {
     "id": 209,
     "name": "DziCzekPL",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 210,
     "name": "Adi",
-    "discordUserId": "770769167392833566"
+    "discordUserId": "770769167392833566",
+    "steamId": null
   },
   {
     "id": 211,
     "name": "Aquos",
-    "discordUserId": "409469367160668163"
+    "discordUserId": "409469367160668163",
+    "steamId": null
   },
   {
     "id": 212,
     "name": "Ruscin",
-    "discordUserId": "486233541047222294"
+    "discordUserId": "486233541047222294",
+    "steamId": null
   },
   {
     "id": 213,
     "name": "Ryszard Lipton",
-    "discordUserId": "507654703568519168"
+    "discordUserId": "507654703568519168",
+    "steamId": null
   },
   {
     "id": 214,
     "name": "Captain Slow",
-    "discordUserId": "665236157700898836"
+    "discordUserId": "665236157700898836",
+    "steamId": null
   },
   {
     "id": 215,
     "name": "kubandrea",
-    "discordUserId": "774966629146165258"
+    "discordUserId": "774966629146165258",
+    "steamId": null
   },
   {
     "id": 218,
     "name": "Quench",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 219,
     "name": "WpG_Adrian",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 220,
     "name": "DAx",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 221,
     "name": "eSeMGie",
-    "discordUserId": "775113180392456202"
+    "discordUserId": "775113180392456202",
+    "steamId": null
   },
   {
     "id": 222,
     "name": "Wiśnia81",
-    "discordUserId": "286941963310202880"
+    "discordUserId": "286941963310202880",
+    "steamId": null
   },
   {
     "id": 223,
     "name": "bezu",
-    "discordUserId": "157854884668899329"
+    "discordUserId": "157854884668899329",
+    "steamId": null
   },
   {
     "id": 224,
     "name": "kokosowy",
-    "discordUserId": "400051888935927808"
+    "discordUserId": "400051888935927808",
+    "steamId": null
   },
   {
     "id": 225,
     "name": "CFL | Piotrus",
-    "discordUserId": "422800028734586890"
+    "discordUserId": "422800028734586890",
+    "steamId": null
   },
   {
     "id": 226,
     "name": "Mycha997",
-    "discordUserId": "558429019570307101"
+    "discordUserId": "558429019570307101",
+    "steamId": null
   },
   {
     "id": 227,
     "name": "deha24",
-    "discordUserId": "290517800731148288"
+    "discordUserId": "290517800731148288",
+    "steamId": null
   },
   {
     "id": 228,
     "name": "baRteq",
-    "discordUserId": "530762834968051738"
+    "discordUserId": "530762834968051738",
+    "steamId": null
   },
   {
     "id": 230,
     "name": "LukeDNB",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 231,
     "name": "BornMTI",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 234,
     "name": "issueDoctor",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 235,
     "name": "Mateo_30100",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 236,
     "name": "vOski",
-    "discordUserId": "611927024356818974"
+    "discordUserId": "611927024356818974",
+    "steamId": null
   },
   {
     "id": 237,
     "name": "pawcio_245",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 238,
     "name": "PW",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 239,
     "name": "MaciekCHO",
-    "discordUserId": "553680814723039262"
+    "discordUserId": "553680814723039262",
+    "steamId": null
   },
   {
     "id": 240,
     "name": "koltaaan",
-    "discordUserId": "690573699337945098"
+    "discordUserId": "690573699337945098",
+    "steamId": null
   },
   {
     "id": 241,
     "name": "EsrefSencer119",
-    "discordUserId": "766753948501278790"
+    "discordUserId": "766753948501278790",
+    "steamId": null
   },
   {
     "id": 242,
     "name": "Makubczak",
-    "discordUserId": "399369755347386378"
+    "discordUserId": "399369755347386378",
+    "steamId": null
   },
   {
     "id": 243,
     "name": "MoKachel",
-    "discordUserId": "691368342090416229"
+    "discordUserId": "691368342090416229",
+    "steamId": null
   },
   {
     "id": 244,
     "name": "Indi",
-    "discordUserId": "395849075842613249"
+    "discordUserId": "395849075842613249",
+    "steamId": null
   },
   {
     "id": 245,
     "name": "Xedzix",
-    "discordUserId": "469261679893676071"
+    "discordUserId": "469261679893676071",
+    "steamId": null
   },
   {
     "id": 246,
     "name": "Heikki",
-    "discordUserId": "231142415698755584"
+    "discordUserId": "231142415698755584",
+    "steamId": null
   },
   {
     "id": 247,
     "name": "xCrimer",
-    "discordUserId": "237716591121268756"
+    "discordUserId": "237716591121268756",
+    "steamId": null
   },
   {
     "id": 248,
     "name": "supr4",
-    "discordUserId": "190831514794196993"
+    "discordUserId": "190831514794196993",
+    "steamId": null
   },
   {
     "id": 249,
     "name": "PatrickO",
-    "discordUserId": "466952517494898713"
+    "discordUserId": "466952517494898713",
+    "steamId": null
   },
   {
     "id": 250,
     "name": "Ja.Kubix",
-    "discordUserId": "595268354105802762"
+    "discordUserId": "595268354105802762",
+    "steamId": null
   },
   {
     "id": 251,
     "name": "NIKX2008",
-    "discordUserId": "688065832256798771"
+    "discordUserId": "688065832256798771",
+    "steamId": null
   },
   {
     "id": 253,
     "name": "Laven (Mateusz Mazik)",
-    "discordUserId": "362693721889964034"
+    "discordUserId": "362693721889964034",
+    "steamId": null
   },
   {
     "id": 254,
     "name": "GrzAnka",
-    "discordUserId": "692109220778213446"
+    "discordUserId": "692109220778213446",
+    "steamId": null
   },
   {
     "id": 255,
     "name": "driffteroo",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 256,
     "name": "młody yerba",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 257,
     "name": "piahvr",
-    "discordUserId": "385846602989961217"
+    "discordUserId": "385846602989961217",
+    "steamId": null
   },
   {
     "id": 258,
     "name": "Python is love",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 259,
     "name": "Mipeciak",
-    "discordUserId": "714491514646036581"
+    "discordUserId": "714491514646036581",
+    "steamId": "76561198407805579"
   },
   {
     "id": 260,
     "name": "Filipień",
-    "discordUserId": "544558223244525582"
+    "discordUserId": "544558223244525582",
+    "steamId": null
   },
   {
     "id": 261,
     "name": "Ojciec Dyktator",
-    "discordUserId": "384432809374121985"
+    "discordUserId": "384432809374121985",
+    "steamId": null
   },
   {
     "id": 262,
     "name": "Antek",
-    "discordUserId": "709815181127057490"
+    "discordUserId": "709815181127057490",
+    "steamId": null
   },
   {
     "id": 263,
     "name": "HotViefiur",
-    "discordUserId": "801429115529199656"
+    "discordUserId": "801429115529199656",
+    "steamId": null
   },
   {
     "id": 264,
     "name": "NIX00N",
-    "discordUserId": "637191929909477376"
+    "discordUserId": "637191929909477376",
+    "steamId": null
   },
   {
     "id": 265,
     "name": "Volby",
-    "discordUserId": "202131802096271361"
+    "discordUserId": "202131802096271361",
+    "steamId": null
   },
   {
     "id": 267,
     "name": "Goldzik_PL",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 268,
     "name": "Zygfryd",
-    "discordUserId": "308573097915842561"
+    "discordUserId": "308573097915842561",
+    "steamId": null
   },
   {
     "id": 269,
     "name": "piachur",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 270,
     "name": "Satinz",
-    "discordUserId": "418500844112052234"
+    "discordUserId": "418500844112052234",
+    "steamId": null
   },
   {
     "id": 271,
     "name": "Rejsi",
-    "discordUserId": "344061451096293377"
+    "discordUserId": "344061451096293377",
+    "steamId": null
   },
   {
     "id": 272,
     "name": "Witiosza",
-    "discordUserId": "486530101362819082"
+    "discordUserId": "486530101362819082",
+    "steamId": null
   },
   {
     "id": 273,
     "name": "Filippoox0",
-    "discordUserId": "525760043862196224"
+    "discordUserId": "525760043862196224",
+    "steamId": null
   },
   {
     "id": 274,
     "name": "Zmora",
-    "discordUserId": "453556870494289932"
+    "discordUserId": "453556870494289932",
+    "steamId": null
   },
   {
     "id": 275,
     "name": "Kamil Wygonik",
-    "discordUserId": "788118972914466827"
+    "discordUserId": "788118972914466827",
+    "steamId": null
   },
   {
     "id": 276,
     "name": "Evo",
-    "discordUserId": "397785566848221204"
+    "discordUserId": "397785566848221204",
+    "steamId": null
   },
   {
     "id": 277,
     "name": "ThePatrickyo",
-    "discordUserId": "338659091679281164"
+    "discordUserId": "338659091679281164",
+    "steamId": null
   },
   {
     "id": 278,
     "name": "DxMack7348",
-    "discordUserId": "665988875050811393"
+    "discordUserId": "665988875050811393",
+    "steamId": null
   },
   {
     "id": 279,
     "name": "Tele",
-    "discordUserId": "306138235724365824"
+    "discordUserId": "306138235724365824",
+    "steamId": null
   },
   {
     "id": 281,
     "name": "Mateusz Bluszcz",
-    "discordUserId": "650021850759430144"
+    "discordUserId": "650021850759430144",
+    "steamId": null
   },
   {
     "id": 282,
     "name": "bwoah",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 283,
     "name": "RaceZ",
-    "discordUserId": "797403234502967308"
+    "discordUserId": "797403234502967308",
+    "steamId": "76561198331544776"
   },
   {
     "id": 284,
     "name": "Sielu",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 285,
     "name": "Maryan",
-    "discordUserId": "616314074174849036"
+    "discordUserId": "616314074174849036",
+    "steamId": null
   },
   {
     "id": 286,
     "name": "Carvin",
-    "discordUserId": "111473046870646784"
+    "discordUserId": "111473046870646784",
+    "steamId": null
   },
   {
     "id": 287,
     "name": "Dudeczny",
-    "discordUserId": "462959592381349889"
+    "discordUserId": "462959592381349889",
+    "steamId": "76561198053333037"
   },
   {
     "id": 288,
     "name": "Asff (Oliwier K)",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 289,
     "name": "Tomechkyn",
-    "discordUserId": "376070514017566722"
+    "discordUserId": "376070514017566722",
+    "steamId": null
   },
   {
     "id": 290,
     "name": "KimDzongKlimczak",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 291,
     "name": "molibdenowypszemek",
-    "discordUserId": "226361816182161410"
+    "discordUserId": "226361816182161410",
+    "steamId": null
   },
   {
     "id": 292,
     "name": "Reyos",
-    "discordUserId": "250367142073991178"
+    "discordUserId": "250367142073991178",
+    "steamId": "76561198086465674"
   },
   {
     "id": 294,
     "name": "Misio",
-    "discordUserId": "667755374132330496"
+    "discordUserId": "667755374132330496",
+    "steamId": null
   },
   {
     "id": 295,
     "name": "mgt",
-    "discordUserId": "440148302344749056"
+    "discordUserId": "440148302344749056",
+    "steamId": null
   },
   {
     "id": 296,
     "name": "YoMenik",
-    "discordUserId": "344620409301499906"
+    "discordUserId": "344620409301499906",
+    "steamId": null
   },
   {
     "id": 297,
     "name": "Faer",
-    "discordUserId": "318431913851486208"
+    "discordUserId": "318431913851486208",
+    "steamId": null
   },
   {
     "id": 298,
     "name": "KingKong",
-    "discordUserId": "546790954070310922"
+    "discordUserId": "546790954070310922",
+    "steamId": null
   },
   {
     "id": 300,
     "name": "Mattonard",
-    "discordUserId": "495925237616214027"
+    "discordUserId": "495925237616214027",
+    "steamId": null
   },
   {
     "id": 301,
     "name": "M_J_C",
-    "discordUserId": "448913150281252864"
+    "discordUserId": "448913150281252864",
+    "steamId": null
   },
   {
     "id": 302,
     "name": "Lech33",
-    "discordUserId": "695227746053390347"
+    "discordUserId": "695227746053390347",
+    "steamId": null
   },
   {
     "id": 303,
     "name": "Murek",
-    "discordUserId": "313754922824892419"
+    "discordUserId": "313754922824892419",
+    "steamId": null
   },
   {
     "id": 304,
     "name": "S3B1X",
-    "discordUserId": "382941270206709760"
+    "discordUserId": "382941270206709760",
+    "steamId": null
   },
   {
     "id": 305,
     "name": "ViWaldi",
-    "discordUserId": "413050149648990239"
+    "discordUserId": "413050149648990239",
+    "steamId": null
   },
   {
     "id": 306,
     "name": "Jimmy Choo",
-    "discordUserId": "361498342297174018"
+    "discordUserId": "361498342297174018",
+    "steamId": null
   },
   {
     "id": 307,
     "name": "yeti",
-    "discordUserId": "299972663789748224"
+    "discordUserId": "299972663789748224",
+    "steamId": null
   },
   {
     "id": 308,
     "name": "DEBE",
-    "discordUserId": "320578041690718210"
+    "discordUserId": "320578041690718210",
+    "steamId": null
   },
   {
     "id": 309,
     "name": "Matti",
-    "discordUserId": "412645068516622347"
+    "discordUserId": "412645068516622347",
+    "steamId": null
   },
   {
     "id": 310,
     "name": "Asaf",
-    "discordUserId": "396427045929746434"
+    "discordUserId": "396427045929746434",
+    "steamId": null
   },
   {
     "id": 311,
     "name": "Parys",
-    "discordUserId": "388402564569497600"
+    "discordUserId": "388402564569497600",
+    "steamId": null
   },
   {
     "id": 312,
     "name": "SenTex",
-    "discordUserId": "351798919421886464"
+    "discordUserId": "351798919421886464",
+    "steamId": null
   },
   {
     "id": 313,
     "name": "MikkerSil",
-    "discordUserId": "352555538871091211"
+    "discordUserId": "352555538871091211",
+    "steamId": null
   },
   {
     "id": 314,
     "name": "Monki",
-    "discordUserId": "580802208191217675"
+    "discordUserId": "580802208191217675",
+    "steamId": null
   },
   {
     "id": 316,
     "name": "Paszyna",
-    "discordUserId": "671728097208303700"
+    "discordUserId": "671728097208303700",
+    "steamId": "76561199136895686"
   },
   {
     "id": 317,
     "name": "salowsky",
-    "discordUserId": "287593603096772618"
+    "discordUserId": "287593603096772618",
+    "steamId": null
   },
   {
     "id": 318,
     "name": "peszczyk",
-    "discordUserId": "464550837277032458"
+    "discordUserId": "464550837277032458",
+    "steamId": null
   },
   {
     "id": 319,
     "name": "Noshi",
-    "discordUserId": "613663900214493185"
+    "discordUserId": "613663900214493185",
+    "steamId": "76561198798913959"
   },
   {
     "id": 320,
     "name": "Haubica",
-    "discordUserId": "709351321702105089"
+    "discordUserId": "709351321702105089",
+    "steamId": null
   },
   {
     "id": 321,
     "name": "Chinaski",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 322,
     "name": "hebefeke",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 323,
     "name": "Robert Cukrzyca",
-    "discordUserId": "913806734257192990"
+    "discordUserId": "913806734257192990",
+    "steamId": null
   },
   {
     "id": 324,
     "name": "Numerek",
-    "discordUserId": "302851103865962497"
+    "discordUserId": "302851103865962497",
+    "steamId": null
   },
   {
     "id": 325,
     "name": "Erkow",
-    "discordUserId": "686636820196491305"
+    "discordUserId": "686636820196491305",
+    "steamId": null
   },
   {
     "id": 326,
     "name": "Buglix",
-    "discordUserId": "610529375422644242"
+    "discordUserId": "610529375422644242",
+    "steamId": null
   },
   {
     "id": 327,
     "name": "kuchsee",
-    "discordUserId": "207910514573967360"
+    "discordUserId": "207910514573967360",
+    "steamId": null
   },
   {
     "id": 328,
     "name": "chogacz",
-    "discordUserId": "285388420430430210"
+    "discordUserId": "285388420430430210",
+    "steamId": null
   },
   {
     "id": 329,
     "name": "frostb1te",
-    "discordUserId": "333594002303483904"
+    "discordUserId": "333594002303483904",
+    "steamId": null
   },
   {
     "id": 330,
     "name": "a6riz",
-    "discordUserId": "258313712824221697"
+    "discordUserId": "258313712824221697",
+    "steamId": null
   },
   {
     "id": 331,
     "name": "Janeq",
-    "discordUserId": "680133209564250172"
+    "discordUserId": "680133209564250172",
+    "steamId": null
   },
   {
     "id": 332,
     "name": "LennY",
-    "discordUserId": "408328410549583873"
+    "discordUserId": "408328410549583873",
+    "steamId": null
   },
   {
     "id": 334,
     "name": "Langier007",
-    "discordUserId": "427882831633711106"
+    "discordUserId": "427882831633711106",
+    "steamId": null
   },
   {
     "id": 335,
     "name": "ppompka",
-    "discordUserId": "694199126346170408"
+    "discordUserId": "694199126346170408",
+    "steamId": null
   },
   {
     "id": 336,
     "name": "sp33dy",
-    "discordUserId": "218488370526027777"
+    "discordUserId": "218488370526027777",
+    "steamId": null
   },
   {
     "id": 337,
     "name": "Marcelak",
-    "discordUserId": "709037089974648842"
+    "discordUserId": "709037089974648842",
+    "steamId": "76561199055377970"
   },
   {
     "id": 338,
     "name": "Zapadzior",
-    "discordUserId": "414877777464918027"
+    "discordUserId": "414877777464918027",
+    "steamId": null
   },
   {
     "id": 339,
     "name": "Krajes",
-    "discordUserId": "798265837105709077"
+    "discordUserId": "798265837105709077",
+    "steamId": null
   },
   {
     "id": 340,
     "name": "19Robek95",
-    "discordUserId": "474642761916743680"
+    "discordUserId": "474642761916743680",
+    "steamId": null
   },
   {
     "id": 341,
     "name": "wzbogacona mieszanka paliwowa",
-    "discordUserId": "601033938798116897"
+    "discordUserId": "601033938798116897",
+    "steamId": null
   },
   {
     "id": 342,
     "name": "Kasztan",
-    "discordUserId": "234285222420676608"
+    "discordUserId": "234285222420676608",
+    "steamId": null
   },
   {
     "id": 343,
     "name": "Kubezus",
-    "discordUserId": "565609579455447115"
+    "discordUserId": "565609579455447115",
+    "steamId": null
   },
   {
     "id": 344,
     "name": "Brotlan",
-    "discordUserId": "575759979491885060"
+    "discordUserId": "575759979491885060",
+    "steamId": null
   },
   {
     "id": 345,
     "name": "Póki",
-    "discordUserId": "296685651309494272"
+    "discordUserId": "296685651309494272",
+    "steamId": null
   },
   {
     "id": 346,
     "name": "mateusz1853",
-    "discordUserId": "482277283219111941"
+    "discordUserId": "482277283219111941",
+    "steamId": "76561198326830741"
   },
   {
     "id": 347,
     "name": "S0app",
-    "discordUserId": "694152600781848627"
+    "discordUserId": "694152600781848627",
+    "steamId": null
   },
   {
     "id": 348,
     "name": "Billy",
-    "discordUserId": "657655610363609089"
+    "discordUserId": "657655610363609089",
+    "steamId": null
   },
   {
     "id": 349,
     "name": "Vettel24",
-    "discordUserId": "651857447580991502"
+    "discordUserId": "651857447580991502",
+    "steamId": null
   },
   {
     "id": 350,
     "name": "Żabcia cię pokona",
-    "discordUserId": "801535682149351445"
+    "discordUserId": "801535682149351445",
+    "steamId": null
   },
   {
     "id": 351,
     "name": "Sneeky",
-    "discordUserId": "633558357629992961"
+    "discordUserId": "633558357629992961",
+    "steamId": null
   },
   {
     "id": 353,
     "name": "m1entus",
-    "discordUserId": "328475445743976450"
+    "discordUserId": "328475445743976450",
+    "steamId": null
   },
   {
     "id": 354,
     "name": "HawaiiDriver",
-    "discordUserId": "440555933970464768"
+    "discordUserId": "440555933970464768",
+    "steamId": null
   },
   {
     "id": 355,
     "name": "Oski7911",
-    "discordUserId": "376356639143624727"
+    "discordUserId": "376356639143624727",
+    "steamId": null
   },
   {
     "id": 356,
     "name": "SeraS",
-    "discordUserId": "361080026206306305"
+    "discordUserId": "361080026206306305",
+    "steamId": null
   },
   {
     "id": 357,
     "name": "BINOTTUS",
-    "discordUserId": "701815393039155240"
+    "discordUserId": "701815393039155240",
+    "steamId": null
   },
   {
     "id": 358,
     "name": "piterka91",
-    "discordUserId": "430429911229005834"
+    "discordUserId": "430429911229005834",
+    "steamId": null
   },
   {
     "id": 359,
     "name": "Przymus",
-    "discordUserId": "679029486162935818"
+    "discordUserId": "679029486162935818",
+    "steamId": null
   },
   {
     "id": 360,
     "name": "Mateusz Najzer",
-    "discordUserId": "548573224561147904"
+    "discordUserId": "548573224561147904",
+    "steamId": null
   },
   {
     "id": 361,
     "name": "kubajto",
-    "discordUserId": null
+    "discordUserId": "753708487397212192",
+    "steamId": "76561199089736524"
   },
   {
     "id": 362,
     "name": "Walec",
-    "discordUserId": "405465586672599040"
+    "discordUserId": "405465586672599040",
+    "steamId": null
   },
   {
     "id": 363,
     "name": "3lockk",
-    "discordUserId": "599341655312564247"
+    "discordUserId": "599341655312564247",
+    "steamId": null
   },
   {
     "id": 364,
     "name": "m.w.k",
-    "discordUserId": "795692284184100864"
+    "discordUserId": "795692284184100864",
+    "steamId": null
   },
   {
     "id": 365,
     "name": "Stevencky",
-    "discordUserId": "419925445572558858"
+    "discordUserId": "419925445572558858",
+    "steamId": null
   },
   {
     "id": 368,
     "name": "Kubala",
-    "discordUserId": "640834683617148929"
+    "discordUserId": "640834683617148929",
+    "steamId": null
   },
   {
     "id": 369,
     "name": "Krzychu",
-    "discordUserId": "933081172282576976"
+    "discordUserId": "933081172282576976",
+    "steamId": null
   },
   {
     "id": 370,
     "name": "Bearl",
-    "discordUserId": "449242626588147754"
+    "discordUserId": "449242626588147754",
+    "steamId": null
   },
   {
     "id": 371,
     "name": "RikolaRukola",
-    "discordUserId": "771332982975758338"
+    "discordUserId": "771332982975758338",
+    "steamId": null
   },
   {
     "id": 372,
     "name": "ALV",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 373,
     "name": "ikerooo",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 374,
     "name": "BasoN",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 375,
     "name": "mr_brOz",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 376,
     "name": "Nabalamussa",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 377,
     "name": "Beliver",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 378,
     "name": "magnummm",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 379,
     "name": "Niko Hujkenberg",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 380,
     "name": "singort",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 381,
     "name": "MikiBaka",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 382,
     "name": "Kofin",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 383,
     "name": "DariuszBiceps",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 384,
     "name": "MiZiU_Triceps",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 385,
     "name": "JohnyBezczelPL",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 386,
     "name": "ZelaznyAdrian",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 387,
     "name": "Baale13-F1",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 388,
     "name": "Kejran",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 389,
     "name": "cacek03",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 390,
     "name": "xdawidko",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 391,
     "name": "Parus85",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 392,
     "name": "Keramzytowy Mocarz",
-    "discordUserId": "771067231358025769"
+    "discordUserId": "771067231358025769",
+    "steamId": null
   },
   {
     "id": 393,
     "name": "Montoya",
-    "discordUserId": "273842612300021760"
+    "discordUserId": "273842612300021760",
+    "steamId": null
   },
   {
     "id": 394,
     "name": "Ilddor",
-    "discordUserId": "131816357980405760"
+    "discordUserId": "131816357980405760",
+    "steamId": null
   },
   {
     "id": 395,
     "name": "Bartosz Sypniewski",
-    "discordUserId": "228196084701331457"
+    "discordUserId": "228196084701331457",
+    "steamId": null
   },
   {
     "id": 396,
     "name": "Krzysztof Panek",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 397,
     "name": "Kacper Sułkowski",
-    "discordUserId": "205393194291036170"
+    "discordUserId": "205393194291036170",
+    "steamId": null
   },
   {
     "id": 398,
     "name": "Jakub Mostowski",
-    "discordUserId": "267255810164260864"
+    "discordUserId": "267255810164260864",
+    "steamId": null
   },
   {
     "id": 399,
     "name": "Grigo",
-    "discordUserId": "461224366969978883"
+    "discordUserId": "461224366969978883",
+    "steamId": null
   },
   {
     "id": 400,
     "name": "Michał Kosik",
-    "discordUserId": "372071652785127444"
+    "discordUserId": "372071652785127444",
+    "steamId": null
   },
   {
     "id": 401,
     "name": "flamenco27lgbt",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 402,
     "name": "KUBI",
-    "discordUserId": "359782448047063042"
+    "discordUserId": "359782448047063042",
+    "steamId": null
   },
   {
     "id": 403,
     "name": "DEJV",
-    "discordUserId": "329188113559715848"
+    "discordUserId": "329188113559715848",
+    "steamId": null
   },
   {
     "id": 404,
     "name": "MEGAzord",
-    "discordUserId": "242010493735141376"
+    "discordUserId": "242010493735141376",
+    "steamId": null
   },
   {
     "id": 405,
     "name": "DziadekZygmunt",
-    "discordUserId": "451822965819179020"
+    "discordUserId": "451822965819179020",
+    "steamId": null
   },
   {
     "id": 406,
     "name": "kubownik_187er",
-    "discordUserId": "351378900170964993"
+    "discordUserId": "351378900170964993",
+    "steamId": null
   },
   {
     "id": 407,
     "name": "Tori Black",
-    "discordUserId": "670983885978599454"
+    "discordUserId": "670983885978599454",
+    "steamId": null
   },
   {
     "id": 408,
     "name": "FSO Polonez",
-    "discordUserId": "490190621630398474"
+    "discordUserId": "490190621630398474",
+    "steamId": null
   },
   {
     "id": 409,
     "name": "Majkel",
-    "discordUserId": "358670766990032917"
+    "discordUserId": "358670766990032917",
+    "steamId": null
   },
   {
     "id": 410,
     "name": "TheKaRuLaK",
-    "discordUserId": "781529866268049438"
+    "discordUserId": "781529866268049438",
+    "steamId": null
   },
   {
     "id": 411,
     "name": "ORTON TO KOZAK",
-    "discordUserId": "467772290151481354"
+    "discordUserId": "467772290151481354",
+    "steamId": "76561198229703840"
   },
   {
     "id": 412,
     "name": "Mikolajbokto",
-    "discordUserId": "852634669476085782"
+    "discordUserId": "852634669476085782",
+    "steamId": null
   },
   {
     "id": 413,
     "name": "David Evening",
-    "discordUserId": "544186030090092555"
+    "discordUserId": "544186030090092555",
+    "steamId": null
   },
   {
     "id": 414,
     "name": "Piczeer",
-    "discordUserId": "289879094513106944"
+    "discordUserId": "289879094513106944",
+    "steamId": "76561198026920666"
   },
   {
     "id": 415,
     "name": "Klukson91",
-    "discordUserId": "551161234830000130"
+    "discordUserId": "551161234830000130",
+    "steamId": null
   },
   {
     "id": 416,
     "name": "BlackSwordman",
-    "discordUserId": "573780343488905221"
+    "discordUserId": "573780343488905221",
+    "steamId": "76561198287794803"
   },
   {
     "id": 417,
     "name": "Kamys278",
-    "discordUserId": "658329125144100905"
+    "discordUserId": "658329125144100905",
+    "steamId": null
   },
   {
     "id": 418,
     "name": "pietrekk",
-    "discordUserId": "251009808356999168"
+    "discordUserId": "251009808356999168",
+    "steamId": null
   },
   {
     "id": 419,
     "name": "Adri4N",
-    "discordUserId": "303960631524982785"
+    "discordUserId": "303960631524982785",
+    "steamId": null
   },
   {
     "id": 420,
     "name": "Yetix",
-    "discordUserId": "515521171924451329"
+    "discordUserId": "515521171924451329",
+    "steamId": null
   },
   {
     "id": 421,
     "name": "Maszyna",
-    "discordUserId": "595300766260920349"
+    "discordUserId": "595300766260920349",
+    "steamId": null
   },
   {
     "id": 422,
     "name": "MrAleks",
-    "discordUserId": "897114564888494110"
+    "discordUserId": "897114564888494110",
+    "steamId": null
   },
   {
     "id": 423,
     "name": "DRK77",
-    "discordUserId": "309348762877296652"
+    "discordUserId": "309348762877296652",
+    "steamId": null
   },
   {
     "id": 424,
     "name": "TheSznikers",
-    "discordUserId": "226625103193047040"
+    "discordUserId": "226625103193047040",
+    "steamId": null
   },
   {
     "id": 425,
     "name": "Zax",
-    "discordUserId": "471778350449426433"
+    "discordUserId": "471778350449426433",
+    "steamId": null
   },
   {
     "id": 426,
     "name": "DOX",
-    "discordUserId": "341537077474885632"
+    "discordUserId": "341537077474885632",
+    "steamId": "76561198365425256"
   },
   {
     "id": 427,
     "name": "peek",
-    "discordUserId": "458729654996434954"
+    "discordUserId": "458729654996434954",
+    "steamId": null
   },
   {
     "id": 428,
     "name": "Maruviell",
-    "discordUserId": "431826213208588290"
+    "discordUserId": "431826213208588290",
+    "steamId": null
   },
   {
     "id": 429,
     "name": "Filip_488",
-    "discordUserId": "938445293182124045"
+    "discordUserId": "938445293182124045",
+    "steamId": null
   },
   {
     "id": 430,
     "name": "Bartosz Wilk",
-    "discordUserId": "353902759029768194"
+    "discordUserId": "353902759029768194",
+    "steamId": null
   },
   {
     "id": 431,
     "name": "Kriegmeister",
-    "discordUserId": "415206446825734155"
+    "discordUserId": "415206446825734155",
+    "steamId": null
   },
   {
     "id": 432,
     "name": "Tumorm",
-    "discordUserId": "771135289578094624"
+    "discordUserId": "771135289578094624",
+    "steamId": null
   },
   {
     "id": 433,
     "name": "Jakub Skrzydłowski",
-    "discordUserId": "486528032975224832"
+    "discordUserId": "486528032975224832",
+    "steamId": null
   },
   {
     "id": 434,
     "name": "Filiop",
-    "discordUserId": "471965837981384704"
+    "discordUserId": "471965837981384704",
+    "steamId": null
   },
   {
     "id": 435,
     "name": "Venox",
-    "discordUserId": "344513411297574913"
+    "discordUserId": "344513411297574913",
+    "steamId": null
   },
   {
     "id": 436,
     "name": "Krzysztof Górny",
-    "discordUserId": "395290643771031552"
+    "discordUserId": "395290643771031552",
+    "steamId": null
   },
   {
     "id": 437,
     "name": "Jakub Rogula",
-    "discordUserId": "900689204487544862"
+    "discordUserId": "900689204487544862",
+    "steamId": null
   },
   {
     "id": 438,
     "name": "Jakub Marciniak",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 439,
     "name": "Dawid Płotka",
-    "discordUserId": "725742440111145102"
+    "discordUserId": "725742440111145102",
+    "steamId": null
   },
   {
     "id": 440,
     "name": "Patyk",
-    "discordUserId": "255057025589968906"
+    "discordUserId": "255057025589968906",
+    "steamId": null
   },
   {
     "id": 441,
     "name": "SergiuszN",
-    "discordUserId": "894175173782167563"
+    "discordUserId": "894175173782167563",
+    "steamId": null
   },
   {
     "id": 442,
     "name": "RAY",
-    "discordUserId": "416722649511886868"
+    "discordUserId": "416722649511886868",
+    "steamId": null
   },
   {
     "id": 443,
     "name": "qwopie",
-    "discordUserId": "504642422098231307"
+    "discordUserId": "504642422098231307",
+    "steamId": null
   },
   {
     "id": 444,
     "name": "Simon Hill",
-    "discordUserId": "324210655513149443"
+    "discordUserId": "324210655513149443",
+    "steamId": null
   },
   {
     "id": 445,
     "name": "ReXu",
-    "discordUserId": "475719949931905024"
+    "discordUserId": "475719949931905024",
+    "steamId": null
   },
   {
     "id": 446,
     "name": "remingtune",
-    "discordUserId": "884888452322173008"
+    "discordUserId": "884888452322173008",
+    "steamId": null
   },
   {
     "id": 447,
     "name": "Kateshiii",
-    "discordUserId": "564828926082416662"
+    "discordUserId": "564828926082416662",
+    "steamId": null
   },
   {
     "id": 448,
     "name": "PeRsoN",
-    "discordUserId": "328924595187089411"
+    "discordUserId": "328924595187089411",
+    "steamId": null
   },
   {
     "id": 449,
     "name": "Barek",
-    "discordUserId": "469229909881913375"
+    "discordUserId": "469229909881913375",
+    "steamId": null
   },
   {
     "id": 450,
     "name": "WenqU",
-    "discordUserId": "545168338536366080"
+    "discordUserId": "545168338536366080",
+    "steamId": null
   },
   {
     "id": 451,
     "name": "Cabani",
-    "discordUserId": "548492335235858442"
+    "discordUserId": "548492335235858442",
+    "steamId": null
   },
   {
     "id": 452,
     "name": "zagi675",
-    "discordUserId": "459397626543079434"
+    "discordUserId": "459397626543079434",
+    "steamId": null
   },
   {
     "id": 453,
     "name": "boci3k",
-    "discordUserId": "146344154887094273"
+    "discordUserId": "146344154887094273",
+    "steamId": "76561198025776338"
   },
   {
     "id": 454,
     "name": "Szopę",
-    "discordUserId": "733694540380373022"
+    "discordUserId": "733694540380373022",
+    "steamId": null
   },
   {
     "id": 455,
     "name": "Debson",
-    "discordUserId": "183277610065854464"
+    "discordUserId": "183277610065854464",
+    "steamId": null
   },
   {
     "id": 456,
     "name": "miKe",
-    "discordUserId": "402543297467514880"
+    "discordUserId": "402543297467514880",
+    "steamId": null
   },
   {
     "id": 457,
     "name": "inwolw",
-    "discordUserId": "795713096647442482"
+    "discordUserId": "795713096647442482",
+    "steamId": null
   },
   {
     "id": 458,
     "name": "P4ROWA",
-    "discordUserId": "745366464583696505"
+    "discordUserId": "745366464583696505",
+    "steamId": null
   },
   {
     "id": 459,
     "name": "Damiano",
-    "discordUserId": "429199912840855553"
+    "discordUserId": "429199912840855553",
+    "steamId": null
   },
   {
     "id": 460,
     "name": "ShieldeR",
-    "discordUserId": "308273688208211968"
+    "discordUserId": "308273688208211968",
+    "steamId": "76561198180843186"
   },
   {
     "id": 461,
     "name": "rumunskidelfin",
-    "discordUserId": "718819454053777408"
+    "discordUserId": "718819454053777408",
+    "steamId": null
   },
   {
     "id": 462,
     "name": "kacperlemonLIVE",
-    "discordUserId": "434732485805342730"
+    "discordUserId": "434732485805342730",
+    "steamId": null
   },
   {
     "id": 463,
     "name": "Giorgio",
-    "discordUserId": "430430646742024219"
+    "discordUserId": "430430646742024219",
+    "steamId": null
   },
   {
     "id": 464,
     "name": "Kosmo",
-    "discordUserId": "1021863179074142278"
+    "discordUserId": "1021863179074142278",
+    "steamId": null
   },
   {
     "id": 465,
     "name": "LINIASTY",
-    "discordUserId": "1024774067716366337"
+    "discordUserId": "1024774067716366337",
+    "steamId": null
   },
   {
     "id": 466,
     "name": "trójąt",
-    "discordUserId": "1024382400232435754"
+    "discordUserId": "1024382400232435754",
+    "steamId": null
   },
   {
     "id": 467,
     "name": "kaiksce",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 468,
     "name": "MochPL",
-    "discordUserId": "1024744969312931860"
+    "discordUserId": "1024744969312931860",
+    "steamId": null
   },
   {
     "id": 469,
     "name": "Vexti",
-    "discordUserId": "976187427842560071"
+    "discordUserId": "976187427842560071",
+    "steamId": null
   },
   {
     "id": 470,
     "name": "JasonXDPL",
-    "discordUserId": "310858478052704266"
+    "discordUserId": "310858478052704266",
+    "steamId": null
   },
   {
     "id": 471,
     "name": "MIKEzPOLSKI",
-    "discordUserId": "373910815868190731"
+    "discordUserId": "373910815868190731",
+    "steamId": null
   },
   {
     "id": 472,
     "name": "Texi",
-    "discordUserId": "390485023427526657"
+    "discordUserId": "390485023427526657",
+    "steamId": null
   },
   {
     "id": 473,
     "name": "Sarius442",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 474,
     "name": "TomaszF",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 475,
     "name": "ArekRembecki",
-    "discordUserId": "319087369078964224"
+    "discordUserId": "319087369078964224",
+    "steamId": null
   },
   {
     "id": 476,
     "name": "TayLeee",
-    "discordUserId": "263399340427444224"
+    "discordUserId": "263399340427444224",
+    "steamId": null
   },
   {
     "id": 477,
     "name": "SPECTURAN",
-    "discordUserId": "705827022802255914"
+    "discordUserId": "705827022802255914",
+    "steamId": null
   },
   {
     "id": 478,
     "name": "Krusz0n",
-    "discordUserId": "477040114644680704"
+    "discordUserId": "477040114644680704",
+    "steamId": null
   },
   {
     "id": 479,
     "name": "maq",
-    "discordUserId": "240558167291854848"
+    "discordUserId": "240558167291854848",
+    "steamId": "76561198010075324"
   },
   {
     "id": 480,
     "name": "kovalsky",
-    "discordUserId": "695640384339968071"
+    "discordUserId": "695640384339968071",
+    "steamId": "76561198288286150"
   },
   {
     "id": 481,
     "name": "Mateusz Kaczmarczyk",
-    "discordUserId": "705553101595082914"
+    "discordUserId": "705553101595082914",
+    "steamId": null
   },
   {
     "id": 482,
     "name": "Geronimo321",
-    "discordUserId": "919166957893337099"
+    "discordUserId": "919166957893337099",
+    "steamId": null
   },
   {
     "id": 483,
     "name": "Byku",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 484,
     "name": "MR smietana3400",
-    "discordUserId": "767068520277344308"
+    "discordUserId": "767068520277344308",
+    "steamId": null
   },
   {
     "id": 485,
     "name": "TyingFilip011",
-    "discordUserId": "448914227525320704"
+    "discordUserId": "448914227525320704",
+    "steamId": null
   },
   {
     "id": 486,
     "name": "kontrolermpk",
-    "discordUserId": "978984320700137492"
+    "discordUserId": "978984320700137492",
+    "steamId": "76561199223794491"
   },
   {
     "id": 487,
     "name": "Collin McNugget",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 488,
     "name": "Gooral",
-    "discordUserId": "1031621182056829068"
+    "discordUserId": "1031621182056829068",
+    "steamId": null
   },
   {
     "id": 489,
     "name": "Antikz",
-    "discordUserId": "792492533367177236"
+    "discordUserId": "792492533367177236",
+    "steamId": null
   },
   {
     "id": 490,
     "name": "Camerson",
-    "discordUserId": "355418379227496448"
+    "discordUserId": "355418379227496448",
+    "steamId": null
   },
   {
     "id": 491,
     "name": "Jakub Marnik",
-    "discordUserId": "574355994755334144"
+    "discordUserId": "574355994755334144",
+    "steamId": "76561198044845047"
   },
   {
     "id": 492,
     "name": "paszek508",
-    "discordUserId": "278041262236368896"
+    "discordUserId": "278041262236368896",
+    "steamId": null
   },
   {
     "id": 493,
     "name": "Jachu",
-    "discordUserId": "409466556586917899"
+    "discordUserId": "409466556586917899",
+    "steamId": null
   },
   {
     "id": 494,
     "name": "xBambikx99",
-    "discordUserId": "917822956770574346"
+    "discordUserId": "917822956770574346",
+    "steamId": null
   },
   {
     "id": 495,
     "name": "Lil MichalYT",
-    "discordUserId": "466204614803456010"
+    "discordUserId": "466204614803456010",
+    "steamId": null
   },
   {
     "id": 496,
     "name": "Krycho203",
-    "discordUserId": "999759116782293083"
+    "discordUserId": "999759116782293083",
+    "steamId": null
   },
   {
     "id": 497,
     "name": "dormati",
-    "discordUserId": "282099110708903937"
+    "discordUserId": "282099110708903937",
+    "steamId": null
   },
   {
     "id": 498,
     "name": "BambikXDE",
-    "discordUserId": "490542897188438021"
+    "discordUserId": "490542897188438021",
+    "steamId": null
   },
   {
     "id": 499,
     "name": "Bejlu",
-    "discordUserId": null
+    "discordUserId": null,
+    "steamId": null
   },
   {
     "id": 500,
     "name": "Eli Po",
-    "discordUserId": "696263372622135297"
+    "discordUserId": "696263372622135297",
+    "steamId": "76561199226857625"
   },
   {
     "id": 501,
     "name": "Mounty",
-    "discordUserId": "304917408005488640"
+    "discordUserId": "304917408005488640",
+    "steamId": "76561198064076658"
   },
   {
     "id": 502,
     "name": "Mateusz Stalmirski",
-    "discordUserId": "254278742485106688"
+    "discordUserId": "254278742485106688",
+    "steamId": null
   },
   {
     "id": 503,
     "name": "Kamil Fejdak",
-    "discordUserId": "384783550458888194"
+    "discordUserId": "384783550458888194",
+    "steamId": "76561198353921905"
   },
   {
     "id": 504,
     "name": "Bartłomiej Kowalczyk",
-    "discordUserId": "805563432577138770"
+    "discordUserId": "805563432577138770",
+    "steamId": "76561199007392221"
   },
   {
     "id": 505,
     "name": "Marcin Kowal",
-    "discordUserId": "933838507108085770"
+    "discordUserId": "933838507108085770",
+    "steamId": null
   },
   {
     "id": 506,
     "name": "Mecenas Kaszewiak",
-    "discordUserId": "489846928192962573"
+    "discordUserId": "489846928192962573",
+    "steamId": null
   },
   {
     "id": 507,
     "name": "wlasny040poemat",
-    "discordUserId": "906528725380763688"
+    "discordUserId": "906528725380763688",
+    "steamId": null
   },
   {
     "id": 508,
     "name": "T4B4LUG4",
-    "discordUserId": "763453384011153419"
+    "discordUserId": "763453384011153419",
+    "steamId": null
   },
   {
     "id": 509,
     "name": "sirok7122",
-    "discordUserId": "325233206481911809"
+    "discordUserId": "325233206481911809",
+    "steamId": null
   },
   {
     "id": 510,
     "name": "Powerware",
-    "discordUserId": "489843138777579527"
+    "discordUserId": "489843138777579527",
+    "steamId": "76561198076858911"
   },
   {
     "id": 511,
     "name": "Brawndo",
-    "discordUserId": "348527780323131403"
+    "discordUserId": "348527780323131403",
+    "steamId": "76561198075975741"
   },
   {
     "id": 512,
     "name": "DarekF17925",
-    "discordUserId": "947577720022380544"
+    "discordUserId": "947577720022380544",
+    "steamId": null
   },
   {
     "id": 513,
     "name": "NieZnanyJack",
-    "discordUserId": "644938001771790347"
+    "discordUserId": "644938001771790347",
+    "steamId": null
   },
   {
     "id": 514,
     "name": "kacperxbisaga",
-    "discordUserId": "753965224687829161"
+    "discordUserId": "753965224687829161",
+    "steamId": null
   },
   {
     "id": 515,
     "name": "venneez",
-    "discordUserId": "675978592861290506"
+    "discordUserId": "675978592861290506",
+    "steamId": null
   },
   {
     "id": 516,
     "name": "Kapel",
-    "discordUserId": "496016447781339136"
+    "discordUserId": "496016447781339136",
+    "steamId": null
   },
   {
     "id": 517,
     "name": "KONRAD",
-    "discordUserId": "590583215517990929"
+    "discordUserId": "590583215517990929",
+    "steamId": null
   },
   {
     "id": 518,
     "name": "Patryk Hejda",
-    "discordUserId": "298418319852306432"
+    "discordUserId": "298418319852306432",
+    "steamId": null
   },
   {
     "id": 519,
     "name": "Seaman",
-    "discordUserId": "890585624216735805"
+    "discordUserId": "890585624216735805",
+    "steamId": null
   },
   {
     "id": 520,
     "name": "Patryk Pilich",
-    "discordUserId": "459014584381210636"
+    "discordUserId": "459014584381210636",
+    "steamId": "76561198002363667"
   },
   {
     "id": 521,
     "name": "Mikołaj Pacek",
-    "discordUserId": "403993800793522181"
+    "discordUserId": "403993800793522181",
+    "steamId": "76561198272808709"
   },
   {
     "id": 522,
     "name": "Łukasz Szlęzak",
-    "discordUserId": "445327689742680074"
+    "discordUserId": "445327689742680074",
+    "steamId": "76561198009055702"
   },
   {
     "id": 523,
     "name": "Andrzej Brudnicki",
-    "discordUserId": "577201849271320607"
+    "discordUserId": "577201849271320607",
+    "steamId": null
   },
   {
     "id": 524,
     "name": "dawid0919",
-    "discordUserId": "799347324891562024"
+    "discordUserId": "799347324891562024",
+    "steamId": null
   },
   {
     "id": 525,
     "name": "Hunt",
-    "discordUserId": "1066777781930823680"
+    "discordUserId": "1066777781930823680",
+    "steamId": null
   },
   {
     "id": 526,
     "name": "adren09",
-    "discordUserId": "930209770458218536"
+    "discordUserId": "930209770458218536",
+    "steamId": null
   },
   {
     "id": 527,
     "name": "Rico",
-    "discordUserId": "503630251205591100"
+    "discordUserId": "503630251205591100",
+    "steamId": null
   },
   {
     "id": 528,
     "name": "Scoobany",
-    "discordUserId": "976577274742714478"
+    "discordUserId": "976577274742714478",
+    "steamId": null
   },
   {
     "id": 529,
     "name": "Mateusz Bogusz",
-    "discordUserId": "344747466022715394"
+    "discordUserId": "344747466022715394",
+    "steamId": null
   },
   {
     "id": 530,
     "name": "Rafix4238",
-    "discordUserId": "727930779149271103"
+    "discordUserId": "727930779149271103",
+    "steamId": null
   },
   {
     "id": 531,
     "name": "franciszek",
-    "discordUserId": "815531165725360139"
+    "discordUserId": "815531165725360139",
+    "steamId": null
   },
   {
     "id": 532,
     "name": "tymek276",
-    "discordUserId": "490186945956413460"
+    "discordUserId": "490186945956413460",
+    "steamId": null
   },
   {
     "id": 533,
     "name": "HabelBabel88",
-    "discordUserId": "337220017991057408"
+    "discordUserId": "337220017991057408",
+    "steamId": null
   },
   {
     "id": 534,
     "name": "j3drzej",
-    "discordUserId": "807225571930406963"
+    "discordUserId": "807225571930406963",
+    "steamId": null
   },
   {
     "id": 535,
     "name": "Pan_Orzeszek1337",
-    "discordUserId": "776837403225620490"
+    "discordUserId": "776837403225620490",
+    "steamId": null
   },
   {
     "id": 536,
     "name": "Tajfun",
-    "discordUserId": "372413230943043586"
+    "discordUserId": "372413230943043586",
+    "steamId": null
   },
   {
     "id": 537,
     "name": "Kimi Raidkoniem",
-    "discordUserId": "700388174685274284"
+    "discordUserId": "700388174685274284",
+    "steamId": null
   },
   {
     "id": 538,
     "name": "Maciej Gotz",
-    "discordUserId": "536983355355299851"
+    "discordUserId": "536983355355299851",
+    "steamId": "76561199086662662"
   },
   {
     "id": 539,
     "name": "karo300",
-    "discordUserId": "289164967863910402"
+    "discordUserId": "289164967863910402",
+    "steamId": null
   },
   {
     "id": 540,
     "name": "ErikoSSS",
-    "discordUserId": "944598370662625280"
+    "discordUserId": "944598370662625280",
+    "steamId": null
   },
   {
     "id": 541,
     "name": "Adam Szpański",
-    "discordUserId": "516702195165429783"
+    "discordUserId": "516702195165429783",
+    "steamId": null
   },
   {
     "id": 542,
     "name": "Mateusz Hubicki",
-    "discordUserId": "291259320660787200"
+    "discordUserId": "291259320660787200",
+    "steamId": null
   },
   {
     "id": 543,
     "name": "Marcin Kotaba",
-    "discordUserId": "409469367160668163"
+    "discordUserId": "409469367160668163",
+    "steamId": null
   },
   {
     "id": 544,
     "name": "trafka",
-    "discordUserId": "644647486467604480"
+    "discordUserId": "644647486467604480",
+    "steamId": "76561198091883244"
   },
   {
     "id": 545,
     "name": "Marcin Bania",
-    "discordUserId": "361239672225005568"
+    "discordUserId": "361239672225005568",
+    "steamId": null
   },
   {
     "id": 546,
     "name": "Dawid Głowski",
-    "discordUserId": "467482180625367051"
+    "discordUserId": "467482180625367051",
+    "steamId": null
   },
   {
     "id": 547,
     "name": "Damian Czech",
-    "discordUserId": "278910162096357378"
+    "discordUserId": "278910162096357378",
+    "steamId": "76561198053532245"
   },
   {
     "id": 548,
     "name": "Grzegorz Skulski",
-    "discordUserId": "600799743072927775"
+    "discordUserId": "600799743072927775",
+    "steamId": "76561198202381048"
   },
   {
     "id": 549,
     "name": "Jerzy Wawrzyczek",
-    "discordUserId": "140225110492708865"
+    "discordUserId": "140225110492708865",
+    "steamId": "76561197988947833"
   },
   {
     "id": 550,
     "name": "Mateusz Czajkowski",
-    "discordUserId": "324985280329154563"
+    "discordUserId": "324985280329154563",
+    "steamId": null
   },
   {
     "id": 551,
     "name": "Łukasz Kumor",
-    "discordUserId": "488959223175053314"
+    "discordUserId": "488959223175053314",
+    "steamId": "76561198157159666"
   },
   {
     "id": 552,
     "name": "Patryk",
-    "discordUserId": "221591902212849664"
+    "discordUserId": "221591902212849664",
+    "steamId": null
   },
   {
     "id": 553,
     "name": "Mateusz Kmiecik",
-    "discordUserId": "301097893429772288"
+    "discordUserId": "301097893429772288",
+    "steamId": null
   },
   {
     "id": 554,
     "name": "Dawid Szwejczewski",
-    "discordUserId": "306091599761375243"
+    "discordUserId": "306091599761375243",
+    "steamId": null
   },
   {
     "id": 555,
     "name": "Jahoo",
-    "discordUserId": "409751745397522442"
+    "discordUserId": "409751745397522442",
+    "steamId": "76561198161938019"
   },
   {
     "id": 556,
     "name": "Roszek_",
-    "discordUserId": "988665434347798548"
+    "discordUserId": "988665434347798548",
+    "steamId": null
   },
   {
     "id": 557,
     "name": "Borys Lyzen",
-    "discordUserId": "1121748763615182898"
+    "discordUserId": "1121748763615182898",
+    "steamId": null
   },
   {
     "id": 558,
     "name": "Herbaciarz",
-    "discordUserId": "697339077141200906"
+    "discordUserId": "697339077141200906",
+    "steamId": null
   },
   {
     "id": 559,
     "name": "JoPeK",
-    "discordUserId": "599653334516891652"
+    "discordUserId": "599653334516891652",
+    "steamId": null
   },
   {
     "id": 560,
     "name": "MkaL",
-    "discordUserId": "320107818747428876"
+    "discordUserId": "320107818747428876",
+    "steamId": "76561198877441814"
   },
   {
     "id": 561,
-    "name": "Maciej \"Watek\" Wącior",
-    "discordUserId": "294481611527815169"
+    "name": "Maciej 'Watek' Wącior",
+    "discordUserId": "294481611527815169",
+    "steamId": null
   },
   {
     "id": 562,
     "name": "Adam Wojtala",
-    "discordUserId": "973876132350939146"
+    "discordUserId": "973876132350939146",
+    "steamId": null
   },
   {
     "id": 563,
     "name": "Dzordzo_Ulani",
-    "discordUserId": "1119755145551552522"
+    "discordUserId": "1119755145551552522",
+    "steamId": null
   },
   {
     "id": 564,
     "name": "Milosz5098",
-    "discordUserId": "1124094510541053962"
+    "discordUserId": "1124094510541053962",
+    "steamId": null
   },
   {
     "id": 565,
     "name": "Szymon",
-    "discordUserId": "447486486447652876"
+    "discordUserId": "447486486447652876",
+    "steamId": null
   },
   {
     "id": 566,
     "name": "tylde",
-    "discordUserId": "361163393689845761"
+    "discordUserId": "361163393689845761",
+    "steamId": null
   },
   {
     "id": 567,
     "name": "xDunsior",
-    "discordUserId": "337175663062679552"
+    "discordUserId": "337175663062679552",
+    "steamId": null
   },
   {
     "id": 568,
     "name": "KRE | M. Markowski",
-    "discordUserId": "673254453666644018"
+    "discordUserId": "673254453666644018",
+    "steamId": null
   },
   {
     "id": 569,
     "name": "KReduch47",
-    "discordUserId": "691970407707705416"
+    "discordUserId": "691970407707705416",
+    "steamId": null
   },
   {
     "id": 570,
     "name": "STUDZIN",
-    "discordUserId": "407555340855672832"
+    "discordUserId": "407555340855672832",
+    "steamId": null
   },
   {
     "id": 571,
     "name": "26_JANKA_",
-    "discordUserId": "506169094429736960"
+    "discordUserId": "506169094429736960",
+    "steamId": null
   },
   {
     "id": 572,
     "name": "19DewON",
-    "discordUserId": "409065488384131076"
+    "discordUserId": "409065488384131076",
+    "steamId": null
   },
   {
     "id": 573,
     "name": "ProVitiGamer",
-    "discordUserId": "844999743859851294"
+    "discordUserId": "844999743859851294",
+    "steamId": null
   },
   {
     "id": 574,
     "name": "flwy",
-    "discordUserId": "430039374869168159"
+    "discordUserId": "430039374869168159",
+    "steamId": null
   },
   {
     "id": 575,
     "name": "Simon16",
-    "discordUserId": "708267537061642260"
+    "discordUserId": "708267537061642260",
+    "steamId": null
   },
   {
     "id": 576,
     "name": "Marqq7353",
-    "discordUserId": "917064080366391386"
+    "discordUserId": "917064080366391386",
+    "steamId": null
   },
   {
     "id": 577,
     "name": "Nesteq",
-    "discordUserId": "394898981752274944"
+    "discordUserId": "394898981752274944",
+    "steamId": null
   },
   {
     "id": 578,
     "name": "Gajdziq2020",
-    "discordUserId": "694215592437350470"
+    "discordUserId": "694215592437350470",
+    "steamId": null
   },
   {
     "id": 579,
     "name": "Gruby",
-    "discordUserId": "539402134873964544"
+    "discordUserId": "539402134873964544",
+    "steamId": null
   },
   {
     "id": 580,
     "name": "ZdUni7",
-    "discordUserId": "516266288469770251"
+    "discordUserId": "516266288469770251",
+    "steamId": null
   },
   {
     "id": 581,
     "name": "Maks Radomski",
-    "discordUserId": "398977997329268736"
+    "discordUserId": "398977997329268736",
+    "steamId": null
   },
   {
     "id": 582,
     "name": "DerzyyF1",
-    "discordUserId": "715102066527436801"
+    "discordUserId": "715102066527436801",
+    "steamId": null
   },
   {
     "id": 583,
     "name": "ManieK3140",
-    "discordUserId": "335785771912921088"
+    "discordUserId": "335785771912921088",
+    "steamId": null
   },
   {
     "id": 584,
     "name": "SkiTelS",
-    "discordUserId": "377858127866888202"
+    "discordUserId": "377858127866888202",
+    "steamId": null
   },
   {
     "id": 585,
     "name": "Lesny_Zenek",
-    "discordUserId": "661676881434771532"
+    "discordUserId": "661676881434771532",
+    "steamId": null
   },
   {
     "id": 586,
     "name": "_Misza__",
-    "discordUserId": "523929325171638280"
+    "discordUserId": "523929325171638280",
+    "steamId": "76561198332448039"
   },
   {
     "id": 587,
     "name": "barciu",
-    "discordUserId": "327016753915887626"
+    "discordUserId": "327016753915887626",
+    "steamId": "76561199210364029"
   },
   {
     "id": 588,
     "name": "baxton99",
-    "discordUserId": "800839984302915625"
+    "discordUserId": "800839984302915625",
+    "steamId": null
   },
   {
     "id": 589,
     "name": "MilekTM",
-    "discordUserId": "445628379044118528"
+    "discordUserId": "445628379044118528",
+    "steamId": null
   },
   {
     "id": 590,
     "name": "forceindia",
-    "discordUserId": "549273268616429581"
+    "discordUserId": "549273268616429581",
+    "steamId": null
   },
   {
     "id": 591,
     "name": "Wiktor Trzeciecki",
-    "discordUserId": "439375682376564737"
+    "discordUserId": "439375682376564737",
+    "steamId": null
   },
   {
     "id": 592,
     "name": "dominix",
-    "discordUserId": "962024603100799066"
+    "discordUserId": "962024603100799066",
+    "steamId": null
   },
   {
     "id": 593,
     "name": "andrzej91",
-    "discordUserId": "1087158797216260147"
+    "discordUserId": "1087158797216260147",
+    "steamId": null
   },
   {
     "id": 594,
     "name": "Konias_23",
-    "discordUserId": "1012971273762111569"
+    "discordUserId": "1012971273762111569",
+    "steamId": null
   },
   {
     "id": 595,
     "name": "PMO Bartek25",
-    "discordUserId": "443679230560174083"
+    "discordUserId": "443679230560174083",
+    "steamId": null
   },
   {
     "id": 596,
     "name": "Banan",
-    "discordUserId": "770920976733044756"
+    "discordUserId": "770920976733044756",
+    "steamId": null
   },
   {
     "id": 597,
     "name": "adam0695",
-    "discordUserId": "483880790204088322"
+    "discordUserId": "483880790204088322",
+    "steamId": null
   },
   {
     "id": 598,
     "name": "BartegZ",
-    "discordUserId": "1027213668070465646"
+    "discordUserId": "1027213668070465646",
+    "steamId": null
   },
   {
     "id": 599,
     "name": "G2_stawiszu77",
-    "discordUserId": "820029899401723925"
+    "discordUserId": "820029899401723925",
+    "steamId": null
   },
   {
     "id": 600,
     "name": "Wonsiak",
-    "discordUserId": "339328849173151746"
+    "discordUserId": "339328849173151746",
+    "steamId": null
   },
   {
     "id": 601,
     "name": "Lipek",
-    "discordUserId": "783614764520833024"
+    "discordUserId": "783614764520833024",
+    "steamId": null
   },
   {
     "id": 602,
     "name": "Erno",
-    "discordUserId": "293022556322136065"
+    "discordUserId": "293022556322136065",
+    "steamId": null
   },
   {
     "id": 604,
     "name": "Kubk0M0nst3r",
-    "discordUserId": "402502647976034306"
+    "discordUserId": "402502647976034306",
+    "steamId": null
   },
   {
     "id": 605,
     "name": "Derdych4",
-    "discordUserId": "332481591680958466"
+    "discordUserId": "332481591680958466",
+    "steamId": null
   },
   {
     "id": 606,
     "name": "Teambananek1818",
-    "discordUserId": "871428523024351282"
+    "discordUserId": "871428523024351282",
+    "steamId": null
   },
   {
     "id": 607,
     "name": "-MKX-",
-    "discordUserId": "690259410588926071"
+    "discordUserId": "690259410588926071",
+    "steamId": null
   },
   {
     "id": 608,
     "name": "Kremol",
-    "discordUserId": "398529629050109952"
+    "discordUserId": "398529629050109952",
+    "steamId": null
   },
   {
     "id": 609,
     "name": "Kuba02201",
-    "discordUserId": "692634744302600222"
+    "discordUserId": "692634744302600222",
+    "steamId": null
   },
   {
     "id": 610,
     "name": "TheNess",
-    "discordUserId": "331790036771274755"
+    "discordUserId": "331790036771274755",
+    "steamId": null
   },
   {
     "id": 611,
     "name": "Krulissimo",
-    "discordUserId": "780564661212413962"
+    "discordUserId": "780564661212413962",
+    "steamId": null
   },
   {
     "id": 612,
     "name": "UwU Żelazny",
-    "discordUserId": "357182901454110732"
+    "discordUserId": "357182901454110732",
+    "steamId": null
+  },
+  {
+    "id": 613,
+    "name": "Olaf Królikowski",
+    "discordUserId": "641714058386472981",
+    "steamId": "76561198969529858"
+  },
+  {
+    "id": 614,
+    "name": "Dawid Cześnik",
+    "discordUserId": "641729250696757248",
+    "steamId": null
+  },
+  {
+    "id": 615,
+    "name": "MiZierQ",
+    "discordUserId": "978008424962998402",
+    "steamId": null
+  },
+  {
+    "id": 616,
+    "name": "Mateusz Klimczak",
+    "discordUserId": "146372574450810880",
+    "steamId": "76561198075880784"
+  },
+  {
+    "id": 617,
+    "name": "Ivailo Katinov",
+    "discordUserId": "334783021859209239",
+    "steamId": "76561198879789229"
+  },
+  {
+    "id": 618,
+    "name": "Adam Vitaso",
+    "discordUserId": "421771023843590155",
+    "steamId": "76561198358226169"
+  },
+  {
+    "id": 619,
+    "name": "Jacek Kowalewski",
+    "discordUserId": "692706625374388224",
+    "steamId": "76561199112471894"
+  },
+  {
+    "id": 620,
+    "name": "Riccardo Mariani",
+    "discordUserId": null,
+    "steamId": "76561199416593193"
+  },
+  {
+    "id": 621,
+    "name": "Patryk Maciejewski",
+    "discordUserId": "794989616767434752",
+    "steamId": "76561199371406837"
+  },
+  {
+    "id": 621,
+    "name": "Patryk Podolec",
+    "discordUserId": "243051907680043019",
+    "steamId": "76561198144391645"
+  },
+  {
+    "id": 622,
+    "name": "Paweł Stener",
+    "discordUserId": "473911776220545045",
+    "steamId": "76561198202063470"
+  },
+  {
+    "id": 623,
+    "name": "Radovan Zankel",
+    "discordUserId": "219910770333319169",
+    "steamId": "76561198142695896"
+  },
+  {
+    "id": 624,
+    "name": "Tino Rene",
+    "discordUserId": null,
+    "steamId": "76561198527445704"
+  },
+  {
+    "id": 625,
+    "name": "Wraith",
+    "discordUserId": null,
+    "steamId": "76561199342155929"
+  },
+  {
+    "id": 626,
+    "name": "Nico Visser",
+    "discordUserId": "647476927355158573",
+    "steamId": "76561198171724341"
+  },
+  {
+    "id": 627,
+    "name": "dingue",
+    "discordUserId": null,
+    "steamId": "76561199287103247"
+  },
+  {
+    "id": 628,
+    "name": "Andrzej Dzbanuszek",
+    "discordUserId": "897162509461626931",
+    "steamId": "76561198202915724"
+  },
+  {
+    "id": 629,
+    "name": "Amadeusz Stawicki",
+    "discordUserId": "325272431633629184",
+    "steamId": "76561197995735793"
+  },
+  {
+    "id": 630,
+    "name": "Paweł Gadowski",
+    "discordUserId": "312989517563035649",
+    "steamId": "76561198181093870"
+  },
+  {
+    "id": 631,
+    "name": "Piotr Nowacki",
+    "discordUserId": "383037011923042305",
+    "steamId": "76561197991816238"
+  },
+  {
+    "id": 632,
+    "name": "Adam Woźniak",
+    "discordUserId": "271051331609952257",
+    "steamId": "76561198285694792"
+  },
+  {
+    "id": 633,
+    "name": "Adrian Michalak",
+    "discordUserId": "348915676829712386",
+    "steamId": "76561198002410948"
+  },
+  {
+    "id": 634,
+    "name": "Mariusz Łebek",
+    "discordUserId": "388023865755828224",
+    "steamId": "76561198419148358"
   }
 ]

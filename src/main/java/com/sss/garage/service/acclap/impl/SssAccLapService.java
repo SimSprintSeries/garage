@@ -63,6 +63,7 @@ public class SssAccLapService implements AccLapService {
                     bestLap.setShortName(lap.getShortName());
                     bestLap.setCarName(lap.getCarName());
                     bestLap.setSteamId(steamId);
+                    bestLap.setDriver(lap.getDriver());
                     bestLap.setLaptime(convertSecondsToMinutes(bestLaptime));
                     bestLap.setSector1(convertSecondsToMinutes(bestSector1));
                     bestLap.setSector2(convertSecondsToMinutes(bestSector2));

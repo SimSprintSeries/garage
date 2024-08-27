@@ -21,6 +21,7 @@ public class DiscordUserConverter extends BaseConverter implements Converter<Dis
         final DiscordUserData data = new DiscordUserData();
 
         data.setId(source.getId());
+        Optional.ofNullable(source.getSteamId()).ifPresent(data::setSteamId);
         Optional.ofNullable(source.getAvatarId()).ifPresent(data::setAvatar);
         Optional.ofNullable(source.getDiscriminator()).ifPresent(data::setBilew);
         Optional.ofNullable(source.getDisplayName()).ifPresent(data::setDisplayName);

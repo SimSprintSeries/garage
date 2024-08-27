@@ -4,4 +4,5 @@ public class LegacyDriver {
     public Long id;
     public String name;
     public Long discordUserId;
+    public Long steamId;
 }

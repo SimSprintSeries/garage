@@ -5,6 +5,8 @@ import com.sss.garage.dev.initial.data.legacy.model.LegacyAccLap;
 import com.sss.garage.dev.initial.data.legacy.model.LegacyCarTable;
 import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
+import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.driver.DriverRepository;
 import com.sss.garage.model.track.Track;
 import com.sss.garage.model.track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class AccJsonDataLoader {
     private AccLapRepository lapRepository;
 
     private TrackRepository trackRepository;
+
+    private DriverRepository driverRepository;
 
     private ObjectMapper objectMapper;
 
@@ -130,6 +134,7 @@ public class AccJsonDataLoader {
                         accLap.setLastName(l.lastName);
                         accLap.setShortName(l.shortName);
                         accLap.setSteamId(l.steamId);
+                        accLap.setDriver(findDriverBySteamId(accLap));
                         accLap.setCarModel(l.carModel);
                         accLap.setCarName(findCarNameByCarModel(l.carModel, legacyCarTables));
                         accLap.setRaceNumber(l.raceNumber);
@@ -167,6 +172,13 @@ public class AccJsonDataLoader {
 
         return legacyCarTable.getCarModel();
     }
+    private Driver findDriverBySteamId(final AccLap lap) {
+        try {
+            return driverRepository.findBySteamId(Long.valueOf(lap.getSteamId().substring(1)));
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
 
     private Track findTrackByName(final String trackName) {
         return trackRepository.findByAccName(trackName);
@@ -180,6 +192,11 @@ public class AccJsonDataLoader {
     @Autowired
     public void setTrackRepository(final TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
+    }
+
+    @Autowired
+    public void setDriverRepository(final DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
     }
 
     @Autowired

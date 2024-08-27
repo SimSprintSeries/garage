@@ -1,5 +1,7 @@
 package com.sss.garage.dto.acclap;
 
+import com.sss.garage.dto.driver.SimpleDriverDTO;
+
 public class AccLapDTO {
     private Long id;
 
@@ -28,6 +30,8 @@ public class AccLapDTO {
     private String totalTime;
 
     private Integer totalLaps;
+
+    private SimpleDriverDTO driver;
 
     public Long getId() {
         return id;
@@ -139,5 +143,13 @@ public class AccLapDTO {
 
     public void setTotalLaps(final Integer totalLaps) {
         this.totalLaps = totalLaps;
+    }
+
+    public SimpleDriverDTO getDriver() {
+        return driver;
+    }
+
+    public void setDriver(final SimpleDriverDTO driver) {
+        this.driver = driver;
     }
 }

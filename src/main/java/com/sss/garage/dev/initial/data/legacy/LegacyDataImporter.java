@@ -110,6 +110,7 @@ public class LegacyDataImporter {
                 .map(d -> {
                     final DiscordUser user = new DiscordUser();
                     user.setId(d.discordUserId);
+                    user.setSteamId(d.steamId);
                     return user;
                 })
                 .collect(Collectors.toSet());

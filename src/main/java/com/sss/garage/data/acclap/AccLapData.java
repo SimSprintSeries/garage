@@ -1,5 +1,7 @@
 package com.sss.garage.data.acclap;
 
+import com.sss.garage.data.driver.DriverData;
+
 public class AccLapData {
     private Long id;
 
@@ -28,6 +30,8 @@ public class AccLapData {
     private String totalTime;
 
     private Integer totalLaps;
+
+    private DriverData driver;
 
     public Long getId() {
         return id;
@@ -139,5 +143,13 @@ public class AccLapData {
 
     public void setTotalLaps(final Integer totalLaps) {
         this.totalLaps = totalLaps;
+    }
+
+    public DriverData getDriver() {
+        return driver;
+    }
+
+    public void setDriver(final DriverData driver) {
+        this.driver = driver;
     }
 }

@@ -4,6 +4,8 @@ public class DiscordUserData {
 
     private Long id;
 
+    private Long steamId;
+
     private String username;
 
     private String displayName;
@@ -24,6 +26,14 @@ public class DiscordUserData {
 
     public void setId(final Long id) {
         this.id = id;
+    }
+
+    public Long getSteamId() {
+        return steamId;
+    }
+
+    public void setSteamId(final Long steamId) {
+        this.steamId = steamId;
     }
 
     public String getUsername() {

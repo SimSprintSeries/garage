@@ -20,4 +20,8 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
     List<Driver> findDriversByRace(Race race);
 
     List<Driver> findDriversByLeaguesIsContaining(League league);
+
+    @Query("SELECT d FROM Driver d LEFT JOIN DiscordUser u ON d.discordUser = u " +
+            "WHERE u.steamId = :steamId OR :steamId = NULL")
+    Driver findBySteamId(final Long steamId);
 }
