@@ -19,4 +19,6 @@ public interface LeagueRepository extends JpaRepository<League, Long> {
     Page<League> findLeaguesForDriver(Driver driver, Pageable pageable);
 
     League findByName(final String name);
+
+    League findByAccServerChampionshipId(final String accServerChampionshipId);
 }

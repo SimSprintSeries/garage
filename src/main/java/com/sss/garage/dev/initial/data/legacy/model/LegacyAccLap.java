@@ -35,6 +35,8 @@ public class LegacyAccLap {
 
     public String serverName;
 
+    public String metaData;
+
     public Integer totalTime;
 
     public Integer totalLaps;
@@ -165,5 +167,13 @@ public class LegacyAccLap {
 
     public void setServerName(String serverName) {
         this.serverName = serverName;
+    }
+
+    public String getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(final String metaData) {
+        this.metaData = metaData;
     }
 }

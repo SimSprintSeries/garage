@@ -1,6 +1,7 @@
 package com.sss.garage.model.acclap;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.track.Track;
 import jakarta.persistence.*;
 
@@ -44,7 +45,10 @@ public class AccLap {
 
     private String sessionType;
 
-    private String serverName;
+    private String metaData;
+
+    @ManyToOne
+    private League league;
 
     private Date startDate;
 
@@ -184,12 +188,20 @@ public class AccLap {
         this.sessionType = sessionType;
     }
 
-    public String getServerName() {
-        return serverName;
+    public String getMetaData() {
+        return metaData;
     }
 
-    public void setServerName(final String serverName) {
-        this.serverName = serverName;
+    public void setMetaData(final String metaData) {
+        this.metaData = metaData;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(final League league) {
+        this.league = league;
     }
 
     public Date getStartDate() {

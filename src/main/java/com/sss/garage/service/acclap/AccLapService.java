@@ -1,6 +1,7 @@
 package com.sss.garage.service.acclap;
 
 import com.sss.garage.model.acclap.AccLap;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.track.Track;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,5 +13,5 @@ public interface AccLapService {
     Optional<AccLap> getLap(final Long id);
 
     Page<AccLap> getFastestLapsForEveryDriver(final String sessionType, final Track track,
-                                              final String serverName, final String className, final Pageable pageable);
+                                              final League league, final String className, final Pageable pageable);
 }

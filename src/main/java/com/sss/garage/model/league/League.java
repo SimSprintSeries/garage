@@ -1,5 +1,6 @@
 package com.sss.garage.model.league;
 
+import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.image.Image;
@@ -56,6 +57,11 @@ public class League {
 
     @OneToOne(mappedBy = "league")
     private Image image;
+
+    @OneToMany(mappedBy="league")
+    private Set<AccLap> laps;
+
+    private String accServerChampionshipId;
 
     public Long getId() {
         return id;
@@ -160,5 +166,21 @@ public class League {
 
     public void setImage(final Image image) {
         this.image = image;
+    }
+
+    public Set<AccLap> getLaps() {
+        return laps;
+    }
+
+    public void setLaps(final Set<AccLap> laps) {
+        this.laps = laps;
+    }
+
+    public String getAccServerChampionshipId() {
+        return accServerChampionshipId;
+    }
+
+    public void setAccServerChampionshipId(final String accServerChampionshipId) {
+        this.accServerChampionshipId = accServerChampionshipId;
     }
 }

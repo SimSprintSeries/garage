@@ -151,6 +151,7 @@ public class LegacyDataImporter {
                     league.setName(l.name);
                     league.setPlatform(l.platform);
                     league.setGame(findGameByName(l.game, games));
+                    league.setAccServerChampionshipId(l.accServerChampionshipId);
                     return league;
                 })
                 .collect(Collectors.toSet());

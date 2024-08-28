@@ -7,6 +7,7 @@ public class LegacyLeague {
     public String platform;
     public String game;
     public String type;
+    public String accServerChampionshipId;
 
     public Long getId() {
         return id;
@@ -54,5 +55,13 @@ public class LegacyLeague {
 
     public void setType(final String type) {
         this.type = type;
+    }
+
+    public String getAccServerChampionshipId() {
+        return accServerChampionshipId;
+    }
+
+    public void setAccServerChampionshipId(final String accServerChampionshipId) {
+        this.accServerChampionshipId = accServerChampionshipId;
     }
 }

@@ -7,6 +7,8 @@ import com.sss.garage.model.acclap.AccLap;
 import com.sss.garage.model.acclap.AccLapRepository;
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.driver.DriverRepository;
+import com.sss.garage.model.league.League;
+import com.sss.garage.model.league.LeagueRepository;
 import com.sss.garage.model.track.Track;
 import com.sss.garage.model.track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ public class AccJsonDataLoader {
     private TrackRepository trackRepository;
 
     private DriverRepository driverRepository;
+
+    private LeagueRepository leagueRepository;
 
     private ObjectMapper objectMapper;
 
@@ -107,7 +111,7 @@ public class AccJsonDataLoader {
                         lapObjectBuilder.add("carModel", driverObject.getInt("carModel"));
                         lapObjectBuilder.add("trackName", sessionObject.getString("trackName"));
                         lapObjectBuilder.add("sessionType", sessionObject.getString("sessionType"));
-                        lapObjectBuilder.add("serverName", sessionObject.getString("serverName").split("-")[1].strip());
+                        lapObjectBuilder.add("metaData", sessionObject.getString("metaData"));
                         for (int i = 0; i < lapObject.getJsonArray("splits").size(); i++) {
                             lapObjectBuilder.add("sector" + (i + 1), lapObject.getJsonArray("splits").getInt(i));
                         }
@@ -140,7 +144,8 @@ public class AccJsonDataLoader {
                         accLap.setRaceNumber(l.raceNumber);
                         accLap.setTrack(findTrackByName(l.trackName));
                         accLap.setSessionType(l.sessionType);
-                        accLap.setServerName(l.serverName);
+                        accLap.setMetaData(l.metaData);
+                        accLap.setLeague(findLeagueByServerChampionshipId(accLap));
                         accLap.setTotalTime(String.valueOf(((float) l.totalTime) / 1000));
                         accLap.setTotalLaps(l.totalLaps);
                         return accLap;
@@ -172,9 +177,18 @@ public class AccJsonDataLoader {
 
         return legacyCarTable.getCarModel();
     }
+
     private Driver findDriverBySteamId(final AccLap lap) {
         try {
             return driverRepository.findBySteamId(Long.valueOf(lap.getSteamId().substring(1)));
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    private League findLeagueByServerChampionshipId(final AccLap lap) {
+        try {
+            return leagueRepository.findByAccServerChampionshipId(lap.getMetaData().split(":")[1]);
         } catch (NullPointerException e) {
             return null;
         }
@@ -197,6 +211,11 @@ public class AccJsonDataLoader {
     @Autowired
     public void setDriverRepository(final DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
+    }
+
+    @Autowired
+    public void setLeagueRepository(final LeagueRepository leagueRepository) {
+        this.leagueRepository = leagueRepository;
     }
 
     @Autowired

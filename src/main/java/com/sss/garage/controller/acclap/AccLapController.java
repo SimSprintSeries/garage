@@ -44,10 +44,10 @@ public class AccLapController extends SssBaseController {
                                                         @Parameter(description = "Sorting direction", schema = @Schema(description = "sort", type = "String", allowableValues = "ASC,DESC")) @RequestParam(value = "sortDirection", defaultValue = "ASC") final String sortDirection,
                                                         @Parameter(description = "Optional track ID to filter by") @RequestParam(value = "trackId", required = false) final String trackId,
                                                         @Parameter(description = "Optional session type to filter by") @RequestParam(value = "sessionType", required = false) final String sessionType,
-                                                        @Parameter(description = "Optional server/championship name to filter by") @RequestParam(value = "serverName", required = false) final String serverName,
+                                                        @Parameter(description = "Optional league ID to filter by") @RequestParam(value = "leagueId", required = false) final String leagueId,
                                                         @Parameter(description = "Optional class name to filter by") @RequestParam(value = "className", required = false) final String className) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.valueOf(sortDirection.toUpperCase()), sort));
-        return this.lapFacade.getFastestLapsForEveryDriver(sessionType, trackId, serverName, className, pageable).map(l -> mapper.map(l, AccLapDTO.class));
+        return this.lapFacade.getFastestLapsForEveryDriver(sessionType, trackId, leagueId, className, pageable).map(l -> mapper.map(l, AccLapDTO.class));
     }
 
     @Autowired
