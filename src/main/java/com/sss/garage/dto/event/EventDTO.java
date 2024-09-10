@@ -17,6 +17,7 @@ public class EventDTO {
     private Set<PresenceDTO> presences;
     private Boolean activeForPresence;
     private String startDate;
+    private Boolean completed;
 
     public Long getId() {
         return id;
@@ -88,5 +89,13 @@ public class EventDTO {
 
     public void setStartDate(final String startDate) {
         this.startDate = startDate;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(final Boolean completed) {
+        this.completed = completed;
     }
 }

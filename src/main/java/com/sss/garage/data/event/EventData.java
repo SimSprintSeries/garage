@@ -18,6 +18,7 @@ public class EventData {
     private Set<PresenceData> presences;
     private Boolean activeForPresence;
     private Date startDate;
+    private Boolean completed;
 
     public Long getId() {
         return id;
@@ -89,5 +90,13 @@ public class EventData {
 
     public void setStartDate(final Date startDate) {
         this.startDate = startDate;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(final Boolean completed) {
+        this.completed = completed;
     }
 }

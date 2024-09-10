@@ -11,12 +11,16 @@ import com.sss.garage.data.race.RaceData;
 import com.sss.garage.data.track.TrackData;
 import com.sss.garage.model.event.Event;
 
-import com.sss.garage.model.race.Race;
+import com.sss.garage.service.event.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventConverter extends BaseConverter implements Converter<Event, EventData> {
+
+    private EventService eventService;
 
     @Override
     public EventData convert(final Event source) {
@@ -28,12 +32,17 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
     public void convert(final Event source, final EventData data) {
         data.setId(source.getId());
         data.setLeague(Optional.ofNullable(source.getLeague()).map(l -> getConversionService().convert(l, LeagueData.class)).orElse(null));
-        //data.setDisplayText(data.getLeague() != null ? data.getLeague().getDisplayText() + " - " + source.getName() : source.getName());
         data.setDisplayText(source.getName());
         data.setActiveForPresence(source.getActiveForPresence());
         data.setPresences(source.getPresences().stream().map(p -> getConversionService().convert(p, PresenceData.class)).collect(Collectors.toSet()));
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
         data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
         data.setStartDate(source.getStartDate());
+        data.setCompleted(eventService.getCompletedPlayableEvents(source.getLeague(), Pageable.ofSize(5)).toList().contains(source));
+    }
+
+    @Autowired
+    public void setEventService(final EventService eventService) {
+        this.eventService = eventService;
     }
 }
