@@ -38,7 +38,7 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
         data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
         data.setStartDate(source.getStartDate());
-        data.setCompleted(eventService.getCompletedPlayableEvents(source.getLeague(), Pageable.ofSize(5)).toList().contains(source));
+        data.setCompleted(eventService.getCompletedPlayableEvents(source.getLeague(), Pageable.ofSize(1000)).toList().contains(source));
     }
 
     @Autowired
