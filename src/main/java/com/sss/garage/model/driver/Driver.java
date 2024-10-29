@@ -28,6 +28,12 @@ public class Driver {
     @NotNull
     private String name;
 
+    private String firstName;
+
+    private String lastName;
+
+    private String shortName;
+
     @OneToOne
     private DiscordUser discordUser;
 
@@ -105,6 +111,30 @@ public class Driver {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(final String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(final String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(final String shortName) {
+        this.shortName = shortName;
     }
 
     public DiscordUser getDiscordUser() {

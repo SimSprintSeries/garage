@@ -26,6 +26,9 @@ public class BasicDriverConverter extends BaseConverter implements Converter<Dri
 
         data.setId(source.getId());
         data.setNickname(source.getName()); // in case discord user is null
+        data.setFirstName(source.getFirstName());
+        data.setLastName(source.getLastName());
+        data.setShortName(source.getShortName());
 
         return data;
     }

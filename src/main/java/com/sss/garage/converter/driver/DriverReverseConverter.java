@@ -14,6 +14,9 @@ public class DriverReverseConverter extends BaseConverter implements Converter<D
 
         target.setId(source.getId());
         target.setName(source.getNickname());
+        target.setFirstName(source.getFirstName());
+        target.setLastName(source.getLastName());
+        target.setShortName(source.getShortName());
 
         return target;
     }

@@ -10,6 +10,9 @@ import java.util.Set;
 public class DriverData {
     private Long id;
     private String nickname;
+    private String firstName;
+    private String lastName;
+    private String shortName;
     private Set<EloData> elos;
     private Integer totalWins;
     private Integer totalTopTenResults;
@@ -44,6 +47,30 @@ public class DriverData {
 
     public void setNickname(final String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(final String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(final String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(final String shortName) {
+        this.shortName = shortName;
     }
 
     public Set<EloData> getElos() {
