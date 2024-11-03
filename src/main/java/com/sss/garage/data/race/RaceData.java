@@ -2,6 +2,7 @@ package com.sss.garage.data.race;
 
 import com.sss.garage.data.presence.PresenceData;
 import com.sss.garage.data.split.SplitData;
+import com.sss.garage.data.track.TrackData;
 
 import java.util.Date;
 import java.util.Set;
@@ -13,6 +14,7 @@ public class RaceData {
     private Boolean activeForPresence;
     private Set<PresenceData> presences;
     private String name;
+    private TrackData track;
 
     public SplitData getSplit() {
         return split;
@@ -60,5 +62,13 @@ public class RaceData {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public TrackData getTrack() {
+        return track;
+    }
+
+    public void setTrack(final TrackData track) {
+        this.track = track;
     }
 }

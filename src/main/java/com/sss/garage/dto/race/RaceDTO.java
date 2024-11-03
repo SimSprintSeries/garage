@@ -1,12 +1,14 @@
 package com.sss.garage.dto.race;
 
 import com.sss.garage.dto.split.SplitDTO;
+import com.sss.garage.dto.track.TrackDTO;
 
 public class RaceDTO {
     private Long id;
     private SplitDTO split;
     private String name;
     private String displayText;
+    private TrackDTO track;
 
     public SplitDTO getSplit() {
         return split;
@@ -38,5 +40,13 @@ public class RaceDTO {
 
     public void setDisplayText(final String displayText) {
         this.displayText = displayText;
+    }
+
+    public TrackDTO getTrack() {
+        return track;
+    }
+
+    public void setTrack(final TrackDTO track) {
+        this.track = track;
     }
 }
