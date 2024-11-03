@@ -1,5 +1,6 @@
 package com.sss.garage.model.raceresult;
 
+import com.sss.garage.model.classification.Classification;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
@@ -44,6 +45,9 @@ public class RaceResult {
     private Integer pointsForPosition;
 
     private String gapToFirst;
+
+    @ManyToOne
+    private Classification classification;
 
     public Long getId() {
         return id;
@@ -140,5 +144,13 @@ public class RaceResult {
 
     public void setGapToFirst(final String gapToFirst) {
         this.gapToFirst = gapToFirst;
+    }
+
+    public Classification getClassification() {
+        return classification;
+    }
+
+    public void setClassification(final Classification classification) {
+        this.classification = classification;
     }
 }

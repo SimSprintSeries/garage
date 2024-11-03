@@ -1,6 +1,7 @@
 package com.sss.garage.service.raceresult.impl;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.racepointdictionary.RacePointDictionary;
 import com.sss.garage.model.racepointdictionary.RacePointDictionaryRepository;
@@ -108,6 +109,11 @@ public class SssRaceResultService implements RaceResultService {
     public Page<RaceResult> getRaceResultsPaginated(final String finishPosition, final Boolean polePosition, final Boolean dnf, final Boolean dsq
             , final Boolean fastestLap, final Driver driver, final Race race, final Pageable pageable) {
         return raceResultRepository.findAllByParams(finishPosition, polePosition, dnf, dsq, fastestLap, driver, race, pageable);
+    }
+
+    @Override
+    public List<RaceResult> getRaceResultsForLeague(Driver driver, League league) {
+        return raceResultRepository.findRaceResultsByDriverAndLeague(driver, league);
     }
 
     private Integer findPointsForPosition(final RaceResult raceResult) {

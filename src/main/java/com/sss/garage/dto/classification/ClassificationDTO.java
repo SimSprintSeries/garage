@@ -2,7 +2,10 @@ package com.sss.garage.dto.classification;
 
 import com.sss.garage.dto.driver.SimpleDriverDTO;
 import com.sss.garage.dto.league.LeagueDTO;
+import com.sss.garage.dto.raceresult.RaceResultDTO;
 import com.sss.garage.dto.team.TeamDTO;
+
+import java.util.List;
 
 public class ClassificationDTO {
     private Long id;
@@ -14,6 +17,8 @@ public class ClassificationDTO {
     private TeamDTO team;
 
     private Integer points;
+
+    private List<RaceResultDTO> raceResults;
 
     public Long getId() {
         return id;
@@ -53,5 +58,13 @@ public class ClassificationDTO {
 
     public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public List<RaceResultDTO> getRaceResults() {
+        return raceResults;
+    }
+
+    public void setRaceResults(final List<RaceResultDTO> raceResults) {
+        this.raceResults = raceResults;
     }
 }

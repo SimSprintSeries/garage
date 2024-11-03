@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
     @Query("SELECT r FROM RaceResult r WHERE (r.finishPosition=:finishPosition OR :finishPosition IS NULL) " +
@@ -65,6 +67,11 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
             "AND e.league=:league " +
             "GROUP BY rr.driver, e.league")
     Integer findPointsByDriverAndLeague(Driver driver, League league);
+
+    @Query("SELECT rr FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
+            "WHERE rr.driver=:driver " +
+            "AND e.league=:league")
+    List<RaceResult> findRaceResultsByDriverAndLeague(Driver driver, League league);
 
     @Cacheable(value = "driverPositionsCount", key = "#driver.id.toString().concat('-').concat(#league.id.toString()).concat('-').concat(#finishPosition)")
     @Query("SELECT COUNT(*) FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +

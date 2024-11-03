@@ -3,8 +3,8 @@ package com.sss.garage.dto.race;
 import com.sss.garage.dto.split.SplitDTO;
 
 public class RaceDTO {
-    private SplitDTO split;
     private Long id;
+    private SplitDTO split;
     private String name;
     private String displayText;
 

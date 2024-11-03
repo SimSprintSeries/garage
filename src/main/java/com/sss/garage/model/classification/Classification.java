@@ -2,8 +2,11 @@ package com.sss.garage.model.classification;
 
 import com.sss.garage.model.driver.Driver;
 import com.sss.garage.model.league.League;
+import com.sss.garage.model.raceresult.RaceResult;
 import com.sss.garage.model.team.Team;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Classification {
@@ -25,6 +28,9 @@ public class Classification {
     private Integer position = 0;
 
     private Integer positionCount = 0;
+
+    @OneToMany
+    private List<RaceResult> raceResults;
 
     public Long getId() {
         return id;
@@ -80,5 +86,13 @@ public class Classification {
 
     public void setPositionCount(Integer positionCount) {
         this.positionCount = positionCount;
+    }
+
+    public List<RaceResult> getRaceResults() {
+        return raceResults;
+    }
+
+    public void setRaceResults(final List<RaceResult> raceResults) {
+        this.raceResults = raceResults;
     }
 }

@@ -1,6 +1,7 @@
 package com.sss.garage.service.raceresult;
 
 import com.sss.garage.model.driver.Driver;
+import com.sss.garage.model.league.League;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.model.raceresult.RaceResult;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,8 @@ public interface RaceResultService {
 
     Page<RaceResult> getRaceResultsPaginated(String finishPosition, Boolean polePosition, Boolean dnf, Boolean dsq
             , Boolean fastestLap, Driver driver, Race race, Pageable pageable);
+
+    List<RaceResult> getRaceResultsForLeague(Driver driver, League league);
 
     Integer calculateAndSaveTotalDriverWins(final Driver driver);
 
