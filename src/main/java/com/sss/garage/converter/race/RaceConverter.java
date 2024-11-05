@@ -23,6 +23,7 @@ public class RaceConverter extends BaseConverter implements Converter<Race, Race
         data.setSplit(getConversionService().convert(source.getSplit(), SplitData.class));
         data.setDisplayText(source.getEvent().getName() + " - " + source.getName());
         data.setTrack(getConversionService().convert(source.getEvent().getTrack(), TrackData.class));
+        data.setEventId(source.getEvent().getId());
 
         return data;
     }

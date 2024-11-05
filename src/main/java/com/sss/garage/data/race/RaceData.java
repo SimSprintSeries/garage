@@ -15,6 +15,7 @@ public class RaceData {
     private Set<PresenceData> presences;
     private String name;
     private TrackData track;
+    private Long eventId;
 
     public SplitData getSplit() {
         return split;
@@ -70,5 +71,13 @@ public class RaceData {
 
     public void setTrack(final TrackData track) {
         this.track = track;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(final Long eventId) {
+        this.eventId = eventId;
     }
 }

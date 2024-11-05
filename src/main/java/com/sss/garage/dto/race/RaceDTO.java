@@ -9,6 +9,7 @@ public class RaceDTO {
     private String name;
     private String displayText;
     private TrackDTO track;
+    private Long eventId;
 
     public SplitDTO getSplit() {
         return split;
@@ -48,5 +49,13 @@ public class RaceDTO {
 
     public void setTrack(final TrackDTO track) {
         this.track = track;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(final Long eventId) {
+        this.eventId = eventId;
     }
 }

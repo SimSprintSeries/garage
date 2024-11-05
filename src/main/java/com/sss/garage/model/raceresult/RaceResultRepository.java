@@ -70,7 +70,8 @@ public interface RaceResultRepository extends JpaRepository<RaceResult, Long> {
 
     @Query("SELECT rr FROM RaceResult rr LEFT JOIN Race r ON rr.race = r LEFT JOIN Event e ON r.event = e " +
             "WHERE rr.driver=:driver " +
-            "AND e.league=:league")
+            "AND e.league=:league " +
+            "ORDER BY e.startDate")
     List<RaceResult> findRaceResultsByDriverAndLeague(Driver driver, League league);
 
     @Cacheable(value = "driverPositionsCount", key = "#driver.id.toString().concat('-').concat(#league.id.toString()).concat('-').concat(#finishPosition)")
