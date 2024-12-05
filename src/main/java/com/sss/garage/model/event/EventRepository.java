@@ -40,8 +40,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("SELECT e FROM Event e " +
             "WHERE :datePlaceholder = true " +
-            "AND e.league = :league OR :league IS NULL " +
-            "AND e.track = :track OR :track IS NULL")
+            "AND (e.league = :league OR :league IS NULL) " +
+            "AND (e.track = :track OR :track IS NULL)")
     Page<Event> findAllByDatePlaceholderAndLeague(final Boolean datePlaceholder, final League league, final Track track, final Pageable pageable);
 
     @Query("SELECT e FROM Event e " +
