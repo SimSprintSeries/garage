@@ -97,6 +97,7 @@ public class SecurityConfiguration {
                         config.addAllowedOriginPattern("https://discord.com");
                         config.addAllowedOriginPattern("https://discordapp.com");
                         config.addAllowedOriginPattern("http://192.168.0.14:5173");
+                        config.addAllowedOriginPattern("https://simss.makeiteasy.tech");
                         return config;
                     }).and()
                 .csrf().disable();
