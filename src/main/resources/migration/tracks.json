@@ -421,6 +421,20 @@
   },
   {
     "id": 61,
+    "name": "Silesia Ring",
+    "country": "PL",
+    "city": "Kamień Śląski",
+    "accName": null
+  },
+  {
+    "id": 62,
+    "name": "Indianapolis Motor Speedway",
+    "country": "US",
+    "city": "Indianapolis",
+    "accName": "indianapolis"
+  },
+  {
+    "id": 63,
     "name": "TBA",
     "country": null,
     "city": "TBA",
