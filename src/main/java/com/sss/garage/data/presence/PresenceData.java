@@ -5,8 +5,6 @@ import com.sss.garage.data.event.EventData;
 import com.sss.garage.data.race.RaceData;
 
 public class PresenceData {
-    private Long id;
-
     private EventData event;
 
     private DriverData driver;
@@ -14,14 +12,6 @@ public class PresenceData {
     private Boolean isPresent;
 
     private Boolean isAssignedToSplit;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
 
     public EventData getEvent() {
         return event;

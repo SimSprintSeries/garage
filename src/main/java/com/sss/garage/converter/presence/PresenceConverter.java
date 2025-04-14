@@ -22,7 +22,6 @@ public class PresenceConverter extends BaseConverter implements Converter<Presen
     public PresenceData convert(final Presence source) {
         final PresenceData data = new PresenceData();
 
-        data.setId(source.getId());
         data.setIsPresent(source.getIsPresent());
         data.setDriver(getConversionService().convert(source.getDriver(), DriverData.class));
 

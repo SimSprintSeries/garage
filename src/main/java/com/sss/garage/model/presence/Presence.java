@@ -7,28 +7,19 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@IdClass(PresenceId.class)
 public class Presence {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
     private Event event;
 
+    @Id
     @ManyToOne
     private Driver driver;
 
     private Boolean isPresent;
 
     private Date date;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
 
     public Event getEvent() {
         return event;

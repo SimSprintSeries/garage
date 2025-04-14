@@ -17,7 +17,6 @@ public class PresenceReverseConverter extends BaseConverter implements Converter
     public Presence convert(final PresenceData source) {
         final Presence target = new Presence();
 
-        target.setId(source.getId());
         target.setDriver(getConversionService().convert(source.getDriver(), Driver.class));
         target.setEvent(getConversionService().convert(source.getEvent(), Event.class));
         target.setIsPresent(source.getIsPresent());
