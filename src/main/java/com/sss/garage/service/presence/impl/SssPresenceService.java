@@ -6,6 +6,7 @@ import com.sss.garage.model.presence.Presence;
 import com.sss.garage.model.presence.PresenceRepository;
 import com.sss.garage.model.race.Race;
 import com.sss.garage.service.presence.PresenceService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,12 @@ public class SssPresenceService implements PresenceService {
     @Override
     public Presence getByDriverAndEvent(Driver driver, Event event) {
         return presenceRepository.findByDriverAndEvent(driver, event);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByDriverAndEvent(Driver driver, Event event) {
+        presenceRepository.deleteByDriverAndEvent(driver, event);
     }
 
     @Autowired

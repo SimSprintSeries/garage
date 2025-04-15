@@ -9,4 +9,6 @@ public interface PresenceService {
     void setPresenceForDriverAndRace(final Presence presence);
 
     Presence getByDriverAndEvent(final Driver driver, final Event event);
+
+    void deleteByDriverAndEvent(final Driver driver, final Event event);
 }

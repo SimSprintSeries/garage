@@ -7,5 +7,7 @@ import com.sss.garage.data.presence.PresenceData;
 public interface PresenceFacade {
     void setPresenceForDriverAndEvent(final Boolean isPresent, final String eventId, final String driverId);
 
-    PresenceData getByDriverAndRace(DriverData driver, EventData event);
+    PresenceData getByDriverAndRace(final DriverData driver, final EventData event);
+
+    void deleteByDriverAndRace(final String eventId, final String driverId);
 }

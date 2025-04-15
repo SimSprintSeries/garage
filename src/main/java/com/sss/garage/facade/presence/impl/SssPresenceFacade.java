@@ -35,10 +35,16 @@ public class SssPresenceFacade extends SssBaseFacade implements PresenceFacade {
     }
 
     @Override
-    public PresenceData getByDriverAndRace(DriverData driver, EventData event) {
+    public PresenceData getByDriverAndRace(final DriverData driver, final EventData event) {
         Presence presence = presenceService.getByDriverAndEvent(conversionService.convert(driver, Driver.class),
                 conversionService.convert(event, Event.class));
         return conversionService.convert(presence, PresenceData.class);
+    }
+
+    @Override
+    public void deleteByDriverAndRace(@NotEmpty final String driverId, @NotEmpty final String eventId) {
+        presenceService.deleteByDriverAndEvent(driverService.getDriver(Long.valueOf(driverId)).orElseThrow(),
+                eventService.getEvent(Long.valueOf(eventId)).orElseThrow());
     }
 
     @Autowired

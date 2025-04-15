@@ -25,6 +25,14 @@ public class PresenceController {
         presenceFacade.setPresenceForDriverAndEvent(isPresent, eventId, driverId);
     }
 
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(operationId = "deletePresenceForDriverAndEvent", summary = "Delete presence for driver at specific event")
+    public void deletePresenceForDriverAndEvent(@Parameter(description = "Driver ID") @RequestParam(value = "driverId") final String driverId,
+                                                @Parameter(description = "Event ID") @RequestParam(value = "eventId") final String eventId) {
+        presenceFacade.deleteByDriverAndRace(driverId, eventId);
+    }
+
     @Autowired
     public void setPresenceFacade(final PresenceFacade presenceFacade) {
         this.presenceFacade = presenceFacade;
