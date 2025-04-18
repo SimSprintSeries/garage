@@ -1,9 +1,5 @@
 package com.sss.garage.configuration.security;
 
-import static com.sss.garage.constants.WebConstants.ELO_CALCULATION_ENDPOINT;
-import static com.sss.garage.constants.WebConstants.NON_ACCESSIBLE_PATH;
-import static com.sss.garage.constants.WebConstants.USER_ENDPOINT;
-
 import java.util.List;
 
 import com.sss.garage.filter.GenerateNewJwtTokenFilter;
@@ -43,6 +39,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 
+import static com.sss.garage.constants.WebConstants.*;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -78,6 +76,28 @@ public class SecurityConfiguration {
                         .requestMatchers("/login/oauth2/code/discord").authenticated() // Will authenticate in filters before returning jwt to driver
                         .requestMatchers(USER_ENDPOINT + "/**").authenticated()
                         .requestMatchers(ELO_CALCULATION_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, DRIVER_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, DRIVER_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, EVENT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, EVENT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, GAME_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, GAME_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, LEAGUE_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, LEAGUE_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, EVENT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, EVENT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, RACE_RESULT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, RACE_RESULT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, RACE_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, RACE_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.PATCH, REPORT_ENDPOINT + "/**").hasAnyRole(roles.admin(), roles.steward())
+                        .requestMatchers(HttpMethod.DELETE, REPORT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, SPLIT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, SPLIT_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, TEAM_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, TEAM_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.POST, TRACK_ENDPOINT + "/**").hasRole(roles.admin())
+                        .requestMatchers(HttpMethod.DELETE, TRACK_ENDPOINT + "/**").hasRole(roles.admin())
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

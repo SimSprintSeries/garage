@@ -1,5 +1,7 @@
 package com.sss.garage.converter.event;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,12 +35,16 @@ public class EventConverter extends BaseConverter implements Converter<Event, Ev
         data.setId(source.getId());
         data.setLeague(Optional.ofNullable(source.getLeague()).map(l -> getConversionService().convert(l, LeagueData.class)).orElse(null));
         data.setDisplayText(source.getName());
-        data.setActiveForPresence(source.getActiveForPresence());
         data.setPresences(source.getPresences().stream().map(p -> getConversionService().convert(p, PresenceData.class)).collect(Collectors.toSet()));
         data.setTrack(getConversionService().convert(source.getTrack(), TrackData.class));
         data.setRaces(source.getRaces().stream().map(r -> getConversionService().convert(r, RaceData.class)).collect(Collectors.toSet()));
         data.setStartDate(source.getStartDate());
         data.setCompleted(eventService.getCompletedPlayableEvents(source.getLeague(), Pageable.ofSize(1000)).toList().contains(source));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, 7);
+        data.setActiveForPresence(source.getStartDate().before(calendar.getTime()) && source.getStartDate().after(new Date()));
     }
 
     @Autowired

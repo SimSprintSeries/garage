@@ -9,7 +9,6 @@ import com.sss.garage.service.driver.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,7 +31,6 @@ public class PresenceConverter extends BaseConverter implements Converter<Presen
         } else if(!driversInSplit.contains(source.getDriver()) && source.getIsPresent()) {
             data.setIsAssignedToSplit(false);
         }
-
 
         return data;
     }
