@@ -90,7 +90,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.DELETE, RACE_RESULT_ENDPOINT + "/**").hasRole(roles.admin())
                         .requestMatchers(HttpMethod.POST, RACE_ENDPOINT + "/**").hasRole(roles.admin())
                         .requestMatchers(HttpMethod.DELETE, RACE_ENDPOINT + "/**").hasRole(roles.admin())
-                        .requestMatchers(HttpMethod.PATCH, REPORT_ENDPOINT + "/**").hasAnyRole(roles.admin(), roles.steward())
+                        .requestMatchers(HttpMethod.PATCH, REPORT_ENDPOINT + "/**").hasAnyRole(roles.admin())
                         .requestMatchers(HttpMethod.DELETE, REPORT_ENDPOINT + "/**").hasRole(roles.admin())
                         .requestMatchers(HttpMethod.POST, SPLIT_ENDPOINT + "/**").hasRole(roles.admin())
                         .requestMatchers(HttpMethod.DELETE, SPLIT_ENDPOINT + "/**").hasRole(roles.admin())
