@@ -9,16 +9,16 @@ public class LocalRoleMapperStrategy implements RoleMapperStrategy {
 
     @Override
     public String admin() {
-        return "ROLE_1075533713233948722";
+        return "1075533713233948722";
     }
 
     @Override
     public String steward() {
-        return "ROLE_1075533713233948722";
+        return "1075533713233948722";
     }
 
     @Override
     public String user() {
-        return "ROLE_1059454168525447178";
+        return "1059454168525447178";
     }
 }
