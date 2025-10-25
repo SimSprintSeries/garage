@@ -649,6 +649,42 @@
   },
   {
     "id": 78,
+    "name": "F1 25 - Minisezon wakacyjny",
+    "type": 15,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 25",
+    "accServerChampionshipId": null
+  },
+  {
+    "id": 79,
+    "name": "F1 25 - Liga B - Jesień 2025",
+    "type": 15,
+    "split": "B",
+    "platform": "PC",
+    "game": "F1 25",
+    "accServerChampionshipId": null
+  },
+  {
+    "id": 80,
+    "name": "F1 23 - Jesień 2025",
+    "type": 12,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 23",
+    "accServerChampionshipId": null
+  },
+  {
+    "id": 81,
+    "name": "F1 25 - Liga A - Jesień 2025",
+    "type": 15,
+    "split": "A",
+    "platform": "PC",
+    "game": "F1 25",
+    "accServerChampionshipId": null
+  },
+  {
+    "id": 82,
     "name": "Porsche Winter Cup",
     "type": 4,
     "split": "A",
@@ -657,7 +693,7 @@
     "accServerChampionshipId": "2c91d9c8-ca19-43f7-b351-cbdd928a34dc"
   },
   {
-    "id": 79,
+    "id": 83,
     "name": "Assetto Corsa Competizione - GT3 - Sezon 3",
     "type": 4,
     "split": "A",

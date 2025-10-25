@@ -5502,5 +5502,317 @@
     "starts": "2025-06-05 20:10:00",
     "league_id": 77,
     "track_id": 30
+  },
+  {
+    "id": 754,
+    "name": "GP Arabii Saudyjskiej - 100%",
+    "country": "SA",
+    "starts": "2025-07-14 20:10:00",
+    "league_id": 78,
+    "track_id": 17
+  },
+  {
+    "id": 755,
+    "name": "GP Kataru - F2",
+    "country": "QA",
+    "starts": "2025-07-21 20:10:00",
+    "league_id": 78,
+    "track_id": 27
+  },
+  {
+    "id": 756,
+    "name": "GP Brazylii - F1 sprint",
+    "country": "BR",
+    "starts": "2025-07-28 20:10:00",
+    "league_id": 78,
+    "track_id": 21
+  },
+  {
+    "id": 757,
+    "name": "GP Austrii - reverse",
+    "country": "AT",
+    "starts": "2025-08-04 20:10:00",
+    "league_id": 78,
+    "track_id": 19
+  },
+  {
+    "id": 758,
+    "name": "GP Wielkiej Brytanii - 50% normal, 50% reverse",
+    "country": "GB",
+    "starts": "2025-08-11 20:10:00",
+    "league_id": 78,
+    "track_id": 40
+  },
+  {
+    "id": 759,
+    "name": "GP Singapuru - 100%",
+    "country": "SG",
+    "starts": "2025-08-18 20:10:00",
+    "league_id": 78,
+    "track_id": 36
+  },
+  {
+    "id": 760,
+    "name": "GP Imoli",
+    "country": "IT",
+    "starts": "2025-09-29 20:10:00",
+    "league_id": 81,
+    "track_id": 24
+  },
+  {
+    "id": 761,
+    "name": "GP Imoli",
+    "country": "IT",
+    "starts": "2025-09-30 20:10:00",
+    "league_id": 79,
+    "track_id": 24
+  },
+  {
+    "id": 762,
+    "name": "GP Imoli",
+    "country": "IT",
+    "starts": "2025-10-02 20:10:00",
+    "league_id": 80,
+    "track_id": 24
+  },
+  {
+    "id": 763,
+    "name": "GP Las Vegas",
+    "country": "US",
+    "starts": "2025-10-06 20:10:00",
+    "league_id": 81,
+    "track_id": 28
+  },
+  {
+    "id": 764,
+    "name": "GP Las Vegas",
+    "country": "US",
+    "starts": "2025-10-07 20:10:00",
+    "league_id": 79,
+    "track_id": 28
+  },
+  {
+    "id": 765,
+    "name": "GP Las Vegas",
+    "country": "US",
+    "starts": "2025-10-09 20:10:00",
+    "league_id": 80,
+    "track_id": 28
+  },
+  {
+    "id": 766,
+    "name": "GP Kanady",
+    "country": "CA",
+    "starts": "2025-10-13 20:10:00",
+    "league_id": 81,
+    "track_id": 26
+  },
+  {
+    "id": 767,
+    "name": "GP Kanady",
+    "country": "CA",
+    "starts": "2025-10-14 20:10:00",
+    "league_id": 79,
+    "track_id": 26
+  },
+  {
+    "id": 768,
+    "name": "GP Kanady",
+    "country": "CA",
+    "starts": "2025-10-16 20:10:00",
+    "league_id": 80,
+    "track_id": 26
+  },
+  {
+    "id": 769,
+    "name": "GP Holandii",
+    "country": "NL",
+    "starts": "2025-10-20 20:10:00",
+    "league_id": 81,
+    "track_id": 11
+  },
+  {
+    "id": 770,
+    "name": "GP Holandii",
+    "country": "NL",
+    "starts": "2025-10-21 20:10:00",
+    "league_id": 79,
+    "track_id": 11
+  },
+  {
+    "id": 771,
+    "name": "GP Holandii",
+    "country": "NL",
+    "starts": "2025-10-23 20:10:00",
+    "league_id": 80,
+    "track_id": 11
+  },
+  {
+    "id": 772,
+    "name": "GP USA",
+    "country": "US",
+    "starts": "2025-10-27 20:10:00",
+    "league_id": 81,
+    "track_id": 38
+  },
+  {
+    "id": 773,
+    "name": "GP USA",
+    "country": "US",
+    "starts": "2025-10-28 20:10:00",
+    "league_id": 79,
+    "track_id": 38
+  },
+  {
+    "id": 774,
+    "name": "GP USA",
+    "country": "US",
+    "starts": "2025-10-30 20:10:00",
+    "league_id": 80,
+    "track_id": 38
+  },
+  {
+    "id": 775,
+    "name": "GP Azerbejdżanu",
+    "country": "AZ",
+    "starts": "2025-11-03 20:10:00",
+    "league_id": 81,
+    "track_id": 20
+  },
+  {
+    "id": 776,
+    "name": "GP Azerbejdżanu",
+    "country": "AZ",
+    "starts": "2025-11-04 20:10:00",
+    "league_id": 79,
+    "track_id": 20
+  },
+  {
+    "id": 777,
+    "name": "GP Azerbejdżanu",
+    "country": "AZ",
+    "starts": "2025-11-06 20:10:00",
+    "league_id": 80,
+    "track_id": 20
+  },
+  {
+    "id": 778,
+    "name": "GP Australii",
+    "country": "AU",
+    "starts": "2025-11-17 20:10:00",
+    "league_id": 81,
+    "track_id": 18
+  },
+  {
+    "id": 779,
+    "name": "GP Australii",
+    "country": "AU",
+    "starts": "2025-11-18 20:10:00",
+    "league_id": 79,
+    "track_id": 18
+  },
+  {
+    "id": 780,
+    "name": "GP Australii",
+    "country": "AU",
+    "starts": "2025-11-20 20:10:00",
+    "league_id": 80,
+    "track_id": 18
+  },
+  {
+    "id": 781,
+    "name": "GP Bahrajnu",
+    "country": "BH",
+    "starts": "2025-11-24 20:10:00",
+    "league_id": 81,
+    "track_id": 3
+  },
+  {
+    "id": 782,
+    "name": "GP Bahrajnu",
+    "country": "BH",
+    "starts": "2025-11-25 20:10:00",
+    "league_id": 79,
+    "track_id": 3
+  },
+  {
+    "id": 783,
+    "name": "GP Bahrajnu",
+    "country": "BH",
+    "starts": "2025-11-27 20:10:00",
+    "league_id": 80,
+    "track_id": 3
+  },
+  {
+    "id": 784,
+    "name": "GP Węgier",
+    "country": "HU",
+    "starts": "2025-12-01 20:10:00",
+    "league_id": 81,
+    "track_id": 39
+  },
+  {
+    "id": 785,
+    "name": "GP Węgier",
+    "country": "HU",
+    "starts": "2025-12-02 20:10:00",
+    "league_id": 79,
+    "track_id": 39
+  },
+  {
+    "id": 786,
+    "name": "GP Węgier",
+    "country": "HU",
+    "starts": "2025-12-04 20:10:00",
+    "league_id": 80,
+    "track_id": 39
+  },
+  {
+    "id": 787,
+    "name": "GP Belgii",
+    "country": "BE",
+    "starts": "2025-12-08 20:10:00",
+    "league_id": 81,
+    "track_id": 9
+  },
+  {
+    "id": 788,
+    "name": "GP Belgii",
+    "country": "BE",
+    "starts": "2025-12-09 20:10:00",
+    "league_id": 79,
+    "track_id": 9
+  },
+  {
+    "id": 789,
+    "name": "GP Belgii",
+    "country": "BE",
+    "starts": "2025-12-11 20:10:00",
+    "league_id": 80,
+    "track_id": 9
+  },
+  {
+    "id": 790,
+    "name": "GP Japonii",
+    "country": "JP",
+    "starts": "2025-12-15 20:10:00",
+    "league_id": 81,
+    "track_id": 25
+  },
+  {
+    "id": 791,
+    "name": "GP Japonii",
+    "country": "JP",
+    "starts": "2025-12-16 20:10:00",
+    "league_id": 79,
+    "track_id": 25
+  },
+  {
+    "id": 792,
+    "name": "GP Japonii",
+    "country": "JP",
+    "starts": "2025-12-18 20:10:00",
+    "league_id": 80,
+    "track_id": 25
   }
 ]

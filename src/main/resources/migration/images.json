@@ -361,12 +361,32 @@
   },
   {
     "leagueid": 78,
-    "banner": "https://i.postimg.cc/pVQZVxQD/cwel.jpg",
-    "logo": "https://i.postimg.cc/pVQZVxQD/cwel.jpg"
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_399_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_400_logo_0.png"
   },
   {
     "leagueid": 79,
-    "banner": "https://i.postimg.cc/pVQZVxQD/cwel.jpg",
-    "logo": "https://i.postimg.cc/pVQZVxQD/cwel.jpg"
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_404_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_402_logo_0.png"
+  },
+  {
+    "leagueid": 80,
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_414_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_407_logo_0.png"
+  },
+  {
+    "leagueid": 81,
+    "banner": "https://cdn.simsprintseries.pl/media/banner/0001/01/thumb_415_banner_900.png",
+    "logo": "https://cdn.simsprintseries.pl/media/logo/0001/01/thumb_405_logo_0.png"
+  },
+  {
+    "leagueid": 82,
+    "banner": "https://i.postimg.cc/tg7SvDgb/image-5.png",
+    "logo": "https://i.postimg.cc/tg7SvDgb/image-5.png"
+  },
+  {
+    "leagueid": 83,
+    "banner": "https://i.postimg.cc/tg7SvDgb/image-5.png",
+    "logo": "https://i.postimg.cc/tg7SvDgb/image-5.png"
   }
 ]
