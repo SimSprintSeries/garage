@@ -28733,13 +28733,13 @@
     "dnf": false,
     "dsq": false,
     "lap": false,
-    "driver": 83,
+    "driver": 8,
     "comment": "",
     "eventid": 105,
     "raceid": 63,
     "relatedleague": 6,
     "racename": "Wyścig",
-    "teamid": 21
+    "teamid": 17
   },
   {
     "position": 18,
@@ -139880,13 +139880,13 @@
     "dnf": false,
     "dsq": false,
     "lap": false,
-    "driver": 287,
+    "driver": 432,
     "comment": "",
     "eventid": 577,
     "raceid": 714,
     "relatedleague": 58,
     "racename": "Wyścig",
-    "teamid": 97
+    "teamid": 107
   },
   {
     "position": 14,
